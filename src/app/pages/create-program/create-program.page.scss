@@ -1,0 +1,80 @@
+.img-block {
+    border-bottom: 1px solid #939598;
+    padding-bottom: 15px;
+}
+
+.input {
+    border: 1px solid #939598; 
+    display: block;
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    --padding-bottom: 10px;
+    --padding-end: 15px;
+    --padding-start: 15px;
+    --padding-top: 10px;
+}
+
+.link {
+    display: block;
+    margin-top: 15px;
+    font-size: 12px;
+    margin: 20px 0;
+}
+
+.time-longer {
+    border-top: 1px solid #939598;
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+.title {
+    margin: 0 0 13px;
+    font-family: 'OpenSans-Regular', sans-serif;
+    font-size: 17px;
+    color: #6F6F6E;
+}
+
+.input-block {
+    margin-right: 80px;
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.control-time {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.time-text,.team-text {
+    color: #1D1D1B;
+    font-family: 'OpenSans-Regular', sans-serif;
+    font-size: 9px;
+    margin: 0 0 5px;
+}
+
+.team-tracker {
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+.team {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.team-block {
+    &:first-child {
+        margin-right: 22px;
+        width: 28%;
+    }
+}
+.btn-block {
+    .button {
+        width: 100%;
+    }
+}

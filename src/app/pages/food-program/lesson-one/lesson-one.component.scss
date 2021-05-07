@@ -1,0 +1,99 @@
+.lesson-header {
+    .title-block {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-top: 5px;
+
+        .sub-title {
+            font-size: 16px;
+            color: #0360aa;
+            font-family: 'OpenSans-Regular', sans-serif;
+            margin: 0;
+        }
+        
+        .lesson-img {
+            width: 40px;
+        }
+    }
+    
+    .player {
+        --size: 100%;
+        margin: 20px 0 5px;
+    }
+    
+    .lesson-title {
+        margin: 0;
+        font-family: 'OpenSans-Regular', sans-serif;
+        font-size: 16px;
+        width: 90%;
+        line-height: 1.2;
+    }
+
+    .task-title {
+        --padding-start: 0;
+        --padding-top: 0;
+        --padding-end: 0;
+        --padding-bottom: 0;
+        --inner-padding-bottom: 0;
+        --inner-padding-end: 0;
+        --inner-padding-start: 0;
+        --inner-padding-top: 0;
+        --border-color: #868686;
+    }
+    
+    .task-label {
+        margin: 0;
+        font-size: 16px;
+        color: #0360aa;
+    }
+}
+
+.lesson-sub-title {
+    font-size: 14px;
+    color: #0360aa;
+    margin: 10px 0 25px;
+    font-family: 'OpenSans-Regular', sans-serif;
+}
+
+.lesson-qa {
+
+    .qa-text {
+        color: #3c3c3b;
+        font-size: 14px;
+        display: flex;
+        justify-content: flex-start;
+        width: 75%;
+        font-family: 'OpenSans-Regular', sans-serif;
+
+        .qa-span {
+            color: #0360aa;
+            margin-right: 13px;
+        }
+    }
+
+    .qa-answers {
+        display: flex;
+        align-items: center;
+        margin-top: 25px;
+
+        .radio-block {
+            margin-left: 25px;
+
+            .answer-input {
+                margin-right: 7px;
+            }
+
+            .answer-label {
+                font-family: 'OpenSans-Regular', sans-serif;
+                font-size: 14px;
+                color: #3c3c3b;
+            }
+        }
+    }
+
+}
+
+.btn-block {
+    margin-top: 30px;
+}

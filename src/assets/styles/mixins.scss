@@ -1,0 +1,5 @@
+@mixin styleForText ($fontSize: $fontSizeContent, $fontFamily: $fontRegular, $color: $colorText) {
+  font-size: $fontSize;
+  font-family: $fontFamily;
+  color: $color;
+}

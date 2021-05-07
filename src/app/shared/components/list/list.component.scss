@@ -1,0 +1,86 @@
+.list {
+    &-sub-title {
+        color: #0360aa;
+        font-size: 10px;
+        font-family: 'OpenSans-Regular', sans-serif;
+        margin-bottom: 10px;
+    }
+
+    &-label {
+        font-size: 15px;
+        font-family: 'OpenSans-Light', sans-serif;
+        display: flex;
+        flex-direction: column;
+        margin-right: 0;
+        white-space: normal;
+    }
+
+    &-img {
+        position: relative;
+        margin-right: 25px;
+        width: 50px;
+
+        .complete {
+            position: absolute;
+            right: 0;
+            top: 0;
+            background: #92c01f;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 5.0vw;
+        }
+
+        .non {
+            background: #09f;
+        }
+    }
+
+    &-img-right {
+        margin-left: 25px;
+        width: 50px;
+    }
+
+    &-link {
+        --background: #0360aa;
+        --color: #fff;
+        font-size: 11px;
+        font-family: 'OpenSans-SemiBold', sans-serif;
+        height: 25px;
+        min-width: 120px;
+        margin-top: 5px;
+    }
+
+    &-note {
+        --color: #3c3c3b;
+        font-family: 'OpenSans-Regular', sans-serif;
+        font-size: 14px;
+
+        &-span {
+            color: #0360aa;
+        }
+    }
+
+    &-sub-desc {
+        font-size: 14px;
+        font-family: 'OpenSans-Regular', sans-serif;
+        color: #0360aa;
+    }
+
+    &-edit-button {
+        --background: #0360aa;
+        --color: #fff;
+        font-size: 11px;
+        font-family: 'OpenSans-SemiBold', sans-serif;
+        height: 25px;
+        width: 120px;
+        margin-top: 15px;
+    }
+
+    .place {
+        position: absolute;
+        left: 20px;
+        bottom: 16px;
+        font-weight: bold;
+        color: #0360aa;
+    }
+}

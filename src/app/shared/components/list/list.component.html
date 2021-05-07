@@ -1,0 +1,36 @@
+<ion-list class="list">
+
+    <ion-item
+        *ngFor="let item of list; let i = index; let last = last"
+        class="list-item"
+        [lines]="last && !showLastBorder ? 'none' : 'line'"
+    >
+        <div class="list-img" [ngStyle]="customImgStyles">
+            <img [src]="item.img">
+            <div class="place" *ngIf="item.img == 'assets/images/nutrition/medal.png' && i < 3">{{ i + 1 }}</div>
+            <ion-icon class="complete" name="checkmark-circle-outline" *ngIf="item.complete && !item.id2"></ion-icon>
+            <ion-icon class="complete non" name="time-outline" *ngIf="!item.complete && !item.id2"></ion-icon>
+        </div>
+        <!--(click)="openLesson(item.id)"-->
+        <ion-label class="list-label" [ngStyle]="customLabelStyles">
+            <span *ngIf="item.subTitle" class="list-sub-title">{{ item.subTitle }}</span>
+            {{ item.title }}
+            <span *ngIf="item.subDesc" class="list-sub-desc">{{ item.subDesc }}</span>
+            <ion-button *ngIf="item.src && item.subLink" [routerLink]="['/' + item.src]" class="list-link">{{ item.subLink }}</ion-button>
+            <ion-button
+                *ngIf="item.button"
+                size="small"
+                class="list-edit-button"
+                (click)="clickEvent(item.id, item.id2)"
+            >{{ item.button }}</ion-button>
+        </ion-label>
+
+        <ion-note *ngIf="item.note" slot="end" class="list-note">
+            <span class="list-note-span">{{ item.note }}</span> из 10
+        </ion-note>
+        <div class="list-img-right" *ngIf="item.main_img">
+            <img [src]="item.main_img">
+        </div>
+    </ion-item>
+
+</ion-list>

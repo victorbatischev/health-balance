@@ -1,0 +1,21 @@
+<app-header [title]="'ВЕБ.РФ'"></app-header>
+
+<ion-content fullscreen class="dark-container">
+    <ion-grid class="container-grid">
+      
+        <ion-row justify-content-center align-items-center>
+            <ion-col size="12" ion-text-center>
+                
+                <div class="container">
+                   <app-list [list]="listData" [showLastBorder]="false"></app-list>
+
+                   <div class="web-search">
+                       <app-search></app-search>
+                   </div>
+                </div>
+                
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+</ion-content>

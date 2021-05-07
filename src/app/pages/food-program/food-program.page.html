@@ -1,0 +1,17 @@
+<app-header [title]="'Программа по питанию'"></app-header>
+
+<ion-content fullscreen class="dark-container">
+    <ion-grid class="container-grid">
+      
+        <ion-row justify-content-center align-items-center>
+            <ion-col size="12" ion-text-center>
+                
+                <div class="container" style="height: 100%;">
+                    <router-outlet id="food-program"></router-outlet>
+                </div>
+                
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+</ion-content>

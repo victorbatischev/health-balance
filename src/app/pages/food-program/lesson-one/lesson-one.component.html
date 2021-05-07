@@ -1,0 +1,88 @@
+<div class="lesson-header">
+    <div class="title-block">
+        <h5 class="sub-title">Урок 1</h5>
+
+        <div class="lesson-img"> 
+            <img src="assets/images/food-program/web-rf.png" alt="web-rf">
+        </div>
+    </div>
+    <p class="lesson-title">Рациональное питание - основа здоровья и благополучия</p>
+
+    <ion-thumbnail class="player">
+        <img src="assets/images/food-program/player.png" alt="player">
+    </ion-thumbnail>
+
+    <ion-item class="task-title">
+        <ion-label class="task-label">Задание</ion-label>
+    </ion-item>
+
+</div>
+
+
+<div class="lesson">
+    <h6 class="lesson-sub-title">Выберите правильный ответ</h6>
+    
+    <div class="lesson-qa answer-one">
+        <p class="qa-text">
+            <span class="qa-span">1.</span> Чтобы похудеть, обязательно ли считать КБЖУ?
+        </p>
+        
+        <div class="qa-answers">
+            <div class="radio-block">
+                <input type="radio" id="answer1" name="answer1" class="answer-input">
+                <label for="answer1" class="answer-label">Да</label>
+            </div>
+
+            <div class="radio-block">
+                <input type="radio" id="answer2" name="answer1" class="answer-input">
+                <label for="answer2" class="answer-label">Нет</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="lesson-qa answer-two">
+        <p class="qa-text">
+            <span class="qa-span">2.</span> Белковые продукты сжигают жир?
+        </p>
+        
+        <div class="qa-answers">
+            <div class="radio-block">
+                <input type="radio" id="answer3" name="answer2" class="answer-input">
+                <label for="answer3" class="answer-label">Да</label>
+            </div>
+
+            <div class="radio-block">
+                <input type="radio" id="answer4" name="answer2" class="answer-input">
+                <label for="answer4" class="answer-label">Нет</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="lesson-qa answer-three">
+        <p class="qa-text">
+            <span class="qa-span">3.</span> Обязательно ли есть супы, чтобы худеть?
+        </p>
+        
+        <div class="qa-answers">
+            <div class="radio-block">
+                <input type="radio" id="answer5" name="answer3" class="answer-input">
+                <label for="answer5" class="answer-label">Да</label>
+            </div>
+
+            <div class="radio-block">
+                <input type="radio" id="answer6" name="answer3" class="answer-input">
+                <label for="answer6" class="answer-label">Нет</label>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="btn-block">
+    <ion-button 
+        class="button" 
+        expand="block" 
+        (click)="toLessonTwo()"
+        style="font-size: 18px; --background: #0361aa; --color: #fff;"
+    >Применить</ion-button>
+</div>

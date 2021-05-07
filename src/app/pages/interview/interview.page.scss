@@ -1,0 +1,110 @@
+.input {
+    border: 1px solid #939598;
+    display: block;
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    --padding-bottom: 10px;
+    --padding-end: 15px;
+    --padding-start: 15px;
+    --padding-top: 10px;
+}
+
+.widget-block {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #939598;
+    padding-bottom: 10px;
+
+    .images-block {
+        display: flex;
+        align-items: center;
+
+        .image {
+            margin-right: 15px;
+            width: 20px;
+        }
+    }
+}
+
+.public-button {
+    --background: #0360aa;
+    --color: #fff;
+    font-size: 11px;
+    font-family: 'OpenSans-SemiBold', sans-serif;
+    height: 25px;
+    width: 120px;
+    position: relative;
+    top: -3px;
+}
+
+.player {
+    --size: 100%;
+    margin: 20px 0 5px;
+}
+
+.sub-title {
+    margin: 30px 0 5px;
+    font-size: 12px;
+    color: #0360AA;
+    font-family: 'OpenSans-Regular', sans-serif;
+}
+
+.title {
+    margin: 0 0 13px;
+    font-family: 'OpenSans-Regular', sans-serif;
+    font-size: 16px;
+    color: #6F6F6E;
+}
+
+.desc {
+    font-family: 'OpenSans-Regular', sans-serif;
+    font-size: 13px;
+    margin: 0;
+}
+
+.link {
+    display: block;
+    margin-top: 15px;
+    font-size: 12px;
+    margin-bottom: 85px;
+}
+
+.select {
+    color: #0360AA;
+    height: 20px;
+    border: 1px solid #0360AA;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    --padding-end: 20px;
+    font-size: 12px;
+}
+
+.btns-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 190px;
+}
+
+.trash {
+    width: 35px;
+}
+
+.comment {
+    margin: 1.0vh 0;
+    padding: 1.0vh 3.0vw;
+    background: #eee;
+    font-size: 3.25vw;
+    border-radius: 6px;
+
+    h5 {
+        margin: 0 0 0.75vh;
+        font-size: 2.75vw;
+        font-weight: bold;
+        color: #0360aa;
+        font-style: italic;
+    }
+}

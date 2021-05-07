@@ -1,0 +1,23 @@
+.web-search {
+    margin-top: 13px;
+}
+
+.web-header {
+    display: flex;
+    align-items: center;
+    margin: 15px 0 30px;
+
+    .web-img {
+        width: 70px;
+        margin-right: 30px;
+    }
+
+    .title {
+        margin: 0;
+        font-family: 'OpenSans-Light', sans-serif;
+    }
+}
+
+.btn-block {
+    border-bottom: 1px solid #939598;
+}

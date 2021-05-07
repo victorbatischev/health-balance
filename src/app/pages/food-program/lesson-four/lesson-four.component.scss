@@ -1,0 +1,67 @@
+.lesson-header {
+    .title-block {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-top: 5px;
+
+        .sub-title {
+            font-size: 16px;
+            color: #0360aa;
+            font-family: 'OpenSans-Regular', sans-serif;
+            margin: 0;
+        }
+        
+        .lesson-img {
+            width: 40px;
+        }
+    }
+    
+    .player {
+        --size: 100%;
+        margin: 20px 0 5px;
+    }
+    
+    .lesson-title {
+        margin: 0;
+        font-family: 'OpenSans-Regular', sans-serif;
+        font-size: 16px;
+        width: 90%;
+        line-height: 1.2;
+    }
+
+    .task-title {
+        --padding-start: 0;
+        --padding-top: 0;
+        --padding-end: 0;
+        --padding-bottom: 0;
+        --inner-padding-bottom: 0;
+        --inner-padding-end: 0;
+        --inner-padding-start: 0;
+        --inner-padding-top: 0;
+        --border-color: #868686;
+    }
+    
+    .task-label {
+        margin: 0;
+        font-size: 16px;
+        color: #0360aa;
+    }
+}
+
+
+.lesson-sub-title {
+    font-size: 14px;
+    color: #0360aa;
+    margin: 10px 0 25px;
+    font-family: 'OpenSans-Regular', sans-serif;
+}
+
+.btn-block {
+    margin-top: 30px;
+    margin-bottom: 210px;
+}
+
+.lesson-desc {
+    font-size: 14px;
+}

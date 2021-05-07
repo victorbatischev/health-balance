@@ -1,0 +1,31 @@
+.step-counter {
+    text-align: center;
+    padding: 50px 0;
+    
+    .img-block {
+        margin: auto;
+        width: 55px;
+        margin-bottom: 15px;
+    }
+    
+    .title {
+        font-family: 'OpenSans-Light', sans-serif;
+        margin: 0;
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+    
+    .time {
+        margin: 0;
+        font-family: 'OpenSans-Regular', sans-serif;
+        font-size: 15px;
+        margin-bottom: 5px;
+    }
+    
+    .steps {
+        margin: 0;
+        font-family: 'OpenSans-Regular', sans-serif;
+        font-size: 45px;
+        color: #0361aa;
+    }
+}

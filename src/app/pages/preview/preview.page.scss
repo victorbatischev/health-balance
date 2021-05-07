@@ -1,0 +1,58 @@
+@import "../../../assets/styles/vars";
+@import "../../../assets/styles/mixins";
+
+.content {
+
+    text-align: center;
+    position: relative;
+
+    .logo {
+        --size: 35px;
+        position: relative;
+        right: 20px;
+    }
+
+    .logo-bar {
+        padding-top: 20px;
+        margin-bottom: 20.6%;
+    }
+
+    .title {
+        margin-top: 0;
+        margin-bottom: 10%;
+    }
+
+    .info-text {
+        @include styleForText($fontSizeContent, $fontLight);
+
+        margin: 0 auto 14%;
+        width: 95%;
+    }
+
+    .advice-text {
+        color: #0361aa;
+        font-size: 16px;
+        margin: 0 auto 11%;
+        width: 95%;
+    }
+
+    .btn-block {
+        max-width: 294px;
+        margin: auto;
+    }
+
+    .btn-block {
+        margin-bottom: 34%;
+
+        .button {
+        	width: 100%;
+        }
+    }
+
+    .fit-image {
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+}

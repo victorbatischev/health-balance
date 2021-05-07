@@ -1,0 +1,47 @@
+<app-header [title]="'Наш магазин'"></app-header>
+
+<ion-content fullscreen class="dark-container">
+    <ion-grid class="container-grid">
+        <ion-row justify-content-center align-items-center>
+            <ion-col size="12" ion-text-center>
+
+                <div class="container">
+
+                    <h3 class="title">Обменивайте ваши шаги<br>на реальные спортивные товары!</h3>
+
+                    <ion-list class="list">
+                        <ion-item
+                            button="true"
+                            detail="false"
+                            *ngFor="let item of listData; let i = index; let last = last"
+                            class="list-item"
+                            (click)="setLocalItem(item)"
+                            [lines]="last ? 'none' : 'line'"
+                        >
+                            <div class="list-img">
+                                <img [src]="item.img">
+                            </div>
+
+                            <ion-label class="list-label">
+                                {{ item.title }}
+                                <span *ngIf="item.subDesc" class="list-sub-desc">{{ item.subDesc }}</span>
+                                <ion-button
+                                    *ngIf="item.button"
+                                    size="small"
+                                    class="list-edit-button"
+                                >{{ item.button }}</ion-button>
+                            </ion-label>
+
+                        </ion-item>
+                    </ion-list>
+
+                    <app-store-item [localStoreItem]="localItem"></app-store-item>
+
+                    <!-- <router-outlet></router-outlet> -->
+                </div>
+
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+</ion-content>

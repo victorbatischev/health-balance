@@ -1,0 +1,57 @@
+.toolbar {
+    --background: none;
+    --color: #fff;
+    --min-height: 215px;
+    background-image: url('/assets/images/portfolio/girl.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    position: relative;
+}
+
+.title-block {
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: -80px;
+
+    .title {
+        color: #fff;
+        font-size: 16px;
+        font-family: 'OpenSans-Regular', sans-serif;
+        margin: 0;
+        margin-left: 20px;
+    }
+    
+    .arrow-back {
+        width: 20px;
+        margin: 3px 15px 0 25px;
+    }
+}
+
+.menu-block {
+    margin-right: 15px;
+    position: relative;
+    top: -82px;
+
+    .menu-button {
+        --color: #fff;
+        font-size: 38px;
+    }
+}
+
+.portfolio-content {
+    position: relative;
+}
+
+.first-tabs {
+    margin: 15px 0;
+}
+
+.photo-block {
+    position: absolute;
+    width: 100px;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+}

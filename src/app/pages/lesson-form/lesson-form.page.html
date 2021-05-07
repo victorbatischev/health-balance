@@ -1,0 +1,87 @@
+<app-header [title]="'Добавление урока'"></app-header>
+
+<ion-content fullscreen class="dark-container">
+    <ion-grid class="container-grid">
+
+        <ion-row justify-content-center align-items-center>
+            <ion-col size="12" ion-text-center>
+
+                <div class="container" style="height: 100%;">
+                    <p class="text-title">Домашнее задание</p>
+                    <ion-select class="select" name="program_id" [(ngModel)]="task.program_id" okText="Выбрать" cancelText="Отмена">
+                        <ion-select-option value="0">Выберите программу / место публикации</ion-select-option>
+                        <ion-select-option value="-1">Индивидуальное задание</ion-select-option>
+                        <ion-select-option *ngFor="let program of programs" value="{{ program.id }}">{{ program.title }}</ion-select-option>
+                    </ion-select>
+                    <ion-select class="select" name="customer_id" [(ngModel)]="task.customer_id" *ngIf="task.program_id == '-1'">
+                      <ion-select-option value="0">Выберите пользователя</ion-select-option>
+                      <ion-select-option *ngFor="let customer of customers" value="{{ customer.id }}">{{ customer.name }}</ion-select-option>
+                    </ion-select>
+                    <p><ion-input type="text" class="input" name="title" [(ngModel)]="task.title" placeholder="Название"></ion-input></p>
+                    <ion-select class="select" name="type" [(ngModel)]="task.type" okText="Выбрать" cancelText="Отмена">
+                      <ion-select-option value="0">Тип задания</ion-select-option>
+                      <ion-select-option value="1">Выбор правильного ответа</ion-select-option>
+                      <ion-select-option value="2">Отсканировать QR Код</ion-select-option>
+                      <ion-select-option value="3">Строка для ответа</ion-select-option>
+                      <ion-select-option value="4">Загрузить файл</ion-select-option>
+                      <!--ion-select-option value="5">Активность</ion-select-option-->
+                    </ion-select>
+                    <p><ion-textarea class="input" name="description" [(ngModel)]="task.description" placeholder="Описание задания" *ngIf="task.type == '2' || task.type == '4'"></ion-textarea></p>
+                    <p><ion-input type="text" class="input" name="video" [(ngModel)]="task.video" placeholder="URL видеоурока"></ion-input></p>
+                    <p *ngIf="task.type == '2'"><ion-input type="text" class="input" name="qr_code" [(ngModel)]="task.qr_code" placeholder="Информация для QR-кода"></ion-input></p>
+                    <div *ngIf="task.type == '1' || task.type == '3'">
+                        <p><ion-textarea type="text" class="input" name="question" [(ngModel)]="task.question" placeholder="Вопрос"></ion-textarea></p>
+                        <p *ngFor="let answer of task.answers; let i = index;">
+                            <ion-input type="text" class="input" name="answer" [(ngModel)]="task.answers[i].answer" placeholder="Ответ на вопрос" [ngClass]="{'correct': correct_answer == i}" (click)="correct_answer = i"></ion-input>
+                        </p>
+                        <ion-button
+                            class="button"
+                            style="font-size: 12px; width: 30%; --background: #0361aa; --color: #fff;"
+                            (click)="addAnswer()"
+                        >Добавить ответ</ion-button>
+                        <ion-button
+                            class="button"
+                            style="font-size: 12px; width: 30%; margin-left: 3%; --background: #ccc; --color: #0361aa;"
+                            (click)="removeAnswer()"
+                        >Убрать ответ</ion-button>
+                         <ion-button
+                            class="button"
+                            style="font-size: 12px; width: 30%; margin-left: 3%; --background: rgba(240,17,17,0.5); --color: #fff;"
+                            (click)="correct_answer = -1"
+                        >Все правильные</ion-button>
+                    </div>
+                    <p class="text-title">График открытия урока</p>
+                    <a class="link-date link-date-underline" (click)="openCalendar(1)">
+                      <span *ngIf="task.start_date ==''">Выбрать в календаре</span>
+                      <span *ngIf="task.start_date !=''">{{ task.start_date }}</span>
+                    </a>
+                    <p class="text-title">Срок выполнения</p>
+                    <a class="link-date link-date-underline" (click)="openCalendar(2)">
+                     <span *ngIf="task.end_date ==''">Выбрать в календаре</span>
+                      <span *ngIf="task.end_date !=''">{{ task.end_date }}</span>
+                    </a>
+                    <p class="text-title">Баллы за выполнение ДЗ</p>
+                    <label class="ball-label" for="ball">Количество баллов</label>
+                    <ion-input type="text" id="ball" class="input-ball" name="score" [(ngModel)]="task.score"></ion-input>
+
+                    <div class="btn-block">
+                        <!--ion-button
+                                class="button"
+                                expand="block"
+                                style="font-size: 18px; margin-bottom: 10px;"
+                        >Создать еще урок</ion-button-->
+
+                        <ion-button
+                                class="button"
+                                expand="block"
+                                style="font-size: 18px; --background: #0361aa; --color: #fff;"
+                                (click)="createLesson()"
+                        >Создать урок</ion-button>
+                    </div>
+                </div>
+
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+</ion-content>

@@ -1,0 +1,46 @@
+<app-header [title]="program_title"></app-header>
+
+<ion-content fullscreen class="dark-container">
+    <div class="btn-block" *ngIf="customerData.role == 1">
+         <ion-button class="button register-button" style="font-size: 18px; --background: #0361aa; --color: #fff; margin: 10px; width: calc(100% - 20px);" expand="block" routerDirection="forward" routerLink="/lesson-form">Создать</ion-button>
+    </div>
+    <ion-grid class="container-grid">
+
+        <ion-row justify-content-center align-items-center>
+            <ion-col size="12" ion-text-center>
+
+                <div class="container">
+                   <app-list
+                        [list]="listData"
+                        [showLastBorder]="false"
+                    ></app-list>
+
+                    <div class="item-group">
+                        <div class="item" routerDirection="forward" routerLink="/portfolio">
+                            <ion-thumbnail class="item-img">
+                                <img src="assets/images/individual/man.png" alt="man">
+                            </ion-thumbnail>
+                            <p class="item-text">Личный кабинет</p>
+                        </div>
+
+                        <div class="item" routerDirection="forward" routerLink="/group-leaderboard">
+                            <ion-thumbnail class="item-img">
+                                <img src="assets/images/individual/goblet.png" alt="goblet">
+                            </ion-thumbnail>
+                            <p class="item-text">Лидерборд</p>
+                        </div>
+
+                        <div class="item" routerDirection="forward" routerLink="/calendar">
+                            <ion-thumbnail class="item-img">
+                                <img src="assets/images/individual/calendar.png" alt="calendar">
+                            </ion-thumbnail>
+                            <p class="item-text">Календарь</p>
+                        </div>
+                    </div>
+                </div>
+
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+</ion-content>

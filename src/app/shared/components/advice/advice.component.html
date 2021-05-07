@@ -1,0 +1,27 @@
+<div class="slide">
+  <div class="info-block" [ngClass]="{'offset-top': id === 2, 'offset-top-three': id === 3}">
+    <div class="title-block">
+        <ng-container *ngIf="id === 2 || id === 3">
+            <ion-thumbnail class="img-block img-block-prev" (click)="onChangePrevSlide()">
+              <img src="assets/images/advice/arrow.png" alt="arrow">
+            </ion-thumbnail>
+        </ng-container>
+
+        <h2 class="title">{{ titleCount }}</h2>
+
+        <ng-container *ngIf="id === 1 || id === 2">
+            <ion-thumbnail class="img-block" (click)="onChangeNextSlide()">
+              <img src="assets/images/advice/arrow.png" alt="arrow">
+            </ion-thumbnail>
+        </ng-container>
+
+        <ng-container *ngIf="id === 3">
+            <ion-thumbnail class="img-block" (click)="toAgreeDataReadPage()">
+              <img src="assets/images/advice/arrow.png" alt="arrow">
+            </ion-thumbnail>
+        </ng-container>
+
+    </div>    
+    <p class="info-text" [innerHTML]="description"></p>
+  </div>
+</div>

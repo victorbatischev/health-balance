@@ -1,0 +1,74 @@
+<ion-header class="header ion-no-border" color="primary">
+    <ion-toolbar class="toolbar">
+
+        <div class="menu-block" slot="end">
+            <ion-menu-button class="menu-button"></ion-menu-button>
+        </div>
+
+        <div class="photo-block">
+            <div class="photo">
+                <img src="assets/images/portfolio/photo.png" alt="photo" *ngIf="customerData.avatar == ''">
+                <img src="{{ customerData.avatar }}" alt="photo" *ngIf="customerData.avatar != ''">
+            </div>
+
+            <p class="photo-title">
+                {{ customerData.name }}
+            </p>
+        </div>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="white-container" force-overscroll="false">
+    <ion-grid class="container-grid">
+
+        <ion-row justify-content-center align-items-center>
+            <ion-col size="12" ion-text-center>
+
+                <div class="container">
+                    <div class="portfolio-content">
+
+                        <div class="first-tabs">
+                            <div class="flat-tabs">
+                                <div class="text">
+                                    <a routerDirection="forward" routerLink="/statistic" class="link" class="link">Статистика</a>
+                                    <a routerLinkActive="active" class="link">Шаги</a>
+                                    <a routerDirection="forward" routerLink="/program-name/{{ customerData.platform_id }}" class="link">Программы</a>
+                                    <a routerDirection="forward" routerLink="/tasks/0" class="link">Задания</a>
+                                </div>
+                                <div class="select-bar">
+                                    <span class="selector"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tabs-block">
+                            <div class="tabs">
+                                <span class="tab-link-block" [ngClass]="{'active': selected_tabs == 0}" (click)="setTabs(0)">
+                                    <a class="tab-link">за день</a>
+                                </span>
+                                <span class="tab-link-block no-border" [ngClass]="{'active': selected_tabs == 1}" (click)="setTabs(1)">
+                                    <a class="tab-link">за неделю</a>
+                                </span>
+                                <span class="tab-link-block no-border" [ngClass]="{'active': selected_tabs == 2}" (click)="setTabs(2)">
+                                    <a class="tab-link">за месяц</a>
+                                </span>
+                                <span class="tab-link-block" [ngClass]="{'active': selected_tabs == 3}" (click)="setTabs(3)">
+                                    <a class="tab-link">за год</a>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="step-block">
+                            <app-step-counter [steps]="steps" [period]="selected_tabs" *ngIf="selected_tabs == 0"></app-step-counter>
+                            <app-step-counter [steps]="calc_steps" [period]="selected_tabs" *ngIf="selected_tabs != 0"></app-step-counter>
+                        </div>
+                    </div>
+
+                </div>
+
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+</ion-content>
