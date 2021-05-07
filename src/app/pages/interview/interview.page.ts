@@ -10,8 +10,6 @@ import { AlertService } from '../../../providers/alert-service';
 
 import { Customer } from '../../../models/customer-model';
 
-import { DomSanitizer } from '@angular/platform-browser';
-
 @Component({
   selector: 'app-interview',
   templateUrl: './interview.page.html',
@@ -33,7 +31,6 @@ export class InterviewPage {
   };
 
   questions: any = [];
-  url: any = '';
   //question: any = [];
   idx: number = 0;
   count: number = 0;
@@ -47,7 +44,6 @@ export class InterviewPage {
     public storage: Storage,
     private connectivityServ: ConnectivityService,
     private alertServ: AlertService,
-    protected sanitizer: DomSanitizer,
   ) {
     this.storage.get('customerData').then((val) => {
       this.customerData = val;
@@ -61,9 +57,6 @@ export class InterviewPage {
       if (this.connectivityServ.isOnline()) {
         this.httpClient.get(this.connectivityServ.apiUrl + 'interviews/get?interview_id=' + this.route.snapshot.paramMap.get('interview_id')).subscribe((data: any) => {
           this.questions = data.result.questions;
-          if (data.result.url && data.result.url != '') {
-            this.url = data.result.url;
-          }
           console.log(this.questions);
           if (this.questions.length > 0) {
             //this.question = this.questions[this.idx];
@@ -77,26 +70,22 @@ export class InterviewPage {
     });
   }
 
-  setAnswer(idx1, idx2) {
-    this.questions[idx1].current_answer = idx2;
-  }
-
   doAnswer() {
-    var answers = '';
-    for (let i = 0; i < this.questions.length; i++) {
-      answers += this.questions[i].current_answer  + ',';
+    this.alertServ.showToast('Вы набрали ' + this.count + ' очков');
+    this.navCtrl.pop();
+    /*
+    if (right) {
+      this.count++;
     }
-    answers = answers.slice(0, -1);
-    if (this.connectivityServ.isOnline()) {
-      this.httpClient.get(this.connectivityServ.apiUrl + 'interviews/ok?interview_id=' + this.route.snapshot.paramMap.get('interview_id') + '&answers=' + answers + '&token=' + this.customerData.token).subscribe((data: any) => {
-        this.alertServ.showToast('Ваши ответы учтены');
-        this.navCtrl.pop();
-      }, error => {
-        console.log(error);
-      });
+    if (this.questions.length - 1 > this.idx) {
+      this.idx++;
+      //this.question = this.questions[this.idx];
     } else {
-      this.alertServ.showToast('Нет соединения с сетью');
-    }
+      this.idx = 0;
+      //this.question = this.questions[this.idx];
+      this.alertServ.showToast('Вы набрали ' + this.count + ' очков');
+      this.navCtrl.pop();
+    }*/
   }
 
 

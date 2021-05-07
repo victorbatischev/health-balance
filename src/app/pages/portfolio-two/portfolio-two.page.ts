@@ -30,7 +30,6 @@ export class PortfolioTwoPage {
     is_captain: false,
     phone: '',
     email: '',
-    city: '',
     password: '',
     avatar: '',
     team: '',
@@ -75,7 +74,7 @@ export class PortfolioTwoPage {
 
 
     if (this.connectivityServ.isOnline()) {
-      this.httpClient.get(this.connectivityServ.apiUrl + 'account/profile?token=' + this.customerData.token + '&name=' + this.customerData.name + '&city=' + this.customerData.city + '&phone=' + this.customerData.phone + '&password=' + this.password).subscribe((data: any) => {
+      this.httpClient.get(this.connectivityServ.apiUrl + 'account/profile?token=' + this.customerData.token + '&name=' + this.customerData.name + '&password=' + this.password).subscribe((data: any) => {
         this.customerServ.setCustomerData(this.customerData);
         this.alertServ.showToast('Ваш профиль был успешно обновлен');
       }, error => {
@@ -113,7 +112,7 @@ export class PortfolioTwoPage {
 	}
 
 	getCameraPhoto() {
-
+		
 		var camera_options = {
 			quality: 75,
 			destinationType: this.camera.DestinationType.FILE_URI,
@@ -124,7 +123,7 @@ export class PortfolioTwoPage {
 		};
 
 		this.camera.getPicture(camera_options).then((imageData) => {
-
+			
 			if (this.platform.is('android')) {
 				imageData = 'file://' + imageData;
 			}
@@ -160,7 +159,7 @@ export class PortfolioTwoPage {
 					this.alertServ.showToast('Нет соединения с сетью');
 				}
 			},
-			error =>
+			error => 
 				console.error('Ошибка обрезки изображения', error)
 			);
 		}, function (err) {
@@ -171,8 +170,8 @@ export class PortfolioTwoPage {
 	getGalleryPhoto() {
 		var camera_options = {
 			quality: 75,
-			destinationType: this.camera.DestinationType.NATIVE_URI,
-			//destinationType: this.camera.DestinationType.FILE_URI,
+			//destinationType: this.camera.DestinationType.NATIVE_URI,
+			destinationType: this.camera.DestinationType.FILE_URI,
 			sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
 			mediaType: this.camera.MediaType.ALLMEDIA,
 			encodingType: this.camera.EncodingType.JPEG,
@@ -180,7 +179,7 @@ export class PortfolioTwoPage {
 		};
 
 		this.camera.getPicture(camera_options).then((imageData) => {
-
+			
 			if (this.platform.is('android')) {
 				imageData = 'file://' + imageData;
 			}
@@ -216,7 +215,7 @@ export class PortfolioTwoPage {
 					this.alertServ.showToast('Нет соединения с сетью');
 				}
 			},
-			error =>
+			error => 
 				console.error('Ошибка обрезки изображения', error)
 			);
 		}, function (err) {

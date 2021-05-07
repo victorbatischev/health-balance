@@ -11,27 +11,27 @@
                         <ion-calendar [(ngModel)]="date"
                             type="string"
                             [format]="'DD.MM.YYYY'"
-                            [options]="options" (change)="onChange($event)">
+                            [options]="options">
                         </ion-calendar>
                     </div>
 
-                    <!--div class="btn-block">
+                    <div class="btn-block">
                         <ion-button  class="button" style="font-size: 18px; --background: #0361aa; --color: #fff; margin: 10px 5%;" expand="block" (click)="showStat()">Показать</ion-button>
-                    </div-->
+                    </div>
 
                     <ion-list class="calendar-info">
-                        <ion-item class="calendar-item" [ngClass]="{'calendar-active': statistics_data.tasks_amount > 0}" (click)="toTasks('new')">
+                        <ion-item class="calendar-item calendar-active">
                             <ion-label class="calendar-label">Новое задание от куратора</ion-label>
                             <ion-note class="calendar-note">{{ statistics_data.tasks_amount }}</ion-note>
                         </ion-item>
 
-                        <ion-item class="calendar-item" [ngClass]="{'calendar-active': statistics_data.end_date > 0}" (click)="toTasks('end')">
-                            <ion-label class="calendar-label">Дата сдачи ДЗ</ion-label>
+                        <ion-item class="calendar-item">
+                            <ion-label class="calendar-label">Дата сдачи ДЗ (программа питания)</ion-label>
                             <ion-note class="calendar-note">{{ statistics_data.end_date }}</ion-note>
                         </ion-item>
 
-                        <ion-item class="calendar-item" [ngClass]="{'calendar-active': statistics_data.new_program > 0}" (click)="toProgram()">
-                            <ion-label class="calendar-label">Запуск новой программы</ion-label>
+                        <ion-item class="calendar-item">
+                            <ion-label class="calendar-label">Запуск новой программы~</ion-label>
                             <ion-note class="calendar-note">{{ statistics_data.new_program }} </ion-note>
                         </ion-item>
                     </ion-list>

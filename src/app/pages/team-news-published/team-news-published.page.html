@@ -40,14 +40,10 @@
                     </div-->
 
                     <div class="news-content">
-
-                        <h5>{{ news.customer }} <span>{{ news.created_at }}</span></h5>
-                        <a style="font-size: 6.0vw; float: right;" (click)="copyToClipboard()">
-                            <ion-icon name="clipboard-outline"></ion-icon>
-                        </a>
                         <h3 class="title">{{ news.title }}</h3>
-                        <p class="desc" *ngIf="news.content == ''">{{ news.annotation }}</p>
-                        <div class="desc" [innerHTML]="html" *ngIf="news.content != ''"></div>
+
+                        <p class="desc" *ngIf="news.annotation != ''">{{ news.annotation }}</p>
+                        <div class="desc" [innerHTML]="news.content" *ngIf="news.annotation == ''"></div>
 
                         <ion-thumbnail class="player">
                             <img src="{{ news.image }}" alt="player" *ngIf="news.image != ''" />

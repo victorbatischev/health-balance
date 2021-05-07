@@ -43,11 +43,11 @@ export class IndividualTaskPage{
     this.storage.get('customerData').then((val) => {
       this.customerData = val;
       if (this.connectivityServ.isOnline()) {
-        this.httpClient.get(this.connectivityServ.apiUrl + 'lessons/list?token=' + this.customerData.token).subscribe((data: any) => {
+        this.httpClient.get(this.connectivityServ.apiUrl + 'lessons/list').subscribe((data: any) => {
          console.log(data);
          this.listData = [];
          for (let i = 0; i < data.result.lessons.length; i++) {
-           this.listData.push({ id: data.result.lessons[i].id, img: 'assets/images/individual/man.png', title: data.result.lessons[i].score + ' баллов', subTitle: data.result.lessons[i].title, src: '/lesson-published/' + data.result.lessons[i].id, subLink: 'Посмотреть' });
+           this.listData.push({ id: data.result.lessons[i].id, img: 'assets/images/qa/apple.png', title: data.result.lessons[i].score + ' баллов', subTitle: data.result.lessons[i].title, src: '/lesson-published/' + data.result.lessons[i].id, subLink: 'Посмотреть' });
          }
         }, error => {
           console.log(error);

@@ -17,12 +17,10 @@ export class CustomerService {
       is_captain: false,
       phone: '',
       email: '',
-      city: '',
       password: '',
       avatar: '',
       team: '',
-      establishment: '',
-      platform_id: 0
+      establishment: ''
 		});
 	}
 
@@ -49,12 +47,10 @@ export class CustomerService {
       is_captain: false,
       phone: '',
       email: '',
-      city: '',
       password: '',
       avatar: '',
       team: '',
-      establishment: '',
-      platform_id: 0
+      establishment: ''
 		});
 		this.storage.remove('customerData');
 	}

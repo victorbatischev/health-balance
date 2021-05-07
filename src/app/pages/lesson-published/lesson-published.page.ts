@@ -40,8 +40,7 @@ export class LessonPublishedPage {
     password: '',
     avatar: '',
     team: '',
-    establishment: '',
-    platform_id: 0
+    establishment: ''
   };
 
   constructor(
@@ -61,67 +60,40 @@ export class LessonPublishedPage {
   ) {
     this.storage.get('customerData').then((val) => {
       this.customerData = val;
-      if (this.connectivityServ.isOnline()) {
-        this.httpClient.get(this.connectivityServ.apiUrl + 'lessons/get?lesson_id=' + this.route.snapshot.paramMap.get('lesson_id') + '&token=' + this.customerData.token).subscribe((data: any) => {
-          console.log(data);
-          this.lesson = data.result.lesson;
-          if (this.lesson.video != '') {
-            this.trustedVideoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(this.lesson.video);
-          }
-        }, error => {
-          console.log(error);
-        });
-      } else {
-        this.alertServ.showToast('Нет соединения с сетью');
-      }
     });
+
+    if (this.connectivityServ.isOnline()) {
+      this.httpClient.get(this.connectivityServ.apiUrl + 'lessons/get?lesson_id=' + this.route.snapshot.paramMap.get('lesson_id')).subscribe((data: any) => {
+        console.log(data);
+        this.lesson = data.result.lesson;
+        if (this.lesson.video != '') {
+          this.trustedVideoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(this.lesson.video);
+        }
+      }, error => {
+        console.log(error);
+      });
+    } else {
+      this.alertServ.showToast('Нет соединения с сетью');
+    }
   }
 
   doAnswer(idx) {
-    if (this.lesson.exist) {
-      this.alertServ.showToast('Вы уже выполняли данное задание');
-      return false;
-    }
-    if (idx == this.lesson.correct_answer || +this.lesson.correct_answer == -1) {
-      if (this.connectivityServ.isOnline()) {
-        this.httpClient.get(this.connectivityServ.apiUrl + 'lessons/ok?lesson_id=' + this.route.snapshot.paramMap.get('lesson_id')  + '&answer=' + idx + '&token=' + this.customerData.token).subscribe((data: any) => {
-          if (+this.lesson.correct_answer != -1) {
-            this.alertServ.showToast('Верно! Задание выполнено!');
-          } else {
-            this.alertServ.showToast('Ваш ответ учтён');
-          }
-          this.navCtrl.pop();
-        }, error => {
-          console.log(error);
-        });
-      } else {
-        this.alertServ.showToast('Нет соединения с сетью');
-      }
+    if (idx == this.lesson.correct_answer) {
+      this.alertServ.showToast('Верно! Задание выполнено!');
+      this.navCtrl.pop();
     } else {
       this.alertServ.showToast('Вы не правильно ответили на вопрос');
     }
   }
 
   startTask() {
-    console.log(this.lesson.exist);
-    if (this.lesson.exist) {
-      this.alertServ.showToast('Вы уже выполняли данное задание');
-      return false;
-    }
+    console.log(this.lesson.type_id);
     switch (+this.lesson.type_id) {
       case 2:
         this.barcodeScanner.scan().then(barcodeData => {
           if (barcodeData.text == this.lesson.qr_code) {
-            if (this.connectivityServ.isOnline()) {
-              this.httpClient.get(this.connectivityServ.apiUrl + 'lessons/ok?lesson_id=' + this.route.snapshot.paramMap.get('lesson_id') + '&token=' + this.customerData.token).subscribe((data: any) => {
-                 this.alertServ.showToast('Задание выполнено');
-                 this.navCtrl.pop();
-              }, error => {
-                console.log(error);
-              });
-            } else {
-              this.alertServ.showToast('Нет соединения с сетью');
-            }
+            this.alertServ.showToast('Задание выполнено');
+            this.navCtrl.pop();
           } else {
             this.alertServ.showToast('Сканированный код не соответствует требуемому');
             this.navCtrl.pop();
@@ -135,16 +107,8 @@ export class LessonPublishedPage {
           this.alertServ.showToast('Введите ответ на вопрос');
           return false;
         } else {
-          if (this.connectivityServ.isOnline()) {
-            this.httpClient.get(this.connectivityServ.apiUrl + 'lessons/ok?lesson_id=' + this.route.snapshot.paramMap.get('lesson_id') + '&answer=' + this.answer + '&token=' + this.customerData.token).subscribe((data: any) => {
-              this.alertServ.showToast('Ваш ответ учтён');
-              this.navCtrl.pop();
-            }, error => {
-              console.log(error);
-            });
-          } else {
-            this.alertServ.showToast('Нет соединения с сетью');
-          }
+          this.alertServ.showToast('Ваш ответ учтён');
+          this.navCtrl.pop();
         }
       break;
       default:
@@ -154,15 +118,10 @@ export class LessonPublishedPage {
   }
 
   uploadPhoto() {
-    console.log(this.lesson.exist);
-    if (this.lesson.exist) {
-      this.alertServ.showToast('Вы уже выполняли данное задание');
-      return false;
-    }
     var camera_options = {
       quality: 75,
-      destinationType: this.camera.DestinationType.NATIVE_URI,
-      //destinationType: this.camera.DestinationType.FILE_URI,
+      //destinationType: this.camera.DestinationType.NATIVE_URI,
+      destinationType: this.camera.DestinationType.FILE_URI,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       mediaType: this.camera.MediaType.ALLMEDIA,
       encodingType: this.camera.EncodingType.JPEG,
@@ -181,7 +140,7 @@ export class LessonPublishedPage {
         fileName: fname,
         chunkedMode: false,
         mimeType: "image/jpg",
-        params : {'token': this.customerData.token, 'lesson_id': this.route.snapshot.paramMap.get('lesson_id'), 'fileName': fname}
+        params : {'token': this.customerData.token, 'fileName': fname}
       };
 
       const fileFileTransfer: FileTransferObject = this.transfer.create();
@@ -208,10 +167,6 @@ export class LessonPublishedPage {
   }
 
   uploadDoc() {
-    if (this.lesson.exist) {
-      this.alertServ.showToast('Вы уже выполняли данное задание');
-      return false;
-    }
     if (this.platform.is('android')) {
       this.fileChooser.open().then(uri => {
         console.log(uri);

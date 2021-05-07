@@ -1,7 +1,7 @@
 .toolbar {
     --background: none;
     --color: #fff;
-    --min-height: 220px;
+    --min-height: 170px;
     background-image: url('/assets/images/portfolio/portfolio-1.png');
     background-repeat: no-repeat;
     background-size: contain;
@@ -59,18 +59,9 @@
         margin: 0;
         font-family: 'OpenSans-Regular', sans-serif;
         font-size: 16px;
-        line-height: 1.2;
         color: #fff;
         position: relative;
-        top: -4vh;
-
-        span {
-            color: #000;
-        }
-
-        a {
-            text-decoration: none;
-        }
+        top: -23px;
     }
 }
 

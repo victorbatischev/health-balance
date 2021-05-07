@@ -63,7 +63,7 @@ export class AppComponent {
       title: 'Новости',
       subMenu: [
         { id: 5.1, title: 'Групповые', count: 0},
-        /*{ id: 5.2, title: 'Индивидуальные', count: 0},*/
+        { id: 5.2, title: 'Индивидуальные', count: 0},
       ]
     },
     { id: 6, title: 'Календарь' },
@@ -71,7 +71,7 @@ export class AppComponent {
     { id: 8, title: 'Магазин' },
     { id: 9, title: 'Чат поддержки' },
     { id: 10, title: 'Настройки профиля' },
-    { id: 11, title: 'Выход' }
+    { id: 11, title: 'Выход' },
   ];
 
   constructor(
@@ -91,10 +91,10 @@ export class AppComponent {
     private connectivityServ: ConnectivityService,
     private oneSignal: OneSignal,
   ) {
+    this.initializeApp();
     this.customerServ.getCustomerData().subscribe((val) => {
       this.customerData = val;
     });
-    this.initializeApp();
   }
 
   initializeApp() {
@@ -142,8 +142,7 @@ export class AppComponent {
 
   menuOpened() {
     if (this.connectivityServ.isOnline()) {
-      console.log(this.connectivityServ.apiUrl + 'menu/info?token=' + this.customerData.token);
-        this.httpClient.get(this.connectivityServ.apiUrl + 'menu/info?token=' + this.customerData.token).subscribe((data: any) => {
+        this.httpClient.get(this.connectivityServ.apiUrl + 'menu/info').subscribe((data: any) => {
           console.log(data);
           this.menuItems = [
             { id: 1, title: 'Личный кабинет' },
@@ -153,7 +152,7 @@ export class AppComponent {
               title: 'Задания',
               subMenu: [
                 { id: 3.1, title: 'Групповые задания', count: data.result.lessons},
-                { id: 3.2, title: 'Индивидуальные', count: data.result.individual_lessons}
+                { id: 3.2, title: 'Индивидуальные', count: 0}
               ]
             },
             {
@@ -169,7 +168,7 @@ export class AppComponent {
               title: 'Новости',
               subMenu: [
                 { id: 5.1, title: 'Групповые', count: data.result.team_news},
-                /*{ id: 5.2, title: 'Индивидуальные', count: 0},*/
+                { id: 5.2, title: 'Индивидуальные', count: 0},
               ]
             },
             { id: 6, title: 'Календарь' },
@@ -177,7 +176,7 @@ export class AppComponent {
             { id: 8, title: 'Магазин' },
             { id: 9, title: 'Чат поддержки' },
             { id: 10, title: 'Настройки профиля' },
-            { id: 11, title: 'Выход' }
+            { id: 11, title: 'Выход' },
           ];
         }, error => {
           console.log(error);
@@ -195,6 +194,11 @@ export class AppComponent {
     return this.currentId === id;
   }
 
+  toggleSubMenu(item) {
+    this.currentId = item.id;
+    this.showSubMenu = !this.showSubMenu;
+  }
+
   clickMenu(id, idx) {
     if (typeof this.menuItems[idx].subMenu == 'undefined' || +id == 5.3) {
       this.menu.close();
@@ -203,11 +207,10 @@ export class AppComponent {
           this.navCtrl.navigateForward('portfolio');
         break;
         case 2:
-          this.navCtrl.navigateForward('program-name/' + this.customerData.platform_id);
+          this.navCtrl.navigateForward('platforms');
         break;
         case 3.1:
-          //this.navCtrl.navigateForward('group-task/0');
-          this.navCtrl.navigateForward('tasks/0');
+          this.navCtrl.navigateForward('group-task/0');
         break;
         case 3.2:
           this.navCtrl.navigateForward('individual-task');
@@ -237,8 +240,7 @@ export class AppComponent {
           this.navCtrl.navigateForward('store');
         break;
         case 9:
-          //this.navCtrl.navigateForward('chat');
-          this.navCtrl.navigateForward('support');
+          this.navCtrl.navigateForward('chat');
         break;
         case 10:
           this.navCtrl.navigateForward('portfolio-2');

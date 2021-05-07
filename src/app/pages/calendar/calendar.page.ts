@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { NavController } from '@ionic/angular';
-
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 
@@ -26,7 +24,7 @@ export class CalendarPage {
 		weekdays: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
 		monthFormat: 'MMM YYYY',
 		weekStart: 1,
-		showToggleButtons: true
+		showToggleButtons: false
 	};
 
   customerData: Customer = {
@@ -46,7 +44,6 @@ export class CalendarPage {
 
 
   constructor(
-    public navCtrl: NavController,
     public httpClient: HttpClient,
     public storage: Storage,
     private connectivityServ: ConnectivityService,
@@ -61,11 +58,6 @@ export class CalendarPage {
     });
   }
 
-  onChange(e) {
-    console.log(e);
-    this.showStat();
-  }
-
   showStat() {
   	console.log(this.date);
     if (this.date == '') {
@@ -73,6 +65,7 @@ export class CalendarPage {
       return false;
     }
     if (this.connectivityServ.isOnline()) {
+      console.log(this.connectivityServ.apiUrl + 'main/stat2?token=' + this.customerData.token + '&date=' + this.date);
        this.httpClient.get(this.connectivityServ.apiUrl + 'main/stat2?token=' + this.customerData.token + '&date=' + this.date).subscribe((data: any) => {
          this.statistics_data = data.result;
        }, error => {
@@ -81,26 +74,6 @@ export class CalendarPage {
      } else {
        this.alertServ.showToast('Нет соединения с сетью');
      }
-  }
-
-  toTasks(date_type) {
-    if (date_type == 'new' && this.statistics_data.tasks_amount == 0) {
-      return false;
-    }
-    if (date_type == 'end' && this.statistics_data.end_date == 0) {
-      return false;
-    }
-    this.storage.set('date_type', date_type);
-    this.storage.set('date_value', this.date);
-    this.navCtrl.navigateForward('tasks/0');
-  }
-
-  toProgram() {
-    if (this.statistics_data.new_program == 0) {
-      return false;
-    }
-    this.storage.set('date_value', this.date);
-    this.navCtrl.navigateForward('program-name/0');
   }
 
 

@@ -2,9 +2,9 @@
     <ion-toolbar class="toolbar">
 
         <div class="title-block">
-            <!--div class="arrow-back">
+            <div class="arrow-back">
                 <img src="assets/images/header/arrow.png">
-            </div-->
+            </div>
         </div>
 
         <div class="menu-block" slot="end">
@@ -17,9 +17,7 @@
                 <img src="{{ customerData.avatar }}" alt="photo" *ngIf="customerData.avatar != ''">
             </div>
 
-            <p class="photo-title">
-                {{ customerData.name }}
-            </p>
+            <p class="photo-title">{{ customerData.name }}</p>
         </div>
 
     </ion-toolbar>
@@ -39,7 +37,7 @@
                                 <div class="text">
                                     <a class="link">Статистика</a>
                                     <a routerDirection="back" routerLink="/portfolio" class="link">Шаги</a>
-                                    <a routerDirection="forward" routerLink="/program-name/{{ customerData.platform_id }}" class="link">Программы</a>
+                                    <a routerDirection="forward" routerLink="/platforms" class="link">Программы</a>
                                     <a routerDirection="forward" routerLink="/group-task/0" class="link">Задания</a>
                                 </div>
                                 <div class="select-bar">
@@ -47,17 +45,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <ion-grid>
-                            <ion-row>
-                                <ion-col>
-                                    <ion-button class="stat" [ngClass]="{'active': stat_type == 0}" (click)="stat_type = 0; setTabs(1);">Задания</ion-button>
-                                </ion-col>
-                                <ion-col>
-                                    <ion-button class="stat" [ngClass]="{'active': stat_type != 0}" (click)="stat_type = 1; setTabs(1);">Задания + шаги</ion-button>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
 
                         <div class="tabs-block">
                             <div class="tabs">
@@ -75,8 +62,8 @@
 
 
                         <div class="chart-container">
-            							<canvas #barCanvas></canvas>
-            						</div>
+							<canvas #barCanvas></canvas>
+						</div>
                     </div>
 
                 </div>

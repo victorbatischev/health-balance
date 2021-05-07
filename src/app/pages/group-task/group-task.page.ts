@@ -48,12 +48,12 @@ export class GroupTaskPage {
       this.customerData = val;
       if (this.connectivityServ.isOnline()) {
         console.log(this.connectivityServ.apiUrl + 'programs/list');
-        this.httpClient.get(this.connectivityServ.apiUrl + 'programs/list?token=' + this.customerData.token).subscribe((data: any) => {
+        this.httpClient.get(this.connectivityServ.apiUrl + 'programs/list').subscribe((data: any) => {
          console.log(data);
          this.listData = [];
          this.programs = data.result.programs;
          for (let i = 0; i < this.programs.length; i++) {
-           this.listData.push({ id: this.programs[i].id, img: this.programs[i].image, main_img: this.programs[i].main_image, title: this.programs[i].title, src: 'tasks/' + this.programs[i].id, subLink: 'Смотреть задания', complete: this.programs[i].complete });
+           this.listData.push({ id: this.programs[i].id, img: this.programs[i].image, main_img: this.programs[i].main_image, title: this.programs[i].title, src: 'tasks/' + this.programs[i].id, subLink: 'Смотреть задания' });
          }
         }, error => {
           console.log(error);

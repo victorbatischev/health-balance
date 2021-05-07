@@ -11,9 +11,7 @@
                 <img src="{{ customerData.avatar }}" alt="photo" *ngIf="customerData.avatar != ''">
             </div>
 
-            <p class="photo-title">
-                {{ customerData.name }}
-            </p>
+            <p class="photo-title">{{ customerData.name }}</p>
         </div>
 
     </ion-toolbar>
@@ -33,8 +31,8 @@
                                 <div class="text">
                                     <a routerDirection="forward" routerLink="/statistic" class="link" class="link">Статистика</a>
                                     <a routerLinkActive="active" class="link">Шаги</a>
-                                    <a routerDirection="forward" routerLink="/program-name/{{ customerData.platform_id }}" class="link">Программы</a>
-                                    <a routerDirection="forward" routerLink="/tasks/0" class="link">Задания</a>
+                                    <a routerDirection="forward" routerLink="/program-name" class="link">Программы</a>
+                                    <a routerDirection="forward" routerLink="/group-task/0" class="link">Задания</a>
                                 </div>
                                 <div class="select-bar">
                                     <span class="selector"></span>

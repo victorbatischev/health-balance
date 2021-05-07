@@ -17,9 +17,7 @@
                 <img src="assets/images/portfolio/light-photo.png" alt="photo" (click)="getPhoto()" *ngIf="customerData.avatar == ''">
                 <img src="{{ customerData.avatar }}" alt="photo" (click)="getPhoto()" *ngIf="customerData.avatar != ''">
             </div>
-            <p class="photo-title">
-                {{ customerData.name }}
-            </p>
+            <p class="photo-title">{{ customerData.name }}</p>
         </div>
 
     </ion-toolbar>
@@ -35,8 +33,6 @@
                 <form class="form" (ngSubmit)="doProfile()">
                     <ion-input type="text" name="name" [(ngModel)]="customerData.name" class="input" placeholder="Ваше имя"></ion-input>
                     <ion-input type="email" name="email" [(ngModel)]="customerData.email" class="input" placeholder="E-mail" disabled></ion-input>
-                    <ion-input type="text" name="city" [(ngModel)]="customerData.city" class="input" placeholder="Город"></ion-input>
-                    <ion-input type="tel" name="phone" [(ngModel)]="customerData.phone" class="input" placeholder="Телефон (не обязательно)"></ion-input>
                     <ion-input type="password" name="old_password" [(ngModel)]="password" class="input" placeholder="Новый пароль"></ion-input>
                     <ion-input type="password" name="new_password" [(ngModel)]="retry_password" class="input" placeholder="Повтор пароля"></ion-input>
 

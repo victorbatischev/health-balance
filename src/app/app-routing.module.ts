@@ -32,7 +32,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/web-rf/web-rf.module').then( m => m.SliderPageModule)
   },
   {
-    path: 'program-name/:platform_id',
+    path: 'program-name',
     loadChildren: () => import('./pages/program-name/program-name.module').then( m => m.ProgramNamePageModule)
   },
   {
@@ -56,7 +56,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/web-rf-created/web-rf-created.module').then( m => m.WebRfCreatedPageModule)
   },
   {
-    path: 'nutrition/:platform_id/:program_id',
+    path: 'nutrition/:program_id',
     loadChildren: () => import('./pages/nutrition/nutrition.module').then( m => m.NutritionPageModule)
   },
   {
@@ -142,14 +142,6 @@ const routes: Routes = [
   {
     path: 'tasks/:program_id',
     loadChildren: () => import('./pages/tasks/tasks.module').then( m => m.TasksPageModule)
-  },
-  {
-    path: 'team/:team_id',
-    loadChildren: () => import('./pages/team/team.module').then( m => m.TeamPageModule)
-  },
-  {
-    path: 'support',
-    loadChildren: () => import('./pages/support/support.module').then( m => m.SupportPageModule)
   },
 ];
 

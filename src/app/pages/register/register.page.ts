@@ -16,8 +16,8 @@ import { CustomerService } from '../../../providers/customer-service';
 })
 export class RegisterPage {
 
-  registrationInfo: { email: string, password: string, platform_id: number; agree: boolean } = { email: '', password: '', platform_id: 0, agree: false };
-  platforms: any = [];
+  registrationInfo: { email: string, password: string, team_id: number; agree: boolean } = { email: '', password: '', team_id: 0, agree: false };
+  programs: any = [];
 
   constructor(
     public navCtrl: NavController,
@@ -32,8 +32,8 @@ export class RegisterPage {
 	  	if (this.connectivityServ.isOnline()) {
         console.log(this.connectivityServ.apiUrl + 'account/get_platforms');
 	      this.httpClient.get(this.connectivityServ.apiUrl + 'account/get_platforms').subscribe((data: any) => {
-	        this.platforms = data.result.platforms;
-	        console.log(this.platforms);
+	        this.programs = data.result.programs;
+	        console.log(this.programs);
 	      }, error => {
 	        this.alertServ.showToast('Ошибка полуения данных');
 	      });
@@ -54,10 +54,10 @@ export class RegisterPage {
       this.alertServ.showToast('Пароль не может быть короче 6 символов');
       return false;
     }
-    if (this.registrationInfo.platform_id == 0) {
+    /*if (this.registrationInfo.team_id == 0) {
       this.alertServ.showToast('Выберите платформу');
       return false;
-    }
+    }*/
     if (!this.registrationInfo.agree) {
       this.alertServ.showToast('Вы должны согласиться с условиями обработки персональных данных');
       return false;
@@ -65,10 +65,11 @@ export class RegisterPage {
 
     if (this.connectivityServ.isOnline()) {
       this.storage.get('deviceToken').then((deviceToken) => {
-        this.httpClient.get(this.connectivityServ.apiUrl + 'account/registration?email=' + this.registrationInfo.email + '&password=' + this.registrationInfo.password + '&platform_id=' + this.registrationInfo.platform_id + '&device_token=' + deviceToken).subscribe((data: any) => {
+        this.httpClient.get(this.connectivityServ.apiUrl + 'account/registration?email=' + this.registrationInfo.email + '&password=' + this.registrationInfo.password + '&platform_id=' + this.registrationInfo.team_id + '&device_token=' + deviceToken).subscribe((data: any) => {
           this.navCtrl.pop();
         }, error => {
-          this.alertServ.showAlert(error.error.error.title);
+          console.log(error);
+          this.alertServ.showToast('Другой пользователь с таким e-mail уже существует');
         });
       });
     } else {

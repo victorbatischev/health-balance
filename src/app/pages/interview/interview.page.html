@@ -2,25 +2,24 @@
 
 <ion-content fullscreen class="dark-container">
    <ion-grid class="container-grid">
-        <ion-row>
-          <ion-col class="ion-text-center" *ngIf="url != ''"><a href="{{ url }}" target="_blank">Пройти на сайт</a></ion-col>
-        </ion-row>
+
         <ion-row justify-content-center align-items-center>
-            <ion-col ion-text-center>
+            <ion-col size="12" ion-text-center>
+
                 <div class="container" style="height: 100%;">
-                  <div *ngFor="let question of questions; let i = index;">
+                  <div *ngFor="let question of questions">
                     <div class="news-content">
                       <h3 class="subtitle">{{ question.question }}</h3>
                     </div>
                     <div class="btn-block">
                         <!--ion-button  class="button register-button" style="font-size: 18px; --background: #0361aa; --color: #fff; margin: 10px 5%; width: 40%;" *ngFor="let answer of question.answers" (click)="doAnswer(answer.right)">{{ answer.title }}</ion-button-->
                         <ion-grid>
-                          <ion-row class="ion-align-items-center" *ngFor="let answer of question.answers; let j = index">
-                            <ion-col>
+                          <ion-row class="ion-align-items-center">
+                            <ion-col *ngFor="let answer of question.answers">
                               <ion-grid>
                                 <ion-row class="ion-align-items-center">
-                                  <ion-col size="1">
-                                    <input type="radio" name="question{{ question.id }}" id="answer{{ question.id }}-{{ answer.id }}" (click)="setAnswer(i, j)">
+                                  <ion-col size="3">
+                                    <input type="radio" name="question{{ question.id }}" id="answer{{ question.id }}-{{ answer.id }}" value="{{ (answer.right ? 1 : 0) }}">
                                   </ion-col>
                                   <ion-col>
                                     <label for="answer{{ question.id }}-{{ answer.id }}">{{ answer.title }}</label>
@@ -28,6 +27,7 @@
                                 </ion-row>
                               </ion-grid>
                             </ion-col>
+                            <ion-col></ion-col>
                         </ion-row>
                       </ion-grid>
                     </div>

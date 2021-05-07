@@ -70,8 +70,8 @@ export class CreateProgramPage {
   uploadPhoto() {
     var camera_options = {
       quality: 75,
-      destinationType: this.camera.DestinationType.NATIVE_URI,
-      //destinationType: this.camera.DestinationType.FILE_URI,
+      //destinationType: this.camera.DestinationType.NATIVE_URI,
+      destinationType: this.camera.DestinationType.FILE_URI,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       mediaType: this.camera.MediaType.ALLMEDIA,
       encodingType: this.camera.EncodingType.JPEG,

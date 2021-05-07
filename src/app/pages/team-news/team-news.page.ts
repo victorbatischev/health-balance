@@ -46,9 +46,6 @@ export class TeamNewsPage {
   any_file: string = '';
   isFile: boolean = false;
 
-  push: string = '';
-  send_push: boolean = false;
-
   constructor(
     private platform: Platform,
     public alertCtrl: AlertController,
@@ -69,8 +66,7 @@ export class TeamNewsPage {
       if (this.connectivityServ.isOnline()) {
         this.httpClient.get(this.connectivityServ.apiUrl + 'platforms/list').subscribe((data: any) => {
          this.platforms = data.result.platforms;
-         console.log(this.connectivityServ.apiUrl + 'news/list?token=' + this.customerData.token + '&type=group');
-          this.httpClient.get(this.connectivityServ.apiUrl + 'news/list?token=' + this.customerData.token + '&type=group').subscribe((data: any) => {
+          this.httpClient.get(this.connectivityServ.apiUrl + 'news/list?team_id=' + this.customerData.team_id + '&type=group').subscribe((data: any) => {
             this.news = data.result.news;
           }, error => {
             console.log(error);
@@ -175,8 +171,8 @@ export class TeamNewsPage {
   getGalleryPhoto() {
     var camera_options = {
       quality: 75,
-      destinationType: this.camera.DestinationType.NATIVE_URI,
-      //destinationType: this.camera.DestinationType.FILE_URI,
+      //destinationType: this.camera.DestinationType.NATIVE_URI,
+      destinationType: this.camera.DestinationType.FILE_URI,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       mediaType: this.camera.MediaType.ALLMEDIA,
       encodingType: this.camera.EncodingType.JPEG,
@@ -225,12 +221,6 @@ export class TeamNewsPage {
   }
 
   sendNews() {
-    console.log(this.platform_id);
-
-    if (+this.platform_id == 0) {
-      this.alertServ.showToast('Выберите программу / место публикации');
-      return false;
-    }
 
     if (this.news_title.length == 0) {
       this.alertServ.showToast('Введите заголовок новости');
@@ -253,12 +243,8 @@ export class TeamNewsPage {
       file = this.any_file;
     }
 
-    if (!this.send_push) {
-      this.push = '';
-    }
-
     if (this.connectivityServ.isOnline()) {
-       this.httpClient.get(this.connectivityServ.apiUrl + 'news/add?token=' + this.customerData.token + '&platform_id=' + this.platform_id + '&image=' + file + '&title=' + this.news_title + '&annotation=' + this.news_annotation + '&push=' + this.push).subscribe((data: any) => {
+       this.httpClient.get(this.connectivityServ.apiUrl + 'news/add?platform_id=' + this.platform_id + '&image=' + file + '&title=' + this.news_title + '&annotation=' + this.news_annotation).subscribe((data: any) => {
          this.alertServ.showToast('Новость была успешно добавлена');
          this.news_title = '';
          this.news_annotation = '';

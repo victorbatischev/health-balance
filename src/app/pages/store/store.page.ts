@@ -1,6 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
-
-import { IonContent } from '@ionic/angular';
+import { Component } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
@@ -31,7 +29,6 @@ export class StorePage {
 
   localItem: IList;
   listData: IList[] = [];
-  @ViewChild(IonContent, { static: false, read: IonContent }) content: IonContent;
 
   constructor(
     public httpClient: HttpClient,
@@ -58,7 +55,6 @@ export class StorePage {
 
   setLocalItem(item) {
     this.localItem = item;
-    this.content.scrollToBottom(500);
   }
 
 }
