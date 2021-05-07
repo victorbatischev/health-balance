@@ -1,5 +1,6 @@
 export interface IList {
     id?: number;
+    id2?: any;
     img: string;
     main_img?: string;
     src?: string;
@@ -9,4 +10,5 @@ export interface IList {
     subDesc?: string;
     note?: string;
     button?: string;
+    complete?: boolean;
 }

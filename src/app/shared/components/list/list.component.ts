@@ -31,6 +31,7 @@ export class ListComponent {
     is_captain: false,
     phone: '',
     email: '',
+    city: '',
     password: '',
     team: '',
     establishment: ''
@@ -45,16 +46,17 @@ export class ListComponent {
   ) { }
 
 
-  clickEvent(id) {
+  clickEvent(id, id2) {
     this.storage.get('customerData').then((val) => {
       this.customerData = val;
       if (this.connectivityServ.isOnline()) {
-        this.httpClient.get(this.connectivityServ.apiUrl + 'programs/to_team?token=' + this.customerData.token + '&team_id=' + id).subscribe((data: any) => {
+        console.log(this.connectivityServ.apiUrl + 'programs/to_team?token=' + this.customerData.token + '&team_id=' + id + '&program_id=' + id2);
+        this.httpClient.get(this.connectivityServ.apiUrl + 'programs/to_team?token=' + this.customerData.token + '&team_id=' + id + '&program_id=' + id2).subscribe((data: any) => {
          console.log(data.result);
          if (data.result.status == 1) {
           this.alertServ.showToast('Вы были успешно добавлены в команду');
          } else if (data.result.status == 2) {
-          this.alertServ.showToast('Вы уже состоите в данной команде');
+          this.alertServ.showToast('Вы уже состоите в данной программе');
          } else {
           this.alertServ.showToast('Превышен лимит участников команды');
          }

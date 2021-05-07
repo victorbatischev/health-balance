@@ -1,4 +1,6 @@
-
+h2 {
+    color: #f00;
+}
 
 .header {
     display: flex;
@@ -29,7 +31,7 @@
             font-family: 'OpenSans-Regular', sans-serif;
         }
     }
-    
+
     .progress-bar-block {
         margin-bottom: 30px;
 
@@ -40,7 +42,7 @@
             height: 8px;
             margin-bottom: 8px;
         }
-        
+
         .progress-text {
             text-align: center;
             font-size: 13px;

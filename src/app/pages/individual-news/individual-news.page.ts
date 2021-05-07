@@ -40,7 +40,7 @@ export class IndividualNewsPage {
     this.storage.get('customerData').then((val) => {
       this.customerData = val;
       if (this.connectivityServ.isOnline()) {
-        this.httpClient.get(this.connectivityServ.apiUrl + 'news/list?team_id=' + this.customerData.team_id + '&type=individual').subscribe((data: any) => {
+        this.httpClient.get(this.connectivityServ.apiUrl + 'news/list?token=' + this.customerData.token + '&type=individual').subscribe((data: any) => {
           this.news = data.result.news;
           console.log(data);
           this.httpClient.get(this.connectivityServ.apiUrl + 'routes/list').subscribe((data: any) => {

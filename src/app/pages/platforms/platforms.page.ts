@@ -44,11 +44,12 @@ export class PlatformsPage {
         this.httpClient.get(this.connectivityServ.apiUrl + 'platforms/list').subscribe((data: any) => {
          console.log(data);
          for (let i = 0; i < data.result.platforms.length; i++) {
-          if (this.customerData.role == 1) {
+          this.listData.push({ id: data.result.platforms[i].id, img: data.result.platforms[i].image, title: data.result.platforms[i].title, src: 'program-name/' + data.result.platforms[i].id, subLink: 'Смотреть программы', subTitle: '' });
+          /*if (this.customerData.role == 1) {
            this.listData.push({ id: data.result.platforms[i].id, img: data.result.platforms[i].image, title: data.result.platforms[i].title, src: 'create-program/' + data.result.platforms[i].id, subLink: 'Добавить программу', subTitle: '' });
           } else {
             this.listData.push({ id: data.result.platforms[i].id, img: data.result.platforms[i].image, title: data.result.platforms[i].title, subTitle: '' });
-          }
+          }*/
          }
          console.log(this.listData);
         }, error => {

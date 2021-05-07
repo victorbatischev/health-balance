@@ -19,6 +19,7 @@ import { FileChooser } from '@ionic-native/file-chooser/ngx';
 //import { FilePath } from '@ionic-native/file-path/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
 
 import { ConnectivityService } from '../providers/connectivity-service';
 import { AlertService } from '../providers/alert-service';
@@ -53,6 +54,7 @@ import { AppRoutingModule } from './app-routing.module';
     //FilePath,
     BarcodeScanner,
     OneSignal,
+    Clipboard,
     ConnectivityService,
     AlertService,
     CustomerService,

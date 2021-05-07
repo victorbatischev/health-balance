@@ -9,6 +9,7 @@ import { ConnectivityService } from '../../../providers/connectivity-service';
 import { AlertService } from '../../../providers/alert-service';
 
 import { Customer } from '../../../models/customer-model';
+import { CustomerService } from '../../../providers/customer-service';
 
 @Component({
   templateUrl: './portfolio.page.html',
@@ -45,6 +46,7 @@ export class PortfolioPage {
     private health: Health,
     private connectivityServ: ConnectivityService,
     private alertServ: AlertService,
+    public customerServ: CustomerService,
   ) {
     this.storage.get('customerData').then((val) => {
       this.customerData = val;
@@ -61,6 +63,10 @@ export class PortfolioPage {
       })
         .catch(e => console.log(e));
     });
+
+    this.customerServ.getCustomerData().subscribe((val) => {
+      this.customerData = val;
+    });
   }
 
   ionViewDidLeave() {
@@ -73,20 +79,13 @@ export class PortfolioPage {
       this.timeoutId = setTimeout(() => {
         var start_date = new Date();
         start_date.setHours(0, 0, 0, 0);
-        this.health.query({
+        this.health.queryAggregated({
           startDate: start_date,
           endDate: new Date(), // now
-          dataType: 'steps',
-          limit: 1000
-        }).then(res => {
-          var total_steps = 0;
-          for (let i = 0; i < res.length; i++) {
-            if (res[i].sourceBundleId.toLowerCase() != 'com.apple.health') {
-              total_steps += +res[i].value;
-            }
-          }
+          dataType: 'steps'
+        }).then((res: any) => {
           this.zone.run(() => {
-            this.steps = total_steps;
+            this.steps = res.value;
           });
           this.refdect.detectChanges();
           if (this.connectivityServ.isOnline()) {

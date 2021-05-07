@@ -32,6 +32,7 @@ export class NutritionPage {
 
   program: any = [];
   listData: IList[] = [];
+  platform_id: string = '0';
 
   constructor(
     public route: ActivatedRoute,
@@ -45,12 +46,18 @@ export class NutritionPage {
     this.storage.get('customerData').then((val) => {
       this.customerData = val;
       if (this.connectivityServ.isOnline()) {
-        this.httpClient.get(this.connectivityServ.apiUrl + 'programs/teams?program_id=' + this.route.snapshot.paramMap.get('program_id')).subscribe((data: any) => {
+        console.log(this.connectivityServ.apiUrl + 'programs/teams?program_id=' + this.route.snapshot.paramMap.get('program_id') + '&token=' + this.customerData.token);
+        this.httpClient.get(this.connectivityServ.apiUrl + 'programs/teams?program_id=' + this.route.snapshot.paramMap.get('program_id') + '&token=' + this.customerData.token).subscribe((data: any) => {
          console.log(data);
          this.program = data.result.program;
          this.listData = [];
+         this.platform_id = this.route.snapshot.paramMap.get('platform_id');
          for (let i = 0; i < data.result.programs_teams.length; i++) {
-           this.listData.push({ id: data.result.programs_teams[i].id, img: 'assets/images/nutrition/medal.png', title: data.result.programs_teams[i].title, button: 'Вступить', subDesc: data.result.programs_teams[i].steps + ' баллов' });
+          if (this.platform_id != '0') {
+            this.listData.push({ id: data.result.programs_teams[i].id, id2: this.route.snapshot.paramMap.get('program_id'), img: 'assets/images/nutrition/medal.png', title: data.result.programs_teams[i].title, button: data.result.programs_teams[i].exist ? 'Вступил' : 'Вступить', subDesc: data.result.programs_teams[i].steps + ' баллов' });
+          } else {
+            this.listData.push({ id: data.result.programs_teams[i].id, id2: this.route.snapshot.paramMap.get('program_id'), img: 'assets/images/nutrition/medal.png', title: data.result.programs_teams[i].title, subDesc: data.result.programs_teams[i].steps + ' баллов' });
+          }
          }
         }, error => {
           console.log(error);

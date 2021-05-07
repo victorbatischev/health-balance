@@ -38,6 +38,8 @@ export class StatisticPage {
     establishment: ''
   };
 
+  stat_type: number = 0;
+
   statistics_data: any = [];
   exist: boolean = false;z
 
@@ -57,7 +59,7 @@ export class StatisticPage {
     });
   }
 
-  getStatistic() {
+  getStatistic(idx) {
     var labels: any = [],
         values: any = [];
 
@@ -65,18 +67,28 @@ export class StatisticPage {
       labels.push(this.statistics_data[i].label);
       values.push(this.statistics_data[i].value);
     }
-    
+
     if (this.exist) {
       this.barChart.destroy();
-    }				
-		
+    }
+
+    var lbl = 'Временной промежуток';
+
+    switch(idx) {
+      case 1: lbl = 'Дни'; break;
+      case 2: lbl = 'Недели'; break;
+      case 3: lbl = 'Месяцы'; break;
+    }
+
     this.barChart = new Chart(this.barCanvas.nativeElement, {
-			type: 'bar',
+			type: 'line',
 			data: {
 				labels: labels,
 			  datasets: [{
 					data: values,
 					backgroundColor: '#168de2',
+          borderColor: '#168de2',
+          fill: false
 				}]
 			},
 			options: {
@@ -86,10 +98,18 @@ export class StatisticPage {
 				maintainAspectRatio: false,
 				scales: {
 					xAxes: [{
-						stacked: true
+						stacked: true,
+            scaleLabel: {
+              display: true,
+              labelString: lbl
+            }
 					}],
 					yAxes: [{
-						stacked: true
+						stacked: true,
+            scaleLabel: {
+              display: true,
+              labelString: this.stat_type == 0 ? 'Кол-во заданий' : 'Кол-во баллов'
+            }
 					}]
 				}
 			}
@@ -99,15 +119,15 @@ export class StatisticPage {
 	}
 
 	setTabs(idx) {
-    if (this.selected_tabs == idx) {
-      return false;
-    }
+
     this.selected_tabs = idx;
     if (idx > 0) {
       if (this.connectivityServ.isOnline()) {
-        this.httpClient.get(this.connectivityServ.apiUrl + 'main/stat?token=' + this.customerData.token + '&period=' + idx).subscribe((data: any) => {
+        console.log(this.connectivityServ.apiUrl + 'main/stat?token=' + this.customerData.token + '&stat_type=' + this.stat_type + '&period=' + idx);
+        this.httpClient.get(this.connectivityServ.apiUrl + 'main/stat?token=' + this.customerData.token + '&stat_type=' + this.stat_type + '&period=' + idx).subscribe((data: any) => {
           this.statistics_data = data.result.data;
-          this.getStatistic();
+          console.log(this.statistics_data);
+          this.getStatistic(idx);
         }, error => {
           console.log(error);
         });

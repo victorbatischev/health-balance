@@ -1,4 +1,4 @@
-.header {   
+.header {
     margin-bottom: 35px;
 
     .img-block {
@@ -23,7 +23,7 @@
         font-family: 'OpenSans-Light', sans-serif;
         font-size: 17px;
     }
-    
+
     .note {
         font-family: 'OpenSans-Regular', sans-serif;
         color: #0361aa;
@@ -37,4 +37,94 @@
 
 .step-block {
     // margin-bottom: 120px;
+}
+
+.tabs {
+    display: flex;
+    align-items: center;
+
+    .tab-link-block {
+        border: 1px solid #0361aa;
+        display: block;
+        padding: 2px 5px;
+        width: 25%;
+        text-align: center;
+
+        .tab-link {
+            color: #3C3C3B;
+            font-family: 'OpenSans-Regular', sans-serif;
+            font-size: 13px;
+        }
+
+        &:first-child {
+
+            border-radius: 20px;
+            border-right: 0;
+            border-bottom-right-radius: 0;
+            border-top-right-radius: 0;
+            text-align: center;
+        }
+
+        &:last-child {
+            border-left: 0;
+            border-radius: 20px;
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0;
+        }
+
+        &:active {
+            background-color: #0361aa;
+            .tab-link {
+                color: #fff;
+            }
+        }
+    }
+
+    .active {
+        background-color: #0361aa;
+
+        .tab-link {
+            color: #fff;
+        }
+    }
+
+    .no-border {
+        border-left: 0;
+        border-right: 0;
+    }
+
+}
+
+.flat-tabs {
+    .text {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .link {
+        display: block;
+        width: 25%;
+        text-align: center;
+        font-family: 'OpenSans-Regular', sans-serif;
+        font-size: 3.25vw;
+        color: #3C3C3B;
+        text-decoration: none;
+    }
+
+    .select-bar {
+        height: 3px;
+        background-color: #ECECEC;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+
+    .selector {
+        display: block;
+        position: relative;
+        left: 25%;
+        width: 25%;
+        height: 3px;
+        background-color: #0360AA;
+    }
 }

@@ -7,19 +7,21 @@
     >
         <div class="list-img" [ngStyle]="customImgStyles">
             <img [src]="item.img">
-            <!--ion-icon class="done" name="checkmark-circle-outline"></ion-icon-->
+            <div class="place" *ngIf="item.img == 'assets/images/nutrition/medal.png' && i < 3">{{ i + 1 }}</div>
+            <ion-icon class="complete" name="checkmark-circle-outline" *ngIf="item.complete && !item.id2"></ion-icon>
+            <ion-icon class="complete non" name="time-outline" *ngIf="!item.complete && !item.id2"></ion-icon>
         </div>
         <!--(click)="openLesson(item.id)"-->
         <ion-label class="list-label" [ngStyle]="customLabelStyles">
             <span *ngIf="item.subTitle" class="list-sub-title">{{ item.subTitle }}</span>
             {{ item.title }}
             <span *ngIf="item.subDesc" class="list-sub-desc">{{ item.subDesc }}</span>
-            <a *ngIf="item.src && item.subLink" [routerLink]="['/' + item.src]" class="list-link">{{ item.subLink }}</a>
+            <ion-button *ngIf="item.src && item.subLink" [routerLink]="['/' + item.src]" class="list-link">{{ item.subLink }}</ion-button>
             <ion-button
                 *ngIf="item.button"
                 size="small"
                 class="list-edit-button"
-                (click)="clickEvent(item.id)"
+                (click)="clickEvent(item.id, item.id2)"
             >{{ item.button }}</ion-button>
         </ion-label>
 

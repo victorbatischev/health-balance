@@ -20,7 +20,7 @@
         margin-right: 25px;
         width: 50px;
 
-        .done {
+        .complete {
             position: absolute;
             right: 0;
             top: 0;
@@ -28,6 +28,10 @@
             border-radius: 50%;
             color: #fff;
             font-size: 5.0vw;
+        }
+
+        .non {
+            background: #09f;
         }
     }
 
@@ -37,9 +41,12 @@
     }
 
     &-link {
-        display: block;
-        font-size: 9px;
-        font-family: 'OpenSans-Regular', sans-serif;
+        --background: #0360aa;
+        --color: #fff;
+        font-size: 11px;
+        font-family: 'OpenSans-SemiBold', sans-serif;
+        height: 25px;
+        min-width: 120px;
         margin-top: 5px;
     }
 
@@ -67,5 +74,13 @@
         height: 25px;
         width: 120px;
         margin-top: 15px;
+    }
+
+    .place {
+        position: absolute;
+        left: 20px;
+        bottom: 16px;
+        font-weight: bold;
+        color: #0360aa;
     }
 }

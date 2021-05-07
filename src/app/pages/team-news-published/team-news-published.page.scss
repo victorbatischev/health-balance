@@ -1,3 +1,4 @@
+app-team-news-published {
 .input {
     border: 1px solid #939598;
     display: block;
@@ -93,6 +94,19 @@
     width: 35px;
 }
 
+h5 {
+        margin: 30px 0 1.0vh;
+        font-size: 3.0vw;
+        font-weight: bold;
+        color: #0360aa;
+        font-style: italic;
+
+        span {
+            float: right;
+            color: #aaa;
+        }
+    }
+
 .comment {
     margin: 1.0vh 0;
     padding: 1.0vh 3.0vw;
@@ -107,4 +121,5 @@
         color: #0360aa;
         font-style: italic;
     }
+}
 }

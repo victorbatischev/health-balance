@@ -52,6 +52,11 @@
     font-size: 16px;
     color: #0360aa;
   }
+
+  .lesson-label {
+    text-overflow: inherit;
+    white-space: normal;
+  }
 }
 
 
@@ -79,4 +84,11 @@
   --padding-end: 15px;
   --padding-start: 15px;
   --padding-top: 10px;
+}
+
+.exist {
+  color: #f00;
+  font-size: 7.5vw;
+  font-weight: bold;
+  font-family: 'OpenSans-Regular', sans-serif;
 }

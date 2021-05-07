@@ -1,4 +1,4 @@
-.header {   
+.header {
     .img-block {
         width: 50px;
         margin-right: 25px;
@@ -12,8 +12,6 @@
 }
 
 .table-header {
-    display: flex;
-    justify-content: flex-end;
     font-family: 'OpenSans-Regular', sans-serif;
     color: #0361aa;
     font-size: 13px;
@@ -50,14 +48,9 @@
     font-size: 15px;
     font-family: 'OpenSans-Light', sans-serif;
     color: #3C3C3B;
-    width: 100px;
 
-    &-primary {
-        color: #0361aa;
-        text-align: center;
-    }
-
-    &:last-child {
-        margin-right: 0;
+    span {
+        font-size: 12px;
+        color: #42b0f5;
     }
 }

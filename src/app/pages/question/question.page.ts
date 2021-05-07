@@ -39,10 +39,10 @@ export class QuestionPage {
     this.storage.get('customerData').then((val) => {
       this.customerData = val;
       if (this.connectivityServ.isOnline()) {
-        this.httpClient.get(this.connectivityServ.apiUrl + 'interviews/list').subscribe((data: any) => {
+        this.httpClient.get(this.connectivityServ.apiUrl + 'interviews/list?token=' + this.customerData.token).subscribe((data: any) => {
          console.log(data);
          for (let i = 0; i < data.result.interviews.length; i++) {
-           this.qaList.push({ id: data.result.interviews[i].id, img: data.result.interviews[i].image, title: data.result.interviews[i].short_description, subTitle: data.result.interviews[i].title, src: '/interview/' + data.result.interviews[i].id, subLink: 'Пройти' });
+           this.qaList.push({ id: data.result.interviews[i].id, img: data.result.interviews[i].image, title: data.result.interviews[i].short_description, subTitle: data.result.interviews[i].title, src: '/interview/' + data.result.interviews[i].id, subLink: 'Пройти', complete: data.result.interviews[i].complete });
          }
         }, error => {
           console.log(error);

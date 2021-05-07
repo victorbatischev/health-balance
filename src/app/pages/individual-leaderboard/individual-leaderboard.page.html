@@ -2,49 +2,62 @@
 
 <ion-content fullscreen class="dark-container">
     <ion-grid class="container-grid">
-      
+
         <ion-row justify-content-center align-items-center>
             <ion-col size="12" ion-text-center>
-                
+
                 <div class="container">
-                    
+
                     <ion-item class='header'>
                         <div class="img-block">
-                            <!--img src="assets/images/group-leaderboard/web-rf.png" alt="web-rf"-->
+                            <img src="{{ liderboard.platform_image }}" alt="web-rf">
                         </div>
-                        
-                        <ion-label class='label'>{{ customerData.establishment}}</ion-label>
+
+                        <ion-label class='label'>{{ liderboard.platform }}</ion-label>
                     </ion-item>
 
                     <div class="tasks">
 
-                        <ion-item class='task-block' lines="none">
-                            <ion-label class="title">Активныз заданий</ion-label>
-                            <ion-note class="note" slot="end">0</ion-note>
+                        <ion-item class='task-block' lines="none" routerDirection="forward" routerLink="/tasks/0">
+                            <ion-label class="title">Активных заданий</ion-label>
+                            <ion-note class="note" slot="end">{{ liderboard.total_tasks }}</ion-note>
                         </ion-item>
 
                         <ion-item class='task-block' lines="none">
                             <ion-label class="title">Выполненных заданий</ion-label>
-                            <ion-note class="note" slot="end">0</ion-note>
+                            <ion-note class="note" slot="end">{{ liderboard.completed_tasks }}</ion-note>
                         </ion-item>
 
                         <ion-item class='task-block' lines="none">
                             <ion-label class="title">Статистика по шагам</ion-label>
-                            <ion-note class="note" slot="end">Всего 0</ion-note>
+                            <ion-note class="note" slot="end">Всего {{ liderboard.steps }}</ion-note>
                         </ion-item>
 
                     </div>
 
                     <div class="tabs-block">
-                        <app-tabs></app-tabs>
-                    </div>
+                            <div class="tabs">
+                                <span class="tab-link-block" [ngClass]="{'active': selected_tabs == 0}" (click)="setTabs(0)">
+                                    <a class="tab-link">за день</a>
+                                </span>
+                                <span class="tab-link-block no-border" [ngClass]="{'active': selected_tabs == 1}" (click)="setTabs(1)">
+                                    <a class="tab-link">за неделю</a>
+                                </span>
+                                <span class="tab-link-block no-border" [ngClass]="{'active': selected_tabs == 2}" (click)="setTabs(2)">
+                                    <a class="tab-link">за месяц</a>
+                                </span>
+                                <span class="tab-link-block" [ngClass]="{'active': selected_tabs == 3}" (click)="setTabs(3)">
+                                    <a class="tab-link">за год</a>
+                                </span>
+                            </div>
+                        </div>
 
                     <div class="step-block">
-                        <app-step-counter></app-step-counter>
+                      <app-step-counter [steps]="steps" [period]="selected_tabs"></app-step-counter>
                     </div>
- 
+
                 </div>
-                
+
             </ion-col>
         </ion-row>
 

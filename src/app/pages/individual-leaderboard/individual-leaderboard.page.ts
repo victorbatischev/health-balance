@@ -14,6 +14,9 @@ import { Customer } from '../../../models/customer-model';
 })
 export class IndividualLeaderboardPage {
 
+  selected_tabs: number;
+  steps: any = 0;
+
 	customerData: Customer = {
     token: '',
     name: '',
@@ -27,7 +30,7 @@ export class IndividualLeaderboardPage {
     establishment: ''
   };
 
-  rating: any = [];
+  liderboard: any = [];
 
   constructor(
     public httpClient: HttpClient,
@@ -38,11 +41,13 @@ export class IndividualLeaderboardPage {
     this.storage.get('customerData').then((val) => {
       this.customerData = val;
       if (this.connectivityServ.isOnline()) {
-        this.httpClient.get(this.connectivityServ.apiUrl + 'rating/teams?token=' + this.customerData.token ).subscribe((data: any) => {
-         this.rating = data.result.rating;
-         console.log(this.rating);
+        this.httpClient.get(this.connectivityServ.apiUrl + 'liderboard/individual?token=' + this.customerData.token ).subscribe((data: any) => {
+         this.liderboard = data.result;
+         console.log(this.liderboard);
+         this.setTabs(0);
         }, error => {
           console.log(error);
+          this.setTabs(0);
         });
       } else {
         this.alertServ.showToast('Нет соединения с сетью');
@@ -50,5 +55,19 @@ export class IndividualLeaderboardPage {
     });
   }
 
-
+   setTabs(idx) {
+    if (this.selected_tabs == idx) {
+      return false;
+    }
+    this.selected_tabs = idx;
+    if (this.connectivityServ.isOnline()) {
+      this.httpClient.get(this.connectivityServ.apiUrl + 'steps/main_history?token=' + this.customerData.token + '&period=' + idx).subscribe((data: any) => {
+        this.steps = data.result.steps;
+      }, error => {
+        console.log(error);
+      });
+    } else {
+      this.alertServ.showToast('Нет соединения с сетью');
+    }
+  }
 }

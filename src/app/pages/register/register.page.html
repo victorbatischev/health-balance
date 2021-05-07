@@ -10,14 +10,10 @@
                 <form class="form" (ngSubmit)="doRegister()">
                     <ion-input type="email" name="email" [(ngModel)]="registrationInfo.email" class="input" placeholder="E-mail"></ion-input>
                     <ion-input type="password" name="password" [(ngModel)]="registrationInfo.password" class="input" placeholder="Пароль"></ion-input>
-                    <select name="team_id" [(ngModel)]="registrationInfo.team_id">
-			             <option value="0">Выберите команду</option>
-                         <!--optgroup *ngFor="let platform of platforms" label="{{ platform.title }}" -->
-                             <optgroup *ngFor="let program of programs" label="{{ program.title }}" >
-                                 <option *ngFor="let team of program.programs_teams" value="{{ team.id }}">{{ team.title }}</option>
-                            </optgroup>
-                        <!--/optgroup-->
-			        </select>
+                    <select name="platform_id" [(ngModel)]="registrationInfo.platform_id">
+		              <option value="0">Выберите платформу</option>
+                      <option *ngFor="let platform of platforms" value="{{ platform.id }}">{{ platform.title }}</option>
+ 			        </select>
 
                     <div class="btn-block">
                         <ion-button type="submit" class="button login-button" style="font-size: 18px; margin-top: 13px; margin-bottom: 10px;" expand="block">Регистрация</ion-button>

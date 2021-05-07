@@ -29,7 +29,7 @@
                   class="sub-menu-item"
                   *ngFor="let subItem of item.subMenu; let j = index;"
                 (click)="clickMenu(subItem.id, j)">
-                  {{ subItem.title }} ({{ subItem.count || 'нет активных'}})
+                  {{ subItem.title }} <span *ngIf="subItem.id != 4.1 && subItem.id != 4.2">({{ subItem.count || 'нет активных'}})</span>
                 </li>
               </ul>
             </ng-container>
@@ -41,7 +41,6 @@
                 'offSubMenu': !showSubMenu
               }"
               *ngIf="item.subMenu"
-              (click)="toggleSubMenu(item)"
             >
               <img src="assets/images/menu/arrow-down.png" alt="toggle-subMenu">
             </button>

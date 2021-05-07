@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ChatPageRoutingModule } from './chat-routing.module';
-import { ChatPage } from './chat.page';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { SupportPageRoutingModule } from './support-routing.module';
+
+import { SupportPage } from './support.page';
 
 @NgModule({
   imports: [
     SharedModule,
-    ChatPageRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-
+    SupportPageRoutingModule
   ],
-  declarations: [
-    ChatPage,
-  ]
+  declarations: [SupportPage]
 })
-export class ChatPageModule {}
+export class SupportPageModule {}
