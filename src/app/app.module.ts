@@ -1,32 +1,32 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
+import { NgModule } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
+import { RouteReuseStrategy } from '@angular/router'
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular'
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http'
 import { IonicStorageModule } from '@ionic/storage'
 
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { Health } from '@ionic-native/health/ngx';
-import { Media } from '@ionic-native/media/ngx';
-import { Camera } from '@ionic-native/camera/ngx';
-import { Crop } from '@ionic-native/crop/ngx';
-import { FileTransfer } from '@ionic-native/file-transfer/ngx';
-import { IOSFilePicker } from '@ionic-native/file-picker/ngx';
-import { FileChooser } from '@ionic-native/file-chooser/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx'
+import { StatusBar } from '@ionic-native/status-bar/ngx'
+import { Health } from '@ionic-native/health/ngx'
+import { Media } from '@ionic-native/media/ngx'
+import { Camera } from '@ionic-native/camera/ngx'
+import { Crop } from '@ionic-native/crop/ngx'
+import { FileTransfer } from '@ionic-native/file-transfer/ngx'
+import { IOSFilePicker } from '@ionic-native/file-picker/ngx'
+import { FileChooser } from '@ionic-native/file-chooser/ngx'
 //import { FilePath } from '@ionic-native/file-path/ngx';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-import { OneSignal } from '@ionic-native/onesignal/ngx';
-import { Clipboard } from '@ionic-native/clipboard/ngx';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx'
+import { OneSignal } from '@ionic-native/onesignal/ngx'
+import { Clipboard } from '@ionic-native/clipboard/ngx'
 
-import { ConnectivityService } from '../providers/connectivity-service';
-import { AlertService } from '../providers/alert-service';
-import { CustomerService } from '../providers/customer-service';
+import { ConnectivityService } from '../providers/connectivity-service'
+import { AlertService } from '../providers/alert-service'
+import { CustomerService } from '../providers/customer-service'
 
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component'
+import { AppRoutingModule } from './app-routing.module'
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,7 +36,7 @@ import { AppRoutingModule } from './app-routing.module';
     HttpClientModule,
     IonicStorageModule.forRoot({
       name: '__HealthBalanceDB',
-      driverOrder: ['sqlite', 'websql', 'indexeddb']
+      driverOrder: ['sqlite', 'websql', 'indexeddb', 'localstorage']
     }),
     IonicModule.forRoot(),
     AppRoutingModule
