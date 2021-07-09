@@ -46,7 +46,6 @@ export class QuestionPage {
           )
           .subscribe(
             (data: any) => {
-              console.log(data)
               for (let i = 0; i < data.result.interviews.length; i++) {
                 this.qaList.push({
                   id: data.result.interviews[i].id,

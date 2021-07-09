@@ -46,16 +46,15 @@ export class HealthIndexPage {
           )
           .subscribe(
             (data: any) => {
-              console.log(data)
-              for (let i = 0; i < data.result.interviews.length; i++) {
+              for (let i = 0; i < data.length; i++) {
                 this.qaList.push({
-                  id: data.result.interviews[i].id,
-                  img: data.result.interviews[i].image,
-                  title: data.result.interviews[i].short_description,
-                  subTitle: data.result.interviews[i].title,
-                  src: '/interview/' + data.result.interviews[i].id,
+                  id: data[i].id,
+                  img: data[i].image,
+                  title: data[i].short_description,
+                  subTitle: data[i].title,
+                  src: '/interview/' + data[i].id,
                   subLink: 'Пройти',
-                  complete: data.result.interviews[i].complete
+                  complete: data[i].complete
                 })
               }
             },

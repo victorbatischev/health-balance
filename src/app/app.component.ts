@@ -161,11 +161,6 @@ export class AppComponent {
 
   menuOpened() {
     if (this.connectivityServ.isOnline()) {
-      console.log(
-        this.connectivityServ.apiUrl +
-          'menu/info?token=' +
-          this.customerData.token
-      )
       this.httpClient
         .get(
           this.connectivityServ.apiUrl +
