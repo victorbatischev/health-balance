@@ -39,8 +39,8 @@ const routes: Routes = [
   {
     path: 'health-index',
     loadChildren: () =>
-      import('./pages/health-index/question.module').then(
-        (m) => m.QuestionPageModule
+      import('./pages/health-index/health-index.module').then(
+        (m) => m.HealthIndexPageModule
       )
   },
   {

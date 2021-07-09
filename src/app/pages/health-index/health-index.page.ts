@@ -11,10 +11,10 @@ import { Customer } from '../../../models/customer-model'
 import { IList } from '../../shared/interfaces/List'
 
 @Component({
-  templateUrl: './question.page.html',
-  styleUrls: ['./question.page.scss']
+  templateUrl: './health-index.page.html',
+  styleUrls: ['./health-index.page.scss']
 })
-export class QuestionPage {
+export class HealthIndexPage {
   customerData: Customer = {
     token: '',
     name: '',
@@ -41,7 +41,7 @@ export class QuestionPage {
         this.httpClient
           .get(
             this.connectivityServ.apiUrl +
-              'interviews/list?token=' +
+              'questionary/blocks?token=' +
               this.customerData.token
           )
           .subscribe(
