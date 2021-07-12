@@ -1,19 +1,23 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu side="end" menuId="custom" type="overlay" contentId="main-content" class="menu" (ionDidOpen)="menuOpened()">
+    <ion-menu
+      side="end"
+      menuId="custom"
+      type="overlay"
+      contentId="main-content"
+      class="menu"
+      (ionDidOpen)="menuOpened()"
+    >
       <ion-content class="content">
-
         <div class="menu-header">
           <div class="menu-header-content">
-
             <div class="arrow-back" (click)="closeMenu()">
-              <img src="assets/images/menu/arrow-back.png">
+              <img src="assets/images/menu/arrow-back.png" />
             </div>
 
             <h6 class="menu-header-title">Меню</h6>
 
             <ion-menu-button class="menu-button"></ion-menu-button>
-
           </div>
         </div>
 
@@ -21,15 +25,27 @@
           <li
             class="menu-item"
             *ngFor="let item of menuItems; let i = index; let last = last"
-          (click)="clickMenu(item.id, i)">{{ item.title }}
+            (click)="clickMenu(item.id, i)"
+          >
+            {{ item.title }}
 
             <ng-container *ngIf="item.subMenu && showSubMenu">
               <ul class="sub-menu" *ngIf="isSameItem(item.id)">
                 <li
                   class="sub-menu-item"
-                  *ngFor="let subItem of item.subMenu; let j = index;"
-                (click)="clickMenu(subItem.id, j)">
-                  {{ subItem.title }} <span *ngIf="subItem.id != 4.1 && subItem.id != 4.2">({{ subItem.count || 'нет активных'}})</span>
+                  *ngFor="let subItem of item.subMenu; let j = index"
+                  (click)="clickMenu(subItem.id, j)"
+                >
+                  {{ subItem.title }}
+                  <span
+                    *ngIf="
+                      subItem.id != 4.1 &&
+                      subItem.id != 4.2 &&
+                      subItem.id != 8.1 &&
+                      subItem.id != 8.2
+                    "
+                    >({{ subItem.count || 'нет активных' }})</span
+                  >
                 </li>
               </ul>
             </ng-container>
@@ -37,20 +53,21 @@
             <button
               class="toggle-subMenu"
               [ngClass]="{
-                'onSubMenu': showSubMenu && isSameItem(item.id),
-                'offSubMenu': !showSubMenu
+                onSubMenu: showSubMenu && isSameItem(item.id),
+                offSubMenu: !showSubMenu
               }"
               *ngIf="item.subMenu"
             >
-              <img src="assets/images/menu/arrow-down.png" alt="toggle-subMenu">
+              <img
+                src="assets/images/menu/arrow-down.png"
+                alt="toggle-subMenu"
+              />
             </button>
           </li>
         </ul>
-
       </ion-content>
     </ion-menu>
 
     <ion-router-outlet id="main-content"></ion-router-outlet>
-
   </ion-split-pane>
 </ion-app>

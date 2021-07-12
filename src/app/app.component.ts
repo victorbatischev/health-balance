@@ -79,7 +79,14 @@ export class AppComponent {
     },
     { id: 6, title: 'Календарь' },
     { id: 7, title: 'Опросы' },
-    { id: 8, title: 'Индекс здоровья' },
+    {
+      id: 8,
+      title: 'Индекс здоровья',
+      subMenu: [
+        { id: 8.1, title: 'Посмотреть предыдущий результат', count: 0 },
+        { id: 8.2, title: 'Пройти опрос ещё раз', count: 0 }
+      ]
+    },
     { id: 9, title: 'Магазин' },
     { id: 10, title: 'Чат поддержки' },
     { id: 11, title: 'Настройки профиля' },
@@ -207,7 +214,18 @@ export class AppComponent {
               },
               { id: 6, title: 'Календарь' },
               { id: 7, title: 'Опросы' },
-              { id: 8, title: 'Индекс здоровья' },
+              {
+                id: 8,
+                title: 'Индекс здоровья',
+                subMenu: [
+                  {
+                    id: 8.1,
+                    title: 'Посмотреть предыдущий результат',
+                    count: 0
+                  },
+                  { id: 8.2, title: 'Пройти опрос ещё раз', count: 0 }
+                ]
+              },
               { id: 9, title: 'Магазин' },
               { id: 10, title: 'Чат поддержки' },
               { id: 11, title: 'Настройки профиля' },
@@ -271,7 +289,10 @@ export class AppComponent {
         case 7:
           this.navCtrl.navigateForward('question')
           break
-        case 8:
+        case 8.1:
+          this.navCtrl.navigateForward('health-index')
+          break
+        case 8.2:
           this.navCtrl.navigateForward('health-index')
           break
         case 9:
