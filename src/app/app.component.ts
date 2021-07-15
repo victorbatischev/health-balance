@@ -83,8 +83,8 @@ export class AppComponent {
       id: 8,
       title: 'Индекс здоровья',
       subMenu: [
-        { id: 8.1, title: 'Посмотреть предыдущий результат', count: 0 },
-        { id: 8.2, title: 'Пройти опрос ещё раз', count: 0 }
+        { id: 8.1, title: 'Посмотреть предыдущие результаты', count: 0 },
+        { id: 8.2, title: 'Пройти опрос', count: 0 }
       ]
     },
     { id: 9, title: 'Магазин' },
@@ -209,7 +209,7 @@ export class AppComponent {
                 title: 'Новости',
                 subMenu: [
                   { id: 5.1, title: 'Групповые', count: data.result.team_news }
-                  /*{ id: 5.2, title: 'Индивидуальные', count: 0},*/
+                  // { id: 5.2, title: 'Индивидуальные', count: 0},
                 ]
               },
               { id: 6, title: 'Календарь' },
@@ -220,10 +220,10 @@ export class AppComponent {
                 subMenu: [
                   {
                     id: 8.1,
-                    title: 'Посмотреть предыдущий результат',
+                    title: 'Посмотреть предыдущие результаты',
                     count: 0
                   },
-                  { id: 8.2, title: 'Пройти опрос ещё раз', count: 0 }
+                  { id: 8.2, title: 'Пройти опрос', count: 0 }
                 ]
               },
               { id: 9, title: 'Магазин' },
@@ -290,7 +290,7 @@ export class AppComponent {
           this.navCtrl.navigateForward('question')
           break
         case 8.1:
-          this.navCtrl.navigateForward('health-index')
+          this.navCtrl.navigateForward('health-index-results')
           break
         case 8.2:
           this.navCtrl.navigateForward('health-index')
