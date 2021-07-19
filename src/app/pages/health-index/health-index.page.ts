@@ -32,13 +32,11 @@ export class HealthIndexPage {
   }
 
   questions: any = []
-  url: any = ''
-  //question: any = [];
+  progress: any = null
   idx: number = 0
   count: number = 0
 
   constructor(
-    private platform: Platform,
     public navCtrl: NavController,
     public route: ActivatedRoute,
     public alertCtrl: AlertController,
@@ -59,21 +57,13 @@ export class HealthIndexPage {
       this.customerData = val
       if (this.connectivityServ.isOnline()) {
         this.httpClient
-          .get(
-            this.connectivityServ.apiUrl +
-              'interviews/get?interview_id=' +
-              this.route.snapshot.paramMap.get('interview_id')
-          )
+          .get(this.connectivityServ.apiUrl + 'questionary/listing')
           .subscribe(
             (data: any) => {
-              this.questions = data.result.questions
-              if (data.result.url && data.result.url != '') {
-                this.url = data.result.url
-              }
-              console.log(this.questions)
-              if (this.questions.length > 0) {
-                //this.question = this.questions[this.idx];
-              }
+              this.questions = data.questions.map((question) => {
+                return { ...question, answers: JSON.parse(question.answers) }
+              })
+              this.progress = data.progress
             },
             (error) => {
               console.log(error)

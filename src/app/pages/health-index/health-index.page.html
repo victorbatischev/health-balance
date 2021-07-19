@@ -3,7 +3,7 @@
 <ion-content fullscreen class="dark-container">
   <ion-grid class="container-grid">
     <ion-row>
-      <ion-col class="ion-text-center" *ngIf="url != ''"
+      <ion-col class="ion-text-center" *ngIf="url"
         ><a href="{{ url }}" target="_blank">Пройти на сайт</a></ion-col
       >
     </ion-row>
@@ -14,7 +14,8 @@
             <div class="news-content">
               <h3 class="subtitle">{{ question.question }}</h3>
             </div>
-            <div class="btn-block">
+            <!-- RadioButton (тип 1) -- выбор единственного ответа -->
+            <div class="btn-block" *ngIf="question.answer_type === '1'">
               <ion-grid>
                 <ion-row
                   class="ion-align-items-center"
