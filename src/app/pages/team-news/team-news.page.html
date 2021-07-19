@@ -1,77 +1,153 @@
 <app-header [title]="'Командные новости'"></app-header>
 
 <ion-content fullscreen class="dark-container">
-    <ion-grid class="container-grid">
+  <ion-grid class="container-grid">
+    <ion-row justify-content-center align-items-center>
+      <ion-col size="12" ion-text-center>
+        <div class="container" style="height: 100%">
+          <form
+            class="form"
+            (ngSubmit)="sendNews()"
+            *ngIf="customerData.role == 1"
+          >
+            <ion-select
+              class="select"
+              name="platform_id"
+              [(ngModel)]="platform_id"
+            >
+              <ion-select-option value="0"
+                >Выберите программу / место публикации</ion-select-option
+              >
+              <ion-select-option
+                *ngFor="let platform of platforms"
+                value="{{ platform.id }}"
+                >{{ platform.title }}</ion-select-option
+              >
+            </ion-select>
 
-        <ion-row justify-content-center align-items-center>
-            <ion-col size="12" ion-text-center>
+            <div class="news-block">
+              <ion-input
+                type="text"
+                name="news_title"
+                [(ngModel)]="news_title"
+                class="input"
+                placeholder="Заголовок новости"
+              ></ion-input>
+              <ion-textarea
+                class="input"
+                name="news_annotation"
+                [(ngModel)]="news_annotation"
+                placeholder="Текст новости"
+              ></ion-textarea>
+              <ion-input
+                type="text"
+                name="video_file"
+                [(ngModel)]="video_file"
+                class="input"
+                placeholder="Ссылка на видео"
+                *ngIf="isVideo"
+              ></ion-input>
+              <ion-input
+                type="text"
+                name="any_file"
+                [(ngModel)]="any_file"
+                class="input"
+                placeholder="Прикрепить файл"
+                *ngIf="isFile"
+                readonly
+              ></ion-input>
+              <ion-list lines="none">
+                <ion-item *ngIf="send_push">
+                  <ion-textarea
+                    class="input"
+                    name="push"
+                    [(ngModel)]="push"
+                    placeholder="Текст пуша"
+                  ></ion-textarea>
+                </ion-item>
+                <ion-item>
+                  <ion-checkbox
+                    name="send_push"
+                    [(ngModel)]="send_push"
+                    mode="md"
+                    slot="start"
+                  ></ion-checkbox>
+                  <ion-label>Отправить пуш</ion-label>
+                </ion-item>
+              </ion-list>
 
-                <div class="container" style="height: 100%;">
-                    <form class="form" (ngSubmit)="sendNews()" *ngIf="customerData.role == 1">
-                        <ion-select class="select" name="platform_id" [(ngModel)]="platform_id">
-                            <ion-select-option value="0">Выберите программу / место публикации</ion-select-option>
-                            <ion-select-option *ngFor="let platform of platforms" value="{{ platform.id }}">{{ platform.title }}</ion-select-option>
-                        </ion-select>
-
-                        <div class="news-block">
-                            <ion-input type="text" name="news_title" [(ngModel)]="news_title" class="input" placeholder="Заголовок новости"></ion-input>
-                            <ion-textarea class="input" name="news_annotation" [(ngModel)]="news_annotation" placeholder="Текст новости"></ion-textarea>
-                            <ion-input type="text" name="video_file" [(ngModel)]="video_file" class="input" placeholder="Ссылка на видео" *ngIf="isVideo"></ion-input>
-                            <ion-input type="text" name="any_file" [(ngModel)]="any_file" class="input" placeholder="Прикрепить файл" *ngIf="isFile" readonly></ion-input>
-                            <ion-list lines="none">
-                                <ion-item *ngIf="send_push">
-                                    <ion-textarea class="input" name="push" [(ngModel)]="push" placeholder="Текст пуша"></ion-textarea>
-                                </ion-item>
-                                <ion-item>
-                                    <ion-checkbox name="send_push" [(ngModel)]="send_push"  mode="md" slot="start"></ion-checkbox>
-                                    <ion-label>Отправить пуш</ion-label>
-                                </ion-item>
-                            </ion-list>
-
-                            <div class="widget-block">
-                                <div class="images-block">
-                                    <div class="image">
-                                        <img src="assets/images/team-news/camera.png" alt="camera" (click)="getPhoto();">
-                                    </div>
-                                    <div class="image">
-                                        <img src="assets/images/team-news/youtube.png" alt="youtube" (click)="selectVideo();">
-                                    </div>
-                                    <div class="image">
-                                        <img src="assets/images/team-news/sound.png" alt="sound" (click)="selectFile();">
-                                    </div>
-                                    <div class="image">
-                                        <img src="assets/images/team-news/file.png" alt="file" (click)="selectFile();">
-                                    </div>
-                                </div>
-
-                                <ion-button type="submit"
-                                    size="small"
-                                    class="public-button"
-                                >Опубликовать</ion-button>
-                            </div>
-
-                        </div>
-                    </form>
-
-                    <div class="news-content" *ngFor="let item of news" routerDirection="forward" routerLink="/team-published/{{ item.id }}">
-                         <h5>{{ item.customer }} <span>{{ item.created_at }}</span></h5>
-                        <h3 class="subtitle">{{ item.title }}</h3>
-
-                        <p class="desc" *ngIf="item.annotation != ''">{{ item.annotation }}</p>
-                        <div class="desc" [innerHTML]="item.content" *ngIf="item.annotation == ''"></div>
-                        <div class="comments-amount">Комментарии: <span>{{ item.comments_amount }}</span></div>
-
-                        <ion-thumbnail class="player">
-                            <img src="{{ item.image }}" alt="player" *ngIf="item.image != ''" />
-                        </ion-thumbnail>
-
-                        <!--a href="javascript:void(0);" class="link">PDF. Основы здорового питания.pdf</a-->
-
-                    </div>
+              <div class="widget-block">
+                <div class="images-block">
+                  <div class="image">
+                    <img
+                      src="assets/images/team-news/camera.png"
+                      alt="camera"
+                      (click)="getPhoto();"
+                    />
+                  </div>
+                  <div class="image">
+                    <img
+                      src="assets/images/team-news/youtube.png"
+                      alt="youtube"
+                      (click)="selectVideo();"
+                    />
+                  </div>
+                  <div class="image">
+                    <img
+                      src="assets/images/team-news/sound.png"
+                      alt="sound"
+                      (click)="selectFile();"
+                    />
+                  </div>
+                  <div class="image">
+                    <img
+                      src="assets/images/team-news/file.png"
+                      alt="file"
+                      (click)="selectFile();"
+                    />
+                  </div>
                 </div>
 
-            </ion-col>
-        </ion-row>
+                <ion-button type="submit" size="small" class="public-button"
+                  >Опубликовать</ion-button
+                >
+              </div>
+            </div>
+          </form>
 
-    </ion-grid>
+          <div
+            class="news-content"
+            *ngFor="let item of news"
+            routerDirection="forward"
+            routerLink="/team-published/{{ item.id }}"
+          >
+            <h5>{{ item.customer }} <span>{{ item.created_at }}</span></h5>
+            <h3 class="subtitle">{{ item.title }}</h3>
+
+            <p class="desc" *ngIf="item.annotation != ''">
+              {{ item.annotation }}
+            </p>
+            <div
+              class="desc"
+              [innerHTML]="item.content"
+              *ngIf="item.annotation == ''"
+            ></div>
+            <div class="comments-amount">
+              Комментарии: <span>{{ item.comments_amount }}</span>
+            </div>
+
+            <ion-thumbnail class="player">
+              <img
+                src="{{ item.image }}"
+                alt="player"
+                *ngIf="item.image != ''"
+              />
+            </ion-thumbnail>
+
+            <!--a href="javascript:void(0);" class="link">PDF. Основы здорового питания.pdf</a-->
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

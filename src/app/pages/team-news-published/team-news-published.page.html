@@ -1,13 +1,11 @@
 <app-header [title]="'Командные новости'"></app-header>
 
 <ion-content fullscreen class="dark-container">
-    <ion-grid class="container-grid">
-
-        <ion-row justify-content-center align-items-center>
-            <ion-col size="12" ion-text-center>
-
-                <div class="container" style="height: 100%;">
-                    <!--ion-select class="select" value="dog" selectedText="Выберите программу / место публикации">
+  <ion-grid class="container-grid">
+    <ion-row justify-content-center align-items-center>
+      <ion-col size="12" ion-text-center>
+        <div class="container" style="height: 100%">
+          <!--ion-select class="select" value="dog" selectedText="Выберите программу / место публикации">
                         <ion-select-option value="cat">Cat</ion-select-option>
                         <ion-select-option value="dog">Dog</ion-select-option>
                     </ion-select>
@@ -39,32 +37,47 @@
 
                     </div-->
 
-                    <div class="news-content">
+          <div class="news-content">
+            <h5>{{ news.customer }} <span>{{ news.created_at }}</span></h5>
+            <a style="font-size: 6vw; float: right" (click)="copyToClipboard()">
+              <ion-icon name="clipboard-outline"></ion-icon>
+            </a>
+            <h3 class="title">{{ news.title }}</h3>
+            <p class="desc" *ngIf="news.content == ''">{{ news.annotation }}</p>
+            <div
+              class="desc"
+              [innerHTML]="html"
+              *ngIf="news.content != ''"
+            ></div>
 
-                        <h5>{{ news.customer }} <span>{{ news.created_at }}</span></h5>
-                        <a style="font-size: 6.0vw; float: right;" (click)="copyToClipboard()">
-                            <ion-icon name="clipboard-outline"></ion-icon>
-                        </a>
-                        <h3 class="title">{{ news.title }}</h3>
-                        <p class="desc" *ngIf="news.content == ''">{{ news.annotation }}</p>
-                        <div class="desc" [innerHTML]="html" *ngIf="news.content != ''"></div>
+            <ion-thumbnail class="player">
+              <img
+                src="{{ news.image }}"
+                alt="player"
+                *ngIf="news.image != ''"
+              />
+            </ion-thumbnail>
+            <div class="comment" *ngFor="let item of news.comments">
+              <h5>{{ item.customer }}</h5>
+              {{ item.comment }}
+            </div>
+            <ion-input
+              type="text"
+              name="comment"
+              [(ngModel)]="comment"
+              class="input"
+              placeholder="Ответить на новость"
+            ></ion-input>
+            <div class="btns-block">
+              <ion-button
+                size="small"
+                class="public-button"
+                style="width: 100%"
+                (click)="addComment()"
+                >Ответить</ion-button
+              >
 
-                        <ion-thumbnail class="player">
-                            <img src="{{ news.image }}" alt="player" *ngIf="news.image != ''" />
-                        </ion-thumbnail>
-                        <div class="comment" *ngFor="let item of news.comments">
-                            <h5>{{ item.customer }}</h5>
-                            {{ item.comment }}
-                        </div>
-                        <ion-input type="text" name="comment" [(ngModel)]="comment" class="input" placeholder="Ответить на новость"></ion-input>
-                        <div class="btns-block">
-
-                            <ion-button
-                                size="small"
-                                class="public-button" style="width: 100%;"
-                            (click)="addComment()">Ответить</ion-button>
-
-                            <!--ion-button
+              <!--ion-button
                                 size="small"
                                 class="public-button"
                             >Редактировать</ion-button>
@@ -75,13 +88,10 @@
                             >
                                 <img src="assets/images/team-news/trash.png" alt="trash">
                             </ion-button-->
-                        </div>
-
-                    </div>
-                </div>
-
-            </ion-col>
-        </ion-row>
-
-    </ion-grid>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
