@@ -1,10 +1,20 @@
-<app-header [title]="'Опрос'"></app-header>
+<app-header [title]="'Индекс здоровья'"></app-header>
 
 <ion-content fullscreen class="dark-container">
   <ion-grid class="container-grid">
     <ion-row>
       <ion-col class="ion-text-center" *ngIf="url"
         ><a href="{{ url }}" target="_blank">Пройти на сайт</a></ion-col
+      >
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-text-center" *ngIf="progress.step"
+        ><h2 class="subtitle">Анкета {{ progress.step }}</h2></ion-col
+      >
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-text-center" *ngIf="progress.title"
+        ><h2 class="subtitle">{{ progress.title }}</h2></ion-col
       >
     </ion-row>
     <ion-row justify-content-center align-items-center>
@@ -43,6 +53,18 @@
                 </ion-row>
               </ion-grid>
             </div>
+            <!-- Input (тип 2) -- ввод строки -->
+            <div class="btn-block" *ngIf="question.answer_type === '2'">
+              <ion-grid>
+                <ion-item no-padding>
+                  <ion-input
+                    type="text"
+                    [placeholder]="placeholder"
+                    [(ngModel)]="valueInput"
+                  ></ion-input>
+                </ion-item>
+              </ion-grid>
+            </div>
           </div>
           <div class="btn-block">
             <ion-button
@@ -54,7 +76,7 @@
                 margin: 10px 5%;
               "
               (click)="doAnswer()"
-              >Применить</ion-button
+              >Далее</ion-button
             >
           </div>
         </div>

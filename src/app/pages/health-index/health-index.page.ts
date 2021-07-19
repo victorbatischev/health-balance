@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { Platform, NavController, AlertController } from '@ionic/angular'
+import { NavController, AlertController } from '@ionic/angular'
 
 import { ActivatedRoute } from '@angular/router'
 import { HttpClient } from '@angular/common/http'
@@ -32,7 +32,7 @@ export class HealthIndexPage {
   }
 
   questions: any = []
-  progress: any = null
+  progress: any = { step: '', title: 'Загрузка...' }
   idx: number = 0
   count: number = 0
 
