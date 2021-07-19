@@ -13,11 +13,11 @@ import { Customer } from '../../../models/customer-model'
 import { DomSanitizer } from '@angular/platform-browser'
 
 @Component({
-  selector: 'app-health-index',
-  templateUrl: './health-index.page.html',
-  styleUrls: ['./health-index.page.scss']
+  selector: 'app-health-index-results',
+  templateUrl: './health-index-results.page.html',
+  styleUrls: ['./health-index-results.page.scss']
 })
-export class HealthIndexPage {
+export class HealthIndexResultsPage {
   customerData: Customer = {
     token: '',
     name: '',

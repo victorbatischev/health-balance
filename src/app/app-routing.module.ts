@@ -37,13 +37,6 @@ const routes: Routes = [
       )
   },
   {
-    path: 'health-index',
-    loadChildren: () =>
-      import('./pages/health-index/health-index.module').then(
-        (m) => m.HealthIndexPageModule
-      )
-  },
-  {
     path: 'web-rf',
     loadChildren: () =>
       import('./pages/web-rf/web-rf.module').then((m) => m.SliderPageModule)
@@ -227,6 +220,20 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/interview/interview.module').then(
         (m) => m.InterviewPageModule
+      )
+  },
+  {
+    path: 'health-index',
+    loadChildren: () =>
+      import('./pages/health-index/health-index.module').then(
+        (m) => m.HealthIndexPageModule
+      )
+  },
+  {
+    path: 'health-index-results',
+    loadChildren: () =>
+      import('./pages/health-index-results/health-index-results.module').then(
+        (m) => m.HealthIndexResultsPageModule
       )
   },
   {

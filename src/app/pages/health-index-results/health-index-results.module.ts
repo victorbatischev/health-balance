@@ -5,9 +5,9 @@ import { FormsModule } from '@angular/forms'
 import { SharedModule } from 'src/app/shared/shared.module'
 import { IonicModule } from '@ionic/angular'
 
-import { HealthIndexPageRoutingModule } from './health-index-routing.module'
+import { HealthIndexResultsPageRoutingModule } from './health-index-results-routing.module'
 
-import { HealthIndexPage } from './health-index.page'
+import { HealthIndexResultsPage } from './health-index-results.page'
 
 @NgModule({
   imports: [
@@ -15,8 +15,8 @@ import { HealthIndexPage } from './health-index.page'
     FormsModule,
     SharedModule,
     IonicModule,
-    HealthIndexPageRoutingModule
+    HealthIndexResultsPageRoutingModule
   ],
-  declarations: [HealthIndexPage]
+  declarations: [HealthIndexResultsPage]
 })
-export class HealthIndexPageModule {}
+export class HealthIndexResultsPageModule {}
