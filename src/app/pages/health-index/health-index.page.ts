@@ -57,7 +57,11 @@ export class HealthIndexPage {
       this.customerData = val
       if (this.connectivityServ.isOnline()) {
         this.httpClient
-          .get(this.connectivityServ.apiUrl + 'questionary/listing')
+          .get(
+            this.connectivityServ.apiUrl +
+              'questionary/listing?token=' +
+              this.customerData.token
+          )
           .subscribe(
             (data: any) => {
               this.questions = data.questions.map((question) => {
@@ -75,7 +79,7 @@ export class HealthIndexPage {
               })
               this.progress = data.progress
               // в анкете 1 добавим согласие на передачу данных
-              if (this.progress.step === 1) {
+              if (this.progress.step === '1') {
                 this.questions.push({
                   id: '0',
                   question:
@@ -105,31 +109,57 @@ export class HealthIndexPage {
   // выбор ответа в типе вопроса 1
   setAnswer(idx1, idx2) {
     this.questions.find((question) => question.id === idx1).currentAnswer = idx2
-    console.log(this.questions)
+  }
+
+  convertAnswers() {
+    var mapped = this.questions.map((item) => {
+      if (
+        item.answer_type === '1' ||
+        item.answer_type === '2' ||
+        item.answer_type === '3'
+      ) {
+        return { [item.id]: item.currentAnswer }
+      } else if (item.answer_type === '4') {
+        return {
+          [item.id]: item.answers
+            .map((answer, index) => (answer.isChecked ? index : null))
+            .filter((item) => item !== null)
+        }
+      } else if (item.answer_type === '5') {
+        return { [item.id]: new Date(item.currentAnswer).getTime() }
+      }
+    })
+
+    return Object.assign({}, ...mapped)
   }
 
   // отправка ответов на сервер
   doAnswer() {
-    var answers = ''
-    for (let i = 0; i < this.questions.length; i++) {
-      answers += this.questions[i].currentAnswer + ','
+    // проверка на согласие на передачу данных
+    if (
+      this.progress.step === 1 &&
+      !this.questions.find((item) => item.id === '0').answers[0].isChecked
+    ) {
+      return this.alertServ.showToast(
+        'Для начала дайте своё согласие на передачу данных опроса медицинскому работнику для ознакомления'
+      )
     }
-    answers = answers.slice(0, -1)
     if (this.connectivityServ.isOnline()) {
       this.httpClient
-        .get(
+        .post(
           this.connectivityServ.apiUrl +
-            'interviews/ok?interview_id=' +
-            this.route.snapshot.paramMap.get('interview_id') +
+            'questionary/save_answers' +
+            '?token=' +
+            this.customerData.token +
             '&answers=' +
-            answers +
-            '&token=' +
-            this.customerData.token
+            JSON.stringify(this.convertAnswers()),
+          this.convertAnswers()
         )
         .subscribe(
           (data: any) => {
+            console.log(data)
             this.alertServ.showToast('Ваши ответы учтены')
-            this.navCtrl.pop()
+            // this.navCtrl.pop()
           },
           (error) => {
             console.log(error)
