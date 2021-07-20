@@ -39,12 +39,12 @@
                             type="radio"
                             name="question{{ question.id }}"
                             id="answer{{ question.id }}-{{ answer.id }}"
-                            (click)="setAnswer(i, j)"
+                            (click)="setAnswer(question.id, j)"
                           />
                         </ion-col>
                         <ion-col>
                           <label for="answer{{ question.id }}-{{ answer.id }}"
-                            >{{ answer.title }}</label
+                            >{{ answer.value }}</label
                           >
                         </ion-col>
                       </ion-row>
@@ -60,7 +60,59 @@
                   <ion-input
                     type="text"
                     [placeholder]="placeholder"
-                    [(ngModel)]="valueInput"
+                    [(ngModel)]="question.currentAnswer"
+                  ></ion-input>
+                </ion-item>
+              </ion-grid>
+            </div>
+            <!-- Input (тип 3) -- ввод числа -->
+            <div class="btn-block" *ngIf="question.answer_type === '3'">
+              <ion-grid>
+                <ion-item no-padding>
+                  <ion-input
+                    type="number"
+                    [placeholder]="placeholder"
+                    [(ngModel)]="question.currentAnswer"
+                  ></ion-input>
+                </ion-item>
+              </ion-grid>
+            </div>
+            <!-- CheckBox (тип 4) -- выбор нескольких ответов -->
+            <div class="btn-block" *ngIf="question.answer_type === '4'">
+              <ion-grid>
+                <ion-row
+                  class="ion-align-items-center"
+                  *ngFor="let answer of question.answers; let j = index"
+                >
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row class="ion-align-items-center">
+                        <ion-col size="1">
+                          <ion-checkbox
+                            id="answer{{ question.id }}-{{ answer.id }}"
+                            mode="md"
+                            [(ngModel)]="answer.isChecked"
+                          ></ion-checkbox>
+                        </ion-col>
+                        <ion-col>
+                          <label for="answer{{ question.id }}-{{ answer.id }}"
+                            >{{ answer.value }}</label
+                          >
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+            <!-- Input (тип 5) -- ввод даты -->
+            <div class="btn-block" *ngIf="question.answer_type === '5'">
+              <ion-grid>
+                <ion-item no-padding>
+                  <ion-input
+                    type="date"
+                    [placeholder]="placeholder"
+                    [(ngModel)]="question.currentAnswer"
                   ></ion-input>
                 </ion-item>
               </ion-grid>

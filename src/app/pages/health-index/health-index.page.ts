@@ -61,9 +61,36 @@ export class HealthIndexPage {
           .subscribe(
             (data: any) => {
               this.questions = data.questions.map((question) => {
-                return { ...question, answers: JSON.parse(question.answers) }
+                return {
+                  ...question,
+                  answers: question.answers
+                    ? JSON.parse(question.answers).map((answer) => {
+                        return question.answer_type === '4'
+                          ? { value: answer, isChecked: false }
+                          : { value: answer }
+                      })
+                    : null,
+                  currentAnswer: null
+                }
               })
               this.progress = data.progress
+              // в анкете 1 добавим согласие на передачу данных
+              if (this.progress.step === 1) {
+                this.questions.push({
+                  id: '0',
+                  question:
+                    'Я выражаю своё согласие на передачу данных опроса медицинскому работнику для ознакомления',
+                  tag: 'agreement',
+                  answer_type: '4',
+                  answers: [
+                    {
+                      value: 'Согласие на передачу данных опроса',
+                      isChecked: false
+                    }
+                  ]
+                })
+              }
+              console.log(this.questions)
             },
             (error) => {
               console.log(error)
@@ -75,14 +102,17 @@ export class HealthIndexPage {
     })
   }
 
+  // выбор ответа в типе вопроса 1
   setAnswer(idx1, idx2) {
-    this.questions[idx1].current_answer = idx2
+    this.questions.find((question) => question.id === idx1).currentAnswer = idx2
+    console.log(this.questions)
   }
 
+  // отправка ответов на сервер
   doAnswer() {
     var answers = ''
     for (let i = 0; i < this.questions.length; i++) {
-      answers += this.questions[i].current_answer + ','
+      answers += this.questions[i].currentAnswer + ','
     }
     answers = answers.slice(0, -1)
     if (this.connectivityServ.isOnline()) {
