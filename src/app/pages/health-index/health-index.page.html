@@ -1,7 +1,7 @@
 <app-header [title]="'Индекс здоровья'"></app-header>
 
 <ion-content fullscreen class="dark-container">
-  <ion-grid class="container-grid">
+  <ion-grid *ngIf="questions.length" class="container-grid">
     <ion-row>
       <ion-col class="ion-text-center" *ngIf="url"
         ><a href="{{ url }}" target="_blank">Пройти на сайт</a></ion-col
@@ -135,4 +135,28 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <div *ngIf="!questions.length" class="btn-block">
+    <ion-button
+      class="button register-button"
+      style="
+        font-size: 18px;
+        --background: #0361aa;
+        --color: #fff;
+        margin: 10px 5%;
+      "
+      (click)="continuePoll()"
+      >Продолжить опрос</ion-button
+    >
+    <ion-button
+      class="button register-button"
+      style="
+        font-size: 18px;
+        --background: #0361aa;
+        --color: #fff;
+        margin: 10px 5%;
+      "
+      (click)="interruptPoll()"
+      >Пройти опрос заново</ion-button
+    >
+  </div>
 </ion-content>

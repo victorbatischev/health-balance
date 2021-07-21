@@ -32,6 +32,7 @@ export class HealthIndexPage {
   }
 
   questions: any = []
+  tempQuestions: any = []
   progress: any = { step: '', title: 'Загрузка...' }
   idx: number = 0
   count: number = 0
@@ -46,13 +47,35 @@ export class HealthIndexPage {
     private alertServ: AlertService,
     protected sanitizer: DomSanitizer
   ) {
-    this.storage.get('customerData').then((val) => {
-      this.customerData = val
-      this.loadQuestions()
-    })
+    this.loadInitialQuestions()
   }
 
-  loadQuestions() {
+  continuePoll() {
+    this.questions = [...this.tempQuestions]
+  }
+
+  interruptPoll() {
+    if (this.connectivityServ.isOnline()) {
+      this.httpClient
+        .get(
+          this.connectivityServ.apiUrl +
+            'questionary/interrupt?token=' +
+            this.customerData.token
+        )
+        .subscribe(
+          () => {
+            this.loadQuestions()
+          },
+          (error) => {
+            console.log(error)
+          }
+        )
+    } else {
+      this.alertServ.showToast('Нет соединения с сетью')
+    }
+  }
+
+  loadInitialQuestions() {
     this.storage.get('customerData').then((val) => {
       this.customerData = val
       if (this.connectivityServ.isOnline()) {
@@ -64,7 +87,8 @@ export class HealthIndexPage {
           )
           .subscribe(
             (data: any) => {
-              this.questions = data.questions.map((question) => {
+              console.log(data.questions)
+              this.tempQuestions = data.questions.map((question) => {
                 return {
                   ...question,
                   answers: question.answers
@@ -79,8 +103,8 @@ export class HealthIndexPage {
               })
               this.progress = data.progress
               // в анкете 1 добавим согласие на передачу данных
-              if (this.progress.step === '1') {
-                this.questions.push({
+              if (this.progress.step === 1) {
+                this.tempQuestions.push({
                   id: '0',
                   question:
                     'Я выражаю своё согласие на передачу данных опроса медицинскому работнику для ознакомления',
@@ -93,8 +117,8 @@ export class HealthIndexPage {
                     }
                   ]
                 })
+                this.questions = [...this.tempQuestions]
               }
-              console.log(this.questions)
             },
             (error) => {
               console.log(error)
@@ -104,6 +128,57 @@ export class HealthIndexPage {
         this.alertServ.showToast('Нет соединения с сетью')
       }
     })
+  }
+
+  loadQuestions() {
+    if (this.connectivityServ.isOnline()) {
+      this.httpClient
+        .get(
+          this.connectivityServ.apiUrl +
+            'questionary/listing?token=' +
+            this.customerData.token
+        )
+        .subscribe(
+          (data: any) => {
+            this.questions = data.questions.map((question) => {
+              return {
+                ...question,
+                answers: question.answers
+                  ? JSON.parse(question.answers).map((answer) => {
+                      return question.answer_type === '4'
+                        ? { value: answer, isChecked: false }
+                        : { value: answer }
+                    })
+                  : null,
+                currentAnswer: null
+              }
+            })
+            this.progress = data.progress
+            // в анкете 1 добавим согласие на передачу данных
+            if (this.progress.step === 1) {
+              this.questions.push({
+                id: '0',
+                question:
+                  'Я выражаю своё согласие на передачу данных опроса медицинскому работнику для ознакомления',
+                tag: 'agreement',
+                answer_type: '4',
+                answers: [
+                  {
+                    value: 'Согласие на передачу данных опроса',
+                    isChecked: false
+                  }
+                ]
+              })
+            }
+            console.log(this.questions)
+          },
+          (error) => {
+            console.log(error)
+          }
+        )
+    } else {
+      this.alertServ.showToast('Нет соединения с сетью')
+    }
   }
 
   // выбор ответа в типе вопроса 1
@@ -124,6 +199,7 @@ export class HealthIndexPage {
           [item.id]: item.answers
             .map((answer, index) => (answer.isChecked ? index : null))
             .filter((item) => item !== null)
+            .join()
         }
       } else if (item.answer_type === '5') {
         return { [item.id]: new Date(item.currentAnswer).getTime() }
@@ -136,20 +212,20 @@ export class HealthIndexPage {
   // отправка ответов на сервер
   doAnswer() {
     // проверка на согласие на передачу данных
-    if (
-      this.progress.step === 1 &&
-      !this.questions.find((item) => item.id === '0').answers[0].isChecked
-    ) {
-      return this.alertServ.showToast(
-        'Для начала дайте своё согласие на передачу данных опроса медицинскому работнику для ознакомления'
-      )
+    if (this.progress.step === 1) {
+      if (!this.questions.find((item) => item.id === '0').answers[0].isChecked)
+        return this.alertServ.showToast(
+          'Для начала дайте своё согласие на передачу данных опроса медицинскому работнику для ознакомления'
+        )
+      else {
+        this.questions.pop()
+      }
     }
     if (this.connectivityServ.isOnline()) {
       this.httpClient
         .post(
           this.connectivityServ.apiUrl +
-            'questionary/save_answers' +
-            '?token=' +
+            'questionary/save_answers?token=' +
             this.customerData.token +
             '&answers=' +
             JSON.stringify(this.convertAnswers()),
@@ -158,7 +234,22 @@ export class HealthIndexPage {
         .subscribe(
           (data: any) => {
             console.log(data)
-            this.alertServ.showToast('Ваши ответы учтены')
+            this.questions = data.questions.map((question) => {
+              return {
+                ...question,
+                answers: question.answers
+                  ? JSON.parse(question.answers).map((answer) => {
+                      return question.answer_type === '4'
+                        ? { value: answer, isChecked: false }
+                        : { value: answer }
+                    })
+                  : null,
+                currentAnswer: null
+              }
+            })
+            this.progress = data.progress
+            console.log(this.questions)
+            // this.alertServ.showToast('Ваши ответы учтены')
             // this.navCtrl.pop()
           },
           (error) => {
