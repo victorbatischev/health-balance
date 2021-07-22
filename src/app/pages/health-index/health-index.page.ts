@@ -34,8 +34,10 @@ export class HealthIndexPage {
   questions: any = []
   tempQuestions: any = []
   progress: any = { step: '', title: 'Загрузка...' }
+  blocks: any = []
+  firstBlocks: any = []
+  lastBlocks: any = []
   idx: number = 0
-  count: number = 0
 
   constructor(
     public navCtrl: NavController,
@@ -47,7 +49,7 @@ export class HealthIndexPage {
     private alertServ: AlertService,
     protected sanitizer: DomSanitizer
   ) {
-    this.loadInitialQuestions()
+    this.loadQuestions(false)
   }
 
   continuePoll() {
@@ -64,7 +66,7 @@ export class HealthIndexPage {
         )
         .subscribe(
           () => {
-            this.loadQuestions()
+            this.loadQuestions(true)
           },
           (error) => {
             console.log(error)
@@ -75,7 +77,7 @@ export class HealthIndexPage {
     }
   }
 
-  loadInitialQuestions() {
+  loadQuestions(saveAnswers: boolean) {
     this.storage.get('customerData').then((val) => {
       this.customerData = val
       if (this.connectivityServ.isOnline()) {
@@ -88,23 +90,19 @@ export class HealthIndexPage {
           .subscribe(
             (data: any) => {
               console.log(data.questions)
-              this.tempQuestions = data.questions.map((question) => {
-                return {
-                  ...question,
-                  answers: question.answers
-                    ? JSON.parse(question.answers).map((answer) => {
-                        return question.answer_type === '4'
-                          ? { value: answer, isChecked: false }
-                          : { value: answer }
-                      })
-                    : null,
-                  currentAnswer: null
-                }
-              })
+              let tempQuestions = this.formatQuestions(data.questions)
               this.progress = data.progress
+              this.blocks = data.blocks || []
+              if (this.blocks.length > 0) {
+                this.firstBlocks = this.blocks.map((item) => item.questions[0])
+                this.lastBlocks = this.blocks.map(
+                  (item) => item.questions[item.questions.length - 1]
+                )
+              }
+
               // в анкете 1 добавим согласие на передачу данных
               if (this.progress.step === 1) {
-                this.tempQuestions.push({
+                tempQuestions.push({
                   id: '0',
                   question:
                     'Я выражаю своё согласие на передачу данных опроса медицинскому работнику для ознакомления',
@@ -117,7 +115,11 @@ export class HealthIndexPage {
                     }
                   ]
                 })
-                this.questions = [...this.tempQuestions]
+                this.questions = [...tempQuestions]
+              } else if (saveAnswers) {
+                this.questions = [...tempQuestions]
+              } else {
+                this.tempQuestions = [...tempQuestions]
               }
             },
             (error) => {
@@ -130,54 +132,36 @@ export class HealthIndexPage {
     })
   }
 
-  loadQuestions() {
-    if (this.connectivityServ.isOnline()) {
-      this.httpClient
-        .get(
-          this.connectivityServ.apiUrl +
-            'questionary/listing?token=' +
-            this.customerData.token
-        )
-        .subscribe(
-          (data: any) => {
-            this.questions = data.questions.map((question) => {
-              return {
-                ...question,
-                answers: question.answers
-                  ? JSON.parse(question.answers).map((answer) => {
-                      return question.answer_type === '4'
-                        ? { value: answer, isChecked: false }
-                        : { value: answer }
-                    })
-                  : null,
-                currentAnswer: null
-              }
+  formatQuestions(questions) {
+    return questions.map((question) => {
+      return {
+        ...question,
+        answers: question.answers
+          ? JSON.parse(question.answers).map((answer) => {
+              return question.answer_type === '4' ||
+                question.answer_type === '7'
+                ? { value: answer, isChecked: false }
+                : { value: answer }
             })
-            this.progress = data.progress
-            // в анкете 1 добавим согласие на передачу данных
-            if (this.progress.step === 1) {
-              this.questions.push({
-                id: '0',
-                question:
-                  'Я выражаю своё согласие на передачу данных опроса медицинскому работнику для ознакомления',
-                tag: 'agreement',
-                answer_type: '4',
-                answers: [
-                  {
-                    value: 'Согласие на передачу данных опроса',
-                    isChecked: false
-                  }
-                ]
-              })
-            }
-            console.log(this.questions)
-          },
-          (error) => {
-            console.log(error)
-          }
-        )
-    } else {
-      this.alertServ.showToast('Нет соединения с сетью')
+          : null,
+        currentAnswer: null
+      }
+    })
+  }
+
+  isFirstBlockQuestion(question) {
+    if (this.firstBlocks.find((item) => item === question.tag)) {
+      return this.blocks[
+        this.firstBlocks.findIndex((item) => item === question.tag)
+      ].title
+    }
+  }
+
+  isLastBlockQuestion(question) {
+    if (this.lastBlocks.find((item) => item === question.tag)) {
+      return this.blocks[
+        this.lastBlocks.findIndex((item) => item === question.tag)
+      ].title
     }
   }
 
@@ -203,6 +187,18 @@ export class HealthIndexPage {
         }
       } else if (item.answer_type === '5') {
         return { [item.id]: new Date(item.currentAnswer).getTime() }
+      } else if (item.answer_type === '6') {
+        return { [item.id]: item.currentAnswer + '|' + item.currentAnswer }
+      } else if (item.answer_type === '7') {
+        return {
+          [item.id]:
+            item.answers
+              .map((answer, index) => (answer.isChecked ? index : null))
+              .filter((item) => item !== null)
+              .join() +
+            '|' +
+            item.currentAnswer
+        }
       }
     })
 
@@ -234,23 +230,20 @@ export class HealthIndexPage {
         .subscribe(
           (data: any) => {
             console.log(data)
-            this.questions = data.questions.map((question) => {
-              return {
-                ...question,
-                answers: question.answers
-                  ? JSON.parse(question.answers).map((answer) => {
-                      return question.answer_type === '4'
-                        ? { value: answer, isChecked: false }
-                        : { value: answer }
-                    })
-                  : null,
-                currentAnswer: null
+            if (data.questions && data.questions.length) {
+              this.questions = this.formatQuestions(data.questions)
+              this.progress = data.progress
+              this.blocks = data.blocks || []
+              if (this.blocks.length > 0) {
+                this.firstBlocks = this.blocks.map((item) => item.questions[0])
+                this.lastBlocks = this.blocks.map(
+                  (item) => item.questions[item.questions.length - 1]
+                )
               }
-            })
-            this.progress = data.progress
-            console.log(this.questions)
-            // this.alertServ.showToast('Ваши ответы учтены')
-            // this.navCtrl.pop()
+            } else {
+              // this.alertServ.showToast('Ваши ответы учтены')
+              // this.navCtrl.pop()
+            }
           },
           (error) => {
             console.log(error)

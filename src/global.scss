@@ -88,6 +88,20 @@ ion-item {
   margin: 0 15px;
 }
 
+.item-inner {
+  min-height: 2px !important;
+}
+
+.label-md {
+  margin-bottom: 2px !important;
+  margin-top: 2px !important;
+}
+
+ion-item-divider {
+  margin-top: 2px;
+  min-height: 2px !important;
+}
+
 .item-has-focus {
   --border-color: #000000;
 }
