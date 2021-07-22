@@ -117,7 +117,79 @@
                 </ion-item>
               </ion-grid>
             </div>
+            <!-- RadioButton и Input (тип 6) -- выбор единственного ответа и ввод данных -->
+            <div class="btn-block" *ngIf="question.answer_type === '6'">
+              <ion-grid>
+                <ion-row
+                  class="ion-align-items-center"
+                  *ngFor="let answer of question.answers; let j = index"
+                >
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row class="ion-align-items-center">
+                        <ion-col size="1">
+                          <input
+                            type="radio"
+                            name="question{{ question.id }}"
+                            id="answer{{ question.id }}-{{ answer.id }}"
+                            (click)="setAnswer(question.id, j)"
+                          />
+                        </ion-col>
+                        <ion-col>
+                          <label for="answer{{ question.id }}-{{ answer.id }}"
+                            >{{ answer.value }}</label
+                          >
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+                <ion-item no-padding>
+                  <ion-input
+                    type="text"
+                    [placeholder]="placeholder"
+                    [(ngModel)]="question.currentAnswer"
+                  ></ion-input>
+                </ion-item>
+              </ion-grid>
+            </div>
+            <!-- CheckBox и Input (тип 7) -- выбор нескольких ответов и ввод данных -->
+            <div class="btn-block" *ngIf="question.answer_type === '7'">
+              <ion-grid>
+                <ion-row
+                  class="ion-align-items-center"
+                  *ngFor="let answer of question.answers; let j = index"
+                >
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row class="ion-align-items-center">
+                        <ion-col size="1">
+                          <ion-checkbox
+                            id="answer{{ question.id }}-{{ answer.id }}"
+                            mode="md"
+                            [(ngModel)]="answer.isChecked"
+                          ></ion-checkbox>
+                        </ion-col>
+                        <ion-col>
+                          <label for="answer{{ question.id }}-{{ answer.id }}"
+                            >{{ answer.value }}</label
+                          >
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-col>
+                </ion-row>
+                <ion-item no-padding>
+                  <ion-input
+                    type="text"
+                    [placeholder]="placeholder"
+                    [(ngModel)]="question.currentAnswer"
+                  ></ion-input>
+                </ion-item>
+              </ion-grid>
+            </div>
           </div>
+
           <div class="btn-block">
             <ion-button
               class="button register-button"
@@ -147,6 +219,8 @@
       (click)="continuePoll()"
       >Продолжить опрос</ion-button
     >
+    <!-- <ion-item-divider> </ion-item-divider> -->
+
     <ion-button
       class="button register-button"
       style="
