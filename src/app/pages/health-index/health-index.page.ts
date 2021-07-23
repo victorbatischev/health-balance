@@ -89,7 +89,6 @@ export class HealthIndexPage {
           )
           .subscribe(
             (data: any) => {
-              console.log(data.questions)
               let tempQuestions = this.formatQuestions(data.questions)
               this.progress = data.progress
               this.blocks = data.blocks || []
@@ -183,22 +182,17 @@ export class HealthIndexPage {
           [item.id]: item.answers
             .map((answer, index) => (answer.isChecked ? index : null))
             .filter((item) => item !== null)
-            .join()
         }
       } else if (item.answer_type === '5') {
-        return { [item.id]: new Date(item.currentAnswer).getTime() }
+        return { [item.id]: new Date(item.currentAnswer).getTime() / 1000 }
       } else if (item.answer_type === '6') {
-        return { [item.id]: item.currentAnswer + '|' + item.currentAnswer }
+        return { [item.id]: [item.currentAnswer, { custom: item.custom }] }
       } else if (item.answer_type === '7') {
-        return {
-          [item.id]:
-            item.answers
-              .map((answer, index) => (answer.isChecked ? index : null))
-              .filter((item) => item !== null)
-              .join() +
-            '|' +
-            item.currentAnswer
-        }
+        let answers = item.answers
+          .map((answer, index) => (answer.isChecked ? index : null))
+          .filter((item) => item !== null)
+        answers.push({ custom: item.currentAnswer })
+        return { [item.id]: answers }
       }
     })
 
@@ -229,7 +223,6 @@ export class HealthIndexPage {
         )
         .subscribe(
           (data: any) => {
-            console.log(data)
             if (data.questions && data.questions.length) {
               this.questions = this.formatQuestions(data.questions)
               this.progress = data.progress
@@ -240,9 +233,10 @@ export class HealthIndexPage {
                   (item) => item.questions[item.questions.length - 1]
                 )
               }
-            } else {
-              // this.alertServ.showToast('Ваши ответы учтены')
-              // this.navCtrl.pop()
+            }
+            if (data.last_step) {
+              this.alertServ.showToast('Ваши ответы учтены')
+              this.navCtrl.pop()
             }
           },
           (error) => {
