@@ -3,46 +3,8 @@
 <ion-content fullscreen class="dark-container">
   <ion-grid class="container-grid">
     <ion-row>
-      <ion-col class="ion-text-center" *ngIf="url != ''"
-        ><a href="{{ url }}" target="_blank">Пройти на сайт</a></ion-col
-      >
-    </ion-row>
-    <ion-row justify-content-center align-items-center>
-      <ion-col ion-text-center>
-        <div class="container" style="height: 100%">
-          <div *ngFor="let question of questions; let i = index;">
-            <div class="news-content">
-              <h3 class="subtitle">{{ question.question }}</h3>
-            </div>
-            <div class="btn-block">
-              <ion-grid>
-                <ion-row
-                  class="ion-align-items-center"
-                  *ngFor="let answer of question.answers; let j = index"
-                >
-                  <ion-col>
-                    <ion-grid>
-                      <ion-row class="ion-align-items-center">
-                        <ion-col size="1">
-                          <input
-                            type="radio"
-                            name="question{{ question.id }}"
-                            id="answer{{ question.id }}-{{ answer.id }}"
-                            (click)="setAnswer(i, j)"
-                          />
-                        </ion-col>
-                        <ion-col>
-                          <label for="answer{{ question.id }}-{{ answer.id }}"
-                            >{{ answer.title }}</label
-                          >
-                        </ion-col>
-                      </ion-row>
-                    </ion-grid>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-            </div>
-          </div>
+      <ion-col>
+        <div>
           <div class="btn-block">
             <ion-button
               class="button register-button"

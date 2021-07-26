@@ -31,11 +31,7 @@ export class HealthIndexResultsPage {
     establishment: ''
   }
 
-  questions: any = []
-  url: any = ''
-  //question: any = [];
-  idx: number = 0
-  count: number = 0
+  results: any = []
 
   constructor(
     private platform: Platform,
@@ -61,19 +57,13 @@ export class HealthIndexResultsPage {
         this.httpClient
           .get(
             this.connectivityServ.apiUrl +
-              'interviews/get?interview_id=' +
-              this.route.snapshot.paramMap.get('interview_id')
+              'questionary/result_dynamics?token=' +
+              this.customerData.token
           )
           .subscribe(
             (data: any) => {
-              this.questions = data.result.questions
-              if (data.result.url && data.result.url != '') {
-                this.url = data.result.url
-              }
-              console.log(this.questions)
-              if (this.questions.length > 0) {
-                //this.question = this.questions[this.idx];
-              }
+              console.log(data.results)
+              this.results = data.results
             },
             (error) => {
               console.log(error)
@@ -83,40 +73,5 @@ export class HealthIndexResultsPage {
         this.alertServ.showToast('Нет соединения с сетью')
       }
     })
-  }
-
-  setAnswer(idx1, idx2) {
-    this.questions[idx1].current_answer = idx2
-  }
-
-  doAnswer() {
-    var answers = ''
-    for (let i = 0; i < this.questions.length; i++) {
-      answers += this.questions[i].current_answer + ','
-    }
-    answers = answers.slice(0, -1)
-    if (this.connectivityServ.isOnline()) {
-      this.httpClient
-        .get(
-          this.connectivityServ.apiUrl +
-            'interviews/ok?interview_id=' +
-            this.route.snapshot.paramMap.get('interview_id') +
-            '&answers=' +
-            answers +
-            '&token=' +
-            this.customerData.token
-        )
-        .subscribe(
-          (data: any) => {
-            this.alertServ.showToast('Ваши ответы учтены')
-            this.navCtrl.pop()
-          },
-          (error) => {
-            console.log(error)
-          }
-        )
-    } else {
-      this.alertServ.showToast('Нет соединения с сетью')
-    }
   }
 }
