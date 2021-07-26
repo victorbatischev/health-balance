@@ -1,6 +1,6 @@
 <app-header [title]="'Индекс здоровья'"></app-header>
 
-<ion-content fullscreen class="dark-container">
+<ion-content fullscreen class="dark-container" #pageTop>
   <ion-grid *ngIf="questions.length" class="container-grid">
     <ion-row>
       <ion-col class="ion-text-center" *ngIf="url"

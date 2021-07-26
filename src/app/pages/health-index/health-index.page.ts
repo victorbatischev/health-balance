@@ -1,5 +1,5 @@
-import { Component } from '@angular/core'
-import { NavController, AlertController } from '@ionic/angular'
+import { Component, ViewChild } from '@angular/core'
+import { NavController, AlertController, IonContent } from '@ionic/angular'
 
 import { ActivatedRoute } from '@angular/router'
 import { HttpClient } from '@angular/common/http'
@@ -18,6 +18,8 @@ import { DomSanitizer } from '@angular/platform-browser'
   styleUrls: ['./health-index.page.scss']
 })
 export class HealthIndexPage {
+  @ViewChild(IonContent) content: IonContent
+
   customerData: Customer = {
     token: '',
     name: '',
@@ -233,10 +235,28 @@ export class HealthIndexPage {
                   (item) => item.questions[item.questions.length - 1]
                 )
               }
+              this.content.scrollToTop(400)
             }
             if (data.last_step) {
-              this.alertServ.showToast('Ваши ответы учтены')
-              this.navCtrl.pop()
+              if (this.connectivityServ.isOnline()) {
+                this.httpClient
+                  .get(
+                    this.connectivityServ.apiUrl +
+                      'questionary/finished?token=' +
+                      this.customerData.token
+                  )
+                  .subscribe(
+                    () => {
+                      this.alertServ.showToast('Ваши ответы учтены')
+                      this.navCtrl.pop()
+                    },
+                    (error) => {
+                      console.log(error)
+                    }
+                  )
+              } else {
+                this.alertServ.showToast('Нет соединения с сетью')
+              }
             }
           },
           (error) => {
