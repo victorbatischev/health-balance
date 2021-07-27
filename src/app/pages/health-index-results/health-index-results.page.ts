@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core'
+import { Component, ViewChild, ViewChildren, QueryList } from '@angular/core'
 import { NavController, AlertController } from '@ionic/angular'
 
 import { ActivatedRoute } from '@angular/router'
@@ -37,24 +37,34 @@ export class HealthIndexResultsPage {
   }
 
   results: any = []
+  labels: any = [] // даты прохождения опроса
+  values: any = [] // значения параметров
 
   slides: any = [
-    'Биологический возраст',
-    'Индекс массы тела',
-    'Давление',
-    'Общий холестерин (ммоль/л)',
-    'ЛПНП (липопротеины низкой плотности, так называемый «‎плохой»‎ холестерин, ммоль/л)',
-    'ЛПВП (липопротеины высокой плотности, так называемый хороший холестерин, ммоль/л)',
-    'Показатель уровня глюкозы в крови',
-    'Физическая активность',
-    'Потребление алкоголя',
-    'Правильное питание',
-    'Потребление фруктов',
-    'Потребление овощей',
-    'Уровень стресса',
-    'Уровень депрессии',
-    'Удовлетворённость личной жизнью',
-    'Удовлетворённость профессиональной жизнью'
+    { label: 'Биологический возраст', id: 'biological_age' },
+    { label: 'Индекс массы тела', id: 'body_mass_index' },
+    { label: 'Давление', id: 'pressure' },
+    { label: 'Общий холестерин (ммоль/л)', id: 'cholesterol' },
+    {
+      label:
+        'ЛПНП (липопротеины низкой плотности, так называемый «‎плохой»‎ холестерин, ммоль/л)',
+      id: 'bad_cholesterol'
+    },
+    {
+      label:
+        'ЛПВП (липопротеины высокой плотности, так называемый хороший холестерин, ммоль/л)',
+      id: 'good_cholesterol'
+    },
+    { label: 'Показатель уровня глюкозы в крови', id: 'glucose' },
+    { label: 'Физическая активность', id: 'physical_activity' },
+    { label: 'Потребление алкоголя', id: 'alcohol' },
+    { label: 'Правильное питание', id: 'food' },
+    { label: 'Потребление фруктов', id: 'fruits' },
+    { label: 'Потребление овощей', id: 'vegetables' },
+    { label: 'Уровень стресса', id: 'stress' },
+    { label: 'Уровень депрессии', id: 'depression' },
+    { label: 'Удовлетворённость личной жизнью', id: 'personal_life' },
+    { label: 'Удовлетворённость профессиональной жизнью', id: 'work_life' }
   ]
 
   constructor(
@@ -82,7 +92,6 @@ export class HealthIndexResultsPage {
           )
           .subscribe(
             (data: any) => {
-              console.log(data.results)
               this.results = data.results
               this.getStatistic()
             },
@@ -100,24 +109,45 @@ export class HealthIndexResultsPage {
     this.navCtrl.navigateForward('health-index')
   }
 
+  timeConverter(UNIX_timestamp) {
+    var a = new Date(UNIX_timestamp * 1000)
+    var months = [
+      'Янв',
+      'Фев',
+      'Мар',
+      'Апр',
+      'Май',
+      'Июн',
+      'Июл',
+      'Авг',
+      'Сен',
+      'Окт',
+      'Ноя',
+      'Дек'
+    ]
+    var year = a.getFullYear()
+    var month = months[a.getMonth()]
+    var date = a.getDate()
+    var time = date + ' ' + month + ' ' + year
+    return time
+  }
+
   getStatistic() {
-    var labels: any = ['12', '34'],
-      values: any = [56, 78]
+    for (let i = 0; i < this.results.length; i++) {
+      this.labels.push(this.timeConverter(this.results[i].created_at))
+    }
 
-    // for (let i = 0; i < this.results.length; i++) {
-    //   labels.push(this.results[i].label)
-    //   values.push(this.results[i].value)
-    // }
-
-    var lbl = 'Временной промежуток'
+    this.values = this.slides.map((item) =>
+      this.results.map((res) => parseFloat(res[item.id]))
+    )
 
     this.barChart = new Chart(this.barCanvas.nativeElement, {
       type: 'line',
       data: {
-        labels: labels,
+        labels: this.labels,
         datasets: [
           {
-            data: values,
+            data: this.values[0],
             backgroundColor: '#168de2',
             borderColor: '#168de2',
             fill: false
@@ -135,7 +165,7 @@ export class HealthIndexResultsPage {
               stacked: true,
               scaleLabel: {
                 display: true,
-                labelString: lbl
+                labelString: 'Дата прохождения опроса'
               }
             }
           ],
@@ -143,7 +173,7 @@ export class HealthIndexResultsPage {
             {
               stacked: true,
               scaleLabel: {
-                display: true,
+                display: false,
                 labelString: 'Кол-во баллов'
               }
             }
