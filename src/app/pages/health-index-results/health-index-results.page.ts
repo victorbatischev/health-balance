@@ -1,5 +1,5 @@
-import { Component } from '@angular/core'
-import { Platform, NavController, AlertController } from '@ionic/angular'
+import { Component, ViewChild } from '@angular/core'
+import { NavController, AlertController } from '@ionic/angular'
 
 import { ActivatedRoute } from '@angular/router'
 import { HttpClient } from '@angular/common/http'
@@ -12,12 +12,17 @@ import { Customer } from '../../../models/customer-model'
 
 import { DomSanitizer } from '@angular/platform-browser'
 
+import { Chart } from 'chart.js'
+
 @Component({
   selector: 'app-health-index-results',
   templateUrl: './health-index-results.page.html',
   styleUrls: ['./health-index-results.page.scss']
 })
 export class HealthIndexResultsPage {
+  @ViewChild('barCanvas') barCanvas
+  barChart: any
+
   customerData: Customer = {
     token: '',
     name: '',
@@ -33,8 +38,26 @@ export class HealthIndexResultsPage {
 
   results: any = []
 
+  slides: any = [
+    'Биологический возраст',
+    'Индекс массы тела',
+    'Давление',
+    'Общий холестерин (ммоль/л)',
+    'ЛПНП (липопротеины низкой плотности, так называемый «‎плохой»‎ холестерин, ммоль/л)',
+    'ЛПВП (липопротеины высокой плотности, так называемый хороший холестерин, ммоль/л)',
+    'Показатель уровня глюкозы в крови',
+    'Физическая активность',
+    'Потребление алкоголя',
+    'Правильное питание',
+    'Потребление фруктов',
+    'Потребление овощей',
+    'Уровень стресса',
+    'Уровень депрессии',
+    'Удовлетворённость личной жизнью',
+    'Удовлетворённость профессиональной жизнью'
+  ]
+
   constructor(
-    private platform: Platform,
     public navCtrl: NavController,
     public route: ActivatedRoute,
     public alertCtrl: AlertController,
@@ -44,13 +67,10 @@ export class HealthIndexResultsPage {
     private alertServ: AlertService,
     protected sanitizer: DomSanitizer
   ) {
-    this.storage.get('customerData').then((val) => {
-      this.customerData = val
-      this.loadQuestions()
-    })
+    this.loadResults()
   }
 
-  loadQuestions() {
+  loadResults() {
     this.storage.get('customerData').then((val) => {
       this.customerData = val
       if (this.connectivityServ.isOnline()) {
@@ -64,6 +84,7 @@ export class HealthIndexResultsPage {
             (data: any) => {
               console.log(data.results)
               this.results = data.results
+              this.getStatistic()
             },
             (error) => {
               console.log(error)
@@ -71,6 +92,63 @@ export class HealthIndexResultsPage {
           )
       } else {
         this.alertServ.showToast('Нет соединения с сетью')
+      }
+    })
+  }
+
+  repeatTest() {
+    this.navCtrl.navigateForward('health-index')
+  }
+
+  getStatistic() {
+    var labels: any = ['12', '34'],
+      values: any = [56, 78]
+
+    // for (let i = 0; i < this.results.length; i++) {
+    //   labels.push(this.results[i].label)
+    //   values.push(this.results[i].value)
+    // }
+
+    var lbl = 'Временной промежуток'
+
+    this.barChart = new Chart(this.barCanvas.nativeElement, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            data: values,
+            backgroundColor: '#168de2',
+            borderColor: '#168de2',
+            fill: false
+          }
+        ]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        maintainAspectRatio: false,
+        scales: {
+          xAxes: [
+            {
+              stacked: true,
+              scaleLabel: {
+                display: true,
+                labelString: lbl
+              }
+            }
+          ],
+          yAxes: [
+            {
+              stacked: true,
+              scaleLabel: {
+                display: true,
+                labelString: 'Кол-во баллов'
+              }
+            }
+          ]
+        }
       }
     })
   }

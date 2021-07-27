@@ -1,7 +1,23 @@
-<app-header [title]="'Опрос'"></app-header>
+<app-header [title]="'Статистика'"></app-header>
 
 <ion-content fullscreen class="dark-container">
-  <ion-grid class="container-grid">
+  <ion-grid class="container-grid" style="height: 100%">
+    <ion-row style="height: 80%">
+      <ion-col>
+        <ion-slides
+          *ngIf="slides && slides.length"
+          pager="false"
+          [options]="slideOpts"
+        >
+          <ion-slide *ngFor="let slide of slides; let i = index;">
+            <div style="display: flex; flex-direction: column">
+              <div>{{ slide }}</div>
+              <canvas #barCanvas></canvas>
+            </div>
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
     <ion-row>
       <ion-col>
         <div>
@@ -14,8 +30,8 @@
                 --color: #fff;
                 margin: 10px 5%;
               "
-              (click)="doAnswer()"
-              >Применить</ion-button
+              (click)="repeatTest()"
+              >Пройти тест ещё раз</ion-button
             >
           </div>
         </div>
