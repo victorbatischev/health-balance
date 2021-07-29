@@ -12,7 +12,8 @@
           <ion-slide *ngFor="let slide of slides; let i = index;">
             <div style="display: flex; flex-direction: column">
               <div style="margin-bottom: 20px">{{ slide.label }}</div>
-              <canvas #barCanvas></canvas>
+              <!-- <canvas #barCanvas></canvas> -->
+              <canvas #pr_chart></canvas>
             </div>
           </ion-slide>
         </ion-slides>

@@ -1,4 +1,10 @@
-import { Component, ViewChild, ViewChildren, QueryList } from '@angular/core'
+import {
+  Component,
+  ViewChild,
+  ViewChildren,
+  QueryList,
+  ElementRef
+} from '@angular/core'
 import { NavController, AlertController } from '@ionic/angular'
 
 import { ActivatedRoute } from '@angular/router'
@@ -14,6 +20,36 @@ import { DomSanitizer } from '@angular/platform-browser'
 
 import { Chart } from 'chart.js'
 
+const baseConfig: Chart.ChartConfiguration = {
+  type: 'line',
+  options: {
+    legend: {
+      display: false
+    },
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [
+        {
+          stacked: true,
+          scaleLabel: {
+            display: true,
+            labelString: 'Дата прохождения опроса'
+          }
+        }
+      ],
+      yAxes: [
+        {
+          stacked: true,
+          scaleLabel: {
+            display: false,
+            labelString: 'Кол-во баллов'
+          }
+        }
+      ]
+    }
+  }
+}
+
 @Component({
   selector: 'app-health-index-results',
   templateUrl: './health-index-results.page.html',
@@ -21,6 +57,9 @@ import { Chart } from 'chart.js'
 })
 export class HealthIndexResultsPage {
   @ViewChild('barCanvas') barCanvas
+  @ViewChildren('pr_chart', { read: ElementRef })
+  chartElementRefs: QueryList<ElementRef>
+
   barChart: any
 
   customerData: Customer = {
@@ -39,6 +78,7 @@ export class HealthIndexResultsPage {
   results: any = []
   labels: any = [] // даты прохождения опроса
   values: any = [] // значения параметров
+  charts: Chart[] = [] // графики
 
   slides: any = [
     { label: 'Биологический возраст', id: 'biological_age' },
@@ -67,6 +107,51 @@ export class HealthIndexResultsPage {
     { label: 'Удовлетворённость профессиональной жизнью', id: 'work_life' }
   ]
 
+  chartData: Chart.ChartData[] = [
+    {
+      labels: [
+        '1500',
+        '1600',
+        '1700',
+        '1750',
+        '1800',
+        '1850',
+        '1900',
+        '1950',
+        '1999',
+        '2050'
+      ],
+      datasets: [
+        {
+          data: [86, 378, 106, 306, 507, 111, 133, 221, 783, 5000],
+          borderColor: 'red',
+          fill: false
+        }
+      ]
+    },
+    {
+      labels: [
+        '1500',
+        '1600',
+        '1700',
+        '1750',
+        '1800',
+        '1850',
+        '1900',
+        '1950',
+        '1999',
+        '2050'
+      ],
+      datasets: [
+        {
+          data: [86, 378, 106, 306, 507, 111, 133, 221, 783, 5000].reverse(),
+          borderColor: 'blue',
+          fill: false
+        }
+      ]
+    }
+  ]
+
   constructor(
     public navCtrl: NavController,
     public route: ActivatedRoute,
@@ -78,6 +163,16 @@ export class HealthIndexResultsPage {
     protected sanitizer: DomSanitizer
   ) {
     this.loadResults()
+  }
+
+  ngAfterViewInit() {
+    this.charts = this.chartElementRefs.map((chartElementRef, index) => {
+      const config = Object.assign({}, baseConfig, {
+        data: this.chartData[index]
+      })
+
+      return new Chart(chartElementRef.nativeElement, config)
+    })
   }
 
   loadResults() {
