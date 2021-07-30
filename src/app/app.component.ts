@@ -74,7 +74,7 @@ export class AppComponent {
       title: 'Новости',
       subMenu: [
         { id: 5.1, title: 'Групповые', count: 0 }
-        /*{ id: 5.2, title: 'Индивидуальные', count: 0},*/
+        // { id: 5.2, title: 'Индивидуальные', count: 0 }
       ]
     },
     { id: 6, title: 'Календарь' },
@@ -84,7 +84,8 @@ export class AppComponent {
       title: 'Индекс здоровья',
       subMenu: [
         { id: 8.1, title: 'Посмотреть предыдущие результаты', count: 0 },
-        { id: 8.2, title: 'Пройти опрос', count: 0 }
+        { id: 8.2, title: 'Пройти опрос', count: 0 },
+        { id: 8.3, title: 'Индивидуальный отчёт', count: 0 }
       ]
     },
     { id: 9, title: 'Магазин' },
@@ -223,7 +224,8 @@ export class AppComponent {
                     title: 'Посмотреть предыдущие результаты',
                     count: 0
                   },
-                  { id: 8.2, title: 'Пройти опрос', count: 0 }
+                  { id: 8.2, title: 'Пройти опрос', count: 0 },
+                  { id: 8.3, title: 'Индивидуальный отчёт', count: 0 }
                 ]
               },
               { id: 9, title: 'Магазин' },
@@ -250,7 +252,11 @@ export class AppComponent {
   }
 
   clickMenu(id, idx) {
-    if (typeof this.menuItems[idx].subMenu == 'undefined' || +id == 5.3) {
+    if (
+      typeof this.menuItems[idx].subMenu == 'undefined' ||
+      +id == 5.3 ||
+      +id == 8.3
+    ) {
       this.menu.close()
       switch (+id) {
         case 1:
@@ -294,6 +300,9 @@ export class AppComponent {
           break
         case 8.2:
           this.navCtrl.navigateForward('health-index')
+          break
+        case 8.3:
+          this.navCtrl.navigateForward('health-index-report')
           break
         case 9:
           this.navCtrl.navigateForward('store')

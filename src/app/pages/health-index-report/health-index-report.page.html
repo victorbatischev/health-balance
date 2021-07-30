@@ -1,0 +1,28 @@
+<app-header [title]="'Индивидуальный отчёт'"></app-header>
+
+<ion-content fullscreen class="dark-container">
+  <ion-grid class="container-grid" style="height: 100%">
+    <ion-row style="height: 80%">
+      <ion-col> Отчёт </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div>
+          <div class="btn-block">
+            <ion-button
+              class="button register-button"
+              style="
+                font-size: 18px;
+                --background: #0361aa;
+                --color: #fff;
+                margin: 10px 5%;
+              "
+              (click)="repeatTest()"
+              >Пройти тест ещё раз</ion-button
+            >
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -51,7 +51,7 @@ import { AppRoutingModule } from './app-routing.module'
     FileTransfer,
     IOSFilePicker,
     FileChooser,
-    //FilePath,
+    // FilePath,
     BarcodeScanner,
     OneSignal,
     Clipboard,

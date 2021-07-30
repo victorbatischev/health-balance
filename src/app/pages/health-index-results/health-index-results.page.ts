@@ -112,16 +112,6 @@ export class HealthIndexResultsPage {
     this.loadResults()
   }
 
-  ngAfterViewInit() {
-    this.charts = this.chartElementRefs.map((chartElementRef, index) => {
-      const config = Object.assign({}, baseConfig, {
-        data: this.chartData[index]
-      })
-
-      return new Chart(chartElementRef.nativeElement, config)
-    })
-  }
-
   loadResults() {
     this.storage.get('customerData').then((val) => {
       this.customerData = val

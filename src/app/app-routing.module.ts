@@ -237,6 +237,13 @@ const routes: Routes = [
       )
   },
   {
+    path: 'health-index-report',
+    loadChildren: () =>
+      import('./pages/health-index-report/health-index-report.module').then(
+        (m) => m.HealthIndexReportPageModule
+      )
+  },
+  {
     path: 'tasks/:program_id',
     loadChildren: () =>
       import('./pages/tasks/tasks.module').then((m) => m.TasksPageModule)
