@@ -1,10 +1,4 @@
-import {
-  Component,
-  ViewChild,
-  ViewChildren,
-  QueryList,
-  ElementRef
-} from '@angular/core'
+import { Component, ViewChildren, QueryList, ElementRef } from '@angular/core'
 import { NavController, AlertController } from '@ionic/angular'
 
 import { ActivatedRoute } from '@angular/router'
@@ -56,11 +50,8 @@ const baseConfig: Chart.ChartConfiguration = {
   styleUrls: ['./health-index-results.page.scss']
 })
 export class HealthIndexResultsPage {
-  @ViewChild('barCanvas') barCanvas
   @ViewChildren('pr_chart', { read: ElementRef })
   chartElementRefs: QueryList<ElementRef>
-
-  barChart: any
 
   customerData: Customer = {
     token: '',
@@ -79,6 +70,7 @@ export class HealthIndexResultsPage {
   labels: any = [] // даты прохождения опроса
   values: any = [] // значения параметров
   charts: Chart[] = [] // графики
+  chartData: Chart.ChartData[] = [] // данные для графиков
 
   slides: any = [
     { label: 'Биологический возраст', id: 'biological_age' },
@@ -105,51 +97,6 @@ export class HealthIndexResultsPage {
     { label: 'Уровень депрессии', id: 'depression' },
     { label: 'Удовлетворённость личной жизнью', id: 'personal_life' },
     { label: 'Удовлетворённость профессиональной жизнью', id: 'work_life' }
-  ]
-
-  chartData: Chart.ChartData[] = [
-    {
-      labels: [
-        '1500',
-        '1600',
-        '1700',
-        '1750',
-        '1800',
-        '1850',
-        '1900',
-        '1950',
-        '1999',
-        '2050'
-      ],
-      datasets: [
-        {
-          data: [86, 378, 106, 306, 507, 111, 133, 221, 783, 5000],
-          borderColor: 'red',
-          fill: false
-        }
-      ]
-    },
-    {
-      labels: [
-        '1500',
-        '1600',
-        '1700',
-        '1750',
-        '1800',
-        '1850',
-        '1900',
-        '1950',
-        '1999',
-        '2050'
-      ],
-      datasets: [
-        {
-          data: [86, 378, 106, 306, 507, 111, 133, 221, 783, 5000].reverse(),
-          borderColor: 'blue',
-          fill: false
-        }
-      ]
-    }
   ]
 
   constructor(
@@ -229,52 +176,34 @@ export class HealthIndexResultsPage {
 
   getStatistic() {
     for (let i = 0; i < this.results.length; i++) {
-      this.labels.push(this.timeConverter(this.results[i].created_at))
+      this.labels.push(this.timeConverter(this.results[i].created_at)) // даты прохождения опросов
     }
 
-    this.values = this.slides.map((item) =>
-      this.results.map((res) => parseFloat(res[item.id]))
+    this.values = this.slides.map(
+      (item) => this.results.map((res) => parseFloat(res[item.id])) // значения для каждого теста
     )
 
-    this.barChart = new Chart(this.barCanvas.nativeElement, {
-      type: 'line',
-      data: {
+    this.chartData = this.values.map((item, index) => {
+      return {
         labels: this.labels,
         datasets: [
           {
-            data: this.values[0],
+            data: this.values[index],
             backgroundColor: '#168de2',
             borderColor: '#168de2',
             fill: false
           }
         ]
-      },
-      options: {
-        legend: {
-          display: false
-        },
-        maintainAspectRatio: false,
-        scales: {
-          xAxes: [
-            {
-              stacked: true,
-              scaleLabel: {
-                display: true,
-                labelString: 'Дата прохождения опроса'
-              }
-            }
-          ],
-          yAxes: [
-            {
-              stacked: true,
-              scaleLabel: {
-                display: false,
-                labelString: 'Кол-во баллов'
-              }
-            }
-          ]
-        }
       }
+    })
+
+    // вывод графиков
+    this.charts = this.chartElementRefs.map((chartElementRef, index) => {
+      const config = Object.assign({}, baseConfig, {
+        data: this.chartData[index]
+      })
+
+      return new Chart(chartElementRef.nativeElement, config)
     })
   }
 }
