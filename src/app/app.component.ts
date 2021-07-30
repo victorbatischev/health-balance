@@ -177,7 +177,6 @@ export class AppComponent {
         )
         .subscribe(
           (data: any) => {
-            console.log(data)
             this.menuItems = [
               { id: 1, title: 'Личный кабинет' },
               { id: 2, title: 'Программы' },

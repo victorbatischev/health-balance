@@ -2,8 +2,17 @@
 
 <ion-content fullscreen class="dark-container">
   <ion-grid class="container-grid" style="height: 100%">
-    <ion-row style="height: 80%">
-      <ion-col> Отчёт </ion-col>
+    <ion-row>
+      <ion-col
+        ><h2>
+          Индивидуальный отчёт по оценке биологического возраста
+        </h2></ion-col
+      >
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div [innerHTML]="result"></div>
+      </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
@@ -17,8 +26,8 @@
                 --color: #fff;
                 margin: 10px 5%;
               "
-              (click)="repeatTest()"
-              >Пройти тест ещё раз</ion-button
+              (click)="downloadReport()"
+              >Скачать отчёт</ion-button
             >
           </div>
         </div>

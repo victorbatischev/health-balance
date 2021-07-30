@@ -71,6 +71,7 @@ export class HealthIndexResultsPage {
   values: any = [] // значения параметров
   charts: Chart[] = [] // графики
   chartData: Chart.ChartData[] = [] // данные для графиков
+  thirdSection: any = [] // результаты прохождения блока 3
 
   slides: any = [
     { label: 'Биологический возраст', id: 'biological_age' },
@@ -131,6 +132,23 @@ export class HealthIndexResultsPage {
               console.log(error)
             }
           )
+
+        this.httpClient
+          .get(
+            this.connectivityServ.apiUrl +
+              'questionary/third_section?token=' +
+              this.customerData.token
+          )
+          .subscribe(
+            (data: any) => {
+              console.log(data)
+              this.thirdSection = this.formatQuestions(data.answers)
+              console.log(this.thirdSection)
+            },
+            (error) => {
+              console.log(error)
+            }
+          )
       } else {
         this.alertServ.showToast('Нет соединения с сетью')
       }
@@ -139,6 +157,23 @@ export class HealthIndexResultsPage {
 
   repeatTest() {
     this.navCtrl.navigateForward('health-index')
+  }
+
+  formatQuestions(questions) {
+    return questions.map((question) => {
+      return {
+        ...question,
+        answers: question.answers
+          ? JSON.parse(question.answers).map((answer) => {
+              return question.answer_type === '4' ||
+                question.answer_type === '7'
+                ? { value: answer, isChecked: false }
+                : { value: answer }
+            })
+          : null,
+        currentAnswer: null
+      }
+    })
   }
 
   timeConverter(UNIX_timestamp) {

@@ -15,6 +15,124 @@
               <canvas #pr_chart></canvas>
             </div>
           </ion-slide>
+          <ion-slide>
+            <ion-grid *ngIf="thirdSection.length" class="container-grid">
+              <ion-row justify-content-center align-items-center>
+                <ion-col ion-text-center>
+                  <div class="container" style="height: 100%">
+                    <div *ngFor="let question of thirdSection; let i = index;">
+                      <div class="news-content">
+                        <h5 class="subtitle">{{ question.question }}</h5>
+                      </div>
+                      <!-- RadioButton (тип 1) -- выбор единственного ответа -->
+                      <div
+                        class="btn-block"
+                        *ngIf="question.answer_type === '1'"
+                      >
+                        <ion-grid>
+                          <ion-row class="ion-align-items-center">
+                            <ion-col>
+                              <ion-grid>
+                                <ion-row class="ion-align-items-center">
+                                  <ion-col>
+                                    <label
+                                      >{{ question.answers[question.value].value
+                                      }}</label
+                                    >
+                                  </ion-col>
+                                </ion-row>
+                              </ion-grid>
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+                      </div>
+                      <!-- CheckBox (тип 4) -- выбор нескольких ответов -->
+                      <div
+                        class="btn-block"
+                        *ngIf="question.answer_type === '4'"
+                      >
+                        <ion-grid>
+                          <ion-row
+                            class="ion-align-items-center"
+                            *ngFor="let answer of question.answers; let j = index"
+                          >
+                            <ion-col>
+                              <ion-grid>
+                                <ion-row class="ion-align-items-center">
+                                  <ion-col size="1">
+                                    <ion-checkbox
+                                      id="answer{{ question.id }}-{{ answer.id }}"
+                                      mode="md"
+                                      [(ngModel)]="answer.isChecked"
+                                    ></ion-checkbox>
+                                  </ion-col>
+                                  <ion-col>
+                                    <label
+                                      for="answer{{ question.id }}-{{ answer.id }}"
+                                      >{{ answer.value }}</label
+                                    >
+                                  </ion-col>
+                                </ion-row>
+                              </ion-grid>
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+                      </div>
+                      <!-- CheckBox и Input (тип 7) -- выбор нескольких ответов и ввод данных -->
+                      <div
+                        class="btn-block"
+                        *ngIf="question.answer_type === '7'"
+                      >
+                        <ion-grid>
+                          <ion-row
+                            class="ion-align-items-center"
+                            *ngFor="let answer of question.answers; let j = index"
+                          >
+                            <ion-col *ngIf="j < question.answers.length - 1">
+                              <ion-grid>
+                                <ion-row class="ion-align-items-center">
+                                  <ion-col size="1">
+                                    <ion-checkbox
+                                      id="answer{{ question.id }}-{{ answer.id }}"
+                                      mode="md"
+                                      [(ngModel)]="answer.isChecked"
+                                    ></ion-checkbox>
+                                  </ion-col>
+                                  <ion-col>
+                                    <label
+                                      for="answer{{ question.id }}-{{ answer.id }}"
+                                      >{{ answer.value }}</label
+                                    >
+                                  </ion-col>
+                                </ion-row>
+                              </ion-grid>
+                            </ion-col>
+                            <ion-item
+                              no-padding
+                              *ngIf="j === question.answers.length - 1"
+                            >
+                              <ion-grid>
+                                <ion-row>
+                                  <label>{{ answer.value }}</label>
+                                </ion-row>
+                                <ion-row>
+                                  <ion-input
+                                    type="text"
+                                    [placeholder]="placeholder"
+                                    [(ngModel)]="question.currentAnswer"
+                                  ></ion-input>
+                                </ion-row>
+                              </ion-grid>
+                            </ion-item>
+                          </ion-row>
+                        </ion-grid>
+                      </div>
+                    </div>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-slide>
         </ion-slides>
       </ion-col>
     </ion-row>

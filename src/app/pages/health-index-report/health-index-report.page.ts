@@ -31,9 +31,7 @@ export class HealthIndexReportPage {
     establishment: ''
   }
 
-  results: any = []
-  labels: any = [] // даты прохождения опроса
-  values: any = [] // значения параметров
+  result: any
 
   constructor(
     public navCtrl: NavController,
@@ -55,12 +53,13 @@ export class HealthIndexReportPage {
         this.httpClient
           .get(
             this.connectivityServ.apiUrl +
-              'questionary/result_dynamics?token=' +
+              'questionary/recommendation?token=' +
               this.customerData.token
           )
           .subscribe(
             (data: any) => {
-              this.results = data.results
+              console.log(data)
+              this.result = data
             },
             (error) => {
               console.log(error)
@@ -72,7 +71,7 @@ export class HealthIndexReportPage {
     })
   }
 
-  repeatTest() {
-    this.navCtrl.navigateForward('health-index')
+  downloadReport() {
+    // this.navCtrl.navigateForward('health-index')
   }
 }

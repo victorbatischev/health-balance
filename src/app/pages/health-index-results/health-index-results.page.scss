@@ -119,3 +119,7 @@
 ion-slides {
   height: 100%;
 }
+
+ion-slide > :first-child {
+  width: 100%;
+}
