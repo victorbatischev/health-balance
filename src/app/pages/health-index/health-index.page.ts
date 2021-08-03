@@ -40,6 +40,7 @@ export class HealthIndexPage {
   firstBlocks: any = []
   lastBlocks: any = []
   idx: number = 0
+  lastStep: boolean = false
 
   constructor(
     public navCtrl: NavController,
@@ -99,6 +100,11 @@ export class HealthIndexPage {
                 this.lastBlocks = this.blocks.map(
                   (item) => item.questions[item.questions.length - 1]
                 )
+              }
+
+              // проверка на последний шаг
+              if (data.last_step) {
+                this.lastStep = true
               }
 
               // в анкете 1 добавим согласие на передачу данных
@@ -237,7 +243,7 @@ export class HealthIndexPage {
               }
               this.content.scrollToTop(400)
             }
-            if (data.last_step) {
+            if (this.lastStep) {
               if (this.connectivityServ.isOnline()) {
                 this.httpClient
                   .get(
@@ -257,6 +263,10 @@ export class HealthIndexPage {
               } else {
                 this.alertServ.showToast('Нет соединения с сетью')
               }
+            }
+            // проверка на последний шаг
+            if (data.last_step) {
+              this.lastStep = true
             }
           },
           (error) => {
