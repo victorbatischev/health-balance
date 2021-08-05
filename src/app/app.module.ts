@@ -20,6 +20,9 @@ import { FileChooser } from '@ionic-native/file-chooser/ngx'
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx'
 import { OneSignal } from '@ionic-native/onesignal/ngx'
 import { Clipboard } from '@ionic-native/clipboard/ngx'
+import { PDFGenerator } from '@ionic-native/pdf-generator/ngx'
+import { File } from '@ionic-native/file/ngx'
+import { FileOpener } from '@ionic-native/file-opener/ngx'
 
 import { ConnectivityService } from '../providers/connectivity-service'
 import { AlertService } from '../providers/alert-service'
@@ -58,6 +61,9 @@ import { AppRoutingModule } from './app-routing.module'
     ConnectivityService,
     AlertService,
     CustomerService,
+    PDFGenerator,
+    File,
+    FileOpener,
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy
