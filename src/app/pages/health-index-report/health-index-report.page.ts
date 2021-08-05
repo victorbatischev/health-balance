@@ -66,7 +66,6 @@ export class HealthIndexReportPage {
           )
           .subscribe(
             (data: any) => {
-              console.log(data)
               this.result = data
             },
             (error) => {

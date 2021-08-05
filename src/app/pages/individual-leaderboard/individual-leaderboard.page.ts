@@ -1,23 +1,22 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
-import { HttpClient } from '@angular/common/http';
-import { Storage } from '@ionic/storage';
+import { HttpClient } from '@angular/common/http'
+import { Storage } from '@ionic/storage'
 
-import { ConnectivityService } from '../../../providers/connectivity-service';
-import { AlertService } from '../../../providers/alert-service';
+import { ConnectivityService } from '../../../providers/connectivity-service'
+import { AlertService } from '../../../providers/alert-service'
 
-import { Customer } from '../../../models/customer-model';
+import { Customer } from '../../../models/customer-model'
 
 @Component({
   templateUrl: './individual-leaderboard.page.html',
   styleUrls: ['./individual-leaderboard.page.scss']
 })
 export class IndividualLeaderboardPage {
+  selected_tabs: number
+  steps: any = 0
 
-  selected_tabs: number;
-  steps: any = 0;
-
-	customerData: Customer = {
+  customerData: Customer = {
     token: '',
     name: '',
     team_id: 0,
@@ -28,46 +27,65 @@ export class IndividualLeaderboardPage {
     password: '',
     team: '',
     establishment: ''
-  };
+  }
 
-  liderboard: any = [];
+  liderboard: any = []
 
   constructor(
     public httpClient: HttpClient,
     public storage: Storage,
     private connectivityServ: ConnectivityService,
-    private alertServ: AlertService,
+    private alertServ: AlertService
   ) {
     this.storage.get('customerData').then((val) => {
-      this.customerData = val;
+      this.customerData = val
       if (this.connectivityServ.isOnline()) {
-        this.httpClient.get(this.connectivityServ.apiUrl + 'liderboard/individual?token=' + this.customerData.token ).subscribe((data: any) => {
-         this.liderboard = data.result;
-         console.log(this.liderboard);
-         this.setTabs(0);
-        }, error => {
-          console.log(error);
-          this.setTabs(0);
-        });
+        this.httpClient
+          .get(
+            this.connectivityServ.apiUrl +
+              'liderboard/individual?token=' +
+              this.customerData.token
+          )
+          .subscribe(
+            (data: any) => {
+              this.liderboard = data.result
+              this.setTabs(0)
+            },
+            (error) => {
+              console.log(error)
+              this.setTabs(0)
+            }
+          )
       } else {
-        this.alertServ.showToast('Нет соединения с сетью');
+        this.alertServ.showToast('Нет соединения с сетью')
       }
-    });
+    })
   }
 
-   setTabs(idx) {
+  setTabs(idx) {
     if (this.selected_tabs == idx) {
-      return false;
+      return false
     }
-    this.selected_tabs = idx;
+    this.selected_tabs = idx
     if (this.connectivityServ.isOnline()) {
-      this.httpClient.get(this.connectivityServ.apiUrl + 'steps/main_history?token=' + this.customerData.token + '&period=' + idx).subscribe((data: any) => {
-        this.steps = data.result.steps;
-      }, error => {
-        console.log(error);
-      });
+      this.httpClient
+        .get(
+          this.connectivityServ.apiUrl +
+            'steps/main_history?token=' +
+            this.customerData.token +
+            '&period=' +
+            idx
+        )
+        .subscribe(
+          (data: any) => {
+            this.steps = data.result.steps
+          },
+          (error) => {
+            console.log(error)
+          }
+        )
     } else {
-      this.alertServ.showToast('Нет соединения с сетью');
+      this.alertServ.showToast('Нет соединения с сетью')
     }
   }
 }

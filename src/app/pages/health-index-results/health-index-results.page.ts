@@ -163,11 +163,17 @@ export class HealthIndexResultsPage {
     return questions.map((question) => {
       return {
         ...question,
+        value: JSON.parse(question.value),
         answers: question.answers
-          ? JSON.parse(question.answers).map((answer) => {
+          ? JSON.parse(question.answers).map((answer, index) => {
               return question.answer_type === '4' ||
                 question.answer_type === '7'
-                ? { value: answer, isChecked: false }
+                ? {
+                    value: answer,
+                    isChecked: JSON.parse(question.value).some(
+                      (value) => value === index
+                    )
+                  }
                 : { value: answer }
             })
           : null,
