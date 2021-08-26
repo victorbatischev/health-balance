@@ -38,6 +38,12 @@ const baseConfig: Chart.ChartConfiguration = {
             display: false,
             labelString: 'Кол-во баллов'
           }
+        },
+        {
+          stacked: true,
+          type: 'linear',
+          display: true,
+          position: 'right'
         }
       ]
     }
@@ -163,7 +169,7 @@ export class HealthIndexResultsPage {
     return questions.map((question) => {
       return {
         ...question,
-        value: JSON.parse(question.value),
+        value: question.value ? JSON.parse(question.value) : question.value,
         answers: question.answers
           ? JSON.parse(question.answers).map((answer, index) => {
               return question.answer_type === '4' ||

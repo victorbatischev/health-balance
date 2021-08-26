@@ -106,6 +106,10 @@ ion-item-divider {
   --border-color: #000000;
 }
 
+.native-input {
+  font-size: 20px !important;
+}
+
 h1 {
   @include styleForText(41px);
 }

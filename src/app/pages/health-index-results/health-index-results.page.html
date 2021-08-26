@@ -11,7 +11,7 @@
         >
           <ion-slide *ngFor="let slide of slides; let i = index;">
             <div style="display: flex; flex-direction: column">
-              <div style="margin: 20px">{{ slide.label }}</div>
+              <div style="margin: 20px; height: 63px">{{ slide.label }}</div>
               <canvas style="max-height: 400px" #pr_chart></canvas>
             </div>
           </ion-slide>
@@ -33,7 +33,9 @@
                         <ion-grid>
                           <ion-row>
                             <ion-col>
-                              <label>
+                              <label
+                                *ngIf="question.value || question.value === 0"
+                              >
                                 {{ question.answers[question.value].value }}
                               </label>
                             </ion-col>
