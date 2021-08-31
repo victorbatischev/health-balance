@@ -57,7 +57,7 @@
     "cordova-plugin-filepicker": "^1.1.6",
     "cordova-plugin-health": "^1.1.5",
     "cordova-plugin-media": "^5.0.3",
-    "ion2-calendar": "git+https://github.com/shaneparsons/ion2-calendar.git#76ae1e241183500a377647b363c931a03aa50bca",
+    "ion2-calendar": "^3.5.0",
     "jetifier": "^1.6.8",
     "moment": "^2.27.0",
     "onesignal-cordova-plugin": "^2.11.1",
