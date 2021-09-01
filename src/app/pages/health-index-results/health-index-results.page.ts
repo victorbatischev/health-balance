@@ -14,42 +14,6 @@ import { DomSanitizer } from '@angular/platform-browser'
 
 import { Chart } from 'chart.js'
 
-const baseConfig: Chart.ChartConfiguration = {
-  type: 'line',
-  options: {
-    legend: {
-      display: false
-    },
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [
-        {
-          stacked: true,
-          scaleLabel: {
-            display: true,
-            labelString: 'Дата прохождения опроса'
-          }
-        }
-      ],
-      yAxes: [
-        {
-          stacked: true,
-          scaleLabel: {
-            display: false,
-            labelString: 'Кол-во баллов'
-          }
-        },
-        {
-          stacked: true,
-          type: 'linear',
-          display: true,
-          position: 'right'
-        }
-      ]
-    }
-  }
-}
-
 @Component({
   selector: 'app-health-index-results',
   templateUrl: './health-index-results.page.html',
@@ -79,6 +43,107 @@ export class HealthIndexResultsPage {
   chartData: Chart.ChartData[] = [] // данные для графиков
   thirdSection: any = [] // результаты прохождения блока 3
 
+  axes: any = [
+    null,
+    null,
+    {
+      labels: [
+        '120 или ниже',
+        'от 120 до 129',
+        'от 130 до 139',
+        'от 140 до 159',
+        'выше 160'
+      ],
+      images: ['+', '+', '=', '=', '-']
+    },
+    {
+      labels: [
+        ['менее 4', 'ммоль/л'],
+        ['от 4 до 5.2', 'ммоль/л'],
+        ['от 5.2 до 6.2', 'ммоль/л'],
+        ['от 6.2 до 7.2', 'ммоль/л'],
+        ['от 7.2', 'ммоль/л']
+      ],
+      images: ['+', '+', '=', '=', '-']
+    },
+    {
+      labels: [
+        ['нормальный', '(менее 3.3)'],
+        ['пограничный', '(3.3 - 4.1)'],
+        ['высокий', '(более 4.1)']
+      ],
+      images: ['+', '=', '-']
+    },
+    {
+      labels: [
+        ['высокий', '(более 1.5)'],
+        ['средний', '(1 - 1.25)'],
+        ['средний', '(1.25 - 1.5)'],
+        ['низкий', '(менее 1)']
+      ],
+      images: ['+', '=', '=', '-']
+    },
+    {
+      labels: [
+        ['желательный', '(менее 5.5)'],
+        ['пограничный', '(5.5 - 6.6)'],
+        ['высокий', '(более 6.7)'],
+        'я не знаю'
+      ],
+      images: ['+', '=', '-', '-']
+    },
+    {
+      labels: ['высокая', 'средняя', 'низкая'],
+      images: ['+', '=', '-']
+    },
+    {
+      labels: ['низкое', 'нормальное', 'чрезмерное'],
+      images: ['+', '=', '-']
+    },
+    {
+      labels: [
+        ['рацио', 'нальное'],
+        ['нерацио-', 'нальное'],
+        ['опасное', 'для', 'здоровья']
+      ],
+      images: ['+', '=', '-']
+    },
+    {
+      labels: ['5 или более', '3-4 порции', '2 или меньше'],
+      images: ['+', '=', '-']
+    },
+    {
+      labels: ['5 или более', '3-4 порции', '2 или меньше'],
+      images: ['+', '=', '-']
+    },
+    {
+      labels: ['низкий', 'средний', 'высокий'],
+      images: ['+', '=', '-']
+    },
+    {
+      labels: ['низкий', 'средний', 'высокий'],
+      images: ['+', '=', '-']
+    },
+    {
+      labels: [
+        'удовлетворен',
+        ['больше', 'удовлетворен'],
+        ['частично', 'удовлетворен'],
+        ['не', 'удовлетворен']
+      ],
+      images: ['+', '=', '=', '-']
+    },
+    {
+      labels: [
+        'удовлетворен',
+        ['больше', 'удовлетворен'],
+        ['частично', 'удовлетворен'],
+        ['не', 'удовлетворен']
+      ],
+      images: ['+', '=', '=', '-']
+    }
+  ]
+
   slides: any = [
     { label: 'Биологический возраст', id: 'biological_age' },
     { label: 'Индекс массы тела', id: 'body_mass_index' },
@@ -105,6 +170,90 @@ export class HealthIndexResultsPage {
     { label: 'Удовлетворённость личной жизнью', id: 'personal_life' },
     { label: 'Удовлетворённость профессиональной жизнью', id: 'work_life' }
   ]
+
+  baseConfig: Chart.ChartConfiguration = (index) => {
+    const images = [
+      'https://i.stack.imgur.com/2RAv2.png',
+      'https://i.stack.imgur.com/Tq5DA.png',
+      'https://i.stack.imgur.com/3KRtW.png',
+      'https://i.stack.imgur.com/iLyVi.png'
+    ]
+
+    let config = {
+      type: 'line',
+      plugins: [
+        {
+          afterDraw: (chart) => {
+            var ctx = chart.chart.ctx
+            var xAxis = chart.scales['x-axis-0']
+            var yAxis = chart.scales['y-axis-0']
+            yAxis.ticks.forEach((value, index) => {
+              var x = yAxis.getPixelForTick(index)
+              var image = new Image(200, 200)
+              image.src = 'assets/images/advice/arrow.png'
+              ctx.drawImage(image, x + 20, xAxis.bottom - 10)
+            })
+          }
+        }
+      ],
+      options: {
+        legend: {
+          display: false
+        },
+        maintainAspectRatio: false,
+        scales: {
+          xAxes: [
+            {
+              stacked: true,
+              scaleLabel: {
+                display: true,
+                labelString: 'Дата прохождения опроса'
+              }
+            }
+          ],
+          yAxes: [
+            {
+              scaleLabel: {
+                display: false
+              },
+              ...(index > 1 && {
+                ticks: {
+                  min: 0,
+                  max: this.axes[index].labels.length,
+                  stepSize: 1,
+                  beginAtZero: true,
+                  fontColor: '#8f9092',
+                  callback: (value) => this.axes[index].labels[value]
+                }
+              })
+            }
+          ]
+        }
+      }
+    }
+
+    if (index > 1) {
+      let imageAxis = {
+        scaleLabel: {
+          display: false
+        },
+        position: 'right',
+        ticks: {
+          min: 0,
+          max: this.axes[index].labels.length,
+          stepSize: 1,
+          beginAtZero: true,
+          fontFamily: 'FontAwesome',
+          fontColor: '#8f9092',
+          callback: (value) => this.axes[index].images[value]
+        }
+      }
+
+      config.options.scales.yAxes.push(imageAxis)
+    }
+
+    return config
+  }
 
   constructor(
     public navCtrl: NavController,
@@ -147,9 +296,7 @@ export class HealthIndexResultsPage {
           )
           .subscribe(
             (data: any) => {
-              console.log(data)
               this.thirdSection = this.formatQuestions(data.answers)
-              console.log(this.thirdSection)
             },
             (error) => {
               console.log(error)
@@ -220,12 +367,12 @@ export class HealthIndexResultsPage {
       (item) => this.results.map((res) => parseFloat(res[item.id])) // значения для каждого теста
     )
 
-    this.chartData = this.values.map((item, index) => {
+    this.chartData = this.values.map((item) => {
       return {
         labels: this.labels,
         datasets: [
           {
-            data: this.values[index],
+            data: item,
             backgroundColor: '#168de2',
             borderColor: '#168de2',
             fill: false
@@ -236,7 +383,7 @@ export class HealthIndexResultsPage {
 
     // вывод графиков
     this.charts = this.chartElementRefs.map((chartElementRef, index) => {
-      const config = Object.assign({}, baseConfig, {
+      const config = Object.assign({}, this.baseConfig(index), {
         data: this.chartData[index]
       })
 
