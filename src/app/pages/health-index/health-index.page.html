@@ -20,7 +20,12 @@
     <ion-row justify-content-center align-items-center>
       <ion-col ion-text-center>
         <div class="container" style="height: 100%">
-          <div *ngFor="let question of questions; let i = index;">
+          <div
+            *ngFor="let question of questions; let i = index;"
+            [style.display]="(question.id === '28' && !questions[1].answers[2].isChecked) || 
+            ((question.id === '41' || question.id === '42') && 
+            questions[0].currentAnswer === 8) ? 'none' : 'initial'"
+          >
             <div
               *ngIf="question.answer_type === '7' && blocks.length > 0 && isFirstBlockQuestion(question)"
               class="news-content"

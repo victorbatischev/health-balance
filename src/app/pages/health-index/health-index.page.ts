@@ -207,8 +207,51 @@ export class HealthIndexPage {
     return Object.assign({}, ...mapped)
   }
 
+  checkCompleteAnswers() {
+    for (var i = 0; i < this.questions.length; i++) {
+      if (
+        this.questions[i].id === '0' ||
+        this.questions[i].id === '3' ||
+        this.questions[i].id === '28' ||
+        this.questions[i].id === '41' ||
+        this.questions[i].id === '42'
+      )
+        continue
+
+      switch (this.questions[i].answer_type) {
+        case '1':
+          if (this.questions[i].currentAnswer !== null) continue
+          else return false
+        case '2':
+          if (this.questions[i].currentAnswer !== null) continue
+          else return false
+        case '3':
+          if (this.questions[i].currentAnswer !== null) continue
+          else return false
+        case '4':
+          if (this.questions[i].answers.some((item) => item.isChecked)) continue
+          else return false
+        case '5':
+          if (this.questions[i].currentAnswer !== null) continue
+          else return false
+        case '6':
+          continue
+        case '7':
+          continue
+      }
+    }
+
+    return true
+  }
+
   // отправка ответов на сервер
   doAnswer() {
+    if (!this.checkCompleteAnswers()) {
+      return this.alertServ.showToast(
+        'Для перехода к следующему этапу тестирования, заполните все ответы'
+      )
+    }
+
     // проверка на согласие на передачу данных
     if (this.progress.step === 1) {
       if (!this.questions.find((item) => item.id === '0').answers[0].isChecked)
@@ -219,6 +262,7 @@ export class HealthIndexPage {
         this.questions.pop()
       }
     }
+
     if (this.connectivityServ.isOnline()) {
       this.httpClient
         .post(

@@ -93,20 +93,21 @@ export class HealthIndexResultsPage {
       images: ['+', '=', '-', '-']
     },
     {
-      labels: ['высокая', 'средняя', 'низкая'],
-      images: ['+', '=', '-']
+      labels: ['', 'высокая', 'средняя', 'низкая'],
+      images: ['?', '+', '=', '-']
     },
     {
-      labels: ['низкое', 'нормальное', 'чрезмерное'],
-      images: ['+', '=', '-']
+      labels: ['', 'низкое', 'нормальное', 'чрезмерное'],
+      images: ['?', '+', '=', '-']
     },
     {
       labels: [
+        '',
         ['рацио', 'нальное'],
         ['нерацио-', 'нальное'],
         ['опасное', 'для', 'здоровья']
       ],
-      images: ['+', '=', '-']
+      images: ['?', '+', '=', '-']
     },
     {
       labels: ['5 или более', '3-4 порции', '2 или меньше'],
@@ -117,12 +118,12 @@ export class HealthIndexResultsPage {
       images: ['+', '=', '-']
     },
     {
-      labels: ['низкий', 'средний', 'высокий'],
-      images: ['+', '=', '-']
+      labels: ['', 'низкий', 'средний', 'высокий'],
+      images: ['?', '+', '=', '-']
     },
     {
-      labels: ['низкий', 'средний', 'высокий'],
-      images: ['+', '=', '-']
+      labels: ['', 'низкий', 'средний', 'высокий'],
+      images: ['?', '+', '=', '-']
     },
     {
       labels: [
@@ -172,27 +173,36 @@ export class HealthIndexResultsPage {
   ]
 
   baseConfig: Chart.ChartConfiguration = (index) => {
-    const images = [
-      'https://i.stack.imgur.com/2RAv2.png',
-      'https://i.stack.imgur.com/Tq5DA.png',
-      'https://i.stack.imgur.com/3KRtW.png',
-      'https://i.stack.imgur.com/iLyVi.png'
-    ]
-
     let config = {
       type: 'line',
       plugins: [
         {
           afterDraw: (chart) => {
-            var ctx = chart.chart.ctx
-            var xAxis = chart.scales['x-axis-0']
-            var yAxis = chart.scales['y-axis-0']
-            yAxis.ticks.forEach((value, index) => {
-              var x = yAxis.getPixelForTick(index)
-              var image = new Image(200, 200)
-              image.src = 'assets/images/advice/arrow.png'
-              ctx.drawImage(image, x + 20, xAxis.bottom - 10)
-            })
+            if (index > 1) {
+              var ctx = chart.chart.ctx
+              var xAxis = chart.scales['x-axis-0']
+              var yAxis = chart.scales['y-axis-1']
+              var ticks = yAxis.ticks.slice(0, -1)
+
+              ticks.forEach((value, idx) => {
+                var y = yAxis.getPixelForTick(ticks.length - idx)
+                var image = new Image(180, 180)
+
+                switch (this.axes[index].images[idx]) {
+                  case '+':
+                    image.src = 'assets/images/results/success.png'
+                    break
+                  case '=':
+                    image.src = 'assets/images/results/warning.png'
+                    break
+                  case '-':
+                    image.src = 'assets/images/results/error.png'
+                    break
+                }
+
+                ctx.drawImage(image, xAxis.bottom - 70, y - 10, 20, 20)
+              })
+            }
           }
         }
       ],
@@ -243,9 +253,8 @@ export class HealthIndexResultsPage {
           max: this.axes[index].labels.length,
           stepSize: 1,
           beginAtZero: true,
-          fontFamily: 'FontAwesome',
           fontColor: '#8f9092',
-          callback: (value) => this.axes[index].images[value]
+          callback: () => '      '
         }
       }
 
