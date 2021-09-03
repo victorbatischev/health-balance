@@ -212,9 +212,10 @@ export class HealthIndexPage {
       if (
         this.questions[i].id === '0' ||
         this.questions[i].id === '3' ||
-        this.questions[i].id === '28' ||
-        this.questions[i].id === '41' ||
-        this.questions[i].id === '42'
+        (this.questions[i].id === '28' &&
+          !this.questions[1].answers[2].isChecked) ||
+        ((this.questions[i].id === '41' || this.questions[i].id === '42') &&
+          this.questions[0].currentAnswer === 8)
       )
         continue
 

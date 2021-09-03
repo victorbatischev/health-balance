@@ -48,20 +48,20 @@ export class HealthIndexResultsPage {
     null,
     {
       labels: [
-        '120 или ниже',
-        'от 120 до 129',
-        'от 130 до 139',
-        'от 140 до 159',
-        'выше 160'
+        '< 120',
+        ['от 120', 'до 129'],
+        ['от 130', 'до 139'],
+        ['от 140', 'до 159'],
+        '> 160'
       ],
       images: ['+', '+', '=', '=', '-']
     },
     {
       labels: [
         ['менее 4', 'ммоль/л'],
-        ['от 4 до 5.2', 'ммоль/л'],
-        ['от 5.2 до 6.2', 'ммоль/л'],
-        ['от 6.2 до 7.2', 'ммоль/л'],
+        ['от 4', 'до 5.2', 'ммоль/л'],
+        ['от 5.2', 'до 6.2', 'ммоль/л'],
+        ['от 6.2', 'до 7.2', 'ммоль/л'],
         ['от 7.2', 'ммоль/л']
       ],
       images: ['+', '+', '=', '=', '-']
@@ -103,7 +103,7 @@ export class HealthIndexResultsPage {
     {
       labels: [
         '',
-        ['рацио', 'нальное'],
+        ['рацио-', 'нальное'],
         ['нерацио-', 'нальное'],
         ['опасное', 'для', 'здоровья']
       ],
@@ -200,7 +200,7 @@ export class HealthIndexResultsPage {
                     break
                 }
 
-                ctx.drawImage(image, xAxis.bottom - 70, y - 10, 20, 20)
+                ctx.drawImage(image, xAxis.bottom - 90, y - 10, 20, 20)
               })
             }
           }
@@ -254,7 +254,7 @@ export class HealthIndexResultsPage {
           stepSize: 1,
           beginAtZero: true,
           fontColor: '#8f9092',
-          callback: () => '      '
+          callback: () => '        '
         }
       }
 
