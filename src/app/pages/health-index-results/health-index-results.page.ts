@@ -173,6 +173,10 @@ export class HealthIndexResultsPage {
   ]
 
   baseConfig: Chart.ChartConfiguration = (index) => {
+    var imageSuc = document.getElementById('image_success')
+    var imageWrn = document.getElementById('image_warning')
+    var imageErr = document.getElementById('image_error')
+
     let config = {
       type: 'line',
       plugins: [
@@ -186,21 +190,18 @@ export class HealthIndexResultsPage {
 
               ticks.forEach((value, idx) => {
                 var y = yAxis.getPixelForTick(ticks.length - idx)
-                var image = new Image(180, 180)
 
                 switch (this.axes[index].images[idx]) {
                   case '+':
-                    image.src = 'assets/images/results/success.png'
+                    ctx.drawImage(imageSuc, xAxis.bottom - 80, y - 10, 20, 20)
                     break
                   case '=':
-                    image.src = 'assets/images/results/warning.png'
+                    ctx.drawImage(imageWrn, xAxis.bottom - 80, y - 10, 20, 20)
                     break
                   case '-':
-                    image.src = 'assets/images/results/error.png'
+                    ctx.drawImage(imageErr, xAxis.bottom - 80, y - 10, 20, 20)
                     break
                 }
-
-                ctx.drawImage(image, xAxis.bottom - 90, y - 10, 20, 20)
               })
             }
           }

@@ -4,6 +4,24 @@
   <ion-grid class="container-grid" style="height: 100%">
     <ion-row style="height: 88%">
       <ion-col>
+        <img
+          id="image_success"
+          src="assets/images/results/success.png"
+          alt="image_success"
+          style="display: none"
+        />
+        <img
+          id="image_warning"
+          src="assets/images/results/warning.png"
+          alt="image_warning"
+          style="display: none"
+        />
+        <img
+          id="image_error"
+          src="assets/images/results/error.png"
+          alt="image_error"
+          style="display: none"
+        />
         <ion-slides
           *ngIf="slides && slides.length"
           pager="false"
@@ -12,7 +30,11 @@
           <ion-slide *ngFor="let slide of slides; let i = index;">
             <div style="display: flex; flex-direction: column">
               <div style="margin: 20px; height: 63px">{{ slide.label }}</div>
-              <canvas style="max-height: 400px" #pr_chart></canvas>
+
+              <canvas
+                style="max-height: 400px; min-height: 400px"
+                #pr_chart
+              ></canvas>
             </div>
           </ion-slide>
           <ion-slide>

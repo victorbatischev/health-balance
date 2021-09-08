@@ -141,3 +141,10 @@ ion-slide > :first-child {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
+.bot-loading-container {
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  bottom: 50vh;
+}
