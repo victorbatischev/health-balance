@@ -26,11 +26,14 @@
           *ngIf="slides && slides.length"
           pager="false"
           [options]="slideOpts"
+          style="height: 75vh"
         >
           <ion-slide *ngFor="let slide of slides; let i = index;">
             <div style="display: flex; flex-direction: column">
               <div style="margin: 20px; height: 63px">{{ slide.label }}</div>
-
+              <div *ngIf="isLoading" class="bot-loading-container">
+                <ion-spinner name="dots"></ion-spinner>
+              </div>
               <canvas
                 style="max-height: 400px; min-height: 400px"
                 #pr_chart
@@ -41,7 +44,7 @@
             <ion-grid *ngIf="thirdSection.length" class="container-grid">
               <ion-row>
                 <ion-col>
-                  <div class="container" style="height: 100%">
+                  <div class="container" style="height: 70vh; overflow: scroll">
                     <div *ngFor="let question of thirdSection; let i = index;">
                       <div class="news-content">
                         <h5 class="subtitle">{{ question.question }}</h5>
@@ -152,7 +155,7 @@
                 font-size: 18px;
                 --background: #0361aa;
                 --color: #fff;
-                margin: 10px 5%;
+                margin: 0 5%;
               "
               (click)="repeatTest()"
               >Пройти тест ещё раз</ion-button
