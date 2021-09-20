@@ -1,7 +1,7 @@
 {
   "name": "healthy",
   "version": "0.0.1",
-  "author": "Wee Do Web",
+  "author": "WeeDoWeb",
   "homepage": "https://weedoweb.com/",
   "scripts": {
     "ng": "ng",
