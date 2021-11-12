@@ -96,10 +96,7 @@ export class HealthIndexReportPage {
   downloadReport() {
     // генерируем PDF из отчёта
     this.pdfGenerator
-      .fromData(this.result, {
-        documentSize: 'A4',
-        type: 'base64'
-      })
+      .fromData(this.result, { documentSize: 'A4', type: 'base64' })
       .then((base64) => {
         // скачиваем PDF на телефон
         this.writeFile(
@@ -107,7 +104,7 @@ export class HealthIndexReportPage {
           this.b64toBlob(base64, 'application/pdf', 512)
         )
       })
-      .catch((err) => this.alertServ.showToast(err))
+      .catch((err) => this.alertServ.showToast('error' + err))
   }
 
   b64toBlob(b64Data, contentType, sliceSize) {
