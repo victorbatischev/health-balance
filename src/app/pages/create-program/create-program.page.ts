@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router'
 import { HttpClient } from '@angular/common/http'
 import { Storage } from '@ionic/storage'
 
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx'
+import { Camera } from '@ionic-native/camera/ngx'
 import {
   FileTransfer,
   FileTransferObject
@@ -15,7 +15,6 @@ import { ConnectivityService } from '../../../providers/connectivity-service'
 import { AlertService } from '../../../providers/alert-service'
 
 import { Customer } from '../../../models/customer-model'
-import { CustomerService } from '../../../providers/customer-service'
 
 @Component({
   templateUrl: './create-program.page.html',
@@ -90,10 +89,9 @@ export class CreateProgramPage {
   uploadPhoto() {
     var camera_options = {
       quality: 75,
-      destinationType: this.camera.DestinationType.NATIVE_URI,
-      //destinationType: this.camera.DestinationType.FILE_URI,
+      destinationType: this.camera.DestinationType.FILE_URI,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-      mediaType: this.camera.MediaType.ALLMEDIA,
+      mediaType: this.camera.MediaType.PICTURE,
       encodingType: this.camera.EncodingType.JPEG,
       correctOrientation: true
     }

@@ -1,73 +1,70 @@
-import { Component,  ViewChild } from '@angular/core';
-import { IonContent } from '@ionic/angular';
-import { ApiAiClient } from 'api-ai-javascript/es6/ApiAiClient';
-import { Message } from '../../../models/message';
-import { FormControl, FormBuilder } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core'
+import { IonContent } from '@ionic/angular'
+import { ApiAiClient } from 'api-ai-javascript/es6/ApiAiClient'
+import { Message } from '../../../models/message'
+import { FormControl, FormBuilder } from '@angular/forms'
 
-import { AlertService } from '../../../providers/alert-service';
+import { AlertService } from '../../../providers/alert-service'
 
 @Component({
   templateUrl: './chat.page.html',
   styleUrls: ['./chat.page.scss']
 })
 export class ChatPage {
-  @ViewChild(IonContent, { static: false, read: IonContent }) content: IonContent;
-  accessToken: string = 'df388824e1ed4ca2bbc0d407d0ae1358';
-  client;
-  messages: Message[] = [];
-  messageForm: any;
-  chatBox: any;
-  isLoading: boolean;
+  @ViewChild(IonContent, { static: false, read: IonContent })
+  content: IonContent
+  accessToken: string = 'df388824e1ed4ca2bbc0d407d0ae1358'
+  client
+  messages: Message[] = []
+  messageForm: any
+  chatBox: any
+  isLoading: boolean
 
   constructor(
     public formBuilder: FormBuilder,
-    private alertServ: AlertService,
+    private alertServ: AlertService
   ) {
-    this.chatBox = '';
+    this.chatBox = ''
 
     this.messageForm = formBuilder.group({
       message: new FormControl('')
-    });
+    })
 
     this.client = new ApiAiClient({
       accessToken: this.accessToken,
       lang: 'ru'
-    });
+    })
   }
 
   sendMessage(req: string) {
     if (!req || req === '') {
-      return;
+      return
     }
-    this.messages.push({ from: 'user', text: req });
-    this.isLoading = true;
+    this.messages.push({ from: 'user', text: req })
+    this.isLoading = true
 
     this.client
       .textRequest(req)
-      .then(response => {
-        /* do something */
-        console.log('res');
-        console.log(response);
+      .then((response) => {
         this.messages.push({
           from: 'bot',
           text: response.result.fulfillment.speech
-        });
-        this.scrollToBottom();
-        this.isLoading = false;
+        })
+        this.scrollToBottom()
+        this.isLoading = false
       })
-      .catch(error => {
+      .catch((error) => {
         /* do something here too */
-        console.log('error');
-        console.log(error);
-      });
+        console.log('error')
+        console.log(error)
+      })
 
-    this.chatBox = '';
+    this.chatBox = ''
   }
 
   scrollToBottom() {
     setTimeout(() => {
-      this.content.scrollToBottom();
-    }, 100);
+      this.content.scrollToBottom()
+    }, 100)
   }
-
 }
