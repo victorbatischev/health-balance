@@ -1,44 +1,35 @@
 <ion-header class="header ion-no-border" color="primary">
-    <ion-toolbar class="toolbar">
-  
-        <div class="title-block">
-            <h3 class="title">ФИО/Логин</h3>
-        </div>
+  <ion-toolbar class="toolbar">
+    <div class="title-block">
+      <h3 class="title">ФИО/Логин</h3>
+    </div>
 
-  
-        <div class="menu-block" slot="end">
-            <ion-menu-button class="menu-button"></ion-menu-button>
-        </div>
-
-    </ion-toolbar>
+    <div class="menu-block" slot="end">
+      <ion-menu-button class="menu-button"></ion-menu-button>
+    </div>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen class="white-container">
-    <ion-grid class="container-grid">
-      
-        <ion-row justify-content-center align-items-center>
-            <ion-col size="12" ion-text-center>
-                
-                <div class="container">
-                    <div class="portfolio-content">
+  <ion-grid class="container-grid">
+    <ion-row justify-content-center align-items-center>
+      <ion-col size="12" ion-text-center>
+        <div class="container">
+          <div class="portfolio-content">
+            <div class="first-tabs">
+              <app-flat-tabs></app-flat-tabs>
+            </div>
 
-                        <div class="first-tabs">
-                            <app-flat-tabs></app-flat-tabs>
-                        </div>
+            <div class="tabs-block">
+              <app-tabs></app-tabs>
+            </div>
 
-                        <div class="tabs-block">
-                            <app-tabs></app-tabs>
-                        </div>
-
-                        <div class="step-block">
-                            <app-step-counter></app-step-counter>
-                        </div>
-                    </div>
- 
-                </div>
-                
-            </ion-col>
-        </ion-row>
-
-    </ion-grid>
+            <div class="step-block">
+              <app-step-counter></app-step-counter>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

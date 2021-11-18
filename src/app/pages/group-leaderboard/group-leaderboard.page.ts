@@ -1,19 +1,18 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
-import { HttpClient } from '@angular/common/http';
-import { Storage } from '@ionic/storage';
+import { HttpClient } from '@angular/common/http'
+import { Storage } from '@ionic/storage'
 
-import { ConnectivityService } from '../../../providers/connectivity-service';
-import { AlertService } from '../../../providers/alert-service';
+import { ConnectivityService } from '../../../providers/connectivity-service'
+import { AlertService } from '../../../providers/alert-service'
 
-import { Customer } from '../../../models/customer-model';
+import { Customer } from '../../../models/customer-model'
 
 @Component({
   templateUrl: './group-leaderboard.page.html',
   styleUrls: ['./group-leaderboard.page.scss']
 })
 export class GroupeLeaderboardPage {
-
   customerData: Customer = {
     token: '',
     name: '',
@@ -25,31 +24,36 @@ export class GroupeLeaderboardPage {
     password: '',
     team: '',
     establishment: ''
-  };
+  }
 
-  liderboard: any = [];
+  liderboard: any = []
 
   constructor(
     public httpClient: HttpClient,
     public storage: Storage,
     private connectivityServ: ConnectivityService,
-    private alertServ: AlertService,
+    private alertServ: AlertService
   ) {
     this.storage.get('customerData').then((val) => {
-      this.customerData = val;
+      this.customerData = val
       if (this.connectivityServ.isOnline()) {
-        console.log(this.connectivityServ.apiUrl + 'liderboard/group?token=' + this.customerData.token);
-        this.httpClient.get(this.connectivityServ.apiUrl + 'liderboard/group?token=' + this.customerData.token ).subscribe((data: any) => {
-         this.liderboard = data.result;
-         console.log(this.liderboard);
-        }, error => {
-          console.log(error);
-        });
+        this.httpClient
+          .get(
+            this.connectivityServ.apiUrl +
+              'liderboard/group?token=' +
+              this.customerData.token
+          )
+          .subscribe(
+            (data: any) => {
+              this.liderboard = data.result
+            },
+            (error) => {
+              console.log(error)
+            }
+          )
       } else {
-        this.alertServ.showToast('Нет соединения с сетью');
+        this.alertServ.showToast('Нет соединения с сетью')
       }
-    });
+    })
   }
-
-
 }

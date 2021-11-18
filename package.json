@@ -33,7 +33,7 @@
     "@ionic-native/file-path": "^5.28.0",
     "@ionic-native/file-picker": "^5.28.0",
     "@ionic-native/file-transfer": "^5.27.0",
-    "@ionic-native/health": "^5.27.0",
+    "@ionic-native/health": "^5.36.0",
     "@ionic-native/media": "^5.27.0",
     "@ionic-native/onesignal": "^5.28.0",
     "@ionic-native/pdf-generator": "^5.35.0",

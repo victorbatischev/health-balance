@@ -5,8 +5,6 @@ import { NavController } from '@ionic/angular'
 import { HttpClient } from '@angular/common/http'
 import { Storage } from '@ionic/storage'
 
-import { Health } from '@ionic-native/health/ngx'
-
 import { ConnectivityService } from '../../../providers/connectivity-service'
 import { AlertService } from '../../../providers/alert-service'
 

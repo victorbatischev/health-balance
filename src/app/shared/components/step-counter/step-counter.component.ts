@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core'
 
 @Component({
   selector: 'app-step-counter',
@@ -6,13 +6,10 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./step-counter.component.scss']
 })
 export class StepCounterComponent implements OnInit {
+  @Input() period: number
+  @Input() steps: string
 
-  @Input() period: number;
-  @Input() steps: string;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
