@@ -131,11 +131,11 @@ export class AppComponent {
       })
 
       this.oneSignal.startInit(
-        'd069e88a-c2a3-486e-8898-654f649f7068',
-        '675417539027'
+        '6c585b11-b33a-44f5-8c7b-3ffac2059d19',
+        '640598372453'
       )
       this.oneSignal.inFocusDisplaying(
-        this.oneSignal.OSInFocusDisplayOption.None
+        this.oneSignal.OSInFocusDisplayOption.Notification
       )
       this.oneSignal.getIds().then((ids) => {
         this.storage.set('deviceToken', ids.userId)

@@ -17,7 +17,7 @@ import { CustomerService } from '../../../providers/customer-service'
 })
 export class PortfolioPage {
   steps: any = 0
-  calc_steps: any = ''
+  calc_steps: any = 0
   tracking: boolean = false
   timeoutId: any
 
@@ -49,20 +49,31 @@ export class PortfolioPage {
   ) {
     this.storage.get('customerData').then((val) => {
       this.customerData = val
+
+      // проверка на доступность Google Fit
       this.health
         .isAvailable()
         .then((available: boolean) => {
-          this.health
-            .requestAuthorization([
-              {
-                read: ['steps']
-              }
-            ])
-            .then((res) => {
-              this.tracking = true
-              this.startTracking(100)
-            })
-            .catch((e) => console.log(e))
+          if (!available) {
+            // запрос на установку Google Fit на Android
+            this.health.promptInstallFit()
+          } else {
+            // запрос на авторизацию в Google Fit для считывания шагов
+            this.health
+              .requestAuthorization([
+                {
+                  read: ['steps']
+                }
+              ])
+              .then((res) => {
+                this.tracking = true
+                this.startTracking(100)
+              })
+              .catch((e) => {
+                this.alertServ.showToast('Error authorization: ' + e)
+                console.log(e)
+              })
+          }
         })
         .catch((e) => console.log(e))
     })
@@ -82,6 +93,8 @@ export class PortfolioPage {
       this.timeoutId = setTimeout(() => {
         var start_date = new Date()
         start_date.setHours(0, 0, 0, 0)
+
+        // Получение данных по шагам
         this.health
           .queryAggregated({
             startDate: start_date,

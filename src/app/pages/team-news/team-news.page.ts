@@ -74,12 +74,6 @@ export class TeamNewsPage {
           .subscribe(
             (data: any) => {
               this.platforms = data.result.platforms
-              console.log(
-                this.connectivityServ.apiUrl +
-                  'news/list?token=' +
-                  this.customerData.token +
-                  '&type=group'
-              )
               this.httpClient
                 .get(
                   this.connectivityServ.apiUrl +
