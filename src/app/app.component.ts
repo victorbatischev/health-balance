@@ -23,6 +23,7 @@ import { AlertService } from '../providers/alert-service'
 import { SplashScreen } from '@ionic-native/splash-screen/ngx'
 import { StatusBar } from '@ionic-native/status-bar/ngx'
 import { OneSignal } from '@ionic-native/onesignal/ngx'
+import { Health } from '@ionic-native/health/ngx'
 
 import { ConnectivityService } from '../providers/connectivity-service'
 
@@ -109,7 +110,8 @@ export class AppComponent {
     private statusBar: StatusBar,
     public customerServ: CustomerService,
     private connectivityServ: ConnectivityService,
-    private oneSignal: OneSignal
+    private oneSignal: OneSignal,
+    private health: Health
   ) {
     this.customerServ.getCustomerData().subscribe((val) => {
       this.customerData = val
@@ -147,7 +149,33 @@ export class AppComponent {
         this.showPushMessage(message.payload.body)
       })
 
+      this.oneSignal.promptForPushNotificationsWithUserResponse()
+
+      this.oneSignal.promptLocation()
+
       this.oneSignal.endInit()
+
+      this.health
+        .isAvailable()
+        .then((available: boolean) => {
+          if (!available) {
+            // запрос на установку Google Fit на Android
+            this.health.promptInstallFit()
+          } else {
+            // запрос на авторизацию в Google Fit для считывания шагов
+            this.health
+              .requestAuthorization([
+                {
+                  read: ['steps']
+                }
+              ])
+              .catch((e) => {
+                this.alertServ.showToast('Error authorization: ' + e)
+                console.log(e)
+              })
+          }
+        })
+        .catch((e) => console.log(e))
 
       if (this.platform.is('android')) {
         this.backButtonEvent()
