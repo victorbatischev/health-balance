@@ -1,190 +1,185 @@
 .toolbar {
-    --background: none;
-    --color: #fff;
-    --min-height: 220px;
-    background-image: url('/assets/images/portfolio/portfolio-1.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center top;
-    position: relative;
+  --background: none;
+  --color: #fff;
+  --min-height: 220px;
+  background-image: url('/assets/images/portfolio/portfolio-1.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center top;
+  position: relative;
 }
 
 .stat {
-    border-radius: 50px;
-    font-size: 3.0vw;
-    text-transform: uppercase;
+  border-radius: 50px;
+  font-size: 3vw;
+  text-transform: uppercase;
 
-    &.active {
-        background-color: #0361aa;
-        color: #fff;
-    }
+  &.active {
+    background-color: #0361aa;
+    color: #fff;
+  }
 }
 
 .title-block {
-    display: flex;
-    align-items: center;
-    position: relative;
-    top: -55px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: -55px;
 
-    .title {
-        color: #fff;
-        font-size: 16px;
-        font-family: 'OpenSans-Regular', sans-serif;
-        margin: 0;
-    }
+  .title {
+    color: #fff;
+    font-size: 16px;
+    font-family: 'OpenSans-Regular', sans-serif;
+    margin: 0;
+  }
 
-    .arrow-back {
-        width: 20px;
-        margin: 3px 15px 0 25px;
-    }
+  .arrow-back {
+    width: 20px;
+    margin: 3px 15px 0 25px;
+  }
 }
 
 .menu-block {
-    margin-right: 15px;
-    top: -55px;
-    position: relative;
+  margin-right: 15px;
+  top: -55px;
+  position: relative;
 
-
-    .menu-button {
-        --color: #fff;
-        font-size: 38px;
-    }
+  .menu-button {
+    --color: #fff;
+    font-size: 38px;
+  }
 }
 
 .photo-block {
-    display: flex;
-    align-items: center;
-    position: absolute;
-    top: 40%;
-    z-index: 200;
-    left: 30px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 40%;
+  z-index: 200;
+  left: 30px;
 
+  .photo {
+    position: relative;
+    width: 100px;
+    margin-right: 11px;
+  }
 
-    .photo {
-        position: relative;
-        width: 100px;
-        margin-right: 11px;
+  .photo-title {
+    margin: 0;
+    font-family: 'OpenSans-Regular', sans-serif;
+    font-size: 16px;
+    line-height: 1.2;
+    color: #fff;
+    position: relative;
+    top: -6vh;
+
+    span {
+      color: #000;
     }
 
-    .photo-title {
-        margin: 0;
-        font-family: 'OpenSans-Regular', sans-serif;
-        font-size: 16px;
-        line-height: 1.2;
-        color: #fff;
-        position: relative;
-        top: -4vh;
-
-        span {
-            color: #000;
-        }
-
-        a {
-            text-decoration: none;
-        }
+    a {
+      text-decoration: none;
     }
+  }
 }
 
 .portfolio-content {
-    position: relative;
+  position: relative;
 }
 
 .first-tabs {
-    margin: 15px 0;
+  margin: 15px 0;
 }
-
 
 .tabs {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    .tab-link-block {
-        border: 1px solid #0361aa;
-        display: block;
-        padding: 2px 5px;
-        width: 33.333%;
-        text-align: center;
+  .tab-link-block {
+    border: 1px solid #0361aa;
+    display: block;
+    padding: 2px 5px;
+    width: 33.333%;
+    text-align: center;
 
-        .tab-link {
-            color: #3C3C3B;
-            font-family: 'OpenSans-Regular', sans-serif;
-            font-size: 13px;
-        }
-
-        &:first-child {
-
-            border-radius: 20px;
-            border-right: 0;
-            border-bottom-right-radius: 0;
-            border-top-right-radius: 0;
-            text-align: center;
-        }
-
-        &:last-child {
-            border-left: 0;
-            border-radius: 20px;
-            border-bottom-left-radius: 0;
-            border-top-left-radius: 0;
-        }
-
-        &:active {
-            background-color: #0361aa;
-            .tab-link {
-                color: #fff;
-            }
-        }
+    .tab-link {
+      color: #3c3c3b;
+      font-family: 'OpenSans-Regular', sans-serif;
+      font-size: 13px;
     }
 
-    .active {
-        background-color: #0361aa;
-
-        .tab-link {
-            color: #fff;
-        }
+    &:first-child {
+      border-radius: 20px;
+      border-right: 0;
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      text-align: center;
     }
 
-    .no-border {
-        border-left: 0;
-        border-right: 0;
+    &:last-child {
+      border-left: 0;
+      border-radius: 20px;
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
     }
 
+    &:active {
+      background-color: #0361aa;
+      .tab-link {
+        color: #fff;
+      }
+    }
+  }
+
+  .active {
+    background-color: #0361aa;
+
+    .tab-link {
+      color: #fff;
+    }
+  }
+
+  .no-border {
+    border-left: 0;
+    border-right: 0;
+  }
 }
 .flat-tabs {
-    .text {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+  .text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-    .link {
-        display: block;
-        width: 25%;
-        text-align: center;
-        font-family: 'OpenSans-Regular', sans-serif;
-        font-size: 3.25vw;
-        color: #3C3C3B;
-        text-decoration: none;
-    }
+  .link {
+    display: block;
+    width: 25%;
+    text-align: center;
+    font-family: 'OpenSans-Regular', sans-serif;
+    font-size: 3.25vw;
+    color: #3c3c3b;
+    text-decoration: none;
+  }
 
-    .select-bar {
-        height: 3px;
-        background-color: #ECECEC;
-        border-radius: 10px;
-        margin-top: 10px;
-    }
+  .select-bar {
+    height: 3px;
+    background-color: #ececec;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
 
-    .selector {
-        display: block;
-        position: relative;
-        left: 0;
-        width: 25%;
-        height: 3px;
-        background-color: #0360AA;
-    }
+  .selector {
+    display: block;
+    position: relative;
+    left: 0;
+    width: 25%;
+    height: 3px;
+    background-color: #0360aa;
+  }
 }
 .chart-container {
-    position: relative;
-    margin-top: 2.0vh;
-    height: 35.0vh;
-    width: 100%;
- }
+  position: relative;
+  margin-top: 2vh;
+  height: 35vh;
+  width: 100%;
+}
