@@ -148,7 +148,7 @@ export class PortfolioPage {
           )
           .subscribe(
             (data: any) => {
-              this.calc_steps = data.result.steps
+              this.calc_steps = data.result.steps || 0
             },
             (error) => {
               console.log(error)

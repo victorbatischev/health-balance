@@ -1,25 +1,22 @@
 <ion-content fullscreen class="content">
   <ion-grid style="height: 100%">
-    
     <ion-row justify-content-center align-items-center style="height: 100%">
       <ion-col size="12" ion-text-center>
-
         <ion-slides pager="true" [options]="slideOpts" class="slider" #slider>
-
-          <ion-slide *ngFor="let item of slides; let i = index" class="slide-block">
-            <app-advice 
-              [id]="item.id" 
-              [titleCount]="item.title" 
+          <ion-slide
+            *ngFor="let item of slides; let i = index"
+            class="slide-block"
+          >
+            <app-advice
+              [id]="item.id"
+              [titleCount]="item.title"
               [description]="item.advice"
               (toNextSlide)="slideToNextAdvice($event)"
               (toPrevSlide)="slideToPrevAdvice($event)"
             ></app-advice>
           </ion-slide>
-          
         </ion-slides>
-
       </ion-col>
     </ion-row>
-
   </ion-grid>
 </ion-content>

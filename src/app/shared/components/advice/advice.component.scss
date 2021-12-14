@@ -1,44 +1,44 @@
 .slide {
-    .info-block {
-        position: relative;
-        top: -50px;
-        width: 77%;
-        margin: auto;
+  .info-block {
+    position: relative;
+    top: -50px;
+    width: 77%;
+    margin: auto;
 
-        .title {
-            margin: 0;
-            font-family: 'OpenSans-Regular', sans-serif;
-            font-size: 30px;
-            color: #0360aa;
-            margin-bottom: 35px;
-        }
-
-        .info-text {
-            margin: 0;
-            font-family: 'OpenSans-Light', sans-serif;
-            font-size: 18px;
-            position: relative;
-        }
+    .title {
+      margin: 0;
+      font-family: 'OpenSans-Regular', sans-serif;
+      font-size: 30px;
+      color: #0360aa;
+      margin-bottom: 35px;
     }
 
-    .offset-top {
-        top: -5px;
+    .info-text {
+      margin: 0;
+      font-family: 'OpenSans-Light', sans-serif;
+      font-size: 18px;
+      position: relative;
     }
+  }
 
-    .offset-top-three {
-        top: -48px;
-    }
+  .offset-top {
+    top: -5px;
+  }
 
-    .img-block {
-        --size: 30px;
-        position: absolute;
-        right: 0;
-        top: 5px;
-    }
+  .offset-top-three {
+    top: -48px;
+  }
 
-    .img-block-prev {
-        transform: rotate(180deg);
-        left: 0;
-        top: 2px;
-    }
+  .img-block {
+    --size: 30px;
+    position: absolute;
+    right: 0;
+    top: 5px;
+  }
+
+  .img-block-prev {
+    transform: rotate(180deg);
+    left: 0;
+    top: 2px;
+  }
 }
