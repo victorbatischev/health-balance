@@ -113,3 +113,7 @@ ion-item-divider {
 h1 {
   @include styleForText(41px);
 }
+
+.month-packer-item * {
+  border: none !important;
+}

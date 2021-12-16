@@ -21,7 +21,7 @@ export class PortfolioPage {
   tracking: boolean = false
   timeoutId: any
 
-  selected_tabs: number = 0
+  selected_tab: string = 'today'
 
   customerData: Customer = {
     token: '',
@@ -131,24 +131,23 @@ export class PortfolioPage {
     }
   }
 
-  setTabs(idx) {
-    if (this.selected_tabs == idx) {
+  setActiveTab(idx) {
+    if (this.selected_tab === idx) {
       return false
     }
-    this.selected_tabs = idx
-    if (idx > 0) {
+    this.selected_tab = idx
+    if (idx !== 'today') {
       if (this.connectivityServ.isOnline()) {
         this.httpClient
           .get(
             this.connectivityServ.apiUrl +
-              'steps/main_history?token=' +
-              this.customerData.token +
-              '&period=' +
-              idx
+              'customers/steps?token=' +
+              this.customerData.token
           )
           .subscribe(
             (data: any) => {
-              this.calc_steps = data.result.steps || 0
+              console.log(data)
+              this.calc_steps = data[idx]
             },
             (error) => {
               console.log(error)

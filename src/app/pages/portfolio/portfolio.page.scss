@@ -86,10 +86,11 @@
 
   .tab-link-block {
     border: 1px solid #0361aa;
-    display: block;
-    padding: 2px 5px;
-    width: 25%;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 0px 5px 0px;
+    width: 20%;
 
     .tab-link {
       color: #3c3c3b;
@@ -125,6 +126,7 @@
 
     .tab-link {
       color: #fff;
+      font-weight: 500;
     }
   }
 

@@ -2,12 +2,11 @@
   <div class="img-block">
     <img src="assets/images/step-counter/step.png" alt="step" />
   </div>
-
-  <h1 class="title">Количество пройденных шагов</h1>
+  <h2 class="steps">{{ steps }}</h2>
+  <h1 class="title">Шагов</h1>
   <p class="time" *ngIf="period == 0">за день</p>
   <p class="time" *ngIf="period == 1">за неделю</p>
   <p class="time" *ngIf="period == 2">за месяц</p>
   <p class="time" *ngIf="period == 3">за год</p>
-
-  <h2 class="steps">{{ steps }}</h2>
+  <p class="time" *ngIf="period == 4">всего</p>
 </div>
