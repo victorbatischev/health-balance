@@ -28,5 +28,15 @@
       </ng-container>
     </div>
     <p class="info-text" [innerHTML]="description"></p>
+
+    <div
+      *ngIf="id === 3"
+      class="btn-block"
+      style="display: flex; justify-content: center"
+    >
+      <ion-button class="button" expand="block" (click)="toRegisterPage()"
+        >Далее</ion-button
+      >
+    </div>
   </div>
 </div>
