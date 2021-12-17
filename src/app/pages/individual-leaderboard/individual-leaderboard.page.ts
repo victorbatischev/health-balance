@@ -13,7 +13,7 @@ import { Customer } from '../../../models/customer-model'
   styleUrls: ['./individual-leaderboard.page.scss']
 })
 export class IndividualLeaderboardPage {
-  selected_tabs: number
+  selected_tab: string = 'today'
   steps: any = 0
 
   customerData: Customer = {
@@ -49,11 +49,11 @@ export class IndividualLeaderboardPage {
           .subscribe(
             (data: any) => {
               this.liderboard = data.result
-              this.setTabs(0)
+              this.setActiveTab(this.selected_tab)
             },
             (error) => {
               console.log(error)
-              this.setTabs(0)
+              this.setActiveTab(this.selected_tab)
             }
           )
       } else {
@@ -62,30 +62,26 @@ export class IndividualLeaderboardPage {
     })
   }
 
-  setTabs(idx) {
-    if (this.selected_tabs == idx) {
+  setActiveTab(idx) {
+    if (this.selected_tab === idx) {
       return false
     }
-    this.selected_tabs = idx
+    this.selected_tab = idx
     if (this.connectivityServ.isOnline()) {
       this.httpClient
         .get(
           this.connectivityServ.apiUrl +
-            'steps/main_history?token=' +
-            this.customerData.token +
-            '&period=' +
-            idx
+            'customers/steps?token=' +
+            this.customerData.token
         )
         .subscribe(
           (data: any) => {
-            this.steps = data.result.steps
+            this.steps = data[idx]
           },
           (error) => {
             console.log(error)
           }
         )
-    } else {
-      this.alertServ.showToast('Нет соединения с сетью')
     }
   }
 }
