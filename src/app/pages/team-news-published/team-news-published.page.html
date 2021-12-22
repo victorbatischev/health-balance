@@ -39,7 +39,10 @@
 
           <div class="news-content">
             <h5>{{ news.customer }} <span>{{ news.created_at }}</span></h5>
-            <a style="font-size: 6vw; float: right" (click)="copyToClipboard()">
+            <a
+              style="font-size: 15px; float: right"
+              (click)="copyToClipboard()"
+            >
               <ion-icon name="clipboard-outline"></ion-icon>
             </a>
             <h3 class="title">{{ news.title }}</h3>

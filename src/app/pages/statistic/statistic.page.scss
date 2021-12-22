@@ -52,11 +52,11 @@
 
 .photo-block {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   position: absolute;
-  top: 40%;
+  top: 80px;
   z-index: 200;
-  left: 30px;
+  left: 10px;
 
   .photo {
     position: relative;
@@ -71,7 +71,6 @@
     line-height: 1.2;
     color: #fff;
     position: relative;
-    top: -6vh;
 
     span {
       color: #000;
