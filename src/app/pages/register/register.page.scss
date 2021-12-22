@@ -1,77 +1,77 @@
 .content {
-    --background: none;
-    background-image: url('/assets/images/advice/top-preview.png');
-    background-size: contain;
-    background-position: center top;
-    background-repeat: no-repeat;
+  --background: none;
+  background-image: url('/assets/images/advice/top-preview.png');
+  background-size: contain;
+  background-position: center top;
+  background-repeat: no-repeat;
 }
 
 .container {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    --background: none;
-    background-image: url('/assets/images/advice/top-preview.png');
-    background-size: contain;
-    background-position: center top;
-    background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  --background: none;
+  background-image: url('/assets/images/advice/top-preview.png');
+  background-size: contain;
+  background-position: center top;
+  background-repeat: no-repeat;
 
-    .title {
-        margin: 30px 0;
+  .title {
+    margin: 30px 0;
+    font-family: 'OpenSans-Regular', sans-serif;
+    font-size: 42px;
+  }
+
+  .form {
+    width: 100%;
+    padding: 0 35px;
+
+    .input,
+    select {
+      border: 1px solid #939598;
+      display: block;
+      width: 100%;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      --padding-bottom: 10px;
+      --padding-end: 15px;
+      --padding-start: 15px;
+      --padding-top: 10px;
+    }
+
+    select {
+      padding: 10px 15px;
+    }
+
+    .btn-block {
+      text-align: center;
+
+      .forgot-password {
+        text-align: center;
         font-family: 'OpenSans-Regular', sans-serif;
-        font-size: 42px;
-    }
-
-    .form {
+        font-size: 12px;
+      }
+      .button {
         width: 100%;
-        padding: 0 35px;
-
-        .input,
-        select {
-            border: 1px solid #939598;
-            display: block;
-            width: 100%;
-            border-radius: 4px;
-            margin-bottom: 10px;
-            --padding-bottom: 10px;
-            --padding-end: 15px;
-            --padding-start: 15px;
-            --padding-top: 10px;
-        }
-
-        select {
-            padding: 10px 15px;
-        }
-
-        .btn-block{
-            text-align: center;
-
-            .forgot-password {
-                text-align: center;
-                font-family: 'OpenSans-Regular', sans-serif;
-                font-size: 12px;
-            }
-            .button {
-                width: 100%;
-            }
-        }
+      }
     }
+  }
 
-    .agree {
-        display: flex;
-        font-size: 7px;
-        margin-top: 1.0vh;
-        padding: 0 35px;
+  .agree {
+    display: flex;
+    font-size: 7px;
+    margin-top: 5px;
+    padding: 0 35px;
 
-        .radio {
-            display: block;
-            height: 10px;
-            margin-right: 5px;
-            position: relative;
-            top: 1px;
-        }
+    .radio {
+      display: block;
+      height: 10px;
+      margin-right: 5px;
+      position: relative;
+      top: 1px;
     }
+  }
 }

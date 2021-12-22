@@ -1,31 +1,31 @@
 .flat-tabs {
-    .text {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+  .text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-    .link {
-        display: block;
-        font-family: 'OpenSans-Regular', sans-serif;
-        font-size: 14px;
-        color: #3C3C3B;
-        text-decoration: none;
-    }
+  .link {
+    display: block;
+    font-family: 'OpenSans-Regular', sans-serif;
+    font-size: 12px;
+    color: #3c3c3b;
+    text-decoration: none;
+  }
 
-    .select-bar {
-        height: 3px;
-        background-color: #ECECEC;
-        border-radius: 10px;
-        margin-top: 10px;
-    }
+  .select-bar {
+    height: 3px;
+    background-color: #ececec;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
 
-    .selector {
-        display: block;
-        position: relative;
-        left: 85px;
-        width: 60px;
-        height: 3px;
-        background-color: #0360AA;
-    }
+  .selector {
+    display: block;
+    position: relative;
+    left: 85px;
+    width: 60px;
+    height: 3px;
+    background-color: #0360aa;
+  }
 }

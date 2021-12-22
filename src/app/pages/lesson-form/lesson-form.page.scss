@@ -1,8 +1,7 @@
-@import "src/assets/styles/vars";
-@import "src/assets/styles/mixins";
+@import 'src/assets/styles/vars';
+@import 'src/assets/styles/mixins';
 
 .header {
-
   .img-block {
     width: 50px;
     margin-right: 25px;
@@ -28,9 +27,7 @@
 }
 
 .correct {
-  -webkit-box-shadow: 1px 1px 7px 0px rgba(240,17,17,1);
-  -moz-box-shadow: 1px 1px 7px 0px rgba(240,17,17,1);
-  box-shadow: 1px 1px 7px 0px rgba(240,17,17,1);
+  box-shadow: 1px 1px 7px 0px rgba(240, 17, 17, 1);
 }
 
 .news-block {
@@ -74,9 +71,9 @@
 }
 
 .select {
-  color: #0360AA;
+  color: #0360aa;
   height: 20px;
-  border: 1px solid #0360AA;
+  border: 1px solid #0360aa;
   border-radius: 20px;
   margin-top: 15px;
   --padding-end: 20px;

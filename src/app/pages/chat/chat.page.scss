@@ -99,7 +99,6 @@ img.profile-pic.right {
 .chat-bubble.left:before {
   background-color: #e6e5eb;
   left: 10px;
-  -webkit-transform: rotate(70deg) skew(5deg);
   transform: rotate(70deg) skew(5deg);
 }
 
@@ -113,7 +112,6 @@ img.profile-pic.right {
 .chat-bubble.right:before {
   background-color: #158ffe;
   right: 10px;
-  -webkit-transform: rotate(118deg) skew(-5deg);
   transform: rotate(118deg) skew(-5deg);
 }
 
