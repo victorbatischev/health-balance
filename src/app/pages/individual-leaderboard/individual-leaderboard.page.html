@@ -20,23 +20,23 @@
               routerDirection="forward"
               routerLink="/tasks/0"
             >
-              <ion-label class="title">Активных заданий</ion-label>
+              <ion-label class="title">Активных заданий:</ion-label>
               <ion-note class="note" slot="end"
                 >{{ liderboard.total_tasks }}</ion-note
               >
             </ion-item>
 
             <ion-item class="task-block" lines="none">
-              <ion-label class="title">Выполненных заданий</ion-label>
+              <ion-label class="title">Выполнено заданий:</ion-label>
               <ion-note class="note" slot="end"
                 >{{ liderboard.completed_tasks }}</ion-note
               >
             </ion-item>
 
             <ion-item class="task-block" lines="none">
-              <ion-label class="title">Статистика по шагам</ion-label>
+              <ion-label class="title">Пройдено шагов:</ion-label>
               <ion-note class="note" slot="end"
-                >Всего {{ liderboard.steps }}</ion-note
+                >{{ liderboard.steps }}</ion-note
               >
             </ion-item>
           </div>
