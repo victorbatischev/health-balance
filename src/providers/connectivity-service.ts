@@ -6,7 +6,7 @@ const { Network } = Plugins
 
 @Injectable()
 export class ConnectivityService {
-  apiUrl: string = 'http://81.177.141.177/api/'
+  apiUrl: string = 'http://health-balance.ru/api/'
   networkStatus: boolean
 
   constructor(public httpClient: HttpClient) {
