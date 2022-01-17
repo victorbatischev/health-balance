@@ -39,15 +39,15 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>To Take Photos and Video</string>
+	<string>To Take Photos and Videos</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>To count the number of steps</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>To count the number of steps</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Always allow Geolocation?</string>
+	<string>To improve step counting accuracy</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Allow Geolocation?</string>
+	<string>To improve step counting accuracy</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>To Record Audio With Video</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
