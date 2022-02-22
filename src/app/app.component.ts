@@ -23,7 +23,7 @@ import { AlertService } from '../providers/alert-service'
 import { SplashScreen } from '@ionic-native/splash-screen/ngx'
 import { StatusBar } from '@ionic-native/status-bar/ngx'
 import { OneSignal } from '@ionic-native/onesignal/ngx'
-import { Health } from '@ionic-native/health/ngx'
+import { Health } from '@awesome-cordova-plugins/health/ngx'
 
 import { ConnectivityService } from '../providers/connectivity-service'
 
@@ -158,22 +158,17 @@ export class AppComponent {
       this.health
         .isAvailable()
         .then((available: boolean) => {
-          if (!available) {
-            // запрос на установку Google Fit на Android
-            this.health.promptInstallFit()
-          } else {
-            // запрос на авторизацию в Google Fit для считывания шагов
-            this.health
-              .requestAuthorization([
-                {
-                  read: ['steps']
-                }
-              ])
-              .catch((e) => {
-                this.alertServ.showToast('Error authorization: ' + e)
-                console.log(e)
-              })
-          }
+          // запрос на авторизацию в Google Fit для считывания шагов
+          this.health
+            .requestAuthorization([
+              {
+                read: ['steps']
+              }
+            ])
+            .catch((e) => {
+              this.alertServ.showToast('Error authorization: ' + e)
+              console.log(e)
+            })
         })
         .catch((e) => console.log(e))
 

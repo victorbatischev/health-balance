@@ -3,7 +3,7 @@ import { Component, NgZone, ChangeDetectorRef } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { Storage } from '@ionic/storage'
 
-import { Health } from '@ionic-native/health/ngx'
+import { Health } from '@awesome-cordova-plugins/health/ngx'
 
 import { ConnectivityService } from '../../../providers/connectivity-service'
 import { AlertService } from '../../../providers/alert-service'
@@ -54,26 +54,21 @@ export class PortfolioPage {
       this.health
         .isAvailable()
         .then((available: boolean) => {
-          if (!available) {
-            // запрос на установку Google Fit на Android
-            this.health.promptInstallFit()
-          } else {
-            // запрос на авторизацию в Google Fit для считывания шагов
-            this.health
-              .requestAuthorization([
-                {
-                  read: ['steps']
-                }
-              ])
-              .then((res) => {
-                this.tracking = true
-                this.startTracking(100)
-              })
-              .catch((e) => {
-                this.alertServ.showToast('Error authorization: ' + e)
-                console.log(e)
-              })
-          }
+          // запрос на авторизацию в Google Fit для считывания шагов
+          this.health
+            .requestAuthorization([
+              {
+                read: ['steps']
+              }
+            ])
+            .then((res) => {
+              this.tracking = true
+              this.startTracking(100)
+            })
+            .catch((e) => {
+              this.alertServ.showToast('Error authorization: ' + e)
+              console.log(e)
+            })
         })
         .catch((e) => console.log(e))
     })

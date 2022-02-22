@@ -19,6 +19,8 @@
     "@angular/platform-browser": "~9.1.6",
     "@angular/platform-browser-dynamic": "~9.1.6",
     "@angular/router": "~9.1.6",
+    "@awesome-cordova-plugins/core": "^5.39.1",
+    "@awesome-cordova-plugins/health": "^5.39.1",
     "@capacitor/android": "^2.2.1",
     "@capacitor/core": "2.2.1",
     "@capacitor/ios": "^2.2.1",

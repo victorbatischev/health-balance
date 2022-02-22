@@ -9,7 +9,7 @@ import { IonicStorageModule } from '@ionic/storage'
 
 import { SplashScreen } from '@ionic-native/splash-screen/ngx'
 import { StatusBar } from '@ionic-native/status-bar/ngx'
-import { Health } from '@ionic-native/health/ngx'
+import { Health } from '@awesome-cordova-plugins/health/ngx';
 import { Media } from '@ionic-native/media/ngx'
 import { Camera } from '@ionic-native/camera/ngx'
 import { Crop } from '@ionic-native/crop/ngx'
