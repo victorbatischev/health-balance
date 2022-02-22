@@ -148,29 +148,9 @@ export class AppComponent {
       this.oneSignal.handleNotificationOpened().subscribe((message: any) => {
         this.showPushMessage(message.payload.body)
       })
-
       this.oneSignal.promptForPushNotificationsWithUserResponse()
-
       this.oneSignal.promptLocation()
-
       this.oneSignal.endInit()
-
-      this.health
-        .isAvailable()
-        .then((available: boolean) => {
-          // запрос на авторизацию в Google Fit для считывания шагов
-          this.health
-            .requestAuthorization([
-              {
-                read: ['steps']
-              }
-            ])
-            .catch((e) => {
-              this.alertServ.showToast('Error authorization: ' + e)
-              console.log(e)
-            })
-        })
-        .catch((e) => console.log(e))
 
       if (this.platform.is('android')) {
         this.backButtonEvent()

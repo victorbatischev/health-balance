@@ -54,6 +54,7 @@ export class PortfolioPage {
       this.health
         .isAvailable()
         .then((available: boolean) => {
+          this.alertServ.showToast(available)
           // запрос на авторизацию в Google Fit для считывания шагов
           this.health
             .requestAuthorization([
