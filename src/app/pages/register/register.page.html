@@ -1,9 +1,9 @@
-<ion-content fullscreen class="content">
+<div fullscreen class="content">
   <ion-grid style="height: 100%" class="ion-no-padding">
     <ion-row justify-content-center align-items-center style="height: 100%">
       <ion-col size="12" ion-text-center>
         <div class="container">
-          <h1 class="title">Health Balance</h1>
+          <h1 class="title">Регистрация</h1>
 
           <form class="form" (ngSubmit)="doRegister()">
             <ion-input
@@ -11,7 +11,7 @@
               name="email"
               [(ngModel)]="registrationInfo.email"
               class="input"
-              placeholder="E-mail"
+              placeholder="Логин"
             ></ion-input>
             <ion-input
               type="password"
@@ -37,18 +37,19 @@
               <ion-button
                 type="submit"
                 class="button login-button"
-                style="font-size: 18px; margin-top: 13px; margin-bottom: 10px"
+                style="font-size: 14px; margin-bottom: 15px"
                 expand="block"
                 >Регистрация</ion-button
               >
               <ion-button
-                class="button register-button"
+                class="button"
                 (click)="goBack()"
                 style="
-                  font-size: 18px;
-                  --background: #0361aa;
-                  --color: #fff;
-                  margin-bottom: 10px;
+                  font-size: 14px;
+                  --background: transparent;
+                  --color: #8F8F8F;
+                  margin-bottom: 15px;
+                  border: 1px solid  #8F8F8F;
                 "
                 expand="block"
                 >Назад</ion-button
@@ -59,19 +60,23 @@
           <div class="agree">
             <input
               type="checkbox"
-              class="radio"
+              class="agree__checkbox"
               name="agree"
               [(ngModel)]="registrationInfo.agree"
               value="false"
+              id="as"
             />
-            <ion-label routerDirection="forward" routerLink="/agree-read-data"
+<!--            routerLink="/agree-read-data"-->
+            <label routerDirection="forward" class="agree__label" for="as"
               >Согласие на обработку персональных данных, в соответствии с
               Федеральным законом от 27.07.2002 года №152-ФЗ «О персональных
-              данных»</ion-label
+              данных»</label
             >
           </div>
+          <div class="circle-gradient"></div>
         </div>
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-content>
+
+</div>

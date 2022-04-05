@@ -1,9 +1,14 @@
 :root {
   --primary-color: #0360aa;
   --text-color: #3c3c3b;
+  --yellowGradientBackground: linear-gradient(180deg, #F39F18 0%, #F3C318 100%);
+  --backgroundContent: #191919;
+  --backgroundMain: #121212;
 
-  --regular-font: 'OpenSans-Regular', sans-serif;
-  --light-font: 'OpenSans-Light', sans-serif;
+  --fontDisplay: "SF Pro Display";
+
+  --regular-font: var(--fontDisplay);
+  --light-font: var(--fontDisplay);
 
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;

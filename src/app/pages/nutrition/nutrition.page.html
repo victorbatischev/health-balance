@@ -1,6 +1,6 @@
 <app-header [title]="program.title"></app-header>
 
-<ion-content fullscreen class="dark-container">
+<ion-content fullscreen class="container">
   <h2 class="ion-text-center" *ngIf="program.complete">Программа окончена</h2>
   <ion-grid class="container-grid">
     <ion-row justify-content-center align-items-center>
@@ -10,7 +10,7 @@
             <div class="title-block">
               <h5 class="title">Информация</h5>
               <p class="title-desc">
-                Начало и конец программы: {{ program.start_time }}-{{
+                 {{ program.start_time }}-{{
                 program.end_time }}
               </p>
             </div>
@@ -29,7 +29,7 @@
           <div class="content">
             <div class="link-block">
               <a class="link" [routerLink]="['/tasks/' + program.id]"
-                >Лекции и домашнее задание</a
+              ><ion-button class="button button-yellow">Лекции и домашнее задание</ion-button></a
               >
             </div>
 

@@ -12,15 +12,14 @@
         <div class="menu-header">
           <div class="menu-header-content">
             <div class="arrow-back" (click)="closeMenu()">
-              <img src="assets/images/menu/arrow-back.png" />
+              <img src="assets/images/menu-logo.svg" />
             </div>
-
-            <h6 class="menu-header-title">Меню</h6>
-
-            <ion-menu-button class="menu-button"></ion-menu-button>
+            <div class="menu-block" slot="end">
+              <div class="menu-block__text">Закрыть</div>
+             <ion-menu-button class="menu-button" type="reset"><ion-icon name="close-outline" style="font-size: 16px"></ion-icon></ion-menu-button>
+            </div>
           </div>
         </div>
-
         <ul class="menu-list">
           <li
             class="menu-item"
@@ -60,7 +59,7 @@
               *ngIf="item.subMenu"
             >
               <img
-                src="assets/images/menu/arrow-down.png"
+                src="assets/images/menu/arrow-menu.svg"
                 alt="toggle-subMenu"
               />
             </button>

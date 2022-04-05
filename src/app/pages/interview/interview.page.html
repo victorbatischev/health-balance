@@ -1,6 +1,6 @@
 <app-header [title]="'Опрос'"></app-header>
 
-<ion-content fullscreen class="dark-container">
+<ion-content fullscreen class="container">
   <ion-grid class="container-grid">
     <ion-row>
       <ion-col class="ion-text-center" *ngIf="url != ''"
@@ -23,16 +23,15 @@
                   <ion-col>
                     <ion-grid>
                       <ion-row class="ion-align-items-center">
-                        <ion-col size="1">
+                        <ion-col class="custom-checkbox">
                           <input
                             type="radio"
                             name="question{{ question.id }}"
-                            id="answer{{ question.id }}-{{ answer.id }}"
+                            id="answer{{ question.id }}-{{ j }}"
                             (click)="setAnswer(i, j)"
+                            class="custom-checkbox__checkbox"
                           />
-                        </ion-col>
-                        <ion-col>
-                          <label for="answer{{ question.id }}-{{ answer.id }}"
+                          <label for="answer{{ question.id }}-{{ j }}"
                             >{{ answer.title }}</label
                           >
                         </ion-col>
@@ -46,12 +45,6 @@
           <div class="btn-block">
             <ion-button
               class="button register-button"
-              style="
-                font-size: 18px;
-                --background: #0361aa;
-                --color: #fff;
-                margin: 10px 5%;
-              "
               (click)="doAnswer()"
               >Применить</ion-button
             >

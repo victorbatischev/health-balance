@@ -1,22 +1,22 @@
 <app-header [title]="lesson.title"></app-header>
 
-<ion-content fullscreen class="dark-container">
+<ion-content fullscreen class="container">
   <ion-grid class="container-grid">
     <ion-row justify-content-center align-items-center>
       <ion-col size="12" ion-text-center>
         <div class="container" style="height: 100%">
           <div class="lesson-header">
-            <div class="title-block">
-              <h5 class="sub-title">{{ lesson.program_title }}</h5>
+<!--            <div class="title-block">-->
+<!--              <h5 class="sub-title">{{ lesson.program_title }}</h5>-->
 
-              <div class="lesson-img">
-                <img
-                  src="{{ lesson.program_image }}"
-                  alt="web-rf"
-                  *ngIf="lesson.program_image != ''"
-                />
-              </div>
-            </div>
+<!--              <div class="lesson-img">-->
+<!--                <img-->
+<!--                  src="{{ lesson.program_image }}"-->
+<!--                  alt="web-rf"-->
+<!--                  *ngIf="lesson.program_image != ''"-->
+<!--                />-->
+<!--              </div>-->
+<!--            </div>-->
             <p class="lesson-title">{{ lesson.title }}</p>
 
             <ion-thumbnail class="player">
@@ -28,7 +28,7 @@
               ></iframe>
             </ion-thumbnail>
 
-            <ion-item class="lesson-title">
+            <div class="lesson-title">
               <ion-label class="lesson-label" *ngIf="+lesson.type_id == 1"
                 >Выбор правильного ответа</ion-label
               >
@@ -44,12 +44,12 @@
               <ion-label class="lesson-label" *ngIf="+lesson.type_id == 5"
                 >Активность</ion-label
               >
-            </ion-item>
+            </div>
             <p class="sub-title" *ngIf="lesson.description != ''">
               {{ lesson.description }}
             </p>
             <h3
-              class="subtitle"
+              class="lesson-title"
               *ngIf="+lesson.type_id == 1 || +lesson.type_id == 3"
             >
               {{ lesson.question }}
@@ -65,23 +65,16 @@
             </p>
           </div>
           <div
-            class="button-wrapper"
+            class="custom-checkbox"
             *ngFor="let answer of lesson.answers"
-            style="width: auto; min-width: 50%; display: inline-block"
+
           >
-            <ion-button
-              class="button register-button"
-              style="
-                font-size: 18px;
-                --background: #0361aa;
-                --color: #fff;
-                margin: 10px 5%;
-                width: 90%;
-                white-space: normal;
-              "
-              (click)="doAnswer(answer.idx)"
+              <input type="radio" class="custom-checkbox__checkbox" id="check-answer">
+            <label
+                for="check-answer"
+             (click)="doAnswer(answer.idx)"
               *ngIf="+lesson.type_id != 3 && !lesson.exist"
-              >{{ answer.title }}</ion-button
+              >{{ answer.title }}</label
             >
           </div>
           <div
@@ -89,19 +82,12 @@
             *ngIf="(+lesson.type_id == 2 || +lesson.type_id == 3) && !lesson.exist"
           >
             <ion-button
-              class="button"
+              class="button button-white"
               expand="block"
-              style="
-                font-size: 18px;
-                --width: 80%;
-                --background: #0361aa;
-                --color: #fff;
-                margin-top: 30px;
-                margin-bottom: 210px;
-              "
               (click)="startTask()"
+              style="width: 50%;"
             >
-              Применить
+              Выполнить
             </ion-button>
             <!--ion-button
                                 class="button"

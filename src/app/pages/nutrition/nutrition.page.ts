@@ -54,7 +54,7 @@ export class NutritionPage {
          this.platform_id = this.route.snapshot.paramMap.get('platform_id');
          for (let i = 0; i < data.result.programs_teams.length; i++) {
           if (this.platform_id != '0') {
-            this.listData.push({ id: data.result.programs_teams[i].id, id2: this.route.snapshot.paramMap.get('program_id'), img: 'assets/images/nutrition/medal.png', title: data.result.programs_teams[i].title, button: data.result.programs_teams[i].exist ? 'Вступил' : 'Вступить', subDesc: data.result.programs_teams[i].steps + ' баллов' });
+            this.listData.push({ id: data.result.programs_teams[i].id, id2: this.route.snapshot.paramMap.get('program_id'), img: i<=2 ?`assets/images/nutrition/Star ${i+1}.svg`:`assets/images/nutrition/offset.png`, title: data.result.programs_teams[i].title, button: data.result.programs_teams[i].exist ? 'Ваша команда' : 'Вступить', subDesc: data.result.programs_teams[i].steps + ' баллов' });
           } else {
             this.listData.push({ id: data.result.programs_teams[i].id, id2: this.route.snapshot.paramMap.get('program_id'), img: 'assets/images/nutrition/medal.png', title: data.result.programs_teams[i].title, subDesc: data.result.programs_teams[i].steps + ' баллов' });
           }

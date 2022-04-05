@@ -17,7 +17,7 @@ import { CustomerService } from '../../../providers/customer-service'
 })
 export class PortfolioPage {
   steps: any = 0
-  calc_steps: any = 0
+  calc_steps: number = 0
   tracking: boolean = false
   timeoutId: any
 

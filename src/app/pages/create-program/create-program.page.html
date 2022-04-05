@@ -1,6 +1,6 @@
 <app-header [title]="'Создание программы'"></app-header>
 
-<ion-content fullscreen class="dark-container">
+<ion-content fullscreen class="container">
   <ion-grid class="container-grid">
     <form class="form" (ngSubmit)="createProgram()">
       <ion-row justify-content-center align-items-center>
@@ -64,6 +64,9 @@
                 type="string"
                 [format]="'DD.MM.YYYY'"
                 [options]="options"
+                style="    filter: invert(1);
+    background: #E9E7E7;
+    border-radius: 10px;"
               >
               </ion-calendar>
             </div>
@@ -98,13 +101,7 @@
             <div class="btn-block">
               <ion-button
                 type="submit"
-                class="button register-button"
-                style="
-                  font-size: 18px;
-                  --background: #0361aa;
-                  --color: #fff;
-                  margin-bottom: 10px;
-                "
+                class="button button-yellow"
                 expand="block"
                 >Создать</ion-button
               >

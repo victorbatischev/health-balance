@@ -1,6 +1,6 @@
 <app-header [title]="'Командные новости'"></app-header>
 
-<ion-content fullscreen class="dark-container">
+<ion-content fullscreen class="container">
   <ion-grid class="container-grid">
     <ion-row justify-content-center align-items-center>
       <ion-col size="12" ion-text-center>
@@ -56,52 +56,55 @@
                 *ngIf="isFile"
                 readonly
               ></ion-input>
-              <ion-list lines="none">
-                <ion-item *ngIf="send_push">
+              <div lines="none">
+                <div *ngIf="send_push">
                   <ion-textarea
-                    class="input"
-                    name="push"
-                    [(ngModel)]="push"
-                    placeholder="Текст пуша"
+                          class="input"
+                          name="push"
+                          [(ngModel)]="push"
+                          placeholder="Текст пуша"
                   ></ion-textarea>
-                </ion-item>
-                <ion-item>
-                  <ion-checkbox
+                </div>
+                <div class="custom-checkbox">
+                  <input
                     name="send_push"
                     [(ngModel)]="send_push"
                     mode="md"
                     slot="start"
-                  ></ion-checkbox>
-                  <ion-label>Отправить пуш</ion-label>
-                </ion-item>
-              </ion-list>
+                    type="checkbox"
+                    id="checkPush"
+                    class="custom-checkbox__checkbox"
+                  />
+                  <label for="checkPush">Отправить пуш</label>
+                </div>
+              </div>
 
               <div class="widget-block">
                 <div class="images-block">
                   <div class="image">
                     <img
-                      src="assets/images/team-news/camera.png"
+                      src="assets/images/team-news/Camera.svg"
                       alt="camera"
                       (click)="getPhoto();"
                     />
                   </div>
                   <div class="image">
                     <img
-                      src="assets/images/team-news/youtube.png"
+                      src="assets/images/team-news/youTube.svg"
                       alt="youtube"
                       (click)="selectVideo();"
                     />
                   </div>
                   <div class="image">
                     <img
-                      src="assets/images/team-news/sound.png"
+                      src="assets/images/team-news/Sound.svg"
                       alt="sound"
                       (click)="selectFile();"
                     />
                   </div>
                   <div class="image">
                     <img
-                      src="assets/images/team-news/file.png"
+                      src="assets/images/team-news/File.svg"
                       alt="file"
                       (click)="selectFile();"
                     />
@@ -109,7 +112,7 @@
                 </div>
 
                 <ion-button type="submit" size="small" class="public-button"
-                  >Опубликовать</ion-button
+                  >Отправить</ion-button
                 >
               </div>
             </div>
@@ -121,10 +124,10 @@
             routerDirection="forward"
             routerLink="/team-published/{{ item.id }}"
           >
-            <h5>{{ item.customer }} <span>{{ item.created_at }}</span></h5>
-            <h3 class="subtitle">{{ item.title }}</h3>
+            <h5 class="news-content__title">Автор: {{ item.customer }} <span>{{ item.created_at }}</span></h5>
+            <h3 class="news-content__subtitle">{{ item.title }}</h3>
 
-            <p class="desc" *ngIf="item.annotation != ''">
+            <p class="news-content__desc" *ngIf="item.annotation != ''">
               {{ item.annotation }}
             </p>
             <div
@@ -132,15 +135,15 @@
               [innerHTML]="item.content"
               *ngIf="item.annotation == ''"
             ></div>
-            <div class="comments-amount">
-              Комментарии: <span>{{ item.comments_amount }}</span>
+            <div class="news-content__comments-amount">
+              <img src="assets/images/team-news/Comments.svg" alt="comment"> <span>{{ item.comments_amount }}</span>
             </div>
 
-            <ion-thumbnail class="player">
+            <ion-thumbnail class="news-content__preview">
               <img
-                src="{{ item.image }}"
+                src="{{item.image || 'http://zabavnik.club/wp-content/uploads/Photo_of_the_whale_14_24024853.jpg'}}"
                 alt="player"
-                *ngIf="item.image != ''"
+
               />
             </ion-thumbnail>
 

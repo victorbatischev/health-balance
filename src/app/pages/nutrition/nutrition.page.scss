@@ -1,5 +1,8 @@
 h2 {
-    color: #f00;
+    color: #DC3838;
+    padding: 15px 0;
+    background: var(--backgroundContent);
+    font-size: 17px;
 }
 
 .header {
@@ -10,14 +13,16 @@ h2 {
 }
 
 .title {
-    font-family: 'OpenSans-Light', sans-serif;
-    font-size: 19px;
-    margin: 0 0 8px;
+    font-size: 17px;
+    color: #E1E1E1;
+    font-weight: 700;
+    margin: 0 0 20px 0;
 }
 
 .title-desc {
-    font-size: 14px;
-    font-family: 'OpenSans-Regular', sans-serif;
+    font-size: 13px;
+    color: #F39F18;
+    font-weight: 700;
     margin: 0;
 }
 
@@ -28,7 +33,7 @@ h2 {
         .link {
             font-size: 17px;
             color: #0361aa;
-            font-family: 'OpenSans-Regular', sans-serif;
+            font-family: var(--fontDisplay);
         }
     }
 
@@ -36,17 +41,18 @@ h2 {
         margin-bottom: 30px;
 
         .progress-bar {
-            --background: #C6C6C5;
-            --progress-background: #0361aa;
-            border-radius: 10px;
-            height: 8px;
+            --background: #474747;
+            --progress-background: linear-gradient(270deg, #F2994A 4.16%, #F4C319 100%);;
+            border-radius: 16.1461px;
+            height: 5px;
             margin-bottom: 8px;
+
         }
 
         .progress-text {
             text-align: center;
             font-size: 13px;
-            font-family: 'OpenSans-Regular', sans-serif;
+            color: #454545;
             margin: 0;
         }
     }

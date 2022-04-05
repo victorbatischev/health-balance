@@ -1,28 +1,39 @@
 <ion-content class="content ion-padding" scroll-y="false">
-  <ion-toolbar class="logo-bar">
-    <ion-thumbnail slot="end" class="logo">
-      <img
-        src="assets/images/main-preview/aziz.png"
-        class="logo-img"
-        alt="aziz"
-      />
-    </ion-thumbnail>
-  </ion-toolbar>
+  <div class="preview-content">
+    <div class="logo-bar">
+      <div slot="end" class="logo">
+        <img
+                src="assets/images/Logo.svg"
+                class="logo-img"
+                alt="aziz"
+        />
+      </div>
+    </div>
 
-  <h1 class="title">Health Balance</h1>
 
-  <p class="info-text">
-    Добро пожаловать в приложение по улучшению здоровья и благополучия
-  </p>
+    <div class="wrapper-block-info">
+      <h1 class="title">Привет</h1>
+      <p class="info-text">
+        Добро пожаловать в приложение по улучшению здоровья и благополучия!
+      </p>
+      <p class="advice-text">Для корректной работы предоставьте приложению разрешения.</p>
+    </div>
 
-  <p class="advice-text">Далее несколько советов по пользованию приложением</p>
 
-  <div class="btn-block">
-    <ion-button class="button" (click)="toSliderPage()" expand="block"
+    <div class="btn-block">
+      <ion-button class="button" (click)="toSliderPage()" expand="block"
       >Далее</ion-button
-    >
+      >
+      <div class="info-text info-text_agree">
+        Нажимая кнопку “Далее” я даю разрешение приложению HEALTH BALANCE на считывание данных
+      </div>
+    </div>
+
   </div>
 
+  <div class="preview-image"><img src="assets/images/main-preview/hand.png" alt=""></div>
+  <div class="circle-gradient"></div>
+  <div class="line"></div>
   <!-- <div class="fit-image">
     <img src="assets/images/main-preview/preview.png" alt="fit-preview" />
   </div> -->

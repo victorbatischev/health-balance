@@ -211,6 +211,7 @@ export class HealthIndexResultsPage {
           xAxes: [
             {
               stacked: true,
+
               scaleLabel: {
                 display: true,
                 labelString: 'Дата прохождения опроса'

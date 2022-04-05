@@ -1,25 +1,30 @@
+@import 'src/assets/styles/vars';
 .img-block {
   border-bottom: 1px solid #939598;
   padding-bottom: 15px;
 }
 
 .input {
-  border: 1px solid #939598;
+  border: 1px solid #5C5C5C;
   display: block;
   width: 100%;
   border-radius: 4px;
-  margin-bottom: 10px;
-  --padding-bottom: 10px;
-  --padding-end: 15px;
-  --padding-start: 15px;
-  --padding-top: 10px;
+  --padding-bottom: 13px;
+  --padding-end: 13px;
+  --padding-start: 11px;
+  --padding-top: 13px;
+  font-size: 15px;
+  color: #FFFFFF;
+  --background: inherit;
+  margin: 0 0 20px 0;
 }
 
 .link {
   display: block;
-  margin-top: 15px;
   font-size: 12px;
-  margin: 20px 0;
+  text-decoration: none;
+  color: #FFFFFF;
+  margin: 15px 0 20px 0;
 }
 
 .time-longer {
@@ -30,9 +35,8 @@
 
 .title {
   margin: 0 0 13px;
-  font-family: 'OpenSans-Regular', sans-serif;
   font-size: 17px;
-  color: #6f6f6e;
+  color: #E1E1E1;
 }
 
 .input-block {
@@ -51,8 +55,7 @@
 
 .time-text,
 .team-text {
-  color: #1d1d1b;
-  font-family: 'OpenSans-Regular', sans-serif;
+  color: #7A7A7A;
   font-size: 10px;
   margin: 0 0 5px;
 }
@@ -80,6 +83,7 @@
   }
 }
 .btn-block {
+  margin-bottom: 10px;
   .button {
     width: 100%;
   }

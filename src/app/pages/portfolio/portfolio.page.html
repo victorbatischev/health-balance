@@ -1,20 +1,24 @@
-<ion-header class="header ion-no-border" color="primary">
+<ion-header class="header ion-no-border">
   <ion-toolbar class="toolbar">
+
     <div class="menu-block" slot="end">
+      <div class="menu-block__text">Меню</div>
       <ion-menu-button class="menu-button"></ion-menu-button>
     </div>
 
     <div class="photo-block">
       <div class="photo">
         <img
-          src="assets/images/portfolio/photo.png"
-          alt="photo"
-          *ngIf="customerData.avatar == ''"
+                src="assets/images/portfolio/photo.png"
+                alt="photo"
+                class="avatar"
+                *ngIf="customerData.avatar == ''"
         />
         <img
-          src="{{ customerData.avatar }}"
-          alt="photo"
-          *ngIf="customerData.avatar != ''"
+                src="{{ customerData.avatar }}"
+                alt="photo"
+                class="avatar"
+                *ngIf="customerData.avatar != ''"
         />
       </div>
 
@@ -23,41 +27,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen class="white-container" force-overscroll="false">
+<ion-content fullscreen class="container" force-overscroll="false">
   <ion-grid class="container-grid">
     <ion-row justify-content-center align-items-center>
       <ion-col size="12" ion-text-center>
-        <div class="container">
+        <app-flat-tabs [platform_id]="customerData.platform_id"></app-flat-tabs>
+        <div class="container-graphic">
           <div class="portfolio-content">
-            <div class="first-tabs">
-              <div class="flat-tabs">
-                <div class="text">
-                  <a
-                    routerDirection="forward"
-                    routerLink="/statistic"
-                    class="link"
-                    class="link"
-                    >Статистика</a
-                  >
-                  <a routerLinkActive="active" class="link">Шаги</a>
-                  <a
-                    routerDirection="forward"
-                    routerLink="/program-name/{{ customerData.platform_id }}"
-                    class="link"
-                    >Программы</a
-                  >
-                  <a
-                    routerDirection="forward"
-                    routerLink="/tasks/0"
-                    class="link"
-                    >Задания</a
-                  >
-                </div>
-                <div class="select-bar">
-                  <span class="selector"></span>
-                </div>
-              </div>
-            </div>
 
             <div class="tabs-block">
               <div class="tabs">

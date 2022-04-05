@@ -29,10 +29,13 @@
 @import '~@ionic/angular/css/flex-utils.css';
 
 body {
-  background-color: #fff;
-  font-family: 'OpenSans-Regular', sans-serif;
-}
+  background: var(--backgroundMain);
 
+}
+*{
+  padding: 0;
+  margin: 0;
+}
 h1,
 h2,
 h3,
@@ -50,34 +53,55 @@ p {
 }
 
 .button {
-  width: 89%;
-  height: 40px;
-  --background: transparent;
-  --border-width: 1px;
-  --border-style: solid;
-  --border-color: #0361aa;
-  --color: #0361aa;
-  --border-radius: 50px;
-  --color-activated: #fff;
-  font-family: 'OpenSans-Regular', sans-serif;
-  font-size: 20px;
+  width: 49%;
+  font-family: var(--fontDisplay);;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 100%;
+  text-align: center;
+  letter-spacing: -0.02em;
+  border-radius: 50px;
+}
+.register-button{
+  --background: #2C2C2C;
+  border-radius: 8px;
+  color: #F39F18;
+  width: 100%;
+  font-size: 15px;
+}
+.button-yellow{
+  --background:var(--yellowGradientBackground);
+  border-radius: 8px;
+  color: #000000;
+  width: 100%;
+  font-size: 15px;
+}
+.button-white{
+  --background: #FFFFFF;
+  backdrop-filter: blur(10px);
+  border-radius: 55px;
+  color: #252525;
+  width: 100%;
+  font-size: 15px;
 }
 
-.dark-container {
-  --background: #f5f5f5;
+.container {
+  --background: var(--backgroundMain);
+  --padding-start: 15px;
+  --padding-end: 15px;
+  font-family: "SF Pro Display";
+  //box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .white-container {
   --background: #fff;
 }
-
-.container {
-  background-color: #fff;
-  padding: 10px 15px 20px;
-  height: 100%;
-  z-index: 20;
+.container-graphic{
+  padding: 18px 0 0 0;
+  background: var(--backgroundContent);
+  border-radius: 0px 0px 10px 10px;
 }
-
 ion-item {
   --border-color: #939598;
   --padding-start: 0;
@@ -120,4 +144,152 @@ h1 {
 
 * {
   text-transform: none !important;
+
+}
+.line{
+  position: absolute;
+  width: 150px;
+  background: #fff;
+  height: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 9px;
+  z-index: 25;
+  border-radius: 15px;
+}
+
+.custom-checkbox {
+  display: flex;
+  font-size: 7px;
+  margin-top: 5px;
+  padding: 0 0 15px 0;
+
+  .radio {
+    display: block;
+    height: 10px;
+    margin-right: 5px;
+    position: relative;
+    top: 1px;
+  }
+  &__checkbox {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+  }
+  label {
+    color: #ffff;
+    font-size: 15px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    &:before {
+      content:'';
+      -webkit-appearance: none;
+      background-color: transparent;
+      border: 2px solid #fff;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+      padding: 7.5px;
+      display: inline-block;
+      position: relative;
+      vertical-align: middle;
+      cursor: pointer;
+      margin-right: 13px;
+
+    }
+  }
+  input[type="radio"] + label:before{
+    border-radius: 50%;
+  }
+  input[type="radio"]:checked + label:after {
+    border-radius: 50%;
+  }
+  input:checked + label:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 4px;
+    width: 11px;
+    height: 11px;
+    background: #F39F18;
+
+  }
+}
+.platform{
+  display: flex;
+  background: var(--backgroundContent);
+  justify-content: space-between;
+  padding: 15px;
+  border-bottom: 1px solid #202020;
+  margin: 0 0 10px 0;
+  align-items: center;
+  gap: 23px;
+  .label{
+    font-weight: 700;
+    font-size: 13px;
+    color: #fff;
+    letter-spacing: -0.02em;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    span{
+      font-weight: 400;
+      color: #A3A3A3;
+    }
+  }
+  .img-block{
+    flex: 0 0 50px;
+    img{
+      border-radius: 50%;
+    }
+  }
+}
+
+.tabs {
+  display: flex;
+  align-items: center;
+  margin: 0 -7px -14px;
+  padding: 0 10px;
+  flex-wrap: wrap;
+
+  .tab-link-block {
+    flex: 0 1 33.333%;
+    text-align: center;
+    padding: 0 7px;
+    margin: 0 0 14px 0;
+
+    .tab-link {
+      color: #7A7A7A;
+      font-family: var(--fontDisplay);
+      font-size: 13px;
+      display: block;
+      padding: 6px 0;
+      background: #2C2C2C;
+      border-radius: 5px;
+    }
+
+    &:active {
+      .tab-link {
+        color: #fff;
+        background-color: #3D3C3C;
+      }
+    }
+  }
+
+  .active {
+    .tab-link {
+      background-color: #3D3C3C;
+      color: #fff;
+    }
+  }
+
+  .no-border {
+    border-left: 0;
+    border-right: 0;
+  }
 }

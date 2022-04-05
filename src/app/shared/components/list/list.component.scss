@@ -1,24 +1,45 @@
 .list {
+  background: var(--backgroundContent);
+  padding: 16px;
+  &-item{
+    --background: var(--backgroundContent);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid #202020;
+    &:last-child{
+      border-bottom: none;
+    }
+  }
   &-sub-title {
     color: #0360aa;
     font-size: 10px;
-    font-family: 'OpenSans-Regular', sans-serif;
+
     margin-bottom: 10px;
   }
 
   &-label {
     font-size: 15px;
-    font-family: 'OpenSans-Light', sans-serif;
+
     display: flex;
     flex-direction: column;
     margin-right: 0;
     white-space: normal;
+    color: #E1E1E1;
+
   }
 
   &-img {
     position: relative;
-    margin-right: 25px;
-    width: 50px;
+    flex: 0 0 58px;
+    height: 58px;
+
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
     .complete {
       position: absolute;
@@ -41,18 +62,18 @@
   }
 
   &-link {
-    --background: #0360aa;
-    --color: #fff;
-    font-size: 11px;
-    font-family: 'OpenSans-SemiBold', sans-serif;
-    height: 25px;
+    --background: #2C2C2C;
+    --border-radius: 8px;
+    --color: #F39F18;
+    width: 100%;
+    font-size: 15px;
+    font-family: var(--fontDisplay);;
     min-width: 120px;
-    margin-top: 5px;
   }
 
   &-note {
     --color: #3c3c3b;
-    font-family: 'OpenSans-Regular', sans-serif;
+
     font-size: 14px;
 
     &-span {
@@ -61,16 +82,14 @@
   }
 
   &-sub-desc {
-    font-size: 14px;
-    font-family: 'OpenSans-Regular', sans-serif;
-    color: #0360aa;
+    font-size: 13px;
+    color: #56CCF2;
   }
 
   &-edit-button {
     --background: #0360aa;
     --color: #fff;
     font-size: 11px;
-    font-family: 'OpenSans-SemiBold', sans-serif;
     height: 25px;
     width: 120px;
     margin-top: 15px;

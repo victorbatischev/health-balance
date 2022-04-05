@@ -1,27 +1,42 @@
-<ion-content fullscreen class="content">
+<div fullscreen class="content">
     <ion-grid style="height: 100%" class="ion-no-padding">
 
-      <ion-row justify-content-center align-items-center style="height: 100%">
-        <ion-col size="12" ion-text-center>
+        <ion-row justify-content-center align-items-center style="height: 100%">
+            <ion-col size="12" ion-text-center>
 
-            <div class="container">
-                <h1 class="title">Health Balance</h1>
-
-                <form class="form" (ngSubmit)="doLogin()">
-                    <ion-input type="email" name="email" [(ngModel)]="loginInfo.email" class="input" placeholder="E-mail"></ion-input>
-                    <ion-input type="password" name="password" [(ngModel)]="loginInfo.password" class="input" placeholder="Пароль"></ion-input>
-
-                    <div class="btn-block">
-                        <ion-button type="submit" class="button login-button" style="font-size: 18px; margin-top: 13px; margin-bottom: 10px;" expand="block">Войти</ion-button>
-                        <ion-button class="button register-button" outerDirection="forward" routerLink="/register" style="font-size: 18px; --background: #0361aa; --color: #fff; margin-bottom: 10px;" expand="block">Регистрация</ion-button>
-                        <a (click)="restorePassword('')" class="forgot-password underline">Забыли логин или пароль?</a>
+                <div class="container">
+                    <div>
+                        <img src="/assets/images/Logo.svg" alt="">
                     </div>
 
-                </form>
-            </div>
+                    <form class="form" (ngSubmit)="doLogin()">
+                        <ion-input type="email" name="email" [(ngModel)]="loginInfo.email" class="input"
+                                   placeholder="E-mail"></ion-input>
+                        <ion-input type="password" name="password" [(ngModel)]="loginInfo.password" class="input"
+                                   placeholder="Пароль"></ion-input>
 
-        </ion-col>
-    </ion-row>
+                        <div class="btn-block">
+                            <ion-button type="submit" class="button login-button"
+                                        style="" expand="block">
+                                Войти
+                            </ion-button>
+                            <ion-button class="button" style=" margin-bottom: 30px;
+                font-size: 14px;
+                --background: transparent;
+                --color: #8F8F8F;
+                border: 1px solid  #8F8F8F;
+                font-weight: 400;" outerDirection="forward" routerLink="/register" expand="block">Регистрация
+                            </ion-button>
+                            <a (click)="restorePassword('')" class="forgot-password underline">Забыли логин или
+                                пароль?</a>
+                        </div>
 
-  </ion-grid>
-</ion-content>
+                    </form>
+                </div>
+
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+
+</div>

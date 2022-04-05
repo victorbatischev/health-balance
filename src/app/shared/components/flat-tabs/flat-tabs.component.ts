@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-flat-tabs',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./flat-tabs.component.scss']
 })
 export class FlatTabsComponent implements OnInit {
+
+  @Input() platform_id: number;
 
   constructor() { }
 

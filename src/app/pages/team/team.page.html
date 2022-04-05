@@ -1,22 +1,16 @@
 <app-header [title]="liderboard.team_title"></app-header>
 
-<ion-content fullscreen class="dark-container">
+<ion-content fullscreen class="container">
   <ion-grid class="container-grid">
     <ion-row justify-content-center align-items-center>
       <ion-col size="12" ion-text-center>
         <div class="container">
-          <ion-item class="header">
+          <div class='platform'>
+            <label class='label'><span>Ваша платформа</span>{{ liderboard.program_title || 'Ваша платформа не указана'}} </label>
             <div class="img-block">
-              <img
-                src="{{ liderboard.program_image }}"
-                alt="web-rf"
-                *ngIf="liderboard.program_image != ''"
-              />
+              <img src="{{ liderboard.platform_image || 'assets/images/menu-logo.svg' }}"  alt="platform"/>
             </div>
-
-            <ion-label class="label">{{ liderboard.program_title }}</ion-label>
-          </ion-item>
-
+          </div>
           <div class="table">
             <ion-item class="header">
               <ion-label class="label ion-text-center"
@@ -25,6 +19,7 @@
             </ion-item>
             <div class="table-header">
               <div class="table-row">
+                <div class="table-header-label"></div>
                 <div class="table-header-label">ДЗ</div>
                 <div class="table-header-label">Шаги</div>
                 <div class="table-header-label">Баллы</div>
@@ -37,13 +32,13 @@
                 (click)="showInfo(customer)"
               >
                 <div class="table-label">{{ customer.name }}</div>
-                <div class="table-label table-label-primary ion-text-right">
+                <div class="table-label table-label-primary">
                   {{ customer.completed_tasks }} из {{ customer.total_tasks }}
                 </div>
-                <div class="table-label table-label-primary ion-text-center">
+                <div class="table-label table-label-primary">
                   {{ customer.total }}
                 </div>
-                <div class="table-label table-label-primary ion-text-center">
+                <div class="table-label table-label-primary">
                   {{ customer.bonus }}
                 </div>
               </div>

@@ -1,41 +1,40 @@
 <app-header [title]="'Статистика'"></app-header>
 
-<ion-content fullscreen class="dark-container">
-  <ion-grid class="container-grid" style="height: 100%">
-    <ion-row style="height: 88%">
+<ion-content fullscreen class="container">
+  <ion-grid class="container-grid" style="height: 100%;display: flex;flex-direction: column">
+    <ion-row style="flex: 1 1 auto">
       <ion-col>
         <img
           id="image_success"
-          src="assets/images/results/success.png"
+          src="assets/images/results/success.svg"
           alt="image_success"
           style="display: none"
         />
         <img
           id="image_warning"
-          src="assets/images/results/warning.png"
+          src="assets/images/results/warning.svg"
           alt="image_warning"
           style="display: none"
         />
         <img
           id="image_error"
-          src="assets/images/results/error.png"
+          src="assets/images/results/error.svg"
           alt="image_error"
           style="display: none"
         />
         <ion-slides
           *ngIf="slides && slides.length"
-          pager="false"
-          [options]="slideOpts"
-          style="height: 75vh"
+          pager="true"
+          style="--bullet-background: #fff; --bullet-background-active: #F39F18;"
         >
           <ion-slide *ngFor="let slide of slides; let i = index;">
             <div style="display: flex; flex-direction: column">
-              <div style="margin: 20px; height: 63px">{{ slide.label }}</div>
+              <div class="slide-label">{{ slide.label }}</div>
               <div *ngIf="isLoading" class="bot-loading-container">
                 <ion-spinner name="dots"></ion-spinner>
               </div>
               <canvas
-                style="max-height: 400px; min-height: 400px"
+                style="max-height: 342px; min-height: 342px"
                 #pr_chart
               ></canvas>
             </div>
@@ -151,12 +150,6 @@
           <div class="btn-block">
             <ion-button
               class="button register-button"
-              style="
-                font-size: 18px;
-                --background: #0361aa;
-                --color: #fff;
-                margin: 0 5%;
-              "
               (click)="repeatTest()"
               >Пройти тест ещё раз</ion-button
             >

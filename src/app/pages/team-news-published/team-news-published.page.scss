@@ -34,7 +34,6 @@ app-team-news-published {
     --background: #0360aa;
     --color: #fff;
     font-size: 11px;
-    font-family: 'OpenSans-SemiBold', sans-serif;
     height: 25px;
     width: 120px;
     position: relative;
@@ -50,18 +49,18 @@ app-team-news-published {
     margin: 30px 0 5px;
     font-size: 12px;
     color: #0360aa;
-    font-family: 'OpenSans-Regular', sans-serif;
+
   }
 
   .title {
     margin: 0 0 13px;
-    font-family: 'OpenSans-Regular', sans-serif;
+    font-family: var(--fontDisplay);
     font-size: 16px;
     color: #6f6f6e;
   }
 
   .desc {
-    font-family: 'OpenSans-Regular', sans-serif;
+    font-family: var(--fontDisplay);
     font-size: 13px;
     margin: 0;
   }

@@ -36,7 +36,10 @@ export class CalendarPage {
     weekdays: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
     monthFormat: 'MMM YYYY',
     weekStart: 1,
-    showToggleButtons: true
+    showToggleButtons: true,
+    configDays: [
+      {cssClass: 'calendar'}
+    ],
   }
 
   customerData: Customer = {

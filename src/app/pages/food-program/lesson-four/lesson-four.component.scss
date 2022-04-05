@@ -8,7 +8,7 @@
         .sub-title {
             font-size: 16px;
             color: #0360aa;
-            font-family: 'OpenSans-Regular', sans-serif;
+            font-family: var(--fontDisplay);
             margin: 0;
         }
         
@@ -24,7 +24,7 @@
     
     .lesson-title {
         margin: 0;
-        font-family: 'OpenSans-Regular', sans-serif;
+        font-family: var(--fontDisplay);
         font-size: 16px;
         width: 90%;
         line-height: 1.2;
@@ -54,7 +54,7 @@
     font-size: 14px;
     color: #0360aa;
     margin: 10px 0 25px;
-    font-family: 'OpenSans-Regular', sans-serif;
+    font-family: var(--fontDisplay);
 }
 
 .btn-block {

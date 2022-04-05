@@ -18,25 +18,26 @@ export class SliderPage implements OnInit {
     initialSlide: 0,
     speed: 400,
     slidesPerView: 1,
-    centeredSlides: 1
+    centeredSlides: 1,
+    pager: false
   }
 
   slides = [
     {
       id: 1,
-      title: '01',
+      title: `1/3`,
       advice: 'Дайте разрешение на геопозицию и передвижение'
     },
     {
       id: 2,
-      title: '02',
+      title: '2/3',
       advice: this.platform.is('android')
         ? 'Разрешите Health Balance доступ к данным из приложения Google Fit. Если на вашем смартфоне не установлено приложение Google Fit, скачать его можно по этой <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.fitness" target="_blank">ссылке</a>.'
         : 'Разрешите Health Balance доступ к данным из приложения Apple Health'
     },
     {
       id: 3,
-      title: '03',
+      title: '3/3',
       advice:
         'Разрешите Health Balance присылать push-уведомления в настройках вашего смартфона.'
     }

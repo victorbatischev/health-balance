@@ -1,11 +1,38 @@
-.content {
-  --background: none;
-  background-image: url('/assets/images/advice/top-preview.png');
-  background-size: contain;
-  background-position: center top;
-  background-repeat: no-repeat;
+*{
+  padding: 0;
+  margin: 0;
 }
+.content {
+  background: var(--backgroundMain);
 
+  //--background: linear-gradient(91.45deg, rgba(255, 255, 255, 0.14) 0.39%, rgb(0, 0, 0) 105.33%);
+  //background-image: url('/assets/images/advice/top-preview.png');
+  //background-size: contain;
+  //background-position: center top;
+  //background-repeat: no-repeat;
+
+
+
+}
+.container{
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+.circle-gradient{
+  position: absolute;
+  text-align: center;
+  width: 85%;
+  margin: 0px auto;
+  left: 7%;
+  height: 29%;
+  bottom: -164px;
+  background: #56CCF2;
+  -webkit-filter: blur(200px);
+  filter: blur(85px);
+}
 .slider {
   height: 90%;
   --bullet-background-active: #0361aa;

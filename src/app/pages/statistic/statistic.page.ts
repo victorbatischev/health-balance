@@ -82,17 +82,18 @@ export class StatisticPage {
         lbl = 'Месяцы'
         break
     }
-
+    Chart.defaults.global.defaultFontColor= '#A3A3A3';
     this.barChart = new Chart(this.barCanvas.nativeElement, {
+
       type: 'line',
       data: {
         labels: labels,
         datasets: [
           {
             data: values,
-            backgroundColor: '#168de2',
-            borderColor: '#168de2',
-            fill: false
+            backgroundColor: '#F39F18',
+            borderColor: '#F39F18',
+            fill: false,
           }
         ]
       },
@@ -105,23 +106,32 @@ export class StatisticPage {
           xAxes: [
             {
               stacked: true,
+              gridLines: {
+                color: "#2D2D2D",
+              },
               scaleLabel: {
                 display: true,
-                labelString: lbl
+                labelString: lbl,
+                fontColor: "#5C5C5C"
               }
             }
           ],
           yAxes: [
             {
               stacked: true,
+              gridLines: {
+                color: "#2D2D2D",
+              },
               scaleLabel: {
                 display: true,
                 labelString:
-                  this.stat_type == 0 ? 'Кол-во заданий' : 'Кол-во баллов'
+                  this.stat_type == 0 ? 'Кол-во заданий' : 'Кол-во баллов',
+                fontColor: "#5C5C5C"
               }
             }
-          ]
-        }
+          ],
+        },
+
       }
     })
 

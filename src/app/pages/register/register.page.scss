@@ -1,10 +1,3 @@
-.content {
-  --background: none;
-  background-image: url('/assets/images/advice/top-preview.png');
-  background-size: contain;
-  background-position: center top;
-  background-repeat: no-repeat;
-}
 
 .container {
   height: 100vh;
@@ -13,16 +6,31 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  --background: none;
-  background-image: url('/assets/images/advice/top-preview.png');
-  background-size: contain;
-  background-position: center top;
-  background-repeat: no-repeat;
+  background: var(--backgroundMain);
+  overflow: hidden;
 
+  .circle-gradient{
+    position: absolute;
+    text-align: center;
+    width: 85%;
+    margin: 0px auto;
+    left: 7%;
+    height: 29%;
+    bottom: -164px;
+    background: #56CCF2;
+    -webkit-filter: blur(200px);
+    filter: blur(85px);
+  }
   .title {
-    margin: 30px 0;
-    font-family: 'OpenSans-Regular', sans-serif;
-    font-size: 42px;
+    margin: 80px 0;
+    font-family: var(--fontDisplay);;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 100%;
+    text-align: center;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
   }
 
   .form {
@@ -31,19 +39,26 @@
 
     .input,
     select {
-      border: 1px solid #939598;
-      display: block;
-      width: 100%;
-      border-radius: 4px;
-      margin-bottom: 10px;
-      --padding-bottom: 10px;
-      --padding-end: 15px;
-      --padding-start: 15px;
-      --padding-top: 10px;
+      border-bottom: 1px solid #FFFFFF;
+      font-family: var(--fontDisplay);;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 100%;
+      letter-spacing: -0.02em;
+      color: #ffff;
+      padding: 7px 0;
+      margin-bottom: 28px;
     }
 
     select {
-      padding: 10px 15px;
+      background: #5C5C5C;
+      border-radius: 3px;
+      border: none;
+      color: #BFBFBF;
+      width: 100%;
+      padding: 9px 3px;
+      margin-top: 2px;
     }
 
     .btn-block {
@@ -51,11 +66,15 @@
 
       .forgot-password {
         text-align: center;
-        font-family: 'OpenSans-Regular', sans-serif;
+        font-family: var(--fontDisplay);
         font-size: 12px;
       }
       .button {
         width: 100%;
+        --background: linear-gradient(91.14deg, rgba(255, 255, 255, 0.53) -13.28%, rgba(0, 0, 0, 0.2597) 138.38%);
+        --color: #C7C7C7;
+        font-size: 14px;
+        --border-radius: 50px;
       }
     }
   }
@@ -73,5 +92,54 @@
       position: relative;
       top: 1px;
     }
+    &__checkbox {
+      padding: 0;
+      height: initial;
+      width: initial;
+      margin-bottom: 0;
+      display: none;
+      cursor: pointer;
+    }
+    label {
+      color: #ffff;
+      font-family: "GT Eesti Pro Display";
+      font-size: 8px;
+      font-weight: 300;
+      line-height: 120%;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      &:before {
+        content:'';
+        -webkit-appearance: none;
+        background-color: transparent;
+        border: 2px solid #F39F18;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+        padding: 7.5px;
+        display: inline-block;
+        position: relative;
+        vertical-align: middle;
+        cursor: pointer;
+        margin-right: 13px;
+        border-radius: 50%;
+      }
+    }
+    input:checked + label:before{
+      background:  #F39F18;
+    }
+    input:checked + label:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 3px;
+      left: 7px;
+      width: 4px;
+      height: 8px;
+      border: solid #000;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
   }
+
 }

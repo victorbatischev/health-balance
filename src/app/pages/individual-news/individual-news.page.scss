@@ -3,12 +3,12 @@
     --inner-padding-end: 0;
 
     .title {
-        font-family: 'OpenSans-Light', sans-serif;
+        font-family: var(--fontDisplay);
         font-size: 18px;
     }
     
     .note {
-        font-family: 'OpenSans-Regular', sans-serif;
+        font-family: var(--fontDisplay);
         color: #0361aa;
         font-size: 16px;
     }
@@ -18,7 +18,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    font-family: 'OpenSans-Regular', sans-serif;
+    font-family: var(--fontDisplay);
 
     &-item {
         display: flex;

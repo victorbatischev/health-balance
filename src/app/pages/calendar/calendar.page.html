@@ -1,6 +1,6 @@
 <app-header [title]="'Календарь'"></app-header>
 
-<ion-content fullscreen class="dark-container">
+<ion-content fullscreen class="container">
   <ion-grid class="container-grid">
     <ion-row justify-content-center align-items-center>
       <ion-col size="12" ion-text-center>
@@ -11,7 +11,11 @@
               type="string"
               [format]="'DD.MM.YYYY'"
               [options]="options"
+              class="calendar-item"
               (change)="onChange($event)"
+              style="    filter: invert(1);
+    background: #E9E7E7;
+    border-radius: 10px;"
             >
             </ion-calendar>
           </div>
@@ -20,11 +24,12 @@
                         <ion-button  class="button" style="font-size: 18px; --background: #0361aa; --color: #fff; margin: 10px 5%;" expand="block" (click)="showStat()">Показать</ion-button>
                     </div-->
 
-          <ion-list class="calendar-info">
+          <ion-list class="calendar-info" lines="none">
             <ion-item
               class="calendar-item"
               [ngClass]="{'calendar-active': statistics_data.tasks_amount > 0}"
               (click)="toTasks('new')"
+              lines="none"
             >
               <ion-label class="calendar-label"
                 >Новое задание от куратора</ion-label
@@ -38,6 +43,7 @@
               class="calendar-item"
               [ngClass]="{'calendar-active': statistics_data.end_date > 0}"
               (click)="toTasks('end')"
+              lines="none"
             >
               <ion-label class="calendar-label">Дата сдачи ДЗ</ion-label>
               <ion-note class="calendar-note"
@@ -49,6 +55,7 @@
               class="calendar-item"
               [ngClass]="{'calendar-active': statistics_data.new_program > 0}"
               (click)="toProgram()"
+              lines="none"
             >
               <ion-label class="calendar-label"
                 >Запуск новой программы</ion-label

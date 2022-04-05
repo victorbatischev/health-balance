@@ -1,28 +1,60 @@
+
 .header {
+    --background: var(--backgroundContent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     .img-block {
-        width: 50px;
-        margin-right: 25px;
+        width: 58px;
+
+        height: 58px;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
     }
 
     .label {
-        font-size: 19px;
-        font-family: 'OpenSans-Light', sans-serif;
-        margin-bottom: 15px;
+        font-size: 15px;
+        line-height: 120%;
+        color: #E1E1E1  ;
+        margin: 0;
+    }
+    .title-desc{
+        color: #7A7A7A;
+        font-weight: 700;
+        font-size: 13px;
+        margin-top: 13px;
     }
 }
 
 .table-header {
-    font-family: 'OpenSans-Regular', sans-serif;
+    font-family: var(--fontDisplay);
     color: #0361aa;
     font-size: 13px;
     margin: 20px 0 25px;
 }
 
 .table {
-    margin-bottom: 45px;
+    padding: 15px;
+    margin: 15px 0;
+    background: var(--backgroundContent);
 
     &:last-child {
         margin-bottom: 120px;
+    }
+    &-title{
+        color: #2D2D2D;
+        font-size: 13px;
+    }
+    &-row{
+        margin-bottom: 25px;
+    }
+    &-activeLink{
+        color: #F39F18;
+        text-decoration: none;
     }
 }
 
@@ -46,11 +78,10 @@
 
 .table-label {
     font-size: 15px;
-    font-family: 'OpenSans-Light', sans-serif;
-    color: #3C3C3B;
+    color: #FFFFFF;
 
     span {
         font-size: 12px;
-        color: #42b0f5;
+        color: #7A7A7A;
     }
 }
