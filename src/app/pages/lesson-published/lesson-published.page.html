@@ -81,14 +81,14 @@
             class="button-wrapper"
             *ngIf="(+lesson.type_id == 2 || +lesson.type_id == 3) && !lesson.exist"
           >
-            <ion-button
+            <button
               class="button button-white"
               expand="block"
               (click)="startTask()"
               style="width: 50%;"
             >
               Выполнить
-            </ion-button>
+            </button>
             <!--ion-button
                                 class="button"
                                 expand="block"

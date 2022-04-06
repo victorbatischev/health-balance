@@ -29,11 +29,11 @@
     display: flex;
     align-items: center;
     background: #fff;
-    column-gap: 11px;
     justify-content: center;
     height: 25px;
     border-radius: 50px;
-    padding: 11px;
+    padding: 10px;
+    column-gap: 9px;
 
     &__text{
         font-family: 'Roboto';
@@ -48,6 +48,9 @@
     .menu-button {
         --color: #000;
         font-size: 19px;
+        --padding-end: 0;
+        --padding-start: 0;
+
     }
 }
 

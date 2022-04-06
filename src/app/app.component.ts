@@ -58,7 +58,7 @@ export class AppComponent {
       id: 3,
       title: 'Задания',
       subMenu: [
-        { id: 3.1, title: 'Групповые задания', count: 0 },
+        { id: 3.1, title: 'Групповые', count: 0 },
         { id: 3.2, title: 'Индивидуальные', count: 0 }
       ]
     },
@@ -189,7 +189,7 @@ export class AppComponent {
                 subMenu: [
                   {
                     id: 3.1,
-                    title: 'Групповые задания',
+                    title: 'Групповые',
                     count: data.result.lessons
                   },
                   {

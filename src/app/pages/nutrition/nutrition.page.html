@@ -5,28 +5,28 @@
   <ion-grid class="container-grid">
     <ion-row justify-content-center align-items-center>
       <ion-col size="12" ion-text-center>
-        <div class="container">
+        <div class="content">
           <div class="header">
             <div class="title-block">
               <h5 class="title">Информация</h5>
               <p class="title-desc">
-                 {{ program.start_time }}-{{
+                <img src="assets/images/common/cloack.svg" alt="clock"> {{ program.start_time }} - {{
                 program.end_time }}
               </p>
             </div>
 
             <div class="img-block">
-              <ion-thumbnail>
+
                 <img
                   src="{{ program.image }}"
                   alt="apple"
                   *ngIf="program.image != 0"
                 />
-              </ion-thumbnail>
+
             </div>
           </div>
 
-          <div class="content">
+
             <div class="link-block">
               <a class="link" [routerLink]="['/tasks/' + program.id]"
               ><ion-button class="button button-yellow">Лекции и домашнее задание</ion-button></a
@@ -42,17 +42,13 @@
                 Участники уже прошли 0 из {{ program.lessons_amount }} уроков
               </p>
             </div>
-
+        </div>
             <div class="list-block">
               <h5 class="title">Лидерборд</h5>
-              <app-list
-                [list]="listData"
-                [customLabelStyles]="{ 'margin-left': '10px' }"
-                [showLastBorder]="false"
-              ></app-list>
+              <app-leaderboardList [data]="listData"></app-leaderboardList>
             </div>
-          </div>
-        </div>
+
+
       </ion-col>
     </ion-row>
   </ion-grid>

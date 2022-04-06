@@ -2,7 +2,7 @@
 
 <ion-content fullscreen class="container">
     <div class="btn-block" *ngIf="customerData.role == 1">
-         <ion-button class="button button-yellow" style="margin: 21px 0 30px 0;" expand="block" routerDirection="forward" routerLink="/lesson-form">Добавить лекцию</ion-button>
+         <ion-button class="button button-yellow" style="margin: 21px 0 30px 0;" expand="block" routerDirection="forward" routerLink="/lesson-form">Добавить задание</ion-button>
     </div>
     <ion-grid class="container-grid">
 
@@ -10,13 +10,8 @@
             <ion-col size="12" ion-text-center>
 
                 <div class="container">
-                   <app-list
-                        [list]="listData"
-                        [showLastBorder]="false"
-                    ></app-list>
-
+                    <app-listTasks [list]="listData"></app-listTasks>
                     <div class="item-group">
-
 
                         <div class="item" routerDirection="forward" routerLink="/group-leaderboard">
                             <ion-button class="button register-button" style="color: #A3A3A3"   >Перейти в лидерборд</ion-button>

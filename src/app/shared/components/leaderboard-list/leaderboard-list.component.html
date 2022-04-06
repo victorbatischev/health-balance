@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div class="leaderboard-list">
+    <div class="leaderboard-list__container">
+        <article class="leaderboard-list__card card-list"  *ngFor="let item of data; let i = index; let last = last">
+            <div class="card-list__col card-list__col_one">
+               <div class="card-list__icon"><img [src]="item.img" alt="command" /></div>
+                <div class="card-list__info">
+                    <div class="card-list__command">{{item.title}}</div>
+                    <div class="card-list__score">{{item.subDesc}}  баллов</div>
+                </div>
+            </div>
+           <div class="card-list__col">
+               <button
+                       [class.card-list__btn_yellow]="item.button==='Ваша команда'"
+                       class="card-list__btn button-white"
+                       (click)="clickEvent(item.id, item.id2)"
+               >
+                   {{item.button}}
+               </button>
+           </div>
+
+        </article>
+    </div>
+</div>

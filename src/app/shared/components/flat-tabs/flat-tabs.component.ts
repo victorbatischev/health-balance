@@ -5,13 +5,10 @@ import {Component, Input, OnInit} from '@angular/core';
   templateUrl: './flat-tabs.component.html',
   styleUrls: ['./flat-tabs.component.scss']
 })
-export class FlatTabsComponent implements OnInit {
+export class FlatTabsComponent {
 
   @Input() platform_id: number;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

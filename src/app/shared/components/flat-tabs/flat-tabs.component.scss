@@ -15,7 +15,7 @@
     font-size: 13px;
     line-height: 100%;
     text-align: center;
-    color: #FFFFFF;
+    color: #7A7A7A;
     background: var(--backgroundMain);
     text-decoration: none;
 
@@ -23,5 +23,6 @@
   .activeLink {
     background: var(--backgroundContent);
     border-radius: 10px 10px 0px 0px;
+    color: #FFFFFF;
   }
 }
