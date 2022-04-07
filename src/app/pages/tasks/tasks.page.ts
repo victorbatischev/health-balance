@@ -60,7 +60,15 @@ export class TasksPage {
              this.listData = [];
              this.program_title = data.result.program_title;
              for (let i = 0; i < data.result.lessons.length; i++) {
-               this.listData.push({ id: data.result.lessons[i].id, img:  data.result.lessons[i].program_image != '' ? data.result.lessons[i].program_image : data.result.program_image, title: data.result.lessons[i].score + ' баллов', subTitle: data.result.lessons[i].title, subDesc: data.result.lessons[i].start_date + ' - ' + data.result.lessons[i].end_date, src: '/lesson-published/' + data.result.lessons[i].id, subLink: 'Посмотреть', complete: data.result.lessons[i].complete });
+               this.listData.push({
+                   id: data.result.lessons[i].id,
+                   img:  data.result.lessons[i].program_image != '' ? data.result.lessons[i].program_image : data.result.program_image,
+                   title: data.result.lessons[i].score + ' баллов',
+                   subTitle: data.result.lessons[i].title,
+                   subDesc: data.result.lessons[i].start_date + ' - ' + data.result.lessons[i].end_date,
+                   src: '/lesson-published/' + data.result.lessons[i].id,
+                   subLink: 'Посмотреть',
+                   complete: data.result.lessons[i].complete });
              }
             }, error => {
               console.log(error);

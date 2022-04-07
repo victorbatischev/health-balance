@@ -20,19 +20,23 @@
               class="input"
               placeholder="Пароль"
             ></ion-input>
-            <select
-              name="platform_id"
-              [(ngModel)]="registrationInfo.platform_id"
+            <ion-select
+                    class="select"
+                    name="platformId"
+                    [(ngModel)]="registrationInfo.platform_id"
+                    okText="Выбрать"
+                    cancelText="Отмена"
             >
-              <option value="0">Выберите платформу</option>
-              <option
-                *ngFor="let platform of platforms"
-                value="{{ platform.id }}"
+              <ion-select-option value="0"
+              >Ваша платформа</ion-select-option
+              >
+              <ion-select-option
+                      *ngFor="let platform of platforms"
+                      value="{{ platform.id }}"
               >
                 {{ platform.title }}
-              </option>
-            </select>
-
+              </ion-select-option>
+            </ion-select>
             <div class="btn-block">
               <ion-button
                 type="submit"

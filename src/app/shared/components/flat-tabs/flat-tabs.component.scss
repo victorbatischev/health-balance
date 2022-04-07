@@ -2,6 +2,7 @@
   .text {
     display: flex;
     align-items: center;
+    background: var(--backgroundMain);
     justify-content: space-between;
   }
 
@@ -16,7 +17,7 @@
     line-height: 100%;
     text-align: center;
     color: #7A7A7A;
-    background: var(--backgroundMain);
+
     text-decoration: none;
 
   }

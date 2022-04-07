@@ -1,142 +1,138 @@
 <app-header [title]="lesson.title"></app-header>
 
 <ion-content fullscreen class="container">
-  <ion-grid class="container-grid">
-    <ion-row justify-content-center align-items-center>
-      <ion-col size="12" ion-text-center>
-        <div class="container" style="height: 100%">
-          <div class="lesson-header">
-<!--            <div class="title-block">-->
-<!--              <h5 class="sub-title">{{ lesson.program_title }}</h5>-->
+    <ion-grid class="container-grid">
+        <ion-row justify-content-center align-items-center>
+            <ion-col size="12" ion-text-center>
+                <div class="container" style="height: 100%">
+                    <div class="lesson-header">
+                        <!--            <div class="title-block">-->
+                        <!--              <h5 class="sub-title">{{ lesson.program_title }}</h5>-->
 
-<!--              <div class="lesson-img">-->
-<!--                <img-->
-<!--                  src="{{ lesson.program_image }}"-->
-<!--                  alt="web-rf"-->
-<!--                  *ngIf="lesson.program_image != ''"-->
-<!--                />-->
-<!--              </div>-->
-<!--            </div>-->
-            <p class="lesson-title">{{ lesson.title }}</p>
+                        <!--              <div class="lesson-img">-->
+                        <!--                <img-->
+                        <!--                  src="{{ lesson.program_image }}"-->
+                        <!--                  alt="web-rf"-->
+                        <!--                  *ngIf="lesson.program_image != ''"-->
+                        <!--                />-->
+                        <!--              </div>-->
+                        <!--            </div>-->
+                        <p class="lesson-title">{{ lesson.title }}</p>
 
-            <ion-thumbnail class="player">
-              <iframe
-                [src]="trustedVideoUrl"
-                frameborder="0"
-                allowfullscreen
-                *ngIf="trustedVideoUrl != ''"
-              ></iframe>
-            </ion-thumbnail>
+                        <ion-thumbnail class="player">
+                            <iframe
+                                    [src]="trustedVideoUrl"
+                                    frameborder="0"
+                                    allowfullscreen
+                                    *ngIf="trustedVideoUrl != ''"
+                            ></iframe>
+                        </ion-thumbnail>
 
-            <div class="lesson-title">
-              <ion-label class="lesson-label" *ngIf="+lesson.type_id == 1"
-                >Выбор правильного ответа</ion-label
-              >
-              <ion-label class="lesson-label" *ngIf="+lesson.type_id == 2"
-                >Необходимо отсканировать QR-код</ion-label
-              >
-              <ion-label class="lesson-label" *ngIf="+lesson.type_id == 3"
-                >Строка для ответа</ion-label
-              >
-              <ion-label class="lesson-label" *ngIf="+lesson.type_id == 4"
-                >Загрузить файл</ion-label
-              >
-              <ion-label class="lesson-label" *ngIf="+lesson.type_id == 5"
-                >Активность</ion-label
-              >
-            </div>
-            <p class="sub-title" *ngIf="lesson.description != ''">
-              {{ lesson.description }}
-            </p>
-            <h3
-              class="lesson-title"
-              *ngIf="+lesson.type_id == 1 || +lesson.type_id == 3"
-            >
-              {{ lesson.question }}
-            </h3>
-            <p *ngIf="+lesson.type_id == 3  && !lesson.exist">
-              <ion-input
-                type="text"
-                class="input-ball"
-                name="answer"
-                [(ngModel)]="answer"
-                placeholder="Ответ на вопрос"
-              ></ion-input>
-            </p>
-          </div>
-          <div
-            class="custom-checkbox"
-            *ngFor="let answer of lesson.answers"
+                    </div>
+                    <div class="lesson-body">
+                        <div class="lesson-title">
+                            <ion-label class="lesson-label" *ngIf="+lesson.type_id == 1"
+                            >Выбор правильного ответа
+                            </ion-label
+                            >
+                            <ion-label class="lesson-label" *ngIf="+lesson.type_id == 2"
+                            >Отсканируйте QR - код
+                            </ion-label
+                            >
+                            <ion-label class="lesson-label" *ngIf="+lesson.type_id == 3"
+                            >Ответ на вопрос
+                            </ion-label
+                            >
+                            <ion-label class="lesson-label" *ngIf="+lesson.type_id == 4"
+                            >Загрузить файл
+                            </ion-label
+                            >
+                            <ion-label class="lesson-label" *ngIf="+lesson.type_id == 5"
+                            >Активность
+                            </ion-label
+                            >
+                        </div>
+                        <p class="sub-title" *ngIf="lesson.description != ''">
+                            {{ lesson.description }}
+                        </p>
+                        <h3
+                                class="lesson-title"
+                                *ngIf="+lesson.type_id == 1 || +lesson.type_id == 3"
+                        >
+                            {{ lesson.question }}
+                        </h3>
+                        <p *ngIf="+lesson.type_id == 3  && !lesson.exist">
+                            <ion-input
+                                    type="text"
+                                    class="input-ball"
+                                    name="answer"
+                                    [(ngModel)]="answer"
+                                    placeholder="Ответ на вопрос"
+                            ></ion-input>
+                        </p>
 
-          >
-              <input type="radio" class="custom-checkbox__checkbox" id="check-answer">
-            <label
-                for="check-answer"
-             (click)="doAnswer(answer.idx)"
-              *ngIf="+lesson.type_id != 3 && !lesson.exist"
-              >{{ answer.title }}</label
-            >
-          </div>
-          <div
-            class="button-wrapper"
-            *ngIf="(+lesson.type_id == 2 || +lesson.type_id == 3) && !lesson.exist"
-          >
-            <button
-              class="button button-white"
-              expand="block"
-              (click)="startTask()"
-              style="width: 50%;"
-            >
-              Выполнить
-            </button>
-            <!--ion-button
-                                class="button"
+                    <div
+                            class="custom-checkbox"
+                            *ngFor="let answer of lesson.answers"
+
+                    >
+                        <input type="radio" class="custom-checkbox__checkbox" id="check-answer">
+                        <label
+                                for="check-answer"
+                                (click)="doAnswer(answer.idx)"
+                                *ngIf="+lesson.type_id != 3 && !lesson.exist"
+                        >{{ answer.title }}</label
+                        >
+                    </div>
+                    <div
+                            class="button-wrapper"
+                            *ngIf="(+lesson.type_id == 2 || +lesson.type_id == 3) && !lesson.exist"
+                    >
+                        <button
+                                class="lesson-button"
                                 expand="block"
-                                style="font-size: 18px; --width: 80%; --background: #0361aa; --color: #fff; margin-top: 30px; margin-bottom: 210px;" (click)="startTask()">
-                          Редактировать
-                        </ion-button-->
-          </div>
-          <div
-            class="button-wrapper"
-            *ngIf="+lesson.type_id == 4 && !lesson.exist"
-          >
-            <ion-button
-              class="button"
-              expand="block"
-              style="
-                font-size: 18px;
-                --width: 80%;
-                --background: #0361aa;
-                --color: #fff;
-                margin-top: 30px;
-              "
-              (click)="uploadPhoto()"
-            >
-              Загрузить фото
-            </ion-button>
-          </div>
-          <div
-            class="button-wrapper"
-            *ngIf="+lesson.type_id == 4 && !lesson.exist"
-          >
-            <ion-button
-              class="button"
-              expand="block"
-              style="
-                font-size: 18px;
-                --width: 80%;
-                --background: #0361aa;
-                --color: #fff;
-                margin-top: 30px;
-              "
-              (click)="uploadDoc()"
-            >
-              Загрузить документ
-            </ion-button>
-          </div>
-          <h2 class="ion-text-center exist" *ngIf="lesson.exist">Выполнено</h2>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+                                (click)="startTask()"
+                        >
+                            Выполнить
+                        </button>
+                        <!--ion-button
+                                            class="button"
+                                            expand="block"
+                                            style="font-size: 18px; --width: 80%; --background: #0361aa; --color: #fff; margin-top: 30px; margin-bottom: 210px;" (click)="startTask()">
+                                      Редактировать
+                                    </ion-button-->
+                    </div>
+                    <div
+                            class="button-wrapper"
+                            *ngIf="+lesson.type_id == 4 && !lesson.exist"
+                    >
+                        <button
+                                class="lesson-button"
+                                expand="block"
+
+                                (click)="uploadPhoto()"
+                        >
+                            Загрузить фото
+                        </button>
+                    </div>
+                    <div
+                            class="button-wrapper"
+                            *ngIf="+lesson.type_id == 4 && !lesson.exist"
+                    >
+                        <button
+                                class="lesson-button"
+                                expand="block"
+
+                                (click)="uploadDoc()"
+                        >
+                            Загрузить документ
+                        </button>
+                    </div>
+                    <h2 class="ion-text-center exist" *ngIf="lesson.exist">Выполнено</h2>
+                    </div>
+                </div>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>

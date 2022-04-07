@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 75px;
+  padding: 0 20%;
   position: relative;
   background: var(--backgroundMain);
   overflow: hidden;
@@ -22,7 +22,7 @@
     filter: blur(85px);
   }
   .title {
-    margin: 80px 0;
+    margin: 35.56% 0;
     font-family: var(--fontDisplay);;
     font-style: normal;
     font-weight: 700;
@@ -37,8 +37,7 @@
     width: 100%;
     margin: 0 0 40px 0;
 
-    .input,
-    select {
+    .input {
       border-bottom: 1px solid #FFFFFF;
       font-family: var(--fontDisplay);;
       font-style: normal;
@@ -51,14 +50,15 @@
       margin-bottom: 30px;
     }
 
-    select {
+    .select {
+      color: #BFBFBF;
+      height: 31px;
       background: #5C5C5C;
       border-radius: 3px;
-      border: none;
-      color: #BFBFBF;
-      width: 100%;
-      padding: 9px 3px;
-      margin: 0 0 25px 0;
+      margin-bottom: 25px;
+      padding: 0 11px 0 9px;
+      font-size: 13px;
+
     }
     .btn-block {
       text-align: center;
@@ -150,4 +150,5 @@
   color: #F39F18;
   text-decoration: none;
   margin: 0 0 5px 31px;
+  z-index: 10;
 }
