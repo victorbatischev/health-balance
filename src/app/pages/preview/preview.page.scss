@@ -14,7 +14,7 @@
     position: relative;
     z-index: 9;
 
-    .wrapper-block-info{
+    .wrapper-block-info {
       flex: 1 1 auto;
     }
 
@@ -24,60 +24,57 @@
     }
 
     .title {
-      font-family: var(--fontDisplay);;
+      font-family: var(--fontDisplay);
       font-style: normal;
       font-weight: 700;
       font-size: 35px;
       line-height: 100%;
       text-align: center;
       letter-spacing: -0.02em;
-      color: #FFFFFF;
+      color: #ffffff;
       margin-top: 0;
       margin-bottom: 16px;
     }
 
     .info-text {
-      font-family: var(--fontDisplay);;
+      font-family: var(--fontDisplay);
       font-style: normal;
       font-weight: 400;
       font-size: 15px;
       line-height: 120%;
       text-align: center;
       letter-spacing: -0.02em;
-      color: #ABABAB;
+      color: #ababab;
       margin: 0 0 12px 0;
-      &:last-child{
+      &:last-child {
         margin: 0;
       }
 
       &_agree {
         font-size: 12px;
-        line-height: 100%;
       }
     }
 
     .advice-text {
-      font-family: var(--fontDisplay);;
+      font-family: var(--fontDisplay);
       font-style: normal;
       font-weight: 400;
       font-size: 10px;
       line-height: 120%;
       text-align: center;
       letter-spacing: -0.02em;
-      color: #4F4F4F;
+      color: #4f4f4f;
     }
 
     .btn-block {
-
       .button {
         width: 100%;
         --background: var(--backgroundContent);
         --border-radius: 8px;
-        --color: #56CCF2;
+        --color: #56ccf2;
         margin-bottom: 12px;
       }
     }
-
   }
   .circle-gradient {
     position: absolute;
@@ -87,11 +84,11 @@
     left: 7%;
     height: 29%;
     bottom: -164px;
-    background: #56CCF2;
+    background: #56ccf2;
     -webkit-filter: blur(200px);
     filter: blur(85px);
   }
-  .preview-image{
+  .preview-image {
     position: absolute;
     z-index: 4;
     bottom: -4px;
@@ -99,7 +96,7 @@
     left: 54%;
     transform: translateX(-50%);
     height: 40%;
-    img{
+    img {
       width: 100%;
       height: 100%;
       object-fit: cover;

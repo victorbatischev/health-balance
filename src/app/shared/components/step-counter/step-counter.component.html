@@ -1,8 +1,8 @@
 <div class="step-counter">
   <h3 class="step-text" *ngIf="period == 'today'">Сегодня вы прошли</h3>
   <h3 class="step-text" *ngIf="period == 'week'">За неделю вы прошли</h3>
-  <h3 class="step-text" *ngIf="period == 'month'">В этом месяце пройдено</h3>
-  <h3 class="step-text" *ngIf="period == 'year'">За этот год вы прошли</h3>
-  <h3 class="step-text" *ngIf="period == 'score'">За все время вы прошли</h3>
-  <h2 class="steps">{{ steps }} шагов </h2>
+  <h3 class="step-text" *ngIf="period == 'month'">За месяц вы прошли</h3>
+  <h3 class="step-text" *ngIf="period == 'year'">За год вы прошли</h3>
+  <h3 class="step-text" *ngIf="period == 'score'">Всего вы прошли</h3>
+  <h2 class="steps">{{ steps }} шагов</h2>
 </div>

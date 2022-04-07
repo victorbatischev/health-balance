@@ -21,18 +21,16 @@
               placeholder="Пароль"
             ></ion-input>
             <ion-select
-                    class="select"
-                    name="platformId"
-                    [(ngModel)]="registrationInfo.platform_id"
-                    okText="Выбрать"
-                    cancelText="Отмена"
+              class="select"
+              name="platformId"
+              [(ngModel)]="registrationInfo.platform_id"
+              okText="Выбрать"
+              cancelText="Отмена"
             >
-              <ion-select-option value="0"
-              >Ваша платформа</ion-select-option
-              >
+              <ion-select-option value="0">Ваша платформа</ion-select-option>
               <ion-select-option
-                      *ngFor="let platform of platforms"
-                      value="{{ platform.id }}"
+                *ngFor="let platform of platforms"
+                value="{{ platform.id }}"
               >
                 {{ platform.title }}
               </ion-select-option>
@@ -51,8 +49,8 @@
                 style="
                   font-size: 14px;
                   --background: transparent;
-                  --color: #8F8F8F;
-                  border: 1px solid  #8F8F8F;
+                  --color: #8f8f8f;
+                  border: 1px solid #8f8f8f;
                 "
                 expand="block"
                 >Назад</ion-button
@@ -69,7 +67,7 @@
               value="false"
               id="as"
             />
-<!--            routerLink="/agree-read-data"-->
+            <!--            routerLink="/agree-read-data"-->
             <label routerDirection="forward" class="agree__label" for="as"
               >Согласие на обработку персональных данных, в соответствии с
               Федеральным законом от 27.07.2002 года №152-ФЗ «О персональных
@@ -83,5 +81,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
 </div>

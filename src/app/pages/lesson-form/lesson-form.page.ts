@@ -185,15 +185,15 @@ export class LessonFormPage {
       return false
     }
     if (this.task.start_date == '') {
-      this.alertServ.showToast('Выберите дату открытия урока!')
+      this.alertServ.showToast('Выберите дату начала выполнения задания!')
       return false
     }
     if (this.task.end_date == '') {
-      this.alertServ.showToast('Выберите конечную дату выполнения урока!')
+      this.alertServ.showToast('Выберите дату завершения выполнения задания!')
       return false
     }
     if (this.task.score == 0) {
-      this.alertServ.showToast('Укажите количество балов за выполнение ДЗ!')
+      this.alertServ.showToast('Укажите количество балов за выполнение задания!')
       return false
     }
 

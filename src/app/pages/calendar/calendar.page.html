@@ -13,9 +13,11 @@
               [options]="options"
               class="calendar-item"
               (change)="onChange($event)"
-              style="    filter: invert(1);
-    background: #E9E7E7;
-    border-radius: 10px;"
+              style="
+                filter: invert(1);
+                background: #e9e7e7;
+                border-radius: 10px;
+              "
             >
             </ion-calendar>
           </div>
@@ -31,9 +33,7 @@
               (click)="toTasks('new')"
               lines="none"
             >
-              <ion-label class="calendar-label"
-                >Новое задание от куратора</ion-label
-              >
+              <ion-label class="calendar-label">Новых заданий:</ion-label>
               <ion-note class="calendar-note"
                 >{{ statistics_data.tasks_amount }}</ion-note
               >
@@ -45,7 +45,9 @@
               (click)="toTasks('end')"
               lines="none"
             >
-              <ion-label class="calendar-label">Дата сдачи ДЗ</ion-label>
+              <ion-label class="calendar-label"
+                >Срок выполнения заданий:</ion-label
+              >
               <ion-note class="calendar-note"
                 >{{ statistics_data.end_date }}</ion-note
               >
@@ -57,9 +59,7 @@
               (click)="toProgram()"
               lines="none"
             >
-              <ion-label class="calendar-label"
-                >Запуск новой программы</ion-label
-              >
+              <ion-label class="calendar-label">Новых программ:</ion-label>
               <ion-note class="calendar-note"
                 >{{ statistics_data.new_program }}
               </ion-note>
