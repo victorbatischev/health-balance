@@ -66,6 +66,7 @@ p {
 }
 .register-button{
   --background: #2C2C2C;
+  background: #2C2C2C;
   border-radius: 8px;
   color: #F39F18;
   width: 100%;
@@ -94,6 +95,15 @@ p {
   align-items: center;
   justify-content: center;
   width: 112px;
+}
+.button-transparent{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: -0.02em;
+  color: #8F8F8F;
+  --background: transparent;
+  border: 1px solid #8F8F8F;
 }
 
 .container {

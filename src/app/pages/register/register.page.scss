@@ -70,10 +70,18 @@
       }
       .button {
         width: 100%;
+        margin-bottom: 28px;
+        --border-radius: 50px;
+        &:last-child{
+          margin-bottom: 0;
+        }
+      }
+      .login-button{
+        backdrop-filter: blur(10px);
         --background: linear-gradient(91.14deg, rgba(255, 255, 255, 0.53) -13.28%, rgba(0, 0, 0, 0.2597) 138.38%);
         --color: #C7C7C7;
-        font-size: 14px;
-        --border-radius: 50px;
+        font-weight: 400;
+        margin-bottom: 15px;
       }
     }
   }

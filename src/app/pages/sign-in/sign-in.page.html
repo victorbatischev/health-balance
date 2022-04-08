@@ -1,7 +1,7 @@
 <div fullscreen class="content">
-    <ion-grid style="height: 100%" class="ion-no-padding">
+    <ion-grid class="ion-no-padding">
 
-        <ion-row justify-content-center align-items-center style="height: 100%">
+        <ion-row justify-content-center align-items-center>
             <ion-col size="12" ion-text-center>
 
                 <div class="container">
@@ -17,15 +17,10 @@
 
                         <div class="btn-block">
                             <ion-button type="submit" class="button login-button"
-                                        style="" expand="block">
+                                         expand="block">
                                 Войти
                             </ion-button>
-                            <ion-button class="button" style=" margin-bottom: 30px;
-                font-size: 14px;
-                --background: transparent;
-                --color: #8F8F8F;
-                border: 1px solid  #8F8F8F;
-                font-weight: 400;" outerDirection="forward" routerLink="/register" expand="block">Регистрация
+                            <ion-button class="button button-transparent" outerDirection="forward" routerLink="/register" expand="block">Регистрация
                             </ion-button>
                             <a (click)="restorePassword('')" class="forgot-password underline">Забыли логин или
                                 пароль?</a>
