@@ -36,23 +36,20 @@
               <div class="control-time">
                 <div class="input-block">
                   <p class="time-text">Начало программы</p>
-                  <ion-input
-                    type="text"
+                  <div
                     name="date_from"
                     [(ngModel)]="date.from"
-                    class="input time-input"
-                    placeholder="00.00.0000"
-                  ></ion-input>
+                    class="time-input"
+                  >{{date.from || '00.00.0000'}}</div>
                 </div>
                 <div class="input-block">
                   <p class="time-text">Окончание программы</p>
-                  <ion-input
-                    type="text"
+                  <div
                     name="date_to"
                     [(ngModel)]="date.to"
-                    class="input time-input"
-                    placeholder="00.00.0000"
-                  ></ion-input>
+                    class="time-input"
+
+                  >{{date.to || '00.00.0000'}}</div>
                 </div>
               </div>
             </div>

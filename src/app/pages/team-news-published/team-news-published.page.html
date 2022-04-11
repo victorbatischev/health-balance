@@ -38,28 +38,28 @@
                     </div-->
 
           <div class="news-content">
-            <h5 class="news-content__title">{{ news.customer }} <span>{{ news.created_at }}</span></h5>
+            <h5 class="news-content__title">Автор: {{ news.customer }} <span>{{ news.created_at }}</span></h5>
             <a
               class="news-content__link"
               (click)="copyToClipboard()"
             >
-              <ion-icon name="clipboard-outline"></ion-icon>
+              <img src="assets/images/copy.svg" alt="copy">
             </a>
             <h3 class="news-content__subtitle">{{ news.title }}</h3>
-            <p class="news-content__desc" *ngIf="news.content == ''">{{ news.annotation }}</p>
-            <div
-              class="news-content__desc"
-              [innerHTML]="html"
-              *ngIf="news.content != ''"
-            ></div>
 
             <ion-thumbnail class="player">
-              <img
-                src="{{ news.image }}"
-                alt="player"
-                *ngIf="news.image != ''"
-              />
+              <div class="news-content__preview">
+                <img
+
+                        src="https://funart.pro/uploads/posts/2021-04/thumbs/1618106048_8-p-grizli-i-burii-medved-zhivotnie-krasivo-fo-8.jpg"
+                        alt="player"
+                        *ngIf="news.image != ''"
+                />
+              </div>
             </ion-thumbnail>
+            <div class="news-content__content" *ngIf="news.content != ''">
+              {{news.content}}
+            </div>
             <div class="comment" *ngFor="let item of news.comments">
               <h5>{{ item.customer }}</h5>
               {{ item.comment }}
