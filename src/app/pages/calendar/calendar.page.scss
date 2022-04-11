@@ -1,43 +1,40 @@
 .img-block {
-    padding-bottom: 15px;
+  padding-bottom: 15px;
 }
 
 .calendar-item {
-    --inner-padding-start: 15px;
-    --inner-padding-top: 5px;
-    --inner-padding-bottom: 5px;
-    --inner-padding-end: 15px;
-    --background: var(--backgroundContent);
-    margin: 0;
-
+  --inner-padding-start: 15px;
+  --inner-padding-top: 0px;
+  --inner-padding-bottom: 0px;
+  --inner-padding-end: 15px;
+  --background: var(--backgroundContent);
+  margin: 0;
 }
 
 .calendar-label {
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 100%;
-    letter-spacing: -0.02em;
-    color: #FFFFFF;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 100%;
+  color: #ffffff;
 }
 
 .calendar-note {
-    font-size: 15px;
-    color: #7A7A7A;
-    margin: 11px 0;
+  font-size: 15px;
+  color: #7a7a7a;
+  margin: 11px 0;
 }
 
 .calendar-active {
-    color: #F39F18;
-    //border-radius: 50%;
-    //border: 1px solid #F39F18;
+  color: #f39f18;
+  //border-radius: 50%;
+  //border: 1px solid #F39F18;
 
-    .calendar-note {
-        color: #F39F18;
-
-    }
+  .calendar-note {
+    color: #f39f18;
+  }
 }
 
 .calendar-info {
-    background: inherit;
-    border-radius: 10px;
+  background: var(--backgroundContent);
+  border-radius: 10px;
 }

@@ -26,7 +26,7 @@ export class CreateProgramPage {
     image: string
     team_amount: number
     max_peoples: number
-  } = { title: '', image: '', team_amount: 1, max_peoples: 1 }
+  } = { title: '', image: '', team_amount: 3, max_peoples: 10 }
 
   date: { from: string; to: string } = { from: '', to: '' }
   date_from: string = ''

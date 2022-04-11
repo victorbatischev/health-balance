@@ -59,10 +59,10 @@
               <div lines="none">
                 <div *ngIf="send_push">
                   <ion-textarea
-                          class="input"
-                          name="push"
-                          [(ngModel)]="push"
-                          placeholder="Текст пуша"
+                    class="input"
+                    name="push"
+                    [(ngModel)]="push"
+                    placeholder="Текст push-уведомления"
                   ></ion-textarea>
                 </div>
                 <div class="custom-checkbox">
@@ -75,7 +75,7 @@
                     id="checkPush"
                     class="custom-checkbox__checkbox"
                   />
-                  <label for="checkPush">Отправить пуш</label>
+                  <label for="checkPush">Отправить push-уведомление</label>
                 </div>
               </div>
 
@@ -124,7 +124,9 @@
             routerDirection="forward"
             routerLink="/team-published/{{ item.id }}"
           >
-            <h5 class="news-content__title">Автор: {{ item.customer }} <span>{{ item.created_at }}</span></h5>
+            <h5 class="news-content__title">
+              Автор: {{ item.customer }} <span>{{ item.created_at }}</span>
+            </h5>
             <h3 class="news-content__subtitle">{{ item.title }}</h3>
 
             <p class="news-content__desc" *ngIf="item.annotation != ''">
@@ -136,14 +138,14 @@
               *ngIf="item.annotation == ''"
             ></div>
             <div class="news-content__comments-amount">
-              <img src="assets/images/team-news/Comments.svg" alt="comment"> <span>{{ item.comments_amount }}</span>
+              <img src="assets/images/team-news/Comments.svg" alt="comment" />
+              <span>{{ item.comments_amount }}</span>
             </div>
 
             <ion-thumbnail class="news-content__preview">
               <img
                 src="{{item.image || 'http://zabavnik.club/wp-content/uploads/Photo_of_the_whale_14_24024853.jpg'}}"
                 alt="player"
-
               />
             </ion-thumbnail>
 

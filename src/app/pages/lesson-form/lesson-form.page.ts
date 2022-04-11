@@ -193,7 +193,7 @@ export class LessonFormPage {
       return false
     }
     if (this.task.score == 0) {
-      this.alertServ.showToast('Укажите количество балов за выполнение задания!')
+      this.alertServ.showToast('Укажите количество баллов за выполнение задания!')
       return false
     }
 

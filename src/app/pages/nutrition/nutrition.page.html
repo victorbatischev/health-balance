@@ -10,45 +10,39 @@
             <div class="title-block">
               <h5 class="title">Информация</h5>
               <p class="title-desc">
-                <img src="assets/images/common/cloack.svg" alt="clock"> {{ program.start_time }} - {{
-                program.end_time }}
+                <img src="assets/images/common/cloack.svg" alt="clock" /> {{
+                program.start_time }} - {{ program.end_time }}
               </p>
             </div>
 
             <div class="img-block">
-
-                <img
-                  src="{{ program.image }}"
-                  alt="apple"
-                  *ngIf="program.image != 0"
-                />
-
+              <img
+                src="{{ program.image }}"
+                alt="apple"
+                *ngIf="program.image != 0"
+              />
             </div>
           </div>
 
+          <div class="link-block">
+            <a class="link" [routerLink]="['/tasks/' + program.id]"
+              ><ion-button class="button button-yellow"
+                >Программы и задания</ion-button
+              ></a
+            >
+          </div>
 
-            <div class="link-block">
-              <a class="link" [routerLink]="['/tasks/' + program.id]"
-              ><ion-button class="button button-yellow">Лекции и домашнее задание</ion-button></a
-              >
-            </div>
-
-            <div class="progress-bar-block">
-              <ion-progress-bar
-                class="progress-bar"
-                value="0"
-              ></ion-progress-bar>
-              <p class="progress-text">
-                Участники уже прошли 0 из {{ program.lessons_amount }} заданий
-              </p>
-            </div>
+          <div class="progress-bar-block">
+            <ion-progress-bar class="progress-bar" value="0"></ion-progress-bar>
+            <p class="progress-text">
+              Участники уже прошли 0 из {{ program.lessons_amount }} заданий
+            </p>
+          </div>
         </div>
-            <div class="list-block">
-              <h5 class="title">Лидерборд</h5>
-              <app-leaderboardList [data]="listData"></app-leaderboardList>
-            </div>
-
-
+        <div class="list-block">
+          <h5 class="title">Лидерборд</h5>
+          <app-leaderboardList [data]="listData"></app-leaderboardList>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
