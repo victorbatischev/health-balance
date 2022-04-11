@@ -9,6 +9,8 @@
   display: flex;
   flex-direction: column;
   background: var(--backgroundContent);
+  border-radius: 10px;
+
   &__header{
     display: flex;
     column-gap: 18px;

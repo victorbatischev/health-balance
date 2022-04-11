@@ -4,7 +4,7 @@
 <ion-content fullscreen class="container" force-overscroll="false">
     <ion-grid class="container-grid">
         <ion-row justify-content-center align-items-center>
-            <ion-col size="12" ion-text-center style="background: var(--backgroundContent);">
+            <ion-col size="12" ion-text-center style="background: var(--backgroundContent); border-radius: 10px;">
                 <app-flat-tabs [platform_id]="customerData.platform_id"></app-flat-tabs>
                 <div class='platform' *ngIf="platform_id && platform_id != '0'">
                     <label class='label'><span>Ваша платформа</span>{{ platform_title || 'Ваша платформа не указана'}} </label>

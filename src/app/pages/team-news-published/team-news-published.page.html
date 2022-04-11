@@ -1,6 +1,6 @@
 <app-header [title]="'Командные новости'"></app-header>
 
-<ion-content fullscreen class="dark-container">
+<ion-content fullscreen class="container">
   <ion-grid class="container-grid">
     <ion-row justify-content-center align-items-center>
       <ion-col size="12" ion-text-center>
@@ -38,17 +38,17 @@
                     </div-->
 
           <div class="news-content">
-            <h5>{{ news.customer }} <span>{{ news.created_at }}</span></h5>
+            <h5 class="news-content__title">{{ news.customer }} <span>{{ news.created_at }}</span></h5>
             <a
-              style="font-size: 15px; float: right"
+              class="news-content__link"
               (click)="copyToClipboard()"
             >
               <ion-icon name="clipboard-outline"></ion-icon>
             </a>
-            <h3 class="title">{{ news.title }}</h3>
-            <p class="desc" *ngIf="news.content == ''">{{ news.annotation }}</p>
+            <h3 class="news-content__subtitle">{{ news.title }}</h3>
+            <p class="news-content__desc" *ngIf="news.content == ''">{{ news.annotation }}</p>
             <div
-              class="desc"
+              class="news-content__desc"
               [innerHTML]="html"
               *ngIf="news.content != ''"
             ></div>

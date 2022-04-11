@@ -1,6 +1,7 @@
 .list {
   background: var(--backgroundContent);
   padding: 10px 15px;
+  border-radius: 10px;
   &-item{
     --background: var(--backgroundContent);
     display: flex;

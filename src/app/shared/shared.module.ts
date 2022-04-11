@@ -17,6 +17,7 @@ import {FlatTabsComponent} from './components/flat-tabs/flat-tabs.component'
 import {HeaderMainComponent} from "./components/header-main/header-main.component";
 import {LeaderboardListComponent} from "./components/leaderboard-list/leaderboard-list.component";
 import {ListTasksComponent} from "./components/list-tasks/list-tasks.component";
+import {PollListComponent} from "./components/poll-list/poll-list.component";
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import {ListTasksComponent} from "./components/list-tasks/list-tasks.component";
         FlatTabsComponent,
         HeaderMainComponent,
         LeaderboardListComponent,
-        ListTasksComponent
+        ListTasksComponent,
+        PollListComponent
     ],
     imports: [CommonModule, FormsModule, IonicModule, RouterModule],
     exports: [
@@ -50,7 +52,8 @@ import {ListTasksComponent} from "./components/list-tasks/list-tasks.component";
         FlatTabsComponent,
         HeaderMainComponent,
         LeaderboardListComponent,
-        ListTasksComponent
+        ListTasksComponent,
+        PollListComponent
 
     ]
 })

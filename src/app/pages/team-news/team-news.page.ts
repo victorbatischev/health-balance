@@ -319,6 +319,8 @@ export class TeamNewsPage {
             this.alertServ.showToast('Новость была успешно добавлена')
             this.news_title = ''
             this.news_annotation = ''
+            this.video_file = ''
+            this.push = ''
             this.loadNews()
           },
           (error) => {

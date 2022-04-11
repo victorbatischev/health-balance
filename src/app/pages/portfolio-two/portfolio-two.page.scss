@@ -65,6 +65,7 @@
 
   .btn-block {
     text-align: center;
+    margin-top: 18px;
 
     .forgot-password {
       text-align: center;
@@ -73,10 +74,7 @@
     }
     .button {
       width: 100%;
-      --background: var(--backgroundContent);
-      --border-radius: 5px;
-      font-size: 17px;
-      color: #F39F18;
+
     }
   }
 }

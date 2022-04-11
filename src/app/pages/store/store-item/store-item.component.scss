@@ -1,7 +1,11 @@
 .store-item {
     font-family: var(--fontDisplay);
+    background: var(--backgroundContent);
 }
+.store-body{
+    padding: 0 12px 26px 12px;
 
+}
 .title {
     font-weight: 700;
     font-size: 17px;

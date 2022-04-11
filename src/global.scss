@@ -249,6 +249,7 @@ h1 {
   margin: 0 0 10px 0;
   align-items: center;
   gap: 23px;
+  border-radius: 10px;
   .label{
     font-weight: 700;
     font-size: 13px;
@@ -312,4 +313,9 @@ h1 {
     border-left: 0;
     border-right: 0;
   }
+}
+
+.alert-wrapper.sc-icon-alert-md{
+  filter: invert(1);
+  border-radius: 5px;
 }
