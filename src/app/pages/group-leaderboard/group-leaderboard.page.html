@@ -1,14 +1,20 @@
-<app-header [title]="'Групповой лидерборд'"></app-header>
+<app-header [title]="'Командный лидерборд'"></app-header>
 
 <ion-content fullscreen class="container">
   <ion-grid class="container-grid">
     <ion-row justify-content-center align-items-center>
       <ion-col size="12" ion-text-center>
         <div class="container">
-          <div class='platform'>
-            <label class='label'> <span>Ваша платформа</span>{{ liderboard.platform || 'Ваша платформа не указана'}} </label>
+          <div class="platform">
+            <label class="label">
+              <span>Ваша платформа</span>{{ liderboard.platform || 'Ваша
+              платформа не указана'}}
+            </label>
             <div class="img-block">
-              <img src="{{ liderboard.platform_image || 'assets/images/menu-logo.svg' }}"  alt="platform"/>
+              <img
+                src="{{ liderboard.platform_image || 'assets/images/menu-logo.svg' }}"
+                alt="platform"
+              />
             </div>
           </div>
           <div class="table" *ngFor="let program of liderboard.programs">
@@ -26,10 +32,18 @@
 
             <ion-grid class="table-header">
               <ion-row class="ion-align-self-center">
-                <ion-col size="3" class="ion-text-center table-title">Команды</ion-col>
-                <ion-col size="3" class="ion-text-center table-title">ДЗ</ion-col>
-                <ion-col size="3" class="ion-text-center table-title">Шаги</ion-col>
-                <ion-col size="3" class="ion-text-center table-title">Общее</ion-col>
+                <ion-col size="3" class="ion-text-center table-title"
+                  >Команды</ion-col
+                >
+                <ion-col size="3" class="ion-text-center table-title"
+                  >ДЗ</ion-col
+                >
+                <ion-col size="3" class="ion-text-center table-title"
+                  >Шаги</ion-col
+                >
+                <ion-col size="3" class="ion-text-center table-title"
+                  >Общее</ion-col
+                >
               </ion-row>
             </ion-grid>
             <ion-grid class="ion-align-self-center">
@@ -38,7 +52,10 @@
                 *ngFor="let item of program.teams"
               >
                 <ion-col class="ion-text-left table-label" *ngIf="item.active"
-                  ><a routerDirection="forward" class="table-activeLink" routerLink="/team/{{ item.id }}"
+                  ><a
+                    routerDirection="forward"
+                    class="table-activeLink"
+                    routerLink="/team/{{ item.id }}"
                     >{{ item.title }}</a
                   ><br /><span
                     >{{ item.peoples }} из {{ item.max_peoples }} чел.</span

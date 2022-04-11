@@ -23,7 +23,7 @@ import {
 export class LessonFormPage {
   programs: any = []
   customers: any = []
-  platform_id: string = '0';
+  platform_id: string = '0'
   task: {
     program_id: string
     customer_id: string
@@ -68,7 +68,7 @@ export class LessonFormPage {
   }
 
   constructor(
-      public route: ActivatedRoute,
+    public route: ActivatedRoute,
     public modalCtrl: ModalController,
     public navCtrl: NavController,
     public httpClient: HttpClient,
@@ -76,7 +76,7 @@ export class LessonFormPage {
     private connectivityServ: ConnectivityService,
     private alertServ: AlertService
   ) {
-    this.platform_id = this.route.snapshot.paramMap.get('platform_id');
+    this.platform_id = this.route.snapshot.paramMap.get('platform_id')
     this.storage.get('customerData').then((val) => {
       this.customerData = val
       if (this.connectivityServ.isOnline()) {
@@ -108,7 +108,7 @@ export class LessonFormPage {
       closeLabel: 'Закрыть',
       weekdays: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
       monthFormat: 'MMM YYYY',
-      weekStart: 1,
+      weekStart: 1
     }
     let myCalendar = await this.modalCtrl.create({
       component: CalendarModal,
@@ -193,7 +193,9 @@ export class LessonFormPage {
       return false
     }
     if (this.task.score == 0) {
-      this.alertServ.showToast('Укажите количество балов за выполнение задания!')
+      this.alertServ.showToast(
+        'Укажите количество баллов за выполнение задания!'
+      )
       return false
     }
 
@@ -232,9 +234,9 @@ export class LessonFormPage {
             '&end_date=' +
             this.task.end_date +
             '&score=' +
-            this.task.score+
-            '&platform='+this.platform_id
-
+            this.task.score +
+            '&platform=' +
+            this.platform_id
         )
         .subscribe(
           (data: any) => {

@@ -49,11 +49,11 @@ export class IndividualLeaderboardPage {
           .subscribe(
             (data: any) => {
               this.liderboard = data.result
-              this.setActiveTab('score')
+              this.setActiveTab('total')
             },
             (error) => {
               console.log(error)
-              this.setActiveTab('score')
+              this.setActiveTab('total')
             }
           )
       } else {

@@ -21,7 +21,7 @@
               class="link"
               (click)="uploadPhoto()"
               *ngIf="programInfo.image == ''"
-              >Загрузить лого/аватар программы</a
+              >Загрузить логотип программы...</a
             >
             <img
               src="{{ programInfo.image }}"
@@ -35,21 +35,20 @@
 
               <div class="control-time">
                 <div class="input-block">
-                  <p class="time-text">Начало программы</p>
+                  <p class="time-text">Дата начала:</p>
                   <div
                     name="date_from"
                     [(ngModel)]="date.from"
                     class="time-input"
-                  >{{date.from || '00.00.0000'}}</div>
+                  >
+                    {{date.from || 'не указана'}}
+                  </div>
                 </div>
                 <div class="input-block">
-                  <p class="time-text">Окончание программы</p>
-                  <div
-                    name="date_to"
-                    [(ngModel)]="date.to"
-                    class="time-input"
-
-                  >{{date.to || '00.00.0000'}}</div>
+                  <p class="time-text">Дата завершения:</p>
+                  <div name="date_to" [(ngModel)]="date.to" class="time-input">
+                    {{date.to || 'не указана'}}
+                  </div>
                 </div>
               </div>
             </div>
@@ -61,9 +60,11 @@
                 type="string"
                 [format]="'DD.MM.YYYY'"
                 [options]="options"
-                style="    filter: invert(1);
-    background: #E9E7E7;
-    border-radius: 10px;"
+                style="
+                  filter: invert(1);
+                  background: #e9e7e7;
+                  border-radius: 10px;
+                "
               >
               </ion-calendar>
             </div>
@@ -73,7 +74,7 @@
 
               <div class="team">
                 <div class="team-block">
-                  <p class="team-text">кол-во команд</p>
+                  <p class="team-text">макс. кол-во команд</p>
                   <ion-input
                     type="text"
                     name="team_amount"
@@ -83,7 +84,7 @@
                   ></ion-input>
                 </div>
                 <div class="team-block">
-                  <p class="team-text">человек в команде</p>
+                  <p class="team-text">макс. чел. в команде</p>
                   <ion-input
                     type="text"
                     name="max_peoples"

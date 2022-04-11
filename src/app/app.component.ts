@@ -58,7 +58,7 @@ export class AppComponent {
       id: 3,
       title: 'Задания',
       subMenu: [
-        { id: 3.1, title: 'Групповые', count: 0 },
+        { id: 3.1, title: 'Командные', count: 0 },
         { id: 3.2, title: 'Индивидуальные', count: 0 }
       ]
     },
@@ -66,7 +66,7 @@ export class AppComponent {
       id: 4,
       title: 'Лидерборд',
       subMenu: [
-        { id: 4.1, title: 'Групповой', count: 0 },
+        { id: 4.1, title: 'Командный', count: 0 },
         { id: 4.2, title: 'Индивидуальный', count: 0 }
       ]
     },
@@ -74,7 +74,7 @@ export class AppComponent {
       id: 5,
       title: 'Новости',
       subMenu: [
-        { id: 5.1, title: 'Групповые', count: 0 }
+        { id: 5.1, title: 'Командные', count: 0 }
         // { id: 5.2, title: 'Индивидуальные', count: 0 }
       ]
     },
@@ -189,7 +189,7 @@ export class AppComponent {
                 subMenu: [
                   {
                     id: 3.1,
-                    title: 'Групповые',
+                    title: 'Командные',
                     count: data.result.lessons
                   },
                   {
@@ -203,7 +203,7 @@ export class AppComponent {
                 id: 4,
                 title: 'Лидерборд',
                 subMenu: [
-                  { id: 4.1, title: 'Групповой', count: 0 },
+                  { id: 4.1, title: 'Командный', count: 0 },
                   { id: 4.2, title: 'Индивидуальный', count: 0 }
                 ]
               },
@@ -211,7 +211,7 @@ export class AppComponent {
                 id: 5,
                 title: 'Новости',
                 subMenu: [
-                  { id: 5.1, title: 'Групповые', count: data.result.team_news }
+                  { id: 5.1, title: 'Командные', count: data.result.team_news }
                   // { id: 5.2, title: 'Индивидуальные', count: 0},
                 ]
               },

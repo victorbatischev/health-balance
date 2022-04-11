@@ -30,9 +30,8 @@
 
 body {
   background: var(--backgroundMain);
-
 }
-*{
+* {
   padding: 0;
   margin: 0;
 }
@@ -54,7 +53,7 @@ p {
 
 .button {
   width: 49%;
-  font-family: var(--fontDisplay);;
+  font-family: var(--fontDisplay);
   font-style: normal;
   font-weight: 700;
   font-size: 13px;
@@ -64,17 +63,17 @@ p {
   border-radius: 50px;
   height: 41px;
 }
-.register-button{
-  --background: #2C2C2C;
-  background: #2C2C2C;
+.register-button {
+  --background: #2c2c2c;
+  background: #2c2c2c;
   border-radius: 8px;
-  color: #F39F18;
+  color: #f39f18;
   width: 100%;
   font-size: 15px;
   font-weight: 400;
 }
-.button-yellow{
-  --background:var(--yellowGradientBackground);
+.button-yellow {
+  --background: var(--yellowGradientBackground);
   border-radius: 8px;
   color: #000000;
   width: 100%;
@@ -82,8 +81,8 @@ p {
   font-size: 15px;
   height: 41px;
 }
-.button-white{
-  background: #FFFFFF;
+.button-white {
+  background: #ffffff;
   backdrop-filter: blur(10px);
   border-radius: 55px;
   color: #252525;
@@ -96,28 +95,28 @@ p {
   justify-content: center;
   width: 112px;
 }
-.button-transparent{
+.button-transparent {
   font-weight: 400;
   font-size: 14px;
   line-height: 100%;
   letter-spacing: -0.02em;
-  color: #8F8F8F;
+  color: #8f8f8f;
   --background: transparent;
-  border: 1px solid #8F8F8F;
+  border: 1px solid #8f8f8f;
 }
 
 .container {
   --background: var(--backgroundMain);
   --padding-start: 15px;
   --padding-end: 15px;
-  font-family: "SF Pro Display";
+  font-family: 'SF Pro Display';
   //box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .white-container {
   --background: #fff;
 }
-.container-graphic{
+.container-graphic {
   padding: 18px 0 0 0;
   background: var(--backgroundContent);
   border-radius: 0px 0px 10px 10px;
@@ -162,11 +161,14 @@ h1 {
   border: none !important;
 }
 
+.month-packer-item button {
+  color: #202020;
+}
+
 * {
   text-transform: none !important;
-
 }
-.line{
+.line {
   position: absolute;
   width: 150px;
   background: #fff;
@@ -209,38 +211,37 @@ h1 {
     display: flex;
     align-items: center;
     &:before {
-      content:'';
+      content: '';
       -webkit-appearance: none;
       background-color: transparent;
       border: 2px solid #fff;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+        inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
       padding: 7.5px;
       display: inline-block;
       position: relative;
       vertical-align: middle;
       cursor: pointer;
       margin-right: 13px;
-
     }
   }
-  input[type="radio"] + label:before{
+  input[type='radio'] + label:before {
     border-radius: 50%;
   }
-  input[type="radio"]:checked + label:after {
+  input[type='radio']:checked + label:after {
     border-radius: 50%;
   }
   input:checked + label:after {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     left: 4px;
     width: 11px;
     height: 11px;
-    background: #F39F18;
-
+    background: #f39f18;
   }
 }
-.platform{
+.platform {
   display: flex;
   background: var(--backgroundContent);
   justify-content: space-between;
@@ -250,7 +251,7 @@ h1 {
   align-items: center;
   gap: 23px;
   border-radius: 10px;
-  .label{
+  .label {
     font-weight: 700;
     font-size: 13px;
     color: #fff;
@@ -258,14 +259,14 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 6px;
-    span{
+    span {
       font-weight: 400;
-      color: #A3A3A3;
+      color: #a3a3a3;
     }
   }
-  .img-block{
+  .img-block {
     flex: 0 0 50px;
-    img{
+    img {
       border-radius: 50%;
     }
   }
@@ -285,26 +286,26 @@ h1 {
     margin: 0 0 14px 0;
 
     .tab-link {
-      color: #7A7A7A;
+      color: #7a7a7a;
       font-family: var(--fontDisplay);
       font-size: 13px;
       display: block;
       padding: 6px 0;
-      background: #2C2C2C;
+      background: #2c2c2c;
       border-radius: 5px;
     }
 
     &:active {
       .tab-link {
         color: #fff;
-        background-color: #3D3C3C;
+        background-color: #3d3c3c;
       }
     }
   }
 
   .active {
     .tab-link {
-      background-color: #3D3C3C;
+      background-color: #3d3c3c;
       color: #fff;
     }
   }
@@ -315,7 +316,7 @@ h1 {
   }
 }
 
-.alert-wrapper.sc-icon-alert-md{
+.alert-wrapper.sc-icon-alert-md {
   filter: invert(1);
   border-radius: 5px;
 }

@@ -5,10 +5,16 @@
     <ion-row justify-content-center align-items-center>
       <ion-col size="12" ion-text-center>
         <div class="container">
-          <div class='platform'>
-            <label class='label'><span>Ваша платформа</span>{{ liderboard.program_title || 'Ваша платформа не указана'}} </label>
+          <div class="platform">
+            <label class="label"
+              ><span>Выбранная программа</span>{{ liderboard.program_title ||
+              'Программа не указана'}}
+            </label>
             <div class="img-block">
-              <img src="{{ liderboard.platform_image || 'assets/images/menu-logo.svg' }}"  alt="platform"/>
+              <img
+                src="{{ liderboard.platform_image || 'assets/images/menu-logo.svg' }}"
+                alt="platform"
+              />
             </div>
           </div>
           <div class="table">
@@ -22,7 +28,7 @@
                 <div class="table-header-label">Участник</div>
                 <div class="table-header-label">ДЗ</div>
                 <div class="table-header-label">Шаги</div>
-                <div class="table-header-label">Баллы</div>
+                <div class="table-header-label">Общее</div>
               </div>
             </div>
             <div class="table-body">
