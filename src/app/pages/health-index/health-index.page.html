@@ -1,7 +1,7 @@
 <app-header [title]="'Индекс здоровья'"></app-header>
 
 <ion-content fullscreen class="container" #pageTop>
-  <ion-grid *ngIf="questions.length" class="container-grid" >
+  <ion-grid *ngIf="questions.length" class="container-grid">
     <ion-row>
       <ion-col class="ion-text-center" *ngIf="url"
         ><a href="{{ url }}" target="_blank">Пройти на сайт</a></ion-col
@@ -9,17 +9,26 @@
     </ion-row>
     <ion-row>
       <ion-col class="ion-text" *ngIf="progress.step"
-        ><h2 class="subtitle" style="margin-bottom: 10px;
-    font-size: 25px;
-    font-weight: 700;">Анкета {{ progress.step }}</h2></ion-col
+        ><h2
+          class="subtitle"
+          style="margin-bottom: 10px; font-size: 25px; font-weight: 700"
+        >
+          Анкета {{ progress.step }}
+        </h2></ion-col
       >
     </ion-row>
     <ion-row>
-      <ion-col class="ion-text"  *ngIf="progress.title"
-        ><h2 class="title" style="margin: 0 0 20px 0">{{ progress.title }}</h2></ion-col
+      <ion-col class="ion-text" *ngIf="progress.title"
+        ><h2 class="title" style="margin: 0 0 20px 0">
+          {{ progress.title }}
+        </h2></ion-col
       >
     </ion-row>
-    <ion-row justify-content-center align-items-center style="background: var(--backgroundContent);">
+    <ion-row
+      justify-content-center
+      align-items-center
+      style="background: var(--backgroundContent)"
+    >
       <ion-col ion-text-center style="padding: 0 17px">
         <div class="container" style="height: 100%">
           <div
@@ -45,33 +54,34 @@
                   class="ion-align-items-center"
                   *ngFor="let answer of question.answers; let j = index"
                 >
+                  <ion-col class="variable-answer">
+                    <input
+                      type="radio"
+                      name="question{{ question.id }}"
+                      id="answer{{ question.id }}-{{ j }}"
+                      (click)="setAnswer(question.id, j)"
+                      class="variable-answer__checkbox"
+                    />
 
-                        <ion-col class="variable-answer">
-                          <input
-                            type="radio"
-                            name="question{{ question.id }}"
-                            id="answer{{ question.id }}-{{ j }}"
-                            (click)="setAnswer(question.id, j)"
-                            class="variable-answer__checkbox"
-                          />
-
-                          <label for="answer{{ question.id }}-{{ j }}"
-                            >{{ answer.value }}</label
-                          >
-
+                    <label for="answer{{ question.id }}-{{ j }}"
+                      >{{ answer.value }}</label
+                    >
                   </ion-col>
                 </ion-row>
               </ion-grid>
             </div>
             <!-- Input (тип 2) -- ввод строки -->
-            <div class="btn-block" style="margin-bottom: 10px" *ngIf="question.answer_type === '2'">
+            <div
+              class="btn-block"
+              style="margin-bottom: 10px"
+              *ngIf="question.answer_type === '2'"
+            >
               <ion-grid>
                 <div no-padding class="answer-field">
                   <ion-input
                     type="text"
                     [placeholder]="question.question"
                     [(ngModel)]="question.currentAnswer"
-
                   ></ion-input>
                 </div>
               </ion-grid>
@@ -79,12 +89,15 @@
             <!-- Input (тип 3) -- ввод числа -->
             <div class="btn-block" *ngIf="question.answer_type === '3'">
               <ion-grid>
-                <div no-padding class="answer-field answer-field_input" style="margin-bottom: 5px">
+                <div
+                  no-padding
+                  class="answer-field answer-field_input"
+                  style="margin-bottom: 5px"
+                >
                   <ion-input
                     type="number"
                     [placeholder]="placeholder"
                     [(ngModel)]="question.currentAnswer"
-
                   ></ion-input>
                 </div>
               </ion-grid>
@@ -121,12 +134,12 @@
             <!-- Input (тип 5) -- ввод даты -->
             <div class="btn-block" *ngIf="question.answer_type === '5'">
               <ion-grid>
-                <div no-padding style="background: #5C5C5C;">
+                <div no-padding style="background: #5c5c5c">
                   <ion-input
                     type="date"
                     [placeholder]="placeholder"
                     [(ngModel)]="question.currentAnswer"
-                    style="margin: 0;color: #fff; --padding-start: 10px"
+                    style="margin: 0; color: #fff; --padding-start: 10px"
                   ></ion-input>
                 </div>
               </ion-grid>
@@ -206,7 +219,6 @@
                     </ion-grid>
                   </ion-col>
                   <div
-
                     class="answer-field answer-field_input"
                     *ngIf="j === question.answers.length - 1"
                   >
@@ -219,7 +231,6 @@
                           type="text"
                           [placeholder]="placeholder"
                           [(ngModel)]="question.currentAnswer"
-
                         ></ion-input>
                       </ion-row>
                     </ion-grid>
@@ -235,10 +246,10 @@
               class="button register-button"
               style="
                 width: 100%;
-        font-size: 15px;
-        --background: #2C2C2C;
-        --color: #F39F18;
-        margin: 10px 0 28px 0;
+                font-size: 15px;
+                --background: #2c2c2c;
+                --color: #f39f18;
+                margin: 10px 0 28px 0;
               "
               (click)="doAnswer()"
               >{{ lastStep ? 'Завершить опрос' : 'Далее' }}</ion-button
@@ -252,19 +263,17 @@
     <ion-button
       class="button register-button"
       style="
-      width: 100%;
+        width: 100%;
         font-size: 15px;
-        --background: #2C2C2C;
-        --color: #F39F18;
+        --background: #2c2c2c;
+        --color: #f39f18;
         margin: 0 0 43px 0;
       "
       (click)="continuePoll()"
       >Продолжить опрос</ion-button
     >
 
-    <ion-button
-      class="button register-button"
-      (click)="interruptPoll()"
+    <ion-button class="button register-button" (click)="interruptPoll()"
       >Пройти опрос заново</ion-button
     >
   </div>

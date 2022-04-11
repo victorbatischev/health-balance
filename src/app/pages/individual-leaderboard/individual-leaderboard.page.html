@@ -5,10 +5,16 @@
     <ion-row justify-content-center align-items-center>
       <ion-col size="12" ion-text-center>
         <div class="container">
-          <div class='platform'>
-            <label class='label'><span>Ваша платформа</span>{{ liderboard.platform || 'Ваша платформа не указана'}} </label>
+          <div class="platform">
+            <label class="label"
+              ><span>Ваша платформа</span>{{ liderboard.platform || 'Ваша
+              платформа не указана'}}
+            </label>
             <div class="img-block">
-              <img src="{{ liderboard.platform_image || 'assets/images/menu-logo.svg' }}"  alt="platform"/>
+              <img
+                src="{{ liderboard.platform_image || 'assets/images/menu-logo.svg' }}"
+                alt="platform"
+              />
             </div>
           </div>
 
@@ -42,41 +48,41 @@
 
           <div class="tabs-block">
             <div class="tabs">
-                <span
-                        class="tab-link-block"
-                        [ngClass]="{'active': selected_tab === 'today'}"
-                        (click)="setActiveTab('today')"
-                >
-                  <a class="tab-link">День</a>
-                </span>
               <span
-                      class="tab-link-block no-border"
-                      [ngClass]="{'active': selected_tab === 'week'}"
-                      (click)="setActiveTab('week')"
+                class="tab-link-block"
+                [ngClass]="{'active': selected_tab === 'today'}"
+                (click)="setActiveTab('today')"
               >
-                  <a class="tab-link">Неделя</a>
-                </span>
+                <a class="tab-link">День</a>
+              </span>
               <span
-                      class="tab-link-block no-border"
-                      [ngClass]="{'active': selected_tab === 'month'}"
-                      (click)="setActiveTab('month')"
+                class="tab-link-block no-border"
+                [ngClass]="{'active': selected_tab === 'week'}"
+                (click)="setActiveTab('week')"
               >
-                  <a class="tab-link">Месяц</a>
-                </span>
+                <a class="tab-link">Неделя</a>
+              </span>
               <span
-                      class="tab-link-block no-border"
-                      [ngClass]="{'active': selected_tab === 'year'}"
-                      (click)="setActiveTab('year')"
+                class="tab-link-block no-border"
+                [ngClass]="{'active': selected_tab === 'month'}"
+                (click)="setActiveTab('month')"
               >
-                  <a class="tab-link">Год</a>
-                </span>
+                <a class="tab-link">Месяц</a>
+              </span>
               <span
-                      class="tab-link-block"
-                      [ngClass]="{'active': selected_tab === 'score'}"
-                      (click)="setActiveTab('score')"
+                class="tab-link-block no-border"
+                [ngClass]="{'active': selected_tab === 'year'}"
+                (click)="setActiveTab('year')"
               >
-                  <a class="tab-link">Всего</a>
-                </span>
+                <a class="tab-link">Год</a>
+              </span>
+              <span
+                class="tab-link-block"
+                [ngClass]="{'active': selected_tab === 'total'}"
+                (click)="setActiveTab('total')"
+              >
+                <a class="tab-link">Всего</a>
+              </span>
             </div>
           </div>
 

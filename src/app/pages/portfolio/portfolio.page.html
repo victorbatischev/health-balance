@@ -7,7 +7,6 @@
         <app-flat-tabs [platform_id]="customerData.platform_id"></app-flat-tabs>
         <div class="container-graphic">
           <div class="portfolio-content">
-
             <div class="tabs-block">
               <div class="tabs">
                 <span
@@ -40,8 +39,8 @@
                 </span>
                 <span
                   class="tab-link-block"
-                  [ngClass]="{'active': selected_tab === 'score'}"
-                  (click)="setActiveTab('score')"
+                  [ngClass]="{'active': selected_tab === 'total'}"
+                  (click)="setActiveTab('total')"
                 >
                   <a class="tab-link">Всего</a>
                 </span>

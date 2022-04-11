@@ -54,7 +54,10 @@ export class IndividualTaskPage {
                   id: data.result.lessons[i].id,
                   img: 'assets/images/individual/man.png',
                   title: data.result.lessons[i].score + ' баллов',
-                  subDesc: data.result.lessons[i].start_date + ' - ' + data.result.lessons[i].end_date,
+                  subDesc:
+                    data.result.lessons[i].start_date +
+                    ' - ' +
+                    data.result.lessons[i].end_date,
                   subTitle: data.result.lessons[i].title,
                   src: '/lesson-published/' + data.result.lessons[i].id,
                   subLink: 'Посмотреть'

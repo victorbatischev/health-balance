@@ -1,39 +1,39 @@
 <div class="tabs-block">
-    <div class="tabs">
-                <span
-                        class="tab-link-block"
-                        [ngClass]="{'active': selected_tab === 'today'}"
-                        (click)="setActiveTab('today')"
-                >
-                  <a class="tab-link">День</a>
-                </span>
-        <span
-                class="tab-link-block no-border"
-                [ngClass]="{'active': selected_tab === 'week'}"
-                (click)="setActiveTab('week')"
-        >
-                  <a class="tab-link">Неделя</a>
-                </span>
-        <span
-                class="tab-link-block no-border"
-                [ngClass]="{'active': selected_tab === 'month'}"
-                (click)="setActiveTab('month')"
-        >
-                  <a class="tab-link">Месяц</a>
-                </span>
-        <span
-                class="tab-link-block no-border"
-                [ngClass]="{'active': selected_tab === 'year'}"
-                (click)="setActiveTab('year')"
-        >
-                  <a class="tab-link">Год</a>
-                </span>
-        <span
-                class="tab-link-block"
-                [ngClass]="{'active': selected_tab === 'score'}"
-                (click)="setActiveTab('score')"
-        >
-                  <a class="tab-link">Всего</a>
-                </span>
-    </div>
+  <div class="tabs">
+    <span
+      class="tab-link-block"
+      [ngClass]="{ active: selected_tab === 'today' }"
+      (click)="setActiveTab('today')"
+    >
+      <a class="tab-link">День</a>
+    </span>
+    <span
+      class="tab-link-block no-border"
+      [ngClass]="{ active: selected_tab === 'week' }"
+      (click)="setActiveTab('week')"
+    >
+      <a class="tab-link">Неделя</a>
+    </span>
+    <span
+      class="tab-link-block no-border"
+      [ngClass]="{ active: selected_tab === 'month' }"
+      (click)="setActiveTab('month')"
+    >
+      <a class="tab-link">Месяц</a>
+    </span>
+    <span
+      class="tab-link-block no-border"
+      [ngClass]="{ active: selected_tab === 'year' }"
+      (click)="setActiveTab('year')"
+    >
+      <a class="tab-link">Год</a>
+    </span>
+    <span
+      class="tab-link-block"
+      [ngClass]="{ active: selected_tab === 'total' }"
+      (click)="setActiveTab('total')"
+    >
+      <a class="tab-link">Всего</a>
+    </span>
+  </div>
 </div>
