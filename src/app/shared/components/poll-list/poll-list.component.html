@@ -1,18 +1,23 @@
 <div class="poll-list">
-    <div class="poll-list__container">
-        <article class="poll-list__card card-poll" *ngFor="let item of list; let i = index; let last = last">
-            <div class="card-poll__head">
-                <div class="card-poll__img">
-                    <img [src]="item.img || 'assets/images/menu-logo.svg'" alt="">
-                </div>
-                <div class="card-poll__info">
-                    <div class="card-poll__title">{{item.title}}</div>
-                    <div class="card-poll__subtitle">{{item.subTitle}}</div>
-                </div>
-            </div>
-            <div class="card-poll__footer">
-                <button [routerLink]="['/' + item.src]" class="button register-button">Пройти</button>
-            </div>
-        </article>
-    </div>
+  <div class="poll-list__container">
+    <article
+      class="poll-list__card card-poll"
+      *ngFor="let item of list; let i = index; let last = last"
+    >
+      <div class="card-poll__head">
+        <div class="card-poll__img">
+          <img [src]="item.img || 'assets/images/menu-logo.svg'" alt="" />
+        </div>
+        <div class="card-poll__info">
+          <div class="card-poll__title">{{ item.title }}</div>
+          <div class="card-poll__subtitle">{{ item.subTitle }}</div>
+        </div>
+      </div>
+      <div class="card-poll__footer">
+        <button [routerLink]="['/' + item.src]" class="button register-button">
+          Пройти
+        </button>
+      </div>
+    </article>
+  </div>
 </div>
