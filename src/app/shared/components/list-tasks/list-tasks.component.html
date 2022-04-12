@@ -21,6 +21,7 @@
                         *ngIf="item.src && item.subLink"
                         [routerLink]="['/' + item.src]"
                         class="card-task__link"
+                        [ngStyle]="customBtnStyles"
                 >
                 Открыть
                 </div>

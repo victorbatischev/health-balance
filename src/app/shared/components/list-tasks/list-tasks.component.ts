@@ -16,6 +16,7 @@ import {IList} from "../../interfaces/List";
 export class ListTasksComponent {
 
     @Input() list: IList[] = [];
+    @Input() customBtnStyles?;
 
     customerData: Customer = {
         token: '',
