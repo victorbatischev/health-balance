@@ -1,5 +1,4 @@
 import { Component } from '@angular/core'
-
 import { HttpClient } from '@angular/common/http'
 import { Storage } from '@ionic/storage'
 
@@ -50,8 +49,8 @@ export class QuestionPage {
                 this.qaList.push({
                   id: data.result.interviews[i].id,
                   img: data.result.interviews[i].image,
-                  title: data.result.interviews[i].short_description,
-                  subTitle: data.result.interviews[i].title,
+                  title: data.result.interviews[i].title,
+                  subTitle: data.result.interviews[i].short_description,
                   src: '/interview/' + data.result.interviews[i].id,
                   subLink: 'Пройти',
                   complete: data.result.interviews[i].complete
