@@ -54,8 +54,6 @@ export class ChatPage {
         this.isLoading = false
       })
       .catch((error) => {
-        /* do something here too */
-        console.log('error')
         console.log(error)
       })
 
