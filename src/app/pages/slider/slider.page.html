@@ -1,31 +1,31 @@
-<div fullscreen class="content" >
+<div fullscreen class="content">
   <div class="container">
-    <ion-grid style="height: 100%;">
+    <ion-grid style="height: 100%">
       <ion-row justify-content-center align-items-center style="height: 100%">
         <ion-col size="12" ion-text-center>
-          <ion-slides pager="false" [options]="slideOpts" class="slider" #slider>
+          <ion-slides
+            pager="false"
+            [options]="slideOpts"
+            class="slider"
+            #slider
+          >
             <ion-slide
-                    *ngFor="let item of slides; let i = index"
-                    class="slide-block"
+              *ngFor="let item of slides; let i = index"
+              class="slide-block"
             >
               <app-advice
-                      [id]="item.id"
-                      [titleCount]="item.title"
-                      [description]="item.advice"
-                      (toNextSlide)="slideToNextAdvice($event)"
-                      (toPrevSlide)="slideToPrevAdvice($event)"
+                [id]="item.id"
+                [titleCount]="item.title"
+                [description]="item.advice"
+                (toNextSlide)="slideToNextAdvice($event)"
+                (toPrevSlide)="slideToPrevAdvice($event)"
               ></app-advice>
             </ion-slide>
-
           </ion-slides>
-
         </ion-col>
-
       </ion-row>
       <div class="line"></div>
     </ion-grid>
     <div class="circle-gradient"></div>
   </div>
-
-
 </div>

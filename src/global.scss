@@ -323,3 +323,15 @@ h1 {
   filter: invert(1);
   border-radius: 5px;
 }
+
+div.title .back {
+  color: var(--ion-color-primary) !important;
+}
+
+div.title .forward {
+  color: var(--ion-color-primary) !important;
+}
+
+div.title .switch-btn {
+  color: #000 !important;
+}
