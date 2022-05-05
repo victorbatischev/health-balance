@@ -45,7 +45,7 @@
               <div class="divider"></div>
             </div>
             <div class="news-content">
-              <h5 class="subtitle" *ngIf="i >= '3'">{{ question.question }}</h5>
+              <h5 class="subtitle" >{{ question.question }}</h5>
             </div>
             <!-- RadioButton (тип 1) -- выбор единственного ответа -->
             <div class="btn-block" *ngIf="question.answer_type === '1'">
@@ -80,7 +80,7 @@
                 <div no-padding class="answer-field">
                   <ion-input
                     type="text"
-                    [placeholder]="question.question"
+
                     [(ngModel)]="question.currentAnswer"
                   ></ion-input>
                 </div>
@@ -96,7 +96,7 @@
                 >
                   <ion-input
                     type="number"
-                    [placeholder]="placeholder"
+
                     [(ngModel)]="question.currentAnswer"
                   ></ion-input>
                 </div>

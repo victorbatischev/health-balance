@@ -51,9 +51,8 @@
               <div class="news-content__preview">
                 <img
 
-                        src="https://funart.pro/uploads/posts/2021-04/thumbs/1618106048_8-p-grizli-i-burii-medved-zhivotnie-krasivo-fo-8.jpg"
+                        [src]="news.image || 'assets/images/menu-logo.svg'"
                         alt="player"
-                        *ngIf="news.image != ''"
                 />
               </div>
             </ion-thumbnail>
