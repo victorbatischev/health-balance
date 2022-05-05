@@ -1,7 +1,6 @@
 @import 'src/assets/styles/vars';
 
-
-.buttons-block{
+.buttons-block {
   display: flex;
   align-items: center;
   margin-bottom: 21px;
@@ -11,7 +10,7 @@
   font-size: 15px;
   --background: var(--backgroundContent);
   --border-radius: 50px;
-  border: 1px solid #A3A3A3;
+  border: 1px solid #a3a3a3;
   white-space: nowrap;
   width: auto;
   height: 30px;
@@ -22,13 +21,13 @@
   font-weight: 400;
 
   --background-hover: none;
-  &:hover{
+  &:hover {
     background: none;
   }
 
   &.active {
     --background: var(--yellowGradientBackground);
-    color: #1B1B1B;
+    color: #1b1b1b;
     border: 1px solid transparent;
   }
 }
@@ -51,7 +50,6 @@
     margin: 3px 15px 0 25px;
   }
 }
-
 
 .portfolio-content {
   position: relative;
