@@ -1,7 +1,10 @@
 <app-header [title]="'Статистика'"></app-header>
 
 <ion-content fullscreen class="container">
-  <ion-grid class="container-grid" style="height: 100%;display: flex;flex-direction: column">
+  <ion-grid
+    class="container-grid"
+    style="height: 100%; display: flex; flex-direction: column"
+  >
     <ion-row style="flex: 1 1 auto">
       <ion-col>
         <img
@@ -25,7 +28,7 @@
         <ion-slides
           *ngIf="slides && slides.length"
           pager="true"
-          style="--bullet-background: #fff; --bullet-background-active: #F39F18;"
+          style="--bullet-background: #fff; --bullet-background-active: #f39f18"
         >
           <ion-slide *ngFor="let slide of slides; let i = index;">
             <div style="display: flex; flex-direction: column">
@@ -148,9 +151,7 @@
       <ion-col>
         <div>
           <div class="btn-block">
-            <ion-button
-              class="button register-button"
-              (click)="repeatTest()"
+            <ion-button class="button register-button" (click)="repeatTest()"
               >Пройти тест ещё раз</ion-button
             >
           </div>

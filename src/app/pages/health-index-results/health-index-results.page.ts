@@ -188,13 +188,13 @@ export class HealthIndexResultsPage {
 
                 switch (this.axes[index].images[idx]) {
                   case '+':
-                    ctx.drawImage(imageSuc, xAxis.bottom - 80, y - 10, 20, 20)
+                    ctx.drawImage(imageSuc, xAxis.bottom - 10, y - 10, 20, 20)
                     break
                   case '=':
-                    ctx.drawImage(imageWrn, xAxis.bottom - 80, y - 10, 20, 20)
+                    ctx.drawImage(imageWrn, xAxis.bottom - 10, y - 10, 20, 20)
                     break
                   case '-':
-                    ctx.drawImage(imageErr, xAxis.bottom - 80, y - 10, 20, 20)
+                    ctx.drawImage(imageErr, xAxis.bottom - 10, y - 10, 20, 20)
                     break
                 }
               })
