@@ -1,42 +1,64 @@
-
 <app-headerMain></app-headerMain>
 
 <ion-content fullscreen class="container" force-overscroll="false">
-    <ion-grid class="container-grid">
-        <ion-row justify-content-center align-items-center>
-            <ion-col size="12" ion-text-center style="background: var(--backgroundContent); border-radius: 10px;">
-                <app-flat-tabs [platform_id]="customerData.platform_id"></app-flat-tabs>
-                <div class='platform' *ngIf="platform_id && platform_id != '0'">
-                    <label class='label'><span>Ваша платформа</span>{{ platform_title || 'Ваша платформа не указана'}} </label>
-                    <div class="img-block">
-                        <img src="{{ platform_image || 'assets/images/menu-logo.svg' }}"  alt="platform"/>
-                    </div>
-                </div>
-<!--                *ngIf="customerData.role == 1 && platform_id != '0'"-->
-                <div class="btn-block" *ngIf="customerData.role == 1 && platform_id != '0'">
-                    <ion-button class="button button-yellow"
-                                expand="block" routerDirection="forward" routerLink="/create-program/{{ platform_id }}">
-                        Создать программу
-                    </ion-button>
-                </div>
-                <ion-grid class="container-grid">
-                    <ion-row justify-content-center align-items-center>
-                        <ion-col size="12" ion-text-center>
-                            <div class="container">
-                                <app-list
-                                        [list]="listData"
-                                        [showLastBorder]="false"
-                                        [customLabelStyles]="{ 'font-size': '15px' }"
-                                ></app-list>
-                            </div>
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
+  <ion-grid class="container-grid">
+    <ion-row justify-content-center align-items-center>
+      <ion-col
+        size="12"
+        ion-text-center
+        style="background: var(--backgroundContent); border-radius: 10px"
+      >
+        <app-flat-tabs [platform_id]="customerData.platform_id"></app-flat-tabs>
+        <div class="platform" *ngIf="platform_id && platform_id != '0'">
+          <label class="label"
+            ><span>Ваша платформа</span>{{ platform_title || 'Ваша платформа не
+            указана'}}
+          </label>
+          <div class="img-block">
+            <img
+              src="{{ platform_image || 'assets/images/menu-logo.svg' }}"
+              alt="platform"
+            />
+          </div>
+        </div>
+        <!--                *ngIf="customerData.role == 1 && platform_id != '0'"-->
+        <div
+          class="btn-block"
+          *ngIf="customerData.role == 1 && platform_id != '0'"
+        >
+          <ion-button
+            class="button button-yellow"
+            expand="block"
+            routerDirection="forward"
+            routerLink="/create-program/{{ platform_id }}"
+          >
+            Создать программу
+          </ion-button>
+        </div>
+        <ion-grid class="container-grid">
+          <ion-row justify-content-center align-items-center>
+            <ion-col size="12" ion-text-center>
+              <div class="container">
+                <app-list
+                  [list]="listData"
+                  [showLastBorder]="false"
+                  [customLabelStyles]="{ 'font-size': '15px' }"
+                ></app-list>
+              </div>
             </ion-col>
-        </ion-row>
-    </ion-grid>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
 <ion-footer>
-    <ion-searchbar [(ngModel)]="search" placeholder="Поиск" mode="ios" animated style="color: #fff"
-                   (ionChange)="doSearch();"></ion-searchbar>
+  <ion-searchbar
+    [(ngModel)]="search"
+    placeholder="Поиск"
+    mode="ios"
+    animated
+    style="color: #fff"
+    (ionChange)="doSearch();"
+  ></ion-searchbar>
 </ion-footer>

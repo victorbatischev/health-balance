@@ -36,17 +36,13 @@
               <div class="control-time">
                 <div class="input-block">
                   <p class="time-text">Дата начала:</p>
-                  <div
-                    name="date_from"
-                    [(ngModel)]="date.from"
-                    class="time-input"
-                  >
+                  <div name="date_from" class="time-input">
                     {{date.from || 'не указана'}}
                   </div>
                 </div>
                 <div class="input-block">
                   <p class="time-text">Дата завершения:</p>
-                  <div name="date_to" [(ngModel)]="date.to" class="time-input">
+                  <div name="date_to" class="time-input">
                     {{date.to || 'не указана'}}
                   </div>
                 </div>
@@ -55,6 +51,7 @@
 
             <div class="img-block">
               <ion-calendar
+                name="calendar"
                 [(ngModel)]="date"
                 type="string"
                 [format]="'DD.MM.YYYY'"
