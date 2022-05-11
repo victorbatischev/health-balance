@@ -82,9 +82,8 @@ export class StatisticPage {
         lbl = 'Месяцы'
         break
     }
-    Chart.defaults.global.defaultFontColor= '#A3A3A3';
+    Chart.defaults.global.defaultFontColor = '#A3A3A3'
     this.barChart = new Chart(this.barCanvas.nativeElement, {
-
       type: 'line',
       data: {
         labels: labels,
@@ -93,7 +92,7 @@ export class StatisticPage {
             data: values,
             backgroundColor: '#F39F18',
             borderColor: '#F39F18',
-            fill: false,
+            fill: false
           }
         ]
       },
@@ -107,12 +106,12 @@ export class StatisticPage {
             {
               stacked: true,
               gridLines: {
-                color: "#2D2D2D",
+                color: '#2D2D2D'
               },
               scaleLabel: {
                 display: true,
                 labelString: lbl,
-                fontColor: "#5C5C5C"
+                fontColor: '#5C5C5C'
               }
             }
           ],
@@ -120,18 +119,17 @@ export class StatisticPage {
             {
               stacked: true,
               gridLines: {
-                color: "#2D2D2D",
+                color: '#2D2D2D'
               },
               scaleLabel: {
                 display: true,
                 labelString:
                   this.stat_type == 0 ? 'Кол-во заданий' : 'Кол-во баллов',
-                fontColor: "#5C5C5C"
+                fontColor: '#5C5C5C'
               }
             }
-          ],
-        },
-
+          ]
+        }
       }
     })
 
@@ -142,15 +140,6 @@ export class StatisticPage {
     this.selected_tabs = idx
     if (idx > 0) {
       if (this.connectivityServ.isOnline()) {
-        console.log(
-          this.connectivityServ.apiUrl +
-            'main/stat?token=' +
-            this.customerData.token +
-            '&stat_type=' +
-            this.stat_type +
-            '&period=' +
-            idx
-        )
         this.httpClient
           .get(
             this.connectivityServ.apiUrl +

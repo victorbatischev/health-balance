@@ -26,8 +26,6 @@ export class SignInPage {
   ) {}
 
   doLogin() {
-    console.log(this.loginInfo)
-
     if (this.loginInfo.email.length < 6) {
       this.alertServ.showToast('Введите корректный e-mail')
       return false

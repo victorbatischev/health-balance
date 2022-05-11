@@ -185,16 +185,35 @@ export class HealthIndexResultsPage {
 
               ticks.forEach((value, idx) => {
                 var y = yAxis.getPixelForTick(ticks.length - idx)
+                var iconOffset = 400 - window.innerWidth
 
                 switch (this.axes[index].images[idx]) {
                   case '+':
-                    ctx.drawImage(imageSuc, xAxis.bottom - 10, y - 10, 20, 20)
+                    ctx.drawImage(
+                      imageSuc,
+                      xAxis.bottom - iconOffset,
+                      y - 10,
+                      20,
+                      20
+                    )
                     break
                   case '=':
-                    ctx.drawImage(imageWrn, xAxis.bottom - 10, y - 10, 20, 20)
+                    ctx.drawImage(
+                      imageWrn,
+                      xAxis.bottom - iconOffset,
+                      y - 10,
+                      20,
+                      20
+                    )
                     break
                   case '-':
-                    ctx.drawImage(imageErr, xAxis.bottom - 10, y - 10, 20, 20)
+                    ctx.drawImage(
+                      imageErr,
+                      xAxis.bottom - iconOffset,
+                      y - 10,
+                      20,
+                      20
+                    )
                     break
                 }
               })

@@ -119,7 +119,6 @@ export class LessonFormPage {
 
     const event: any = await myCalendar.onDidDismiss()
     const date: CalendarResult = event.data
-    console.log(date)
 
     if (date !== null) {
       if (idx == 1) {
