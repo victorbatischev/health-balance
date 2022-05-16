@@ -20,8 +20,8 @@ import { Storage } from '@ionic/storage'
 
 import { AlertService } from '../providers/alert-service'
 
-import { SplashScreen } from '@ionic-native/splash-screen/ngx'
-import { StatusBar } from '@ionic-native/status-bar/ngx'
+import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
+import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
 import { OneSignal } from '@ionic-native/onesignal/ngx'
 import { Health } from '@awesome-cordova-plugins/health/ngx'
 

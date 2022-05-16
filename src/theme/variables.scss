@@ -1,11 +1,11 @@
 :root {
   --primary-color: #0360aa;
   --text-color: #3c3c3b;
-  --yellowGradientBackground: linear-gradient(180deg, #F39F18 0%, #F3C318 100%);
+  --yellowGradientBackground: linear-gradient(180deg, #f39f18 0%, #f3c318 100%);
   --backgroundContent: #191919;
   --backgroundMain: #121212;
 
-  --fontDisplay: "SF Pro Display";
+  --fontDisplay: 'SF Pro Display';
 
   --regular-font: var(--fontDisplay);
   --light-font: var(--fontDisplay);
@@ -86,7 +86,7 @@
 }
 
 ion-back-button {
-	color: #fff;
+  color: #fff;
 }
 
 ion-alert {
@@ -95,6 +95,6 @@ ion-alert {
 }
 
 :root.ios {
-  --ion-padding: 20px;
-  --ion-margin: 20px;
+  --ion-padding: 0px;
+  --ion-margin: 0px;
 }

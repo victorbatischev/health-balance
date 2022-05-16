@@ -1,4 +1,4 @@
-.header{
+.header {
   background: var(--backgroundMain);
 }
 .menu-block {
@@ -8,8 +8,7 @@
   padding: 0 10px;
   height: 25px;
 
-
-  &__text{
+  &__text {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
@@ -34,12 +33,10 @@
 
   z-index: 200;
 
-
   .photo {
-
     margin-right: 11px;
 
-    .avatar{
+    .avatar {
       width: 26px;
       height: 26px;
       border-radius: 63.4146px;
@@ -48,14 +45,14 @@
 
   .photo-title {
     margin: 0;
-    font-family: var(--fontDisplay);;
+    font-family: var(--fontDisplay);
     font-style: normal;
     font-weight: 700;
     font-size: 15.122px;
     line-height: 100%;
     text-align: center;
     letter-spacing: -0.02em;
-    color: #F5F5F5;
+    color: #f5f5f5;
     position: relative;
 
     span {
@@ -69,7 +66,7 @@
 }
 
 .ios .photo-block {
-  top: 40px;
+  top: 0px;
 }
 .toolbar {
   display: flex;
