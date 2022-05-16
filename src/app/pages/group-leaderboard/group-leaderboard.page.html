@@ -32,10 +32,10 @@
 
             <ion-grid class="table-header">
               <ion-row class="ion-align-self-center">
-                <ion-col size="3" class="ion-text-center table-title"
+                <ion-col size="4" class="ion-text-center table-title"
                   >Команды</ion-col
                 >
-                <ion-col size="3" class="ion-text-center table-title"
+                <ion-col size="2" class="ion-text-center table-title"
                   >ДЗ</ion-col
                 >
                 <ion-col size="3" class="ion-text-center table-title"
@@ -51,7 +51,10 @@
                 class="ion-text-center table-row"
                 *ngFor="let item of program.teams"
               >
-                <ion-col class="ion-text-left table-label" *ngIf="item.active"
+                <ion-col
+                  size="4"
+                  class="ion-text-left table-label"
+                  *ngIf="item.active"
                   ><a
                     routerDirection="forward"
                     class="table-activeLink"
@@ -61,12 +64,15 @@
                     >{{ item.peoples }} из {{ item.max_peoples }} чел.</span
                   ></ion-col
                 >
-                <ion-col class="ion-text-left table-label" *ngIf="!item.active"
+                <ion-col
+                  size="4"
+                  class="ion-text-left table-label"
+                  *ngIf="!item.active"
                   >{{ item.title }}<br /><span
                     >{{ item.peoples }} из {{ item.max_peoples }} чел.</span
                   ></ion-col
                 >
-                <ion-col size="3" class="ion-text-center table-label">
+                <ion-col size="2" class="ion-text-center table-label">
                   {{ item.total_tasks * item.peoples }}</ion-col
                 >
                 <ion-col
