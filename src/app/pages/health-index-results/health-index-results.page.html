@@ -45,7 +45,7 @@
           <ion-slide>
             <ion-grid *ngIf="thirdSection.length" class="container-grid">
               <div class="slide-label">Оценка уровня здоровья</div>
-              <ion-row style="background: var(--backgroundContent);">
+              <ion-row style="background: var(--backgroundContent)">
                 <ion-col style="padding: 0 17px">
                   <div class="container" style="height: 70vh; overflow: scroll">
                     <div *ngFor="let question of thirdSection; let i = index;">
@@ -81,7 +81,7 @@
                           <ion-row
                             *ngFor="let answer of question.answers; let j = index"
                           >
-                            <ion-col >
+                            <ion-col>
                               <label *ngIf="answer.isChecked" class="label">
                                 {{ answer.value }}
                               </label>
@@ -104,15 +104,14 @@
                                 <ion-row>
                                   <ion-col class="variable-answer">
                                     <input
-                                            id="answer{{ question.id }}-{{ j }}"
-                                            type="checkbox"
-                                            disabled="true"
-                                            mode="md"
-                                            [checked]="answer.isChecked"
-                                            class="variable-answer__checkbox"
+                                      id="answer{{ question.id }}-{{ j }}"
+                                      type="checkbox"
+                                      disabled="true"
+                                      mode="md"
+                                      [checked]="answer.isChecked"
+                                      class="variable-answer__checkbox"
                                     />
-                                    <label
-                                      for="answer{{ question.id }}-{{ j }}"
+                                    <label for="answer{{ question.id }}-{{ j }}"
                                       >{{ answer.value }}</label
                                     >
                                   </ion-col>
@@ -126,16 +125,12 @@
                             >
                               <ion-grid>
                                 <ion-row>
-                                  <label>{{ answer.value + ': ' + question.value[question.value.length - 1].custom}}</label>
+                                  <label
+                                    >{{ answer.value + ': ' +
+                                    (question.value[question.value.length -
+                                    1].custom || 0)}}</label
+                                  >
                                 </ion-row>
-<!--                                <ion-row>-->
-<!--                                  <ion-input-->
-<!--                                    readonly-->
-<!--                                    type="text"-->
-<!--                                    [placeholder]="placeholder"-->
-<!--                                    [value]="question.value[question.value.length - 1].custom"-->
-<!--                                  ></ion-input>-->
-<!--                                </ion-row>-->
                               </ion-grid>
                             </ion-item>
                           </ion-row>
