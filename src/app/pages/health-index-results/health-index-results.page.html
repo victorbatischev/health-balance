@@ -60,9 +60,10 @@
                       >
                         <ion-grid>
                           <ion-row>
-                            <ion-col class="variable-answer">
+                            <ion-col>
                               <label
                                 *ngIf="question.value || question.value === 0"
+                                class="label"
                               >
                                 {{ question.answers[question.value].value }}
                               </label>
@@ -80,8 +81,8 @@
                           <ion-row
                             *ngFor="let answer of question.answers; let j = index"
                           >
-                            <ion-col class="variable-answer">
-                              <label *ngIf="answer.isChecked">
+                            <ion-col >
+                              <label *ngIf="answer.isChecked" class="label">
                                 {{ answer.value }}
                               </label>
                             </ion-col>
@@ -125,7 +126,7 @@
                             >
                               <ion-grid>
                                 <ion-row>
-                                  <label>{{ answer.value }}</label>
+                                  <label>{{ answer.value + ': ' + question.value[question.value.length - 1].custom}}</label>
                                 </ion-row>
 <!--                                <ion-row>-->
 <!--                                  <ion-input-->

@@ -140,3 +140,13 @@ ion-slide > :first-child {
   }
 
 }
+.label{
+  color: #ffff;
+  font-size: 15px;
+  line-height: 100%;
+  letter-spacing: -0.02em;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
