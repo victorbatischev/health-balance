@@ -43,15 +43,14 @@ export class StorePage {
       this.customerData = val
 
       if (this.connectivityServ.isOnline()) {
-
         this.httpClient
-          .get(this.connectivityServ.apiUrl + 'products/list'
-              //+ this.customerData.token
+          .get(
+            this.connectivityServ.apiUrl + 'products/list'
+            //+ this.customerData.token
           )
           .subscribe(
             (data: any) => {
               for (let i = 0; i < data.result.products.length; i++) {
-
                 this.listData.push({
                   id: data.result.products[i].id,
                   img: data.result.products[i].image,

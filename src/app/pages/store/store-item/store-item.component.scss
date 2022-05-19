@@ -1,32 +1,31 @@
 .store-item {
-    font-family: var(--fontDisplay);
-    background: var(--backgroundContent);
+  font-family: var(--fontDisplay);
+  background: var(--backgroundContent);
 }
-.store-body{
-    padding: 0 12px 26px 12px;
-
+.store-body {
+  padding: 0 12px 26px 12px;
 }
 .title {
-    font-weight: 700;
-    font-size: 17px;
-    line-height: 106%;
-    letter-spacing: -0.02em;
-    color: #FFFFFF;
-    margin: 0 0 6px 0;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 106%;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0 0 6px 0;
 }
 
 .steps {
-    font-size: 13px;
-    line-height: 138%;
-    letter-spacing: -0.02em;
-    color: #56CCF2;
-    font-weight: 400;
-    margin: 0 0 22px 0;
+  font-size: 13px;
+  line-height: 138%;
+  letter-spacing: -0.02em;
+  color: #56ccf2;
+  font-weight: 400;
+  margin: 0 0 22px 0;
 }
-.img-block{
-    margin-bottom: 20px;
-    img{
-        border-radius: 10px 10px 0px 0px;
-        width: 100%;
-    }
+.img-block {
+  margin-bottom: 20px;
+  img {
+    border-radius: 10px 10px 0px 0px;
+    width: 100%;
+  }
 }
