@@ -57,7 +57,6 @@ export class ProgramNamePage {
             url += '&date_value=' + date_value;
           }
           this.httpClient.get(url).subscribe((data: any) => {
-           console.log(data);
            this.storage.remove('date_value');
            this.platform_title = data.result.platform_title;
            this.platform_image = data.result.platform_image;
@@ -78,7 +77,6 @@ export class ProgramNamePage {
   doSearch() {
     this.listData = [];
     for (let i = 0; i < this.programs.length; i++) {
-      console.log(this.programs[i].title.toLowerCase());
       if (this.search.length == 0 || this.strpos(this.programs[i].title.toLowerCase(), this.search.toLowerCase(), 0) !== false) {
         this.listData.push({ id: this.programs[i].id, img: this.programs[i].image, main_img: this.programs[i].main_image, title: this.programs[i].title, subTitle: this.programs[i].title, src: 'nutrition/' + this.platform_id + '/' + this.programs[i].id, subLink: 'Посмотреть' });
       }

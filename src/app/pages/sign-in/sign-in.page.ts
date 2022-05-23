@@ -88,11 +88,6 @@ export class SignInPage {
               this.showError('Введите корректный e-mail!', data.email)
             } else {
               if (this.connectivityServ.isOnline()) {
-                console.log(
-                  this.connectivityServ.apiUrl +
-                    'account/restore_password?email=' +
-                    data.email
-                )
                 var email = data.email
                 this.httpClient
                   .get(

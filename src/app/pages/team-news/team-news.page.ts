@@ -70,7 +70,7 @@ export class TeamNewsPage {
       this.customerData = val
       if (this.connectivityServ.isOnline()) {
         this.httpClient
-          .get(this.connectivityServ.apiUrl + 'platforms/list')
+          .get(this.connectivityServ.apiUrl + 'platforms/for_curator')
           .subscribe(
             (data: any) => {
               this.platforms = data.result.platforms

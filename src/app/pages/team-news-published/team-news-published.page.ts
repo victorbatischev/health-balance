@@ -1,16 +1,16 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { Platform, AlertController } from '@ionic/angular';
+import { Component, ViewEncapsulation } from '@angular/core'
+import { Platform, AlertController } from '@ionic/angular'
 
-import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { Storage } from '@ionic/storage';
+import { ActivatedRoute } from '@angular/router'
+import { HttpClient } from '@angular/common/http'
+import { Storage } from '@ionic/storage'
 
-import { Clipboard } from '@ionic-native/clipboard/ngx';
+import { Clipboard } from '@ionic-native/clipboard/ngx'
 
-import { ConnectivityService } from '../../../providers/connectivity-service';
-import { AlertService } from '../../../providers/alert-service';
+import { ConnectivityService } from '../../../providers/connectivity-service'
+import { AlertService } from '../../../providers/alert-service'
 
-import { Customer } from '../../../models/customer-model';
+import { Customer } from '../../../models/customer-model'
 
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser'
 
@@ -21,7 +21,6 @@ import { BrowserModule, DomSanitizer } from '@angular/platform-browser'
   encapsulation: ViewEncapsulation.None
 })
 export class TeamNewsPublishedPage {
-
   customerData: Customer = {
     token: '',
     name: '',
@@ -33,11 +32,11 @@ export class TeamNewsPublishedPage {
     password: '',
     team: '',
     establishment: ''
-  };
+  }
 
-  news: any = [];
-  comment: string = '';
-  html: any = '';
+  news: any = []
+  comment: string = ''
+  html: any = ''
 
   constructor(
     private platform: Platform,
@@ -48,61 +47,81 @@ export class TeamNewsPublishedPage {
     private clipboard: Clipboard,
     private connectivityServ: ConnectivityService,
     private alertServ: AlertService,
-    private sanitizer: DomSanitizer,
+    private sanitizer: DomSanitizer
   ) {
     this.storage.get('customerData').then((val) => {
-      this.customerData = val;
-      this.loadNews();
-      console.log(this.customerData);
-    });
+      this.customerData = val
+      this.loadNews()
+    })
   }
 
   loadNews() {
-     this.storage.get('customerData').then((val) => {
-      this.customerData = val;
+    this.storage.get('customerData').then((val) => {
+      this.customerData = val
       if (this.connectivityServ.isOnline()) {
-        console.log(this.connectivityServ.apiUrl + 'news/get?news_id=' + this.route.snapshot.paramMap.get('news_id'));
-        this.httpClient.get(this.connectivityServ.apiUrl + 'news/get?news_id=' + this.route.snapshot.paramMap.get('news_id')).subscribe((data: any) => {
-          this.news = data.result.news;
-          if (this.news.content != '') {
-            this.html = this.sanitizer.bypassSecurityTrustHtml(this.news.content);
-          }
-          console.log(this.news);
-        }, error => {
-          console.log(error);
-        });
+        this.httpClient
+          .get(
+            this.connectivityServ.apiUrl +
+              'news/get?news_id=' +
+              this.route.snapshot.paramMap.get('news_id')
+          )
+          .subscribe(
+            (data: any) => {
+              this.news = data.result.news
+              if (this.news.content != '') {
+                this.html = this.sanitizer.bypassSecurityTrustHtml(
+                  this.news.content
+                )
+              }
+            },
+            (error) => {
+              console.log(error)
+            }
+          )
       } else {
-        this.alertServ.showToast('Нет соединения с сетью');
+        this.alertServ.showToast('Нет соединения с сетью')
       }
-    });
+    })
   }
 
   copyToClipboard() {
     if (this.news.content != '') {
-      this.clipboard.copy(this.news.content);
+      this.clipboard.copy(this.news.content)
     } else {
-      this.clipboard.copy(this.news.annotation);
+      this.clipboard.copy(this.news.annotation)
     }
-    this.alertServ.showToast('Новость скопирована в буфер обмена');
+    this.alertServ.showToast('Новость скопирована в буфер обмена')
   }
 
   addComment() {
     if (this.comment.length == 0) {
-      this.alertServ.showToast('Введите ответ на новость');
-      return false;
+      this.alertServ.showToast('Введите ответ на новость')
+      return false
     }
 
     if (this.connectivityServ.isOnline()) {
-       this.httpClient.get(this.connectivityServ.apiUrl + 'news/comment?news_id=' + this.route.snapshot.paramMap.get('news_id') + '&token=' + this.customerData.token + '&comment=' + this.comment).subscribe((data: any) => {
-         this.alertServ.showToast('Ответ на новость был успешно добавлен');
-         this.comment = '';
-         this.loadNews();
-        }, error => {
-          console.log(error);
-        });
-     } else {
-        this.alertServ.showToast('Нет соединения с сетью');
-     }
+      this.httpClient
+        .get(
+          this.connectivityServ.apiUrl +
+            'news/comment?news_id=' +
+            this.route.snapshot.paramMap.get('news_id') +
+            '&token=' +
+            this.customerData.token +
+            '&comment=' +
+            this.comment
+        )
+        .subscribe(
+          (data: any) => {
+            this.alertServ.showToast('Ответ на новость был успешно добавлен')
+            this.comment = ''
+            this.loadNews()
+          },
+          (error) => {
+            console.log(error)
+          }
+        )
+    } else {
+      this.alertServ.showToast('Нет соединения с сетью')
+    }
   }
-
 }

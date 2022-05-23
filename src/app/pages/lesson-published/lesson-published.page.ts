@@ -292,8 +292,8 @@ export class LessonPublishedPage {
           this.alertServ.showToast('Файл был успешно загружен ' + uri)
           this.navCtrl.pop()
         })
-        .catch((e) => {
-          console.log(e)
+        .catch((error) => {
+          console.log(error)
           this.alertServ.showToast('Ошибка выбора файла')
         })
     } else {

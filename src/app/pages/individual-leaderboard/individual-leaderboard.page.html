@@ -21,7 +21,6 @@
           <div class="tasks">
             <div
               class="task-block"
-              lines="none"
               routerDirection="forward"
               routerLink="/tasks/0"
             >
@@ -31,14 +30,14 @@
               >
             </div>
 
-            <div class="task-block" lines="none">
+            <div class="task-block">
               <ion-label class="title">Выполнено заданий:</ion-label>
               <ion-note class="note" slot="end"
                 >{{ liderboard.completed_tasks }}</ion-note
               >
             </div>
 
-            <div class="task-block" lines="none">
+            <div class="task-block">
               <ion-label class="title">Пройдено шагов:</ion-label>
               <ion-note class="note" slot="end"
                 >{{ liderboard.steps }}</ion-note

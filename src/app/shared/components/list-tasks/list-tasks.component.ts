@@ -28,7 +28,5 @@ export class ListTasksComponent {
     establishment: ''
   }
 
-  constructor() {
-    console.log(this.list)
-  }
+  constructor() {}
 }

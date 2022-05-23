@@ -39,7 +39,6 @@ export class RegisterPage {
           .subscribe(
             (data: any) => {
               this.platforms = data.result.platforms
-              console.log(this.platforms)
             },
             (error) => {
               this.alertServ.showToast('Ошибка полуения данных')
