@@ -49,7 +49,7 @@ export class CreateProgramPage {
     weekdays: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
     monthFormat: 'MMM YYYY',
     weekStart: 1,
-    showToggleButtons: false,
+    showToggleButtons: true,
     pickMode: 'range'
   }
 
