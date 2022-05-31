@@ -31,7 +31,7 @@
 
 .public-button {
   --background: #0360aa;
-  --color: #fff;
+  --color: var(--colorMain);
   font-size: 11px;
   font-family: 'OpenSans-SemiBold', sans-serif;
   height: 25px;
@@ -51,7 +51,7 @@
   font-size: 17px;
   line-height: 100%;
   letter-spacing: -0.02em;
-  color: #fff;
+  color: var(--colorMain);
 }
 
 .title {

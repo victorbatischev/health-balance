@@ -134,12 +134,11 @@
             <!-- Input (тип 5) -- ввод даты -->
             <div class="btn-block" *ngIf="question.answer_type === '5'">
               <ion-grid>
-                <div no-padding style="background: #5c5c5c">
+                <div no-padding class="answer-field answer-field_input">
                   <ion-input
                     type="date"
                     [placeholder]="placeholder"
                     [(ngModel)]="question.currentAnswer"
-                    style="margin: 0; color: #fff; --padding-start: 10px"
                   ></ion-input>
                 </div>
               </ion-grid>
@@ -246,9 +245,6 @@
               class="button register-button"
               style="
                 width: 100%;
-                font-size: 15px;
-                --background: #2c2c2c;
-                --color: #f39f18;
                 margin: 10px 0 28px 0;
               "
               (click)="doAnswer()"
@@ -262,13 +258,7 @@
   <div *ngIf="!questions.length" class="btn-block">
     <ion-button
       class="button register-button"
-      style="
-        width: 100%;
-        font-size: 15px;
-        --background: #2c2c2c;
-        --color: #f39f18;
-        margin: 0 0 43px 0;
-      "
+      style="margin: 0 0 43px 0;"
       (click)="continuePoll()"
       >Продолжить опрос</ion-button
     >

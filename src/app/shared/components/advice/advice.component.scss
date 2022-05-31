@@ -13,7 +13,7 @@
       line-height: 100%;
       text-align: center;
       letter-spacing: -0.02em;
-      color: #FFFFFF;
+      color: var(--colorMain);
     }
 
     .info-text {
@@ -52,10 +52,10 @@
   }
   .btn-block{
     .button{
-      --background: #fff;
+      --background: var(--colorMain);
       --backdrop-filter: blur(10px);
       --border-radius: 50px;
-      --color: #252525;
+      --color: var(--backgroundPreviewBtn);
     }
   }
 }

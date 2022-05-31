@@ -5,7 +5,7 @@
     font-size: 20px;
     line-height: 100%;
     letter-spacing: -0.02em;
-    color: #FFFFFF;
+    color: var(--colorMain);
     margin: 0 0 40px 0;
 }
 
@@ -34,7 +34,7 @@
         font-size: 15px;
         line-height: 18px;
         letter-spacing: -0.02em;
-        color: #FFFFFF;
+        color: var(--colorMain);
         white-space: normal;
         display: flex;
         flex-direction: column;
@@ -55,7 +55,7 @@
     &-sub-desc {
         font-size: 14px;
         font-family: var(--fontDisplay);
-        color: #fff;
+        color: var(--colorMain);
     }
 
     &-edit-button {

@@ -28,7 +28,7 @@
         <ion-slides
           *ngIf="slides && slides.length"
           pager="true"
-          style="--bullet-background: #fff; --bullet-background-active: #f39f18"
+          style="--bullet-background: var(--colorMain); --bullet-background-active: #f39f18"
         >
           <ion-slide *ngFor="let slide of slides; let i = index;">
             <div style="display: flex; flex-direction: column">

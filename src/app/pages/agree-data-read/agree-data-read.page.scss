@@ -36,7 +36,7 @@
     margin: 0;
     font-family: var(--fontDisplay);
     font-size: 16px;
-    color: #fff;
+    color: var(--colorMain);
     position: relative;
   }
 
@@ -47,9 +47,9 @@
 
     .button {
       width: 100%;
-      --background: #fff;
+      --background: var(--colorMain);
       font-weight: 700;
-      --color: #252525;
+      --color: var(--backgroundPreviewBtn);
       border-radius: 50px;
     }
   }

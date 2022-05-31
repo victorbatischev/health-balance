@@ -15,7 +15,7 @@
   &__header{
     display: flex;
     column-gap: 18px;
-    border-bottom: 1px solid #202020;
+    border-bottom: 1px solid var(--borderColor);
     padding: 12px 12px 18px 12px;
   }
   &__img{
@@ -37,7 +37,7 @@
     font-size: 17px;
     line-height: 100%;
     letter-spacing: -0.02em;
-    color: #FFFFFF;
+    color: var(--colorMain);
   }
   &__info{
     display: flex;
@@ -57,6 +57,7 @@
     display: flex;
     align-items: center;
     column-gap: 5px;
+    white-space: nowrap;
   }
   &__footer{
     display: flex;
@@ -69,6 +70,6 @@
     font-size: 15px;
     line-height: 100%;
     letter-spacing: -0.02em;
-    color: #F39F18;
+    color: var(--colorTask);
   }
 }

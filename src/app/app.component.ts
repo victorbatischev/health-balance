@@ -47,7 +47,10 @@ export class AppComponent {
 
   lastTimeBackPress = 0
   timePeriodToExit = 2000
+  localStorageKey = 'theme'
+  lightTheme = JSON.parse(localStorage.getItem(this.localStorageKey))
 
+  root = document.documentElement;
   showSubMenu = false
   currentId: number
 
@@ -92,7 +95,8 @@ export class AppComponent {
     { id: 9, title: 'Магазин' },
     { id: 10, title: 'Чат поддержки' },
     { id: 11, title: 'Настройки профиля' },
-    { id: 12, title: 'Выход' }
+    { id: 12, title: 'Светлая тема' },
+    { id: 13, title: 'Выход' }
   ]
 
   constructor(
@@ -117,9 +121,11 @@ export class AppComponent {
       this.customerData = val
     })
     this.initializeApp()
+     this.initializeTheme()
   }
 
   initializeApp() {
+    localStorage.setItem(this.localStorageKey, this.lightTheme);
     this.platform.ready().then(() => {
       this.statusBar.styleLightContent()
       this.statusBar.overlaysWebView(false)
@@ -234,7 +240,8 @@ export class AppComponent {
               { id: 9, title: 'Магазин' },
               { id: 10, title: 'Чат поддержки' },
               { id: 11, title: 'Настройки профиля' },
-              { id: 12, title: 'Выход' }
+              { id: 12, title: 'Светлая тема' },
+              { id: 13, title: 'Выход' }
             ]
           },
           (error) => {
@@ -248,6 +255,74 @@ export class AppComponent {
 
   closeMenu() {
     this.menu.close()
+  }
+
+  changeTheme(){
+    localStorage.setItem(this.localStorageKey, JSON.stringify(!this.lightTheme));
+    this.lightTheme = JSON.parse(localStorage.getItem(this.localStorageKey));
+    console.log(this.lightTheme )
+    this.initializeTheme()
+  }
+  initializeTheme(){
+    if(this.lightTheme) {
+      this.root.style.setProperty('--backgroundMain', '#E5E5E5');
+      this.root.style.setProperty('--backgroundContent', '#fff');
+      this.root.style.setProperty('--colorBlack', '#fff');
+      this.root.style.setProperty('--colorRegisterBtn', '#fff');
+      this.root.style.setProperty('--backgroundCalendar', '#fff');
+      this.root.style.setProperty('--backgroundChat', '#fff');
+      this.root.style.setProperty('--backgroundPreviewBtn', '#fff');
+      this.root.style.setProperty('--backgroundSelect', '#fff');
+      this.root.style.setProperty('--colorBtnLink', '#fff');
+      this.root.style.setProperty('--colorMain', '#000');
+      this.root.style.setProperty('--colorCaption', '#000');
+      this.root.style.setProperty('--colorHeaderTitle', '#000');
+      this.root.style.setProperty('--backgroundBtnOut', '#e4e4e4');
+      this.root.style.setProperty('--backgroundTabs', '#E4E4E4');
+      this.root.style.setProperty('--borderColor', '#E4E4E4');
+      this.root.style.setProperty('--backgroundGray', '#e4e4e4');
+      this.root.style.setProperty('--colorTabStatistic', '#7A7A7A');
+      this.root.style.setProperty('--colorPlatform', '#7A7A7A');
+      this.root.style.setProperty('--colorTabs', '#7A7A7A');
+      this.root.style.setProperty('--activeBackground', '#2669CD');
+      this.root.style.setProperty('--colorBlue', '#2669CD');
+      this.root.style.setProperty('--backgroundRegisterBtn', '#2669CD');
+      this.root.style.setProperty('--colorTask', '#2669CD');
+      this.root.style.setProperty('--backgroundButtonPush', '#2669CD');
+      this.root.style.setProperty('--grayGradient', '#2669CD');
+      this.root.style.setProperty('--filter', 'invert(0)');
+      this.root.style.setProperty('--filterInvert', 'invert(1)');
+      this.root.style.setProperty('--colorSelect', '#000');
+    }else {
+      this.root.style.setProperty('--backgroundMain', defaultStatus);
+      this.root.style.setProperty('--backgroundContent', defaultStatus);
+      this.root.style.setProperty('--backgroundTabs', defaultStatus);
+      this.root.style.setProperty('--colorTabs', defaultStatus);
+      this.root.style.setProperty('--activeBackground', defaultStatus);
+      this.root.style.setProperty('--colorMain', defaultStatus);
+      this.root.style.setProperty('--colorBlack', defaultStatus);
+      this.root.style.setProperty('--colorBlue', defaultStatus);
+      this.root.style.setProperty('--colorHeaderTitle', defaultStatus);
+      this.root.style.setProperty('--backgroundRegisterBtn', defaultStatus);
+      this.root.style.setProperty('--colorRegisterBtn', defaultStatus);
+      this.root.style.setProperty('--colorTask', defaultStatus);
+      this.root.style.setProperty('--colorCaption', defaultStatus);
+      this.root.style.setProperty('--colorTabStatistic', defaultStatus);
+      this.root.style.setProperty('--colorPlatform', defaultStatus);
+      this.root.style.setProperty('--borderColor', defaultStatus);
+      this.root.style.setProperty('--colorBtnLink', defaultStatus);
+      this.root.style.setProperty('--backgroundButtonPush', defaultStatus);
+      this.root.style.setProperty('--backgroundCalendar', defaultStatus);
+      this.root.style.setProperty('--filter', defaultStatus);
+      this.root.style.setProperty('--backgroundGray', defaultStatus);
+      this.root.style.setProperty('--backgroundChat', defaultStatus);
+      this.root.style.setProperty('--backgroundPreviewBtn', defaultStatus);
+      this.root.style.setProperty('--filterInvert', defaultStatus);
+      this.root.style.setProperty('--grayGradient', defaultStatus);
+      this.root.style.setProperty('--backgroundSelect', defaultStatus);
+      this.root.style.setProperty('--backgroundBtnOut', defaultStatus);
+      this.root.style.setProperty('--colorSelect', defaultStatus);
+    }
   }
 
   isSameItem(id): boolean {
@@ -318,6 +393,9 @@ export class AppComponent {
           this.navCtrl.navigateForward('portfolio-2')
           break
         case 12:
+          this.changeTheme()
+          break
+        case 13:
           this.doLogout()
           break
       }

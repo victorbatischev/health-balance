@@ -10,7 +10,8 @@
   font-size: 15px;
   --background: var(--backgroundContent);
   --border-radius: 50px;
-  border: 1px solid #a3a3a3;
+  border: 1px solid var(--colorTabStatistic);
+  color: var(--colorTabStatistic);
   white-space: nowrap;
   width: auto;
   height: 30px;
@@ -39,7 +40,7 @@
   top: -55px;
 
   .title {
-    color: #fff;
+    color: var(--colorMain);
     font-size: 16px;
     font-family: var(--fontDisplay);
     margin: 0;

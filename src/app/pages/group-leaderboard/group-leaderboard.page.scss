@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #202020;
+    border-bottom: 1px solid var(--borderColor);
     padding: 0 0 16px 0;
     .img-block {
         width: 58px;
@@ -21,7 +21,7 @@
     .label {
         font-size: 15px;
         line-height: 120%;
-        color: #E1E1E1  ;
+        color: var(--colorCaption);
         margin: 0;
     }
     .title-desc{
@@ -82,7 +82,7 @@
 
 .table-label {
     font-size: 15px;
-    color: #FFFFFF;
+    color: var(--colorMain);
     font-weight: 700;
 
     span {

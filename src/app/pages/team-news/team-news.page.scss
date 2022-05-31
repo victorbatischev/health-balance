@@ -10,7 +10,7 @@
     --padding-start: 11px;
     --padding-top: 13px;
     font-size: 15px;
-    color: #ffffff;
+    color: var(--colorMain);
     --background: inherit;
     margin: 0 0 20px 0;
   }
@@ -47,8 +47,8 @@ ion-item {
 }
 
 .public-button {
-  --background: #fff;
-  --color: #000;
+  --background: var(--backgroundButtonPush);
+  --color: var(--colorBlack);
   backdrop-filter: blur(10px);
   font-size: 13px;
   font-weight: 700;
@@ -73,6 +73,7 @@ ion-item {
   background: var(--backgroundContent);
   border-radius: 10px;
   padding: 12px;
+  margin: 12px 0;
   &__title {
     color: #f39f18;
     font-size: 13px;
@@ -83,7 +84,7 @@ ion-item {
     }
   }
   &__subtitle {
-    color: #e1e1e1;
+    color: var(--colorCaption);
     font-size: 17px;
     font-weight: 700;
     margin: 0 0 10px 0;
@@ -123,9 +124,9 @@ ion-item {
 }
 
 .select {
-  color: #bfbfbf;
+  color: var(--colorSelect);
   height: 44px;
-  background: #5c5c5c;
+  background: var(--backgroundSelect);
   border-radius: 4px;
   margin-bottom: 20px;
   padding: 0 20px 0 11px;

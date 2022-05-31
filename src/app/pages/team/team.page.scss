@@ -1,7 +1,7 @@
 .header {
     --background: var(--backgroundContent);
   padding: 0 0 16px 0;
-  border-bottom: 1px solid #202020;
+  border-bottom: 1px solid var(--borderColor);
   text-align: center;
     .img-block {
         width: 58px;
@@ -19,7 +19,7 @@
       font-size: 17px;
       line-height: 120%;
       letter-spacing: -0.02em;
-      color: #FFFFFF;
+      color: var(--colorMain);
 
 
     }
@@ -80,7 +80,7 @@
 
 .table-label {
     font-size: 15px;
-    color: #FFFFFF;
+    color: var(--colorMain);
     text-align: center;
     flex: 0 1 25%;
   font-weight: 700;

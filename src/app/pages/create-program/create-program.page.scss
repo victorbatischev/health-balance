@@ -14,14 +14,14 @@
   --padding-start: 11px;
   --padding-top: 13px;
   font-size: 15px;
-  color: #ffffff;
+  color: var(--colorMain);
   --background: inherit;
 }
 
 .link {
   display: block;
   font-size: 13px;
-  color: #56ccf2;
+  color: var(--colorBlue);
   font-weight: 400;
   margin: 30px 0 10px 0;
 }
@@ -35,7 +35,7 @@
   margin: 0 0 20px;
   font-size: 17px;
   font-weight: 700;
-  color: #e1e1e1;
+  color: var(--colorCaption);
 }
 
 .input-block {
@@ -54,7 +54,7 @@
 
 .time-text,
 .team-text {
-  color: #a3a3a3;
+  color: var(--colorPlatform);
   font-size: 13px;
   font-weight: 400;
   letter-spacing: -0.02em;
@@ -64,7 +64,7 @@
 .time-input {
   width: 100%;
   font-size: 15px;
-  color: #e1e1e1;
+  color: var(--colorCaption);
   border: 0;
 }
 

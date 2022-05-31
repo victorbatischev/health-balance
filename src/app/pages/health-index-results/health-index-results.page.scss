@@ -24,7 +24,7 @@
   font-size: 20px;
   line-height: 136%;
   letter-spacing: -0.02em;
-  color: #fff;
+  color: var(--colorMain);
   text-align: left;
 }
 
@@ -62,7 +62,7 @@ ion-slide > :first-child {
 }
 .slide{
   &-label{
-    color: #fff;
+    color: var(--colorMain);
     font-weight: 700;
     font-size: 13px;
     margin: 0 0 25px 0;
@@ -90,7 +90,7 @@ ion-slide > :first-child {
     cursor: pointer;
   }
   label {
-    color: #ffff;
+    color: var(--colorMain);
     font-size: 15px;
     line-height: 100%;
     letter-spacing: -0.02em;
@@ -102,7 +102,7 @@ ion-slide > :first-child {
       content:'';
       -webkit-appearance: none;
       background-color: transparent;
-      border: 2px solid #fff;
+      border: 2px solid var(--colorMain);
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
       padding: 7.5px;
       display: inline-block;
@@ -133,15 +133,15 @@ ion-slide > :first-child {
 .answer-field_input{
   margin: 0;
   label{
-    background: #5c5c5c;
-    color: #fff;
+    background: var(--backgroundGray);
+    color: var(--colorMain);
     width: 100%;
     padding: 8px;
   }
 
 }
 .label{
-  color: #ffff;
+  color: var(--colorMain);
   font-size: 15px;
   line-height: 100%;
   letter-spacing: -0.02em;

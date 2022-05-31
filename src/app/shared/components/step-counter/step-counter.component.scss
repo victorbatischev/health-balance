@@ -14,7 +14,7 @@
     font-size: 25px;
     line-height: 100%;
     letter-spacing: -0.02em;
-    color: #FFFFFF;
+    color: var(--colorMain);
     margin-bottom: 8px;
   }
   .title {
@@ -39,6 +39,6 @@
     font-size: 40px;
     line-height: 100%;
     letter-spacing: -0.02em;
-    color: #56CCF2;
+    color: var(--colorBlue);
   }
 }

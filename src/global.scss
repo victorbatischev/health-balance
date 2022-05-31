@@ -64,10 +64,10 @@ p {
   height: 41px;
 }
 .register-button {
-  --background: #2c2c2c;
-  background: #2c2c2c;
+  --background: var(--backgroundRegisterBtn);
+  background: var(--backgroundRegisterBtn);
   border-radius: 8px;
-  color: #f39f18;
+  color: var(--colorRegisterBtn);
   width: 100%;
   font-size: 15px;
   font-weight: 400;
@@ -171,7 +171,7 @@ h1 {
 .line {
   position: absolute;
   width: 150px;
-  background: #fff;
+  background: var(--colorMain);
   height: 5px;
   left: 50%;
   transform: translateX(-50%);
@@ -202,7 +202,7 @@ h1 {
     cursor: pointer;
   }
   label {
-    color: #ffff;
+    color: var(--colorMain);
     font-size: 15px;
     line-height: 100%;
     letter-spacing: -0.02em;
@@ -214,7 +214,7 @@ h1 {
       content: '';
       -webkit-appearance: none;
       background-color: transparent;
-      border: 2px solid #fff;
+      border: 2px solid var(--colorMain);
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
         inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
       padding: 7.5px;
@@ -246,7 +246,7 @@ h1 {
   background: var(--backgroundContent);
   justify-content: space-between;
   padding: 14px;
-  border-bottom: 1px solid #202020;
+  border-bottom: 1px solid var(--borderColor);
   margin: 0 0 10px 0;
   align-items: center;
   gap: 23px;
@@ -254,14 +254,14 @@ h1 {
   .label {
     font-weight: 700;
     font-size: 13px;
-    color: #fff;
+    color: var(--colorMain);
     letter-spacing: -0.02em;
     display: flex;
     flex-direction: column;
     gap: 6px;
     span {
       font-weight: 400;
-      color: #a3a3a3;
+      color: var(--colorPlatform);
     }
   }
   .img-block {
@@ -289,27 +289,21 @@ h1 {
     margin: 0 0 14px 0;
 
     .tab-link {
-      color: #7a7a7a;
+      color: var(--colorTabs);
       font-family: var(--fontDisplay);
       font-size: 13px;
       display: block;
       padding: 6px 0;
-      background: #2c2c2c;
+      background: var(--backgroundTabs);
       border-radius: 5px;
     }
 
-    &:active {
-      .tab-link {
-        color: #fff;
-        background-color: #3d3c3c;
-      }
-    }
   }
 
   .active {
     .tab-link {
-      background-color: #3d3c3c;
-      color: #fff;
+      color: var(--activeColor);
+      background: var(--activeBackground);
     }
   }
 
