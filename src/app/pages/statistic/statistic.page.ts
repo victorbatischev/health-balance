@@ -153,7 +153,6 @@ export class StatisticPage {
           .subscribe(
             (data: any) => {
               this.statistics_data = data.result.data
-              console.log(this.statistics_data)
               this.getStatistic(idx)
             },
             (error) => {

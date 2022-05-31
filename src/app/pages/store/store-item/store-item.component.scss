@@ -1,12 +1,12 @@
 .store-item {
-    font-family: var(--fontDisplay);
-    background: var(--backgroundContent);
+  font-family: var(--fontDisplay);
+  background: var(--backgroundContent);
 }
-.store-body{
-    padding: 0 12px 26px 12px;
-
+.store-body {
+  padding: 0 12px 26px 12px;
 }
 .title {
+<<<<<<< HEAD
     font-weight: 700;
     font-size: 17px;
     line-height: 106%;
@@ -22,11 +22,28 @@
     color: var(--colorBlue);
     font-weight: 400;
     margin: 0 0 22px 0;
+=======
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 106%;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0 0 6px 0;
 }
-.img-block{
-    margin-bottom: 20px;
-    img{
-        border-radius: 10px 10px 0px 0px;
-        width: 100%;
-    }
+
+.steps {
+  font-size: 13px;
+  line-height: 138%;
+  letter-spacing: -0.02em;
+  color: #56ccf2;
+  font-weight: 400;
+  margin: 0 0 22px 0;
+>>>>>>> 4a649d4da841354e20108c7753a0d038fcad3749
+}
+.img-block {
+  margin-bottom: 20px;
+  img {
+    border-radius: 10px 10px 0px 0px;
+    width: 100%;
+  }
 }

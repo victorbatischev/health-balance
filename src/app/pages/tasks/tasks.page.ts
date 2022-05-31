@@ -56,10 +56,8 @@ export class TasksPage {
             if (date_type !== null && date_value !== null) {
               url += '&date_type=' + date_type + '&date_value=' + date_value
             }
-            console.log(url)
             this.httpClient.get(url).subscribe(
               (data: any) => {
-                console.log(data)
                 this.storage.remove('date_type')
                 this.storage.remove('date_value')
                 this.listData = []

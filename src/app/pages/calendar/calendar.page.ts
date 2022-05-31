@@ -37,9 +37,7 @@ export class CalendarPage {
     monthFormat: 'MMM YYYY',
     weekStart: 1,
     showToggleButtons: true,
-    configDays: [
-      {cssClass: 'calendar'}
-    ],
+    configDays: [{ cssClass: 'calendar' }]
   }
 
   customerData: Customer = {
@@ -78,7 +76,6 @@ export class CalendarPage {
   }
 
   onChange(e) {
-    console.log(e)
     this.showStat()
   }
 
