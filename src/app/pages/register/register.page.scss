@@ -53,7 +53,7 @@
     .select {
       color: #BFBFBF;
       height: 31px;
-      background: var(--backgroundSelect);
+      background: var(--backgroundGray);
       border-radius: 3px;
       margin-bottom: 25px;
       padding: 0 11px 0 9px;
@@ -107,7 +107,7 @@
       cursor: pointer;
     }
     label {
-      color: var(--colorMain);
+      color: var(--colorCaptionPreview);
       font-family: "GT Eesti Pro Display";
       font-size: 8px;
       font-weight: 300;

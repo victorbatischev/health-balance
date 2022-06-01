@@ -1,32 +1,34 @@
 :root {
+
+
   --yellowGradientBackground: linear-gradient(180deg, #f39f18 0%, #f3c318 100%);
+
   --backgroundContent: #191919;
-  --colorBlack: #000;
-  --colorRegisterBtn: #f39f18;
-  --backgroundChat: #2d2d2d;
   --backgroundCalendar: #e9e7e7;
-  --backgroundPreviewBtn: #252525;
-  --backgroundSelect: #5c5c5c;
-  --colorSelect: #bfbfbf;
-  --colorBtnLink: #a3a3a3;
+
+
   --backgroundMain: #121212;
-  --colorCaption: #E1E1E1;
-  --colorHeaderTitle: #f5f5f5;
-  --colorMain: #fff;
-  --backgroundTabs: #2C2C2C;
-  --colorTabs: #7A7A7A;
-  --activeColor: #fff;
   --activeBackground: #3D3C3C;
-  --colorBlue: #56CCF2;
-  --colorGray: #7A7A7A;
-  --backgroundRegisterBtn: #2c2c2c;
-  --colorTask: #f39f18;
-  --colorTabStatistic: #c4c4c4;
-  --colorPlatform: #a3a3a3;
-  --borderColor: #202020;
+  --backgroundPreviewBtn: #191919;
+  --backgroundTransitionBtn: #2c2c2c;
+  --backgroundChat: #2d2d2d;
+  --colorPreviewBtn: #56CCF2;
   --backgroundButtonPush: #fff;
   --backgroundGray: #5c5c5c;
-  --backgroundBtnOut: #2c2c2c;
+
+  --colorBlack: #000;
+  --colorTransitionBtn: #f39f18;
+  --colorSelect: #bfbfbf;
+  --colorBtnLink: #a3a3a3;
+  --colorCaption: #E1E1E1;
+  --colorMain: #fff;
+  --colorBlue: #56CCF2;
+  --colorGray: #7A7A7A;
+  --colorTabStatistic: #c4c4c4;
+  --colorPlatform: #a3a3a3;
+  --colorCaptionPreview: #ABABAB;
+  --borderColor: #202020;
+
   --filter: invert(1);
   --filterInvert: invert(0);
   --grayGradient: linear-gradient(91.14deg, rgba(255, 255, 255, 0.53) -13.28%, rgba(0, 0, 0, 0.2597) 138.38%);

@@ -242,7 +242,7 @@
 
           <div class="btn-block">
             <ion-button
-              class="button register-button"
+              class="button transition-button"
               style="
                 width: 100%;
                 margin: 10px 0 28px 0;
@@ -257,13 +257,13 @@
   </ion-grid>
   <div *ngIf="!questions.length" class="btn-block">
     <ion-button
-      class="button register-button"
+      class="button transition-button"
       style="margin: 0 0 43px 0;"
       (click)="continuePoll()"
       >Продолжить опрос</ion-button
     >
 
-    <ion-button class="button register-button" (click)="interruptPoll()"
+    <ion-button class="button transition-button" (click)="interruptPoll()"
       >Пройти опрос заново</ion-button
     >
   </div>

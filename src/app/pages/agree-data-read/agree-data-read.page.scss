@@ -47,9 +47,9 @@
 
     .button {
       width: 100%;
-      --background: var(--colorMain);
+      --background: var(--backgroundButtonPush);
       font-weight: 700;
-      --color: var(--backgroundPreviewBtn);
+      --color: var(--colorBlack);
       border-radius: 50px;
     }
   }

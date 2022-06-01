@@ -39,17 +39,17 @@
   }
   &__score{
     font-family: var(--fontDisplay);
-    color: #56CCF2;
+    color: var(--colorBlue);
     font-weight: 400;
     font-size: 13px;
     letter-spacing: -0.02em;
     white-space: nowrap;
   }
   &__btn {
-    background: #FFFFFF;
+    background: var(--backgroundButtonPush);
     backdrop-filter: blur(10px);
     border-radius: 55px;
-    color: #252525;
+    color: var(--colorBlack);
     font-size: 13px;
     letter-spacing: -0.02em;
     font-weight: 400;
@@ -61,6 +61,7 @@
   }
   &__btn_yellow{
     background:var(--yellowGradientBackground);
+    color: #000;
   }
 }
 .button-yellow{

@@ -52,10 +52,10 @@
   }
   .btn-block{
     .button{
-      --background: var(--colorMain);
+      --background: var(--backgroundButtonPush);
       --backdrop-filter: blur(10px);
       --border-radius: 50px;
-      --color: var(--backgroundPreviewBtn);
+      --color: var(--colorBlack);
     }
   }
 }

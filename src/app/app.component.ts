@@ -265,47 +265,37 @@ export class AppComponent {
   }
   initializeTheme(){
     if(this.lightTheme) {
-      this.root.style.setProperty('--backgroundMain', '#E5E5E5');
+      this.root.style.setProperty('--backgroundMain', '#f4f3f3');
       this.root.style.setProperty('--backgroundContent', '#fff');
       this.root.style.setProperty('--colorBlack', '#fff');
-      this.root.style.setProperty('--colorRegisterBtn', '#fff');
       this.root.style.setProperty('--backgroundCalendar', '#fff');
       this.root.style.setProperty('--backgroundChat', '#fff');
-      this.root.style.setProperty('--backgroundPreviewBtn', '#fff');
-      this.root.style.setProperty('--backgroundSelect', '#fff');
-      this.root.style.setProperty('--colorBtnLink', '#fff');
+      this.root.style.setProperty('--backgroundPreviewBtn', '#2669CD');
+      this.root.style.setProperty('--colorPreviewBtn', '#fff');
+      this.root.style.setProperty('--colorBtnLink', '#7A7A7A');
       this.root.style.setProperty('--colorMain', '#000');
       this.root.style.setProperty('--colorCaption', '#000');
-      this.root.style.setProperty('--colorHeaderTitle', '#000');
-      this.root.style.setProperty('--backgroundBtnOut', '#e4e4e4');
-      this.root.style.setProperty('--backgroundTabs', '#E4E4E4');
       this.root.style.setProperty('--borderColor', '#E4E4E4');
       this.root.style.setProperty('--backgroundGray', '#e4e4e4');
       this.root.style.setProperty('--colorTabStatistic', '#7A7A7A');
       this.root.style.setProperty('--colorPlatform', '#7A7A7A');
-      this.root.style.setProperty('--colorTabs', '#7A7A7A');
       this.root.style.setProperty('--activeBackground', '#2669CD');
       this.root.style.setProperty('--colorBlue', '#2669CD');
-      this.root.style.setProperty('--backgroundRegisterBtn', '#2669CD');
-      this.root.style.setProperty('--colorTask', '#2669CD');
+      this.root.style.setProperty('--backgroundTransitionBtn', '#E4E4E4');
       this.root.style.setProperty('--backgroundButtonPush', '#2669CD');
       this.root.style.setProperty('--grayGradient', '#2669CD');
       this.root.style.setProperty('--filter', 'invert(0)');
       this.root.style.setProperty('--filterInvert', 'invert(1)');
       this.root.style.setProperty('--colorSelect', '#000');
+      this.root.style.setProperty('--colorCaptionPreview', '#2e2e2e');
     }else {
       this.root.style.setProperty('--backgroundMain', defaultStatus);
       this.root.style.setProperty('--backgroundContent', defaultStatus);
-      this.root.style.setProperty('--backgroundTabs', defaultStatus);
-      this.root.style.setProperty('--colorTabs', defaultStatus);
       this.root.style.setProperty('--activeBackground', defaultStatus);
       this.root.style.setProperty('--colorMain', defaultStatus);
       this.root.style.setProperty('--colorBlack', defaultStatus);
       this.root.style.setProperty('--colorBlue', defaultStatus);
-      this.root.style.setProperty('--colorHeaderTitle', defaultStatus);
-      this.root.style.setProperty('--backgroundRegisterBtn', defaultStatus);
-      this.root.style.setProperty('--colorRegisterBtn', defaultStatus);
-      this.root.style.setProperty('--colorTask', defaultStatus);
+      this.root.style.setProperty('--backgroundTransitionBtn', defaultStatus);
       this.root.style.setProperty('--colorCaption', defaultStatus);
       this.root.style.setProperty('--colorTabStatistic', defaultStatus);
       this.root.style.setProperty('--colorPlatform', defaultStatus);
@@ -319,9 +309,9 @@ export class AppComponent {
       this.root.style.setProperty('--backgroundPreviewBtn', defaultStatus);
       this.root.style.setProperty('--filterInvert', defaultStatus);
       this.root.style.setProperty('--grayGradient', defaultStatus);
-      this.root.style.setProperty('--backgroundSelect', defaultStatus);
-      this.root.style.setProperty('--backgroundBtnOut', defaultStatus);
       this.root.style.setProperty('--colorSelect', defaultStatus);
+      this.root.style.setProperty('--colorCaptionPreview', defaultStatus);
+      this.root.style.setProperty('--colorPreviewBtn', defaultStatus);
     }
   }
 

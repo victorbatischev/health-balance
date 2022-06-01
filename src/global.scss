@@ -63,14 +63,19 @@ p {
   border-radius: 50px;
   height: 41px;
 }
-.register-button {
-  --background: var(--backgroundRegisterBtn);
-  background: var(--backgroundRegisterBtn);
+.transition-button {
+  --background: var(--backgroundTransitionBtn);
+  background: var(--backgroundTransitionBtn);
   border-radius: 8px;
-  color: var(--colorRegisterBtn);
+  color: var(--colorTransitionBtn);
   width: 100%;
   font-size: 15px;
   font-weight: 400;
+}
+.link-button{
+  --background: var(--backgroundContent);
+  background: var(--backgroundContent);
+  color: var(--colorBtnLink);
 }
 .button-yellow {
   --background: var(--yellowGradientBackground);
@@ -289,12 +294,12 @@ h1 {
     margin: 0 0 14px 0;
 
     .tab-link {
-      color: var(--colorTabs);
+      color: var(--colorGray);
       font-family: var(--fontDisplay);
       font-size: 13px;
       display: block;
       padding: 6px 0;
-      background: var(--backgroundTabs);
+      background: var(--backgroundTransitionBtn);
       border-radius: 5px;
     }
 
@@ -302,7 +307,7 @@ h1 {
 
   .active {
     .tab-link {
-      color: var(--activeColor);
+      color: #fff;
       background: var(--activeBackground);
     }
   }
@@ -314,12 +319,12 @@ h1 {
 }
 
 .alert-wrapper.sc-ion-alert-ios {
-  filter: invert(1);
+  filter: var(--filter);
   border-radius: 5px;
 }
 
 .alert-wrapper.sc-ion-alert-md {
-  filter: invert(1);
+  filter: var(--filter);
   border-radius: 5px;
 }
 

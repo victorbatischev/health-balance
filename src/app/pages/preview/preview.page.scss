@@ -45,7 +45,7 @@
       line-height: 120%;
       text-align: center;
       letter-spacing: -0.02em;
-      color: #ababab;
+      color: var(--colorCaptionPreview);
       margin: 0 0 12px 0;
       &:last-child {
         margin: 0;
@@ -71,9 +71,9 @@
       padding: 0 16px;
       .button {
         width: 100%;
-        --background: #191919;
+        --background: var(--backgroundPreviewBtn);
         --border-radius: 8px;
-        --color: #56ccf2;
+        --color: var(--colorPreviewBtn);
         margin-bottom: 12px;
       }
     }
