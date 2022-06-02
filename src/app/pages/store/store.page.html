@@ -11,11 +11,10 @@
 
           <ion-list class="list">
             <ion-item
-              button="true"
-              detail="false"
+
               *ngFor="let item of listData; let i = index; let last = last"
               class="list-item"
-              (click)="setLocalItem(item)"
+
               [lines]="'none'"
             >
               <div class="list-img">
@@ -31,6 +30,7 @@
                   *ngIf="item.button"
                   size="small"
                   class="list-edit-button"
+                  (click)="setLocalItem(item)"
                   >{{ item.button }}</ion-button
                 >
               </ion-label>
