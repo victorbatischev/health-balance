@@ -45,8 +45,9 @@ export class StorePage {
       if (this.connectivityServ.isOnline()) {
         this.httpClient
           .get(
-            this.connectivityServ.apiUrl + 'products/list'
-            //+ this.customerData.token
+            this.connectivityServ.apiUrl +
+              'products/list?token=' +
+              this.customerData.token
           )
           .subscribe(
             (data: any) => {
