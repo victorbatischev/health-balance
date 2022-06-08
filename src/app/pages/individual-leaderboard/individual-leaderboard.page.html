@@ -1,22 +1,26 @@
 <app-header [title]="'Индивидуальный лидерборд'"></app-header>
 
-<ion-content fullscreen class="dark-container">
+<ion-content fullscreen class="container">
   <ion-grid class="container-grid">
     <ion-row justify-content-center align-items-center>
       <ion-col size="12" ion-text-center>
         <div class="container">
-          <ion-item class="header">
+          <div class="platform">
+            <label class="label"
+              ><span>Ваша платформа</span>{{ liderboard.platform || 'Ваша
+              платформа не указана'}}
+            </label>
             <div class="img-block">
-              <img src="{{ liderboard.platform_image }}" alt="web-rf" />
+              <img
+                src="{{ liderboard.platform_image || 'assets/images/menu-logo.svg' }}"
+                alt="platform"
+              />
             </div>
-
-            <ion-label class="label">{{ liderboard.platform }}</ion-label>
-          </ion-item>
+          </div>
 
           <div class="tasks">
-            <ion-item
+            <div
               class="task-block"
-              lines="none"
               routerDirection="forward"
               routerLink="/tasks/0"
             >
@@ -24,21 +28,21 @@
               <ion-note class="note" slot="end"
                 >{{ liderboard.total_tasks }}</ion-note
               >
-            </ion-item>
+            </div>
 
-            <ion-item class="task-block" lines="none">
+            <div class="task-block">
               <ion-label class="title">Выполнено заданий:</ion-label>
               <ion-note class="note" slot="end"
                 >{{ liderboard.completed_tasks }}</ion-note
               >
-            </ion-item>
+            </div>
 
-            <ion-item class="task-block" lines="none">
+            <div class="task-block">
               <ion-label class="title">Пройдено шагов:</ion-label>
               <ion-note class="note" slot="end"
                 >{{ liderboard.steps }}</ion-note
               >
-            </ion-item>
+            </div>
           </div>
 
           <div class="tabs-block">
@@ -48,35 +52,35 @@
                 [ngClass]="{'active': selected_tab === 'today'}"
                 (click)="setActiveTab('today')"
               >
-                <a class="tab-link">день</a>
+                <a class="tab-link">День</a>
               </span>
               <span
                 class="tab-link-block no-border"
                 [ngClass]="{'active': selected_tab === 'week'}"
                 (click)="setActiveTab('week')"
               >
-                <a class="tab-link">неделя</a>
+                <a class="tab-link">Неделя</a>
               </span>
               <span
                 class="tab-link-block no-border"
                 [ngClass]="{'active': selected_tab === 'month'}"
                 (click)="setActiveTab('month')"
               >
-                <a class="tab-link">месяц</a>
+                <a class="tab-link">Месяц</a>
               </span>
               <span
                 class="tab-link-block no-border"
                 [ngClass]="{'active': selected_tab === 'year'}"
                 (click)="setActiveTab('year')"
               >
-                <a class="tab-link">год</a>
+                <a class="tab-link">Год</a>
               </span>
               <span
                 class="tab-link-block"
-                [ngClass]="{'active': selected_tab === 'score'}"
-                (click)="setActiveTab('score')"
+                [ngClass]="{'active': selected_tab === 'total'}"
+                (click)="setActiveTab('total')"
               >
-                <a class="tab-link">всего</a>
+                <a class="tab-link">Всего</a>
               </span>
             </div>
           </div>

@@ -21,6 +21,8 @@
     "@angular/router": "~9.1.6",
     "@awesome-cordova-plugins/core": "^5.39.1",
     "@awesome-cordova-plugins/health": "^5.39.1",
+    "@awesome-cordova-plugins/splash-screen": "^5.41.0",
+    "@awesome-cordova-plugins/status-bar": "^5.41.0",
     "@capacitor/android": "^2.2.1",
     "@capacitor/core": "2.2.1",
     "@capacitor/ios": "^2.2.1",

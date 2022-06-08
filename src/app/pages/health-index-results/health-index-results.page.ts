@@ -185,16 +185,35 @@ export class HealthIndexResultsPage {
 
               ticks.forEach((value, idx) => {
                 var y = yAxis.getPixelForTick(ticks.length - idx)
+                var iconOffset = 400 - window.innerWidth
 
                 switch (this.axes[index].images[idx]) {
                   case '+':
-                    ctx.drawImage(imageSuc, xAxis.bottom - 80, y - 10, 20, 20)
+                    ctx.drawImage(
+                      imageSuc,
+                      xAxis.bottom - iconOffset,
+                      y - 10,
+                      20,
+                      20
+                    )
                     break
                   case '=':
-                    ctx.drawImage(imageWrn, xAxis.bottom - 80, y - 10, 20, 20)
+                    ctx.drawImage(
+                      imageWrn,
+                      xAxis.bottom - iconOffset,
+                      y - 10,
+                      20,
+                      20
+                    )
                     break
                   case '-':
-                    ctx.drawImage(imageErr, xAxis.bottom - 80, y - 10, 20, 20)
+                    ctx.drawImage(
+                      imageErr,
+                      xAxis.bottom - iconOffset,
+                      y - 10,
+                      20,
+                      20
+                    )
                     break
                 }
               })
@@ -211,6 +230,7 @@ export class HealthIndexResultsPage {
           xAxes: [
             {
               stacked: true,
+
               scaleLabel: {
                 display: true,
                 labelString: 'Дата прохождения опроса'

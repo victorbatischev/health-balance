@@ -1,61 +1,87 @@
-.content {
-  --background: none;
-  background-image: url('/assets/images/advice/top-preview.png');
-  background-size: contain;
-  background-position: center top;
-  background-repeat: no-repeat;
-}
 
 .container {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  padding: 0 20%;
   position: relative;
-  --background: none;
-  background-image: url('/assets/images/advice/top-preview.png');
-  background-size: contain;
-  background-position: center top;
-  background-repeat: no-repeat;
+  background: var(--backgroundMain);
+  overflow: hidden;
 
+  .circle-gradient{
+    position: absolute;
+    text-align: center;
+    width: 85%;
+    margin: 0px auto;
+    left: 7%;
+    height: 29%;
+    bottom: -164px;
+    background: #56CCF2;
+    -webkit-filter: blur(200px);
+    filter: blur(85px);
+  }
   .title {
-    margin: 30px 0;
-    font-family: 'OpenSans-Regular', sans-serif;
-    font-size: 42px;
+    margin: 35.56% 0;
+    font-family: var(--fontDisplay);;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 100%;
+    text-align: center;
+    letter-spacing: -0.02em;
+    color: var(--colorMain);
   }
 
   .form {
     width: 100%;
-    padding: 0 35px;
+    margin: 0 0 40px 0;
 
-    .input,
-    select {
-      border: 1px solid #939598;
-      display: block;
-      width: 100%;
-      border-radius: 4px;
-      margin-bottom: 10px;
-      --padding-bottom: 10px;
-      --padding-end: 15px;
-      --padding-start: 15px;
-      --padding-top: 10px;
+    .input {
+      border-bottom: 1px solid var(--colorMain);
+      font-family: var(--fontDisplay);;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 100%;
+      letter-spacing: -0.02em;
+      color: var(--colorMain);
+      padding: 7px 0;
+      margin-bottom: 30px;
     }
 
-    select {
-      padding: 10px 15px;
-    }
+    .select {
+      color: #BFBFBF;
+      height: 31px;
+      background: var(--backgroundGray);
+      border-radius: 3px;
+      margin-bottom: 25px;
+      padding: 0 11px 0 9px;
+      font-size: 13px;
 
+    }
     .btn-block {
       text-align: center;
 
       .forgot-password {
         text-align: center;
-        font-family: 'OpenSans-Regular', sans-serif;
+        font-family: var(--fontDisplay);
         font-size: 12px;
       }
       .button {
         width: 100%;
+        margin-bottom: 28px;
+        --border-radius: 50px;
+        &:last-child{
+          margin-bottom: 0;
+        }
+      }
+      .login-button{
+        backdrop-filter: blur(10px);
+        --background: var(--grayGradient);
+        --color: #fff;
+        font-weight: 400;
+        margin-bottom: 15px;
       }
     }
   }
@@ -63,8 +89,7 @@
   .agree {
     display: flex;
     font-size: 7px;
-    margin-top: 5px;
-    padding: 0 35px;
+    margin: 0px 0 10px 0;
 
     .radio {
       display: block;
@@ -73,5 +98,65 @@
       position: relative;
       top: 1px;
     }
+    &__checkbox {
+      padding: 0;
+      height: initial;
+      width: initial;
+      margin-bottom: 0;
+      display: none;
+      cursor: pointer;
+    }
+    label {
+      color: var(--colorCaptionPreview);
+      font-family: "GT Eesti Pro Display";
+      font-size: 8px;
+      font-weight: 300;
+      line-height: 120%;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      &:before {
+        content:'';
+        -webkit-appearance: none;
+        background-color: transparent;
+        border: 2px solid #F39F18;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+        padding: 7.5px;
+        display: inline-block;
+        position: relative;
+        vertical-align: middle;
+        cursor: pointer;
+        margin-right: 13px;
+        border-radius: 50%;
+      }
+    }
+    input:checked + label:before{
+      background:  #F39F18;
+    }
+    input:checked + label:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 3px;
+      left: 7px;
+      width: 4px;
+      height: 8px;
+      border: solid var(--colorBlack);
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
   }
+
+}
+
+.link-info{
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 100%;
+  letter-spacing: -0.02em;
+  color: #F39F18;
+  text-decoration: none;
+  margin: 0 0 5px 31px;
+  z-index: 10;
 }

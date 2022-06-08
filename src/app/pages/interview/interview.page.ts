@@ -64,7 +64,6 @@ export class InterviewPage {
           if (data.result.url && data.result.url != '') {
             this.url = data.result.url;
           }
-          console.log(this.questions);
           if (this.questions.length > 0) {
             //this.question = this.questions[this.idx];
           }

@@ -1,6 +1,6 @@
 <app-header [title]="'Создание программы'"></app-header>
 
-<ion-content fullscreen class="dark-container">
+<ion-content fullscreen class="container">
   <ion-grid class="container-grid">
     <form class="form" (ngSubmit)="createProgram()">
       <ion-row justify-content-center align-items-center>
@@ -21,7 +21,7 @@
               class="link"
               (click)="uploadPhoto()"
               *ngIf="programInfo.image == ''"
-              >Загрузить лого/аватар программы</a
+              >Загрузить логотип программы...</a
             >
             <img
               src="{{ programInfo.image }}"
@@ -35,35 +35,32 @@
 
               <div class="control-time">
                 <div class="input-block">
-                  <p class="time-text">Начало программы</p>
-                  <ion-input
-                    type="text"
-                    name="date_from"
-                    [(ngModel)]="date.from"
-                    class="input time-input"
-                    placeholder="00.00.0000"
-                  ></ion-input>
+                  <p class="time-text">Дата начала:</p>
+                  <div name="date_from" class="time-input">
+                    {{date.from || 'не указана'}}
+                  </div>
                 </div>
                 <div class="input-block">
-                  <p class="time-text">Окончание программы</p>
-                  <ion-input
-                    type="text"
-                    name="date_to"
-                    [(ngModel)]="date.to"
-                    class="input time-input"
-                    placeholder="00.00.0000"
-                  ></ion-input>
+                  <p class="time-text">Дата завершения:</p>
+                  <div name="date_to" class="time-input">
+                    {{date.to || 'не указана'}}
+                  </div>
                 </div>
               </div>
             </div>
 
             <div class="img-block">
               <ion-calendar
-                name="date"
+                name="calendar"
                 [(ngModel)]="date"
                 type="string"
                 [format]="'DD.MM.YYYY'"
                 [options]="options"
+                style="
+                  filter: var(--filter);
+                  background: var(--backgroundCalendar);
+                  border-radius: 10px;
+                "
               >
               </ion-calendar>
             </div>
@@ -73,7 +70,7 @@
 
               <div class="team">
                 <div class="team-block">
-                  <p class="team-text">кол-во команд</p>
+                  <p class="team-text">макс. кол-во команд</p>
                   <ion-input
                     type="text"
                     name="team_amount"
@@ -83,7 +80,7 @@
                   ></ion-input>
                 </div>
                 <div class="team-block">
-                  <p class="team-text">человек в команде</p>
+                  <p class="team-text">макс. чел. в команде</p>
                   <ion-input
                     type="text"
                     name="max_peoples"
@@ -98,13 +95,7 @@
             <div class="btn-block">
               <ion-button
                 type="submit"
-                class="button register-button"
-                style="
-                  font-size: 18px;
-                  --background: #0361aa;
-                  --color: #fff;
-                  margin-bottom: 10px;
-                "
+                class="button button-yellow"
                 expand="block"
                 >Создать</ion-button
               >

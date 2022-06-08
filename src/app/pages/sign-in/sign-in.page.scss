@@ -1,6 +1,6 @@
 .content {
     --background: none;
-    background-image: url('/assets/images/advice/top-preview.png');
+    background-image: url('/assets/images/auth/bg_auth.jpg');
     background-size: contain;
     background-position: center top;
     background-repeat: no-repeat;
@@ -14,45 +14,67 @@
     align-items: center;
     position: relative;
     --background: none;
-    background-image: url('/assets/images/advice/top-preview.png');
-    background-size: contain;
+    background-image: url('/assets/images/auth/bg_auth (1).jpg');
+    background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
+    padding: 0 20%;
 
     .title {
-        margin: 30px 0;
-        font-family: 'OpenSans-Regular', sans-serif;
-        font-size: 42px;
+        margin: 80px 0;
+        font-family: var(--fontDisplay);;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 35px;
+        line-height: 100%;
+        text-align: center;
+        letter-spacing: -0.02em;
+        color: #FFFFFF;
     }
+
 
     .form {
         width: 100%;
-        padding: 0 35px;
+        padding: 80px 0;
 
         .input {
-            border: 1px solid #939598; 
-            display: block;
-            width: 100%;
-            border-radius: 4px;
-            margin-bottom: 10px;
-            --padding-bottom: 10px;
-            --padding-end: 15px;
-            --padding-start: 15px;
-            --padding-top: 10px;
+            border-bottom: 1px solid #FFFFFF;
+            font-family: var(--fontDisplay);;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 100%;
+            letter-spacing: -0.02em;
+            color: #ffff;
+            padding: 7px 0;
+            margin-bottom: 28px;
         }
-
         .btn-block{
             text-align: center;
 
             .forgot-password {
                 text-align: center;
-                font-family: 'OpenSans-Regular', sans-serif;
+                font-family: var(--fontDisplay);;
+                font-weight: 400;
                 font-size: 12px;
+                line-height: 100%;
+                letter-spacing: -0.02em;
+                color: #FFFFFF;
             }
 
             .button {
                 width: 100%;
+                margin-bottom: 28px;
+                --border-radius: 50px;
             }
+            .login-button{
+                backdrop-filter: blur(10px);
+                --background: linear-gradient(91.14deg, rgba(255, 255, 255, 0.53) -13.28%, rgba(0, 0, 0, 0.2597) 138.38%);
+                --color: #C7C7C7;
+                font-weight: 400;
+                margin-bottom: 15px;
+            }
+
         }
     }
 

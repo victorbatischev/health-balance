@@ -1,9 +1,9 @@
-<ion-content fullscreen class="content">
-  <ion-grid style="height: 100%" class="ion-no-padding">
-    <ion-row justify-content-center align-items-center style="height: 100%">
+<div fullscreen class="content">
+  <ion-grid class="ion-no-padding">
+    <ion-row justify-content-center align-items-center >
       <ion-col size="12" ion-text-center>
         <div class="container">
-          <h1 class="title">Health Balance</h1>
+          <h1 class="title">Регистрация</h1>
 
           <form class="form" (ngSubmit)="doRegister()">
             <ion-input
@@ -11,7 +11,7 @@
               name="email"
               [(ngModel)]="registrationInfo.email"
               class="input"
-              placeholder="E-mail"
+              placeholder="Логин"
             ></ion-input>
             <ion-input
               type="password"
@@ -20,36 +20,31 @@
               class="input"
               placeholder="Пароль"
             ></ion-input>
-            <select
-              name="platform_id"
+            <ion-select
+              class="select"
+              name="platformId"
               [(ngModel)]="registrationInfo.platform_id"
+              okText="Выбрать"
+              cancelText="Отмена"
             >
-              <option value="0">Выберите платформу</option>
-              <option
+              <ion-select-option value="0">Ваша платформа</ion-select-option>
+              <ion-select-option
                 *ngFor="let platform of platforms"
                 value="{{ platform.id }}"
               >
                 {{ platform.title }}
-              </option>
-            </select>
-
+              </ion-select-option>
+            </ion-select>
             <div class="btn-block">
               <ion-button
                 type="submit"
                 class="button login-button"
-                style="font-size: 18px; margin-top: 13px; margin-bottom: 10px"
                 expand="block"
                 >Регистрация</ion-button
               >
               <ion-button
-                class="button register-button"
+                class="button button-transparent"
                 (click)="goBack()"
-                style="
-                  font-size: 18px;
-                  --background: #0361aa;
-                  --color: #fff;
-                  margin-bottom: 10px;
-                "
                 expand="block"
                 >Назад</ion-button
               >
@@ -59,19 +54,24 @@
           <div class="agree">
             <input
               type="checkbox"
-              class="radio"
+              class="agree__checkbox"
               name="agree"
               [(ngModel)]="registrationInfo.agree"
               value="false"
+              id="as"
             />
-            <ion-label routerDirection="forward" routerLink="/agree-read-data"
+            <!--            routerLink="/agree-read-data"-->
+            <label routerDirection="forward" class="agree__label" for="as"
               >Согласие на обработку персональных данных, в соответствии с
               Федеральным законом от 27.07.2002 года №152-ФЗ «О персональных
-              данных»</ion-label
+              данных»</label
             >
           </div>
+          <a routerLink="/" class="link-info">Условия использования</a>
+          <a routerLink="/" class="link-info">Политика конфиденциальности</a>
+          <div class="circle-gradient"></div>
         </div>
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-content>
+</div>

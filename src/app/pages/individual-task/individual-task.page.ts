@@ -52,8 +52,12 @@ export class IndividualTaskPage {
               for (let i = 0; i < data.result.lessons.length; i++) {
                 this.listData.push({
                   id: data.result.lessons[i].id,
-                  img: 'assets/images/individual/man.png',
+                  img: 'assets/images/individual/task_user.png',
                   title: data.result.lessons[i].score + ' баллов',
+                  subDesc:
+                    data.result.lessons[i].start_date +
+                    ' - ' +
+                    data.result.lessons[i].end_date,
                   subTitle: data.result.lessons[i].title,
                   src: '/lesson-published/' + data.result.lessons[i].id,
                   subLink: 'Посмотреть'

@@ -1,46 +1,47 @@
 <app-header [title]="'Индивидуальные задания'"></app-header>
 
-<ion-content fullscreen class="dark-container">
-    <div class="btn-block"  *ngIf="customerData.role == 1">
-         <ion-button class="button register-button" style="font-size: 18px; --background: #0361aa; --color: #fff; margin: 10px; width: calc(100% - 20px);" expand="block" routerDirection="forward" routerLink="/lesson-form">Создать</ion-button>
-    </div>
-    <ion-grid class="container-grid">
+<ion-content fullscreen class="container">
+  <div class="btn-block" *ngIf="customerData.role == 1">
+    <ion-button
+      class="button button-yellow"
+      style="margin: 21px 0 30px 0"
+      expand="block"
+      routerDirection="forward"
+      routerLink="/lesson-form"
+      >Добавить задание</ion-button
+    >
+  </div>
+  <ion-grid class="container-grid">
+    <ion-row justify-content-center align-items-center>
+      <ion-col size="12" ion-text-center>
+        <div class="container">
+          <!--                   <app-list-->
+          <!--                        [list]="listData"-->
+          <!--                        [showLastBorder]="false"-->
+          <!--                    ></app-list>-->
+          <app-listTasks
+            [list]="listData"
+            [customBtnStyles]="{color: '#008D06'}"
+          ></app-listTasks>
+          <div class="item-group">
+            <div
+              class="item"
+              routerDirection="forward"
+              routerLink="/individual-leaderboard"
+            >
+              <ion-button class="button transition-button link-button"
+                >Перейти в лидерборд</ion-button
+              >
+            </div>
 
-        <ion-row justify-content-center align-items-center>
-            <ion-col size="12" ion-text-center>
-
-                <div class="container">
-                   <app-list
-                        [list]="listData"
-                        [showLastBorder]="false"
-                    ></app-list>
-
-                    <div class="item-group">
-                        <div class="item" routerDirection="forward" routerLink="/portfolio">
-                            <ion-thumbnail class="item-img">
-                                <img src="assets/images/individual/man.png" alt="man">
-                            </ion-thumbnail>
-                            <p class="item-text">Личный кабинет</p>
-                        </div>
-
-                        <div class="item" routerDirection="forward" routerLink="/group-leaderboard">
-                            <ion-thumbnail class="item-img">
-                                <img src="assets/images/individual/goblet.png" alt="goblet">
-                            </ion-thumbnail>
-                            <p class="item-text">Лидерборд</p>
-                        </div>
-
-                        <div class="item" routerDirection="forward" routerLink="/calendar">
-                            <ion-thumbnail class="item-img">
-                                <img src="assets/images/individual/calendar.png" alt="calendar">
-                            </ion-thumbnail>
-                            <p class="item-text">Календарь</p>
-                        </div>
-                    </div>
-                </div>
-
-            </ion-col>
-        </ion-row>
-
-    </ion-grid>
+            <div class="item" routerDirection="forward" routerLink="/calendar">
+              <ion-button class="button transition-button link-button"
+                >Открыть календарь</ion-button
+              >
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

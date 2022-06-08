@@ -10,111 +10,28 @@
   --padding-top: 10px;
 }
 
-.widget-block {
-  margin-top: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #939598;
-  padding-bottom: 10px;
 
-  .images-block {
-    display: flex;
-    align-items: center;
-
-    .image {
-      margin-right: 15px;
-      width: 20px;
-    }
-  }
-}
-
-.public-button {
-  --background: #0360aa;
-  --color: #fff;
-  font-size: 11px;
-  font-family: 'OpenSans-SemiBold', sans-serif;
-  height: 25px;
-  width: 120px;
-  position: relative;
-  top: -3px;
-}
-
-.player {
-  --size: 100%;
-  margin: 20px 0 5px;
-}
-
-.sub-title {
-  margin: 30px 0 5px;
-  font-size: 12px;
-  color: #0360aa;
-  font-family: 'OpenSans-Regular', sans-serif;
-}
 
 .title {
   margin: 0 0 13px;
-  font-family: 'OpenSans-Regular', sans-serif;
+  font-family: var(--fontDisplay);
   font-size: 16px;
   color: #6f6f6e;
 }
-
-.desc {
-  font-family: 'OpenSans-Regular', sans-serif;
-  font-size: 13px;
-  margin: 0;
+.subtitle {
+  margin: 30px 0 20px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 136%;
+  letter-spacing: -0.02em;
+  color: var(--colorMain);
+  text-align: left;
 }
 
-.link {
-  display: block;
-  margin-top: 15px;
-  font-size: 12px;
-  margin-bottom: 85px;
+.btn-block {
+ margin: 10px 0;
 }
 
-.select {
-  color: #0360aa;
-  height: 20px;
-  border: 1px solid #0360aa;
-  border-radius: 20px;
-  margin-bottom: 10px;
-  --padding-end: 20px;
-  font-size: 12px;
-}
-
-.btns-block {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 190px;
-}
-
-.trash {
-  width: 35px;
-}
-
-.comment {
-  margin: 5px 0;
-  padding: 5px;
-  background: #eee;
-  font-size: 16px;
-  border-radius: 6px;
-
-  h5 {
-    margin: 0 0 3px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #0360aa;
-    font-style: italic;
-  }
-}
-
-.chart-container {
-  position: relative;
-  margin-top: 50px;
-  height: 70vh;
-  width: 100%;
-}
 
 ion-slides {
   height: 100%;
@@ -142,4 +59,94 @@ ion-slide > :first-child {
   text-align: center;
   position: fixed;
   bottom: 50vh;
+}
+.slide{
+  &-label{
+    color: var(--colorMain);
+    font-weight: 700;
+    font-size: 13px;
+    margin: 0 0 25px 0;
+  }
+}
+.variable-answer {
+  display: flex;
+  font-size: 7px;
+  margin-top: 5px;
+  padding: 0 0 15px 0;
+
+  .radio {
+    display: block;
+    height: 10px;
+    margin-right: 5px;
+    position: relative;
+    top: 1px;
+  }
+  &__checkbox {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+  }
+  label {
+    color: var(--colorMain);
+    font-size: 15px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    &:before {
+      content:'';
+      -webkit-appearance: none;
+      background-color: transparent;
+      border: 2px solid var(--colorMain);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+      padding: 7.5px;
+      display: inline-block;
+      position: relative;
+      vertical-align: middle;
+      cursor: pointer;
+      margin-right: 13px;
+
+    }
+  }
+  input[type="radio"] + label:before{
+    border-radius: 50%;
+  }
+  input[type="radio"]:checked + label:after {
+    border-radius: 50%;
+  }
+  input:checked + label:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 4px;
+    width: 11px;
+    height: 11px;
+    background: #F39F18;
+
+  }
+}
+.answer-field_input{
+  margin: 0;
+  label{
+    background: var(--backgroundGray);
+    color: var(--colorMain);
+    width: 100%;
+    padding: 8px;
+  }
+
+}
+.label{
+  color: var(--colorMain);
+  font-size: 15px;
+  line-height: 100%;
+  letter-spacing: -0.02em;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 }

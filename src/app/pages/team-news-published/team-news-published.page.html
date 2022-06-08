@@ -1,65 +1,71 @@
 <app-header [title]="'Командные новости'"></app-header>
 
-<ion-content fullscreen class="dark-container">
+<ion-content fullscreen class="container">
   <ion-grid class="container-grid">
     <ion-row justify-content-center align-items-center>
       <ion-col size="12" ion-text-center>
         <div class="container" style="height: 100%">
-          <!--ion-select class="select" value="dog" selectedText="Выберите программу / место публикации">
-                        <ion-select-option value="cat">Cat</ion-select-option>
-                        <ion-select-option value="dog">Dog</ion-select-option>
-                    </ion-select>
+          <!-- <ion-select
+            class="select"
+            value="dog"
+            selectedText="Выберите программу / место публикации"
+          >
+            <ion-select-option value="cat">Cat</ion-select-option>
+            <ion-select-option value="dog">Dog</ion-select-option>
+          </ion-select>
 
-                    <div class="news-block">
-                        <ion-input type="text" class="input" placeholder="Поделись новостью"></ion-input>
+          <div class="news-block">
+            <ion-input
+              type="text"
+              class="input"
+              placeholder="Поделись новостью"
+            ></ion-input>
 
-                        <div class="widget-block">
-                            <div class="images-block">
-                                <div class="image">
-                                    <img src="assets/images/team-news/camera.png" alt="camera">
-                                </div>
-                                <div class="image">
-                                    <img src="assets/images/team-news/youtube.png" alt="youtube">
-                                </div>
-                                <div class="image">
-                                    <img src="assets/images/team-news/sound.png" alt="sound">
-                                </div>
-                                <div class="image">
-                                    <img src="assets/images/team-news/file.png" alt="file">
-                                </div>
-                            </div>
+            <div class="widget-block">
+              <div class="images-block">
+                <div class="image">
+                  <img src="assets/images/team-news/camera.png" alt="camera" />
+                </div>
+                <div class="image">
+                  <img
+                    src="assets/images/team-news/youtube.png"
+                    alt="youtube"
+                  />
+                </div>
+                <div class="image">
+                  <img src="assets/images/team-news/sound.png" alt="sound" />
+                </div>
+                <div class="image">
+                  <img src="assets/images/team-news/file.png" alt="file" />
+                </div>
+              </div>
 
-                            <ion-button
-                                size="small"
-                                class="public-button"
-                            >Опубликовать</ion-button>
-                        </div>
-
-                    </div-->
+              <ion-button size="small" class="public-button"
+                >Опубликовать</ion-button
+              >
+            </div>
+          </div> -->
 
           <div class="news-content">
-            <h5>{{ news.customer }} <span>{{ news.created_at }}</span></h5>
-            <a
-              style="font-size: 15px; float: right"
-              (click)="copyToClipboard()"
-            >
-              <ion-icon name="clipboard-outline"></ion-icon>
+            <h5 class="news-content__title">
+              Автор: {{ news.customer }} <span>{{ news.created_at }}</span>
+            </h5>
+            <a class="news-content__link" (click)="copyToClipboard()">
+              <img src="assets/images/copy.svg" alt="copy" />
             </a>
-            <h3 class="title">{{ news.title }}</h3>
-            <p class="desc" *ngIf="news.content == ''">{{ news.annotation }}</p>
-            <div
-              class="desc"
-              [innerHTML]="html"
-              *ngIf="news.content != ''"
-            ></div>
+            <h3 class="news-content__subtitle">{{ news.title }}</h3>
 
             <ion-thumbnail class="player">
-              <img
-                src="{{ news.image }}"
-                alt="player"
-                *ngIf="news.image != ''"
-              />
+              <div class="news-content__preview">
+                <img
+                  [src]="news.image || 'assets/images/menu-logo.svg'"
+                  alt="player"
+                />
+              </div>
             </ion-thumbnail>
+            <div class="news-content__content" *ngIf="news.content != ''">
+              {{news.content}}
+            </div>
             <div class="comment" *ngFor="let item of news.comments">
               <h5>{{ item.customer }}</h5>
               {{ item.comment }}
@@ -80,17 +86,13 @@
                 >Ответить</ion-button
               >
 
-              <!--ion-button
-                                size="small"
-                                class="public-button"
-                            >Редактировать</ion-button>
+              <!-- <ion-button size="small" class="public-button"
+                >Редактировать</ion-button
+              >
 
-                            <ion-button
-                                size="small"
-                                class="public-button trash"
-                            >
-                                <img src="assets/images/team-news/trash.png" alt="trash">
-                            </ion-button-->
+              <ion-button size="small" class="public-button trash">
+                <img src="assets/images/team-news/trash.png" alt="trash" />
+              </ion-button> -->
             </div>
           </div>
         </div>

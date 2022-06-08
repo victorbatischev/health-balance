@@ -31,7 +31,7 @@
 
 .public-button {
   --background: #0360aa;
-  --color: #fff;
+  --color: var(--colorMain);
   font-size: 11px;
   font-family: 'OpenSans-SemiBold', sans-serif;
   height: 25px;
@@ -45,22 +45,24 @@
   margin: 20px 0 5px;
 }
 
-.sub-title {
-  margin: 30px 0 5px;
-  font-size: 12px;
-  color: #0360aa;
-  font-family: 'OpenSans-Regular', sans-serif;
+.subtitle {
+  margin: 30px 0 20px;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 100%;
+  letter-spacing: -0.02em;
+  color: var(--colorMain);
 }
 
 .title {
   margin: 0 0 13px;
-  font-family: 'OpenSans-Regular', sans-serif;
+  font-family: var(--fontDisplay);
   font-size: 16px;
   color: #6f6f6e;
 }
 
 .desc {
-  font-family: 'OpenSans-Regular', sans-serif;
+  font-family: var(--fontDisplay);
   font-size: 13px;
   margin: 0;
 }
@@ -82,12 +84,6 @@
   font-size: 12px;
 }
 
-.btns-block {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 190px;
-}
 
 .trash {
   width: 35px;

@@ -1,11 +1,11 @@
-<app-header [title]="'Добавление урока'"></app-header>
+<app-header [title]="'Добавить задание'"></app-header>
 
-<ion-content fullscreen class="dark-container">
+<ion-content fullscreen class="container">
   <ion-grid class="container-grid">
     <ion-row justify-content-center align-items-center>
       <ion-col size="12" ion-text-center>
         <div class="container" style="height: 100%">
-          <p class="text-title">Домашнее задание</p>
+          <p class="text-title">Укажите информацию о задании</p>
           <ion-select
             class="select"
             name="program_id"
@@ -13,9 +13,7 @@
             okText="Выбрать"
             cancelText="Отмена"
           >
-            <ion-select-option value="0"
-              >Выберите программу / место публикации</ion-select-option
-            >
+            <ion-select-option value="0">Выберите программу</ion-select-option>
             <ion-select-option value="-1"
               >Индивидуальное задание</ion-select-option
             >
@@ -82,7 +80,7 @@
               class="input"
               name="video"
               [(ngModel)]="task.video"
-              placeholder="URL видеоурока"
+              placeholder="URL задания"
             ></ion-input>
           </p>
           <p *ngIf="task.type == '2'">
@@ -149,33 +147,39 @@
               >Все правильные</ion-button
             >
           </div>
-          <p class="text-title">График открытия урока</p>
+          <p class="text-title" style="margin: 0 0 10px 0">
+            Дата начала выполнения задания:
+          </p>
           <a class="link-date link-date-underline" (click)="openCalendar(1)">
-            <span *ngIf="task.start_date ==''">Выбрать в календаре</span>
+            <span *ngIf="task.start_date ==''">Выбрать в календаре...</span>
             <span *ngIf="task.start_date !=''">{{ task.start_date }}</span>
           </a>
-          <p class="text-title">Срок выполнения</p>
+          <p class="text-title" style="margin: 0 0 10px 0">
+            Дата завершения выполнения задания:
+          </p>
           <a class="link-date link-date-underline" (click)="openCalendar(2)">
-            <span *ngIf="task.end_date ==''">Выбрать в календаре</span>
+            <span *ngIf="task.end_date ==''">Выбрать в календаре...</span>
             <span *ngIf="task.end_date !=''">{{ task.end_date }}</span>
           </a>
-          <p class="text-title">Баллы за выполнение ДЗ:</p>
+          <p class="text-title" style="margin: 20px 0 20px 0">
+            Баллы за выполнение задания:
+          </p>
           <ion-input
             type="text"
             id="ball"
-            class="input-ball"
+            class="input"
             name="score"
             [(ngModel)]="task.score"
           ></ion-input>
 
           <div class="btn-block">
             <ion-button
-              class="button"
+              class="button button-yellow"
               expand="block"
-              style="font-size: 18px; --background: #0361aa; --color: #fff"
               (click)="createLesson()"
-              >Создать урок</ion-button
             >
+              Добавить задание
+            </ion-button>
           </div>
         </div>
       </ion-col>

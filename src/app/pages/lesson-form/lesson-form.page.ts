@@ -23,7 +23,7 @@ import {
 export class LessonFormPage {
   programs: any = []
   customers: any = []
-
+  platform_id: string = '0'
   task: {
     program_id: string
     customer_id: string
@@ -68,6 +68,7 @@ export class LessonFormPage {
   }
 
   constructor(
+    public route: ActivatedRoute,
     public modalCtrl: ModalController,
     public navCtrl: NavController,
     public httpClient: HttpClient,
@@ -75,6 +76,7 @@ export class LessonFormPage {
     private connectivityServ: ConnectivityService,
     private alertServ: AlertService
   ) {
+    this.platform_id = this.route.snapshot.paramMap.get('platform_id')
     this.storage.get('customerData').then((val) => {
       this.customerData = val
       if (this.connectivityServ.isOnline()) {
@@ -117,7 +119,6 @@ export class LessonFormPage {
 
     const event: any = await myCalendar.onDidDismiss()
     const date: CalendarResult = event.data
-    console.log(date)
 
     if (date !== null) {
       if (idx == 1) {
@@ -183,15 +184,17 @@ export class LessonFormPage {
       return false
     }
     if (this.task.start_date == '') {
-      this.alertServ.showToast('Выберите дату открытия урока!')
+      this.alertServ.showToast('Выберите дату начала выполнения задания!')
       return false
     }
     if (this.task.end_date == '') {
-      this.alertServ.showToast('Выберите конечную дату выполнения урока!')
+      this.alertServ.showToast('Выберите дату завершения выполнения задания!')
       return false
     }
     if (this.task.score == 0) {
-      this.alertServ.showToast('Укажите количество балов за выполнение ДЗ!')
+      this.alertServ.showToast(
+        'Укажите количество баллов за выполнение задания!'
+      )
       return false
     }
 
@@ -230,7 +233,9 @@ export class LessonFormPage {
             '&end_date=' +
             this.task.end_date +
             '&score=' +
-            this.task.score
+            this.task.score +
+            '&platform=' +
+            this.platform_id
         )
         .subscribe(
           (data: any) => {

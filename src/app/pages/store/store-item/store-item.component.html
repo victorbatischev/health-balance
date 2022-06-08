@@ -1,20 +1,20 @@
 <div class="store-item" *ngIf="localStoreItem">
-
-    <div class="img-block">
-        <img src="{{ localStoreItem.img }}" alt="termos">
-    </div>
-
+  <div class="img-block">
+    <img src="{{ localStoreItem.img }}" alt="termos" />
+  </div>
+  <div class="store-body">
     <h3 class="title">{{ localStoreItem.title }}</h3>
     <h3 class="title">{{ localStoreItem.subDesc }}</h3>
 
     <p class="steps">{{ localStoreItem.subTitle }}</p>
 
     <div class="btn-block">
-        <ion-button
-            class="button"
-            expand="block"
-            style="font-size: 18px; --background: #0361aa; --color: #fff;" (click)="changeProduct(localStoreItem)"
-        >Обменять</ion-button>
+      <ion-button
+        class="button button-yellow"
+        expand="block"
+        (click)="changeProduct(localStoreItem)"
+        >Обменять</ion-button
+      >
     </div>
-
+  </div>
 </div>

@@ -1,41 +1,75 @@
 .title {
-    border-bottom: 1px solid #939598;
-    color: #1a5ea9;
-    text-align: center;
-    font-family: 'OpenSans-Regular', sans-serif;
-    margin: 0;
-    font-size: 18px;
-    padding: 20px 0;
+    font-family: var(--fontDisplay);;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    color: var(--colorMain);
+    margin: 0 0 40px 0;
 }
 
 .list {
+    background: inherit;
+    margin: 0 0 10px 0;
+    padding: 0;
+    font-family: var(--fontDisplay);;
+
+    &-item{
+        --background: var(--backgroundContent);
+        --border-radius: 10px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin: 0 0 10px 0;
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+
     &-label {
+        font-style: normal;
+        font-weight: 400;
         font-size: 15px;
-        font-family: 'OpenSans-Light', sans-serif;
+        line-height: 18px;
+        letter-spacing: -0.02em;
+        color: var(--colorMain);
+        white-space: normal;
         display: flex;
         flex-direction: column;
-        margin-right: 0;
-        white-space: normal;
+        justify-content: center;
+        margin: 0 0 0 20px;
+
     }
 
     &-img {
-        margin-right: 25px;
-        width: 110px;
+       flex: 0 0 140px;
+       height: 115px;
+        img{
+            width: 100%;
+            height: 100%;
+        }
     }
     
     &-sub-desc {
         font-size: 14px;
-        font-family: 'OpenSans-Regular', sans-serif;
-        color: #0360aa;
+        font-family: var(--fontDisplay);
+        color: var(--colorMain);
     }
 
     &-edit-button {
-        --background: #0360aa;
-        --color: #fff;
-        font-size: 11px;
-        font-family: 'OpenSans-SemiBold', sans-serif;
-        height: 25px;
-        width: 120px;
+        --background: none;
         margin-top: 15px;
+        font-family: var(--fontDisplay);;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 100%;
+        text-align: center;
+        letter-spacing: -0.02em;
+        color: #F39F18;
+        text-decoration: underline;
+        width: 100%;
+        --box-shadow: none;
     }
 }

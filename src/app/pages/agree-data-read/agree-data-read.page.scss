@@ -1,11 +1,29 @@
 .content {
-  --background: none;
-  background-image: url('/assets/images/advice/top-preview.png');
-  background-size: contain;
-  background-position: center top;
-  background-repeat: no-repeat;
-}
+  position: relative;
+  background: var(--backgroundMain);
 
+
+}
+.container{
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+
+  .circle-gradient {
+    position: absolute;
+    text-align: center;
+    width: 85%;
+    margin: 0px auto;
+    left: 7%;
+    height: 29%;
+    bottom: -164px;
+    background: #56CCF2;
+    -webkit-filter: blur(200px);
+    filter: blur(85px);
+  }
+}
 .agree-text {
   height: 90vh;
   display: flex;
@@ -16,8 +34,9 @@
 
   .description {
     margin: 0;
-    font-family: 'OpenSans-Light', sans-serif;
-    font-size: 20px;
+    font-family: var(--fontDisplay);
+    font-size: 16px;
+    color: var(--colorMain);
     position: relative;
   }
 
@@ -28,6 +47,10 @@
 
     .button {
       width: 100%;
+      --background: var(--backgroundButtonPush);
+      font-weight: 700;
+      --color: var(--colorBlack);
+      border-radius: 50px;
     }
   }
 }

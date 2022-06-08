@@ -1,69 +1,64 @@
+.lesson-title {
+  margin: 0 0 20px 0;
+  font-family: var(--fontDisplay);
+  font-size: 17px;
+  line-height: 1;
+  color: var(--colorMain);
+  font-weight: 500;
+}
+.sub-title {
+  color: var(--colorMain);
+}
+.lesson-button{
+  background: var(--colorMain);
+  backdrop-filter: blur(10px);
+  height: 41px;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 100%;
+  letter-spacing: -0.02em;
+  color: #252525;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 25px;
+}
 .lesson-header {
-  .title-block {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-top: 5px;
-
-    .sub-title {
-      font-size: 16px;
-      color: #0360aa;
-      font-family: 'OpenSans-Regular', sans-serif;
-      margin: 0;
-    }
-
-    .lesson-img {
-      width: 40px;
-    }
-  }
-
+  margin: 0 0 10px 0;
   .player {
     --size: 100%;
-    margin: 20px 0 5px;
+    iframe {
+      width: 100%;
+      height: 200px;
+      border-radius: 10px;
+    }
   }
 
-  iframe {
-    width: 100%;
-    height: 33vh;
-  }
+}
 
-  .lesson-title {
-    margin: 0;
-    font-family: 'OpenSans-Regular', sans-serif;
-    font-size: 16px;
-    width: 90%;
-    line-height: 1.2;
-  }
-
-  .task-title {
-    --padding-start: 0;
-    --padding-top: 0;
-    --padding-end: 0;
-    --padding-bottom: 0;
-    --inner-padding-bottom: 0;
-    --inner-padding-end: 0;
-    --inner-padding-start: 0;
-    --inner-padding-top: 0;
-    --border-color: #868686;
-  }
-
-  .task-label {
-    margin: 0;
-    font-size: 16px;
-    color: #0360aa;
-  }
+.lesson-body{
+  background: var(--backgroundContent);
+  padding: 36px 15px 24px 15px;
+  border-radius: 10px;
 
   .lesson-label {
     text-overflow: inherit;
     white-space: normal;
   }
+
 }
+.button-wrapper{
+  margin: 15px 0;
+}
+
+
 
 .lesson-sub-title {
   font-size: 14px;
   color: #0360aa;
   margin: 10px 0 25px;
-  font-family: 'OpenSans-Regular', sans-serif;
+  font-family: var(--fontDisplay);
 }
 
 .lesson-desc {
@@ -75,19 +70,19 @@
 }
 
 .input-ball {
-  border: 1px solid #939598;
   display: block;
-  margin-top: 7px;
-  border-radius: 5px;
-  --padding-bottom: 10px;
-  --padding-end: 15px;
-  --padding-start: 15px;
-  --padding-top: 10px;
+  border-radius: 3px;
+  --padding-bottom: 9px;
+  --padding-end: 9px;
+  --padding-start: 9px;
+  --padding-top: 9px;
+  color:var(--colorMain);
+  background: var(--backgroundGray);
 }
 
 .exist {
   color: #f00;
   font-size: 25px;
   font-weight: bold;
-  font-family: 'OpenSans-Regular', sans-serif;
+  font-family: var(--fontDisplay);
 }

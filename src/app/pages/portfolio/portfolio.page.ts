@@ -17,7 +17,7 @@ import { CustomerService } from '../../../providers/customer-service'
 })
 export class PortfolioPage {
   steps: any = 0
-  calc_steps: any = 0
+  calc_steps: number = 0
   tracking: boolean = false
   timeoutId: any
 
@@ -66,9 +66,8 @@ export class PortfolioPage {
               this.tracking = true
               this.startTracking(100)
             })
-            .catch((e) => {
-              this.alertServ.showToast('Error authorization: ' + e)
-              console.log(e)
+            .catch((error) => {
+              this.alertServ.showToast('Error authorization: ' + error)
             })
         })
         .catch((e) => console.log(e))
@@ -142,7 +141,6 @@ export class PortfolioPage {
           )
           .subscribe(
             (data: any) => {
-              console.log(data)
               this.calc_steps = data[idx]
             },
             (error) => {

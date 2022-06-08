@@ -1,0 +1,31 @@
+<div class="list-tasks">
+    <div class="list-tasks__container">
+        <article class="list-tasks card-task" *ngFor="let item of list; let i = index; let last = last">
+            <div class="card-task__header">
+                <div class="card-task__img">
+                    <img [src]="item.img" [alt]="item.img">
+                </div>
+                <div class="card-task__content">
+                    <div class="card-task__title">{{item.subTitle}}</div>
+                    <div class="card-task__info">
+                        <div class="card-task__score">{{item.title}}</div>
+                        <div class="card-task__time">
+                            <img src="assets/images/common/gray_clock.svg" alt="clock">
+                            {{item.subDesc}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-task__footer">
+                <div
+                        *ngIf="item.src && item.subLink"
+                        [routerLink]="['/' + item.src]"
+                        class="card-task__link"
+                        [ngStyle]="customBtnStyles"
+                >
+                Открыть
+                </div>
+            </div>
+        </article>
+    </div>
+</div>

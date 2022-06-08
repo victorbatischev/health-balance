@@ -7,9 +7,18 @@
     width: 55px;
     margin-bottom: 15px;
   }
-
+  .step-text{
+    font-family: var(--fontDisplay);;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    color: var(--colorMain);
+    margin-bottom: 8px;
+  }
   .title {
-    font-family: 'OpenSans-Light', sans-serif;
+    font-family: var(--fontDisplay);
     margin: 0;
     font-size: 18px;
     margin-bottom: 15px;
@@ -17,15 +26,19 @@
 
   .time {
     margin: 0;
-    font-family: 'OpenSans-Regular', sans-serif;
+    font-family: var(--fontDisplay);
     font-size: 15px;
     margin-bottom: 5px;
   }
 
   .steps {
     margin: 0;
-    font-family: 'OpenSans-Regular', sans-serif;
-    font-size: 45px;
-    color: #0361aa;
+    font-family: var(--fontDisplay);;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    color: var(--colorBlue);
   }
 }

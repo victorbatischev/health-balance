@@ -26,8 +26,6 @@ export class SignInPage {
   ) {}
 
   doLogin() {
-    console.log(this.loginInfo)
-
     if (this.loginInfo.email.length < 6) {
       this.alertServ.showToast('Введите корректный e-mail')
       return false
@@ -90,11 +88,6 @@ export class SignInPage {
               this.showError('Введите корректный e-mail!', data.email)
             } else {
               if (this.connectivityServ.isOnline()) {
-                console.log(
-                  this.connectivityServ.apiUrl +
-                    'account/restore_password?email=' +
-                    data.email
-                )
                 var email = data.email
                 this.httpClient
                   .get(

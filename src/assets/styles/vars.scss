@@ -4,5 +4,10 @@ $colorGrey: #9c9b9b;
 
 $fontSizeContent: 21px;
 
-$fontRegular: 'OpenSans-Regular', sans-serif;
-$fontLight: 'OpenSans-Light', sans-serif;
+$btnYellowBackground: linear-gradient(180deg, #F39F18 0%, #F3C318 100%);
+$btnYellowColor: #000;
+
+$outButtonBackground: #2C2C2C;
+
+$fontRegular: var(--fontDisplay);
+$fontLight: var(--fontDisplay);

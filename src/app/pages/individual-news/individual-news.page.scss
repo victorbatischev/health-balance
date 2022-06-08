@@ -1,35 +1,35 @@
 .title-block {
-    --inner-padding-start: 0;
-    --inner-padding-end: 0;
+  --inner-padding-start: 0;
+  --inner-padding-end: 0;
 
-    .title {
-        font-family: 'OpenSans-Light', sans-serif;
-        font-size: 18px;
-    }
-    
-    .note {
-        font-family: 'OpenSans-Regular', sans-serif;
-        color: #0361aa;
-        font-size: 16px;
-    }
+  .title {
+    font-family: var(--fontDisplay);
+    font-size: 18px;
+  }
+
+  .note {
+    font-family: var(--fontDisplay);
+    color: #0361aa;
+    font-size: 16px;
+  }
 }
 
 .news-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    font-family: 'OpenSans-Regular', sans-serif;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--fontDisplay);
 
-    &-item {
-        display: flex;
-        align-items: center;
-        font-size: 16px;
-        border-bottom: 1px solid #939598;
-    }
+  &-item {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    border-bottom: 1px solid #939598;
+  }
 
-    .news-note {
-        color: #0361aa;
-        font-size: 16px;
-        margin-right: 20px;
-    }
+  .news-note {
+    color: #0361aa;
+    font-size: 16px;
+    margin-right: 20px;
+  }
 }

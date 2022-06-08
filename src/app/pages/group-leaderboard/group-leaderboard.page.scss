@@ -1,28 +1,64 @@
+
 .header {
+    --background: var(--backgroundContent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--borderColor);
+    padding: 0 0 16px 0;
     .img-block {
-        width: 50px;
-        margin-right: 25px;
+        width: 58px;
+
+        height: 58px;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
     }
 
     .label {
-        font-size: 19px;
-        font-family: 'OpenSans-Light', sans-serif;
-        margin-bottom: 15px;
+        font-size: 15px;
+        line-height: 120%;
+        color: var(--colorCaption);
+        margin: 0;
+    }
+    .title-desc{
+        color: #7A7A7A;
+        font-weight: 700;
+        font-size: 13px;
+        margin-top: 13px;
     }
 }
 
 .table-header {
-    font-family: 'OpenSans-Regular', sans-serif;
+    font-family: var(--fontDisplay);
     color: #0361aa;
     font-size: 13px;
     margin: 20px 0 25px;
 }
 
 .table {
-    margin-bottom: 45px;
+    padding: 15px;
+    margin: 15px 0;
+    background: var(--backgroundContent);
+    border-radius: 10px;
 
     &:last-child {
         margin-bottom: 120px;
+    }
+    &-title{
+        color: #5a5a5a;
+        font-size: 13px;
+        font-weight: 400;
+    }
+    &-row{
+        margin-bottom: 25px;
+    }
+    &-activeLink{
+        color: #F39F18;
+        text-decoration: none;
     }
 }
 
@@ -46,11 +82,11 @@
 
 .table-label {
     font-size: 15px;
-    font-family: 'OpenSans-Light', sans-serif;
-    color: #3C3C3B;
+    color: var(--colorMain);
+    font-weight: 700;
 
     span {
         font-size: 12px;
-        color: #42b0f5;
+        color: #7A7A7A;
     }
 }

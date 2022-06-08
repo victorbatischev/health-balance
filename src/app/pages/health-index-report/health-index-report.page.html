@@ -1,28 +1,31 @@
-<app-header [title]="'Индивидуальный отчёт'"></app-header>
+<app-header [title]="'Отчёт'"></app-header>
 
 <div class="btn-block">
   <ion-button
-    class="button register-button"
+    class="button"
     style="
-      font-size: 18px;
-      --background: #0361aa;
-      --color: #fff;
-      margin: 10px 5%;
-      position: absolute;
-      bottom: 0px;
-      z-index: 1;
-      width: 90%;
+    font-family: var(--fontDisplay);;
+    font-size: 15px;
+    --background: var(--yellowGradientBackground);
+    --color: #000;
+    left: 50%;
+    position: absolute;
+    bottom: 6px;
+    z-index: 1;
+    width: 95%;
+    margin: 0;
+    transform: translateX(-50%);
     "
     (click)="downloadReport()"
     >Скачать отчёт</ion-button
   >
 </div>
 
-<ion-content fullscreen class="dark-container">
+<ion-content fullscreen class="container white-container">
   <ion-grid class="container-grid" style="height: 100%">
     <ion-row>
       <ion-col>
-        <h2>Индивидуальный отчёт по оценке биологического возраста</h2>
+        <h2 style="font-weight: 700">Индивидуальный отчёт по оценке биологического возраста</h2>
       </ion-col>
     </ion-row>
     <ion-row>

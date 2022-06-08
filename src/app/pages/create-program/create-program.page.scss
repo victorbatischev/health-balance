@@ -1,38 +1,41 @@
+@import 'src/assets/styles/vars';
 .img-block {
   border-bottom: 1px solid #939598;
   padding-bottom: 15px;
 }
 
 .input {
-  border: 1px solid #939598;
+  border: 1px solid #5c5c5c;
   display: block;
   width: 100%;
   border-radius: 4px;
-  margin-bottom: 10px;
-  --padding-bottom: 10px;
-  --padding-end: 15px;
-  --padding-start: 15px;
-  --padding-top: 10px;
+  --padding-bottom: 13px;
+  --padding-end: 13px;
+  --padding-start: 11px;
+  --padding-top: 13px;
+  font-size: 15px;
+  color: var(--colorMain);
+  --background: inherit;
 }
 
 .link {
   display: block;
-  margin-top: 15px;
-  font-size: 12px;
-  margin: 20px 0;
+  font-size: 13px;
+  color: var(--colorBlue);
+  font-weight: 400;
+  margin: 30px 0 10px 0;
 }
 
 .time-longer {
-  border-top: 1px solid #939598;
   padding-top: 20px;
   margin-bottom: 20px;
 }
 
 .title {
-  margin: 0 0 13px;
-  font-family: 'OpenSans-Regular', sans-serif;
+  margin: 0 0 20px;
   font-size: 17px;
-  color: #6f6f6e;
+  font-weight: 700;
+  color: var(--colorCaption);
 }
 
 .input-block {
@@ -51,15 +54,18 @@
 
 .time-text,
 .team-text {
-  color: #1d1d1b;
-  font-family: 'OpenSans-Regular', sans-serif;
-  font-size: 10px;
-  margin: 0 0 5px;
+  color: var(--colorPlatform);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin: 0 0 7px;
 }
 
 .time-input {
   width: 100%;
-  font-size: 14px;
+  font-size: 15px;
+  color: var(--colorCaption);
+  border: 0;
 }
 
 .team-tracker {
@@ -69,17 +75,15 @@
 
 .team {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  align-items: center;
+  column-gap: 10px;
 }
 
 .team-block {
-  &:first-child {
-    margin-right: 22px;
-    width: 28%;
-  }
+  flex: 0 1 50%;
 }
 .btn-block {
+  margin-bottom: 10px;
   .button {
     width: 100%;
   }

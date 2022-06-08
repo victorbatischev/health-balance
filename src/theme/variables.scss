@@ -1,16 +1,50 @@
 :root {
+
+
+  --yellowGradientBackground: linear-gradient(180deg, #f39f18 0%, #f3c318 100%);
+
+  --backgroundContent: #191919;
+  --backgroundCalendar: #e9e7e7;
+
+
+  --backgroundMain: #121212;
+  --activeBackground: #3D3C3C;
+  --backgroundPreviewBtn: #191919;
+  --backgroundTransitionBtn: #2c2c2c;
+  --backgroundChat: #2d2d2d;
+  --colorPreviewBtn: #56CCF2;
+  --backgroundButtonPush: #fff;
+  --backgroundGray: #5c5c5c;
+
+  --colorBlack: #000;
+  --colorTransitionBtn: #f39f18;
+  --colorSelect: #bfbfbf;
+  --colorBtnLink: #a3a3a3;
+  --colorCaption: #E1E1E1;
+  --colorMain: #fff;
+  --colorBlue: #56CCF2;
+  --colorGray: #7A7A7A;
+  --colorTabStatistic: #c4c4c4;
+  --colorPlatform: #a3a3a3;
+  --colorCaptionPreview: #ABABAB;
+  --borderColor: #202020;
+
+  --filter: invert(1);
+  --filterInvert: invert(0);
+  --grayGradient: linear-gradient(91.14deg, rgba(255, 255, 255, 0.53) -13.28%, rgba(0, 0, 0, 0.2597) 138.38%);
+
+  --fontDisplay: 'SF Pro Display';
   --primary-color: #0360aa;
   --text-color: #3c3c3b;
-
-  --regular-font: 'OpenSans-Regular', sans-serif;
-  --light-font: 'OpenSans-Light', sans-serif;
+  --regular-font: var(--fontDisplay);
+  --light-font: var(--fontDisplay);
 
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #3171e0;
-  --ion-color-primary-tint: #4c8dff;
+  --ion-color-primary-shade: #2c2c2c44;
+  --ion-color-primary-tint: #f39f18;
 
   --ion-color-secondary: #0cd1e8;
   --ion-color-secondary-rgb: 12, 209, 232;
@@ -81,7 +115,7 @@
 }
 
 ion-back-button {
-	color: #fff;
+  color: #fff;
 }
 
 ion-alert {
@@ -90,6 +124,6 @@ ion-alert {
 }
 
 :root.ios {
-  --ion-padding: 20px;
-  --ion-margin: 20px;
+  --ion-padding: 0px;
+  --ion-margin: 0px;
 }

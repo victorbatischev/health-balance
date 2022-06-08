@@ -2,30 +2,28 @@
   .text {
     display: flex;
     align-items: center;
+    background: var(--backgroundMain);
     justify-content: space-between;
   }
 
   .link {
     display: block;
-    font-family: 'OpenSans-Regular', sans-serif;
-    font-size: 12px;
-    color: #3c3c3b;
+    flex: 0 1 25%;
+    padding: 9px 0;
+    font-family: var(--fontDisplay);;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 100%;
+    text-align: center;
+    color: #7A7A7A;
+
     text-decoration: none;
-  }
 
-  .select-bar {
-    height: 3px;
-    background-color: #ececec;
-    border-radius: 10px;
-    margin-top: 10px;
   }
-
-  .selector {
-    display: block;
-    position: relative;
-    left: 85px;
-    width: 60px;
-    height: 3px;
-    background-color: #0360aa;
+  .activeLink {
+    background: var(--backgroundContent);
+    color: var(--colorMain);
+    border-radius: 10px 10px 0px 0px;
   }
 }

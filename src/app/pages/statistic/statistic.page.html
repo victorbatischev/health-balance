@@ -1,69 +1,16 @@
-<ion-header class="header ion-no-border" color="primary">
-  <ion-toolbar class="toolbar">
-    <div class="title-block">
-      <!--div class="arrow-back">
-                <img src="assets/images/header/arrow.png">
-            </div-->
-    </div>
+<app-headerMain></app-headerMain>
 
-    <div class="menu-block" slot="end">
-      <ion-menu-button class="menu-button"></ion-menu-button>
-    </div>
-
-    <div class="photo-block">
-      <div class="photo">
-        <img
-          src="assets/images/portfolio/photo.png"
-          alt="photo"
-          *ngIf="customerData.avatar == ''"
-        />
-        <img
-          src="{{ customerData.avatar }}"
-          alt="photo"
-          *ngIf="customerData.avatar != ''"
-        />
-      </div>
-
-      <p class="photo-title">{{ customerData.name }}</p>
-    </div>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content fullscreen class="white-container">
+<ion-content fullscreen class="container">
   <ion-grid class="container-grid">
     <ion-row justify-content-center align-items-center>
       <ion-col size="12" ion-text-center>
-        <div class="container">
+        <app-flat-tabs [platform_id]="customerData.platform_id"></app-flat-tabs>
+        <div class="container-graphic">
           <div class="portfolio-content">
-            <div class="first-tabs">
-              <div class="flat-tabs">
-                <div class="text">
-                  <a class="link">Статистика</a>
-                  <a routerDirection="back" routerLink="/portfolio" class="link"
-                    >Шаги</a
-                  >
-                  <a
-                    routerDirection="forward"
-                    routerLink="/program-name/{{ customerData.platform_id }}"
-                    class="link"
-                    >Программы</a
-                  >
-                  <a
-                    routerDirection="forward"
-                    routerLink="/group-task/0"
-                    class="link"
-                    >Задания</a
-                  >
-                </div>
-                <div class="select-bar">
-                  <span class="selector"></span>
-                </div>
-              </div>
-            </div>
 
-            <ion-grid>
-              <ion-row>
-                <ion-col>
+            <ion-grid style="padding: 0">
+              <ion-row class="buttons-block">
+                <ion-col style="flex-grow: 0; padding: 0">
                   <ion-button
                     class="stat"
                     [ngClass]="{'active': stat_type == 0}"
@@ -71,7 +18,7 @@
                     >Задания</ion-button
                   >
                 </ion-col>
-                <ion-col>
+                <ion-col style="flex-grow: 0">
                   <ion-button
                     class="stat"
                     [ngClass]="{'active': stat_type != 0}"
@@ -89,21 +36,21 @@
                   [ngClass]="{'active': selected_tabs == 1}"
                   (click)="setTabs(1)"
                 >
-                  <a class="tab-link">за неделю</a>
+                  <a class="tab-link">Неделя</a>
                 </span>
                 <span
                   class="tab-link-block no-border"
                   [ngClass]="{'active': selected_tabs == 2}"
                   (click)="setTabs(2)"
                 >
-                  <a class="tab-link">за месяц</a>
+                  <a class="tab-link">Месяц</a>
                 </span>
                 <span
                   class="tab-link-block"
                   [ngClass]="{'active': selected_tabs == 3}"
                   (click)="setTabs(3)"
                 >
-                  <a class="tab-link">за год</a>
+                  <a class="tab-link">Год</a>
                 </span>
               </div>
             </div>

@@ -1,9 +1,10 @@
-<app-header [title]="'Групповые задания'"></app-header>
+<app-headerMain></app-headerMain>
 
-<ion-content fullscreen class="dark-container">
+<ion-content fullscreen class="container">
     <ion-grid class="container-grid">
         <ion-row justify-content-center align-items-center>
             <ion-col size="12" ion-text-center>
+                <app-flat-tabs [platform_id]="customerData.platform_id"></app-flat-tabs>
                 <div class="container">
                    <app-list
                         [list]="listData"

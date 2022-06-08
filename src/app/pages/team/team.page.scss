@@ -1,63 +1,92 @@
 .header {
+    --background: var(--backgroundContent);
+  padding: 0 0 16px 0;
+  border-bottom: 1px solid var(--borderColor);
+  text-align: center;
     .img-block {
-        width: 50px;
-        margin-right: 25px;
-    }
+        width: 58px;
 
+        height: 58px;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+    }
     .label {
-        font-size: 19px;
-        font-family: 'OpenSans-Light', sans-serif;
-        margin-bottom: 15px;
+      font-weight: 700;
+      font-size: 17px;
+      line-height: 120%;
+      letter-spacing: -0.02em;
+      color: var(--colorMain);
+
+
     }
 }
 
+
 .table-header {
-    display: flex;
-    justify-content: flex-end;
-    font-family: 'OpenSans-Regular', sans-serif;
-    color: #0361aa;
-    font-size: 13px;
-    margin: 20px 0 25px;
+  font-family: var(--fontDisplay);
+  color: #2D2D2D;
+  font-size: 13px;
+  margin: 20px 0 25px;
 }
 
 .table {
-    margin-bottom: 45px;
+  padding: 15px;
+  margin: 15px 0;
+  background: var(--backgroundContent);
+  border-radius: 10px;
 
-    &:last-child {
-        margin-bottom: 120px;
-    }
+  &:last-child {
+    margin-bottom: 120px;
+  }
+
+  &-title {
+    color: #5a5a5a;
+    font-size: 13px;
+    font-weight: 400;
+  }
+
+  &-row {
+    margin-bottom: 25px;
+  }
+
+  &-activeLink {
+    color: #F39F18;
+    text-decoration: none;
+  }
 }
 
 .table-row, .table-body-row {
-    display: flex;
+  display: flex;
 }
 
 .table-body-row {
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .table-header-label {
-    margin-right: 47px;
-
-    &:last-child {
-        margin-right: 20px;
-    }
+  display: block;
+    flex: 0 1 25%;
+  color: #5a5a5a;
+  font-size: 13px;
+  font-weight: 400;
+    text-align: center;
 }
 
 .table-label {
     font-size: 15px;
-    font-family: 'OpenSans-Light', sans-serif;
-    color: #3C3C3B;
-    width: 90px;
+    color: var(--colorMain);
+    text-align: center;
+    flex: 0 1 25%;
+  font-weight: 700;
 
-    &-primary {
-        color: #0361aa;
-        text-align: center;
-    }
-
-    &:last-child {
-        margin-right: 0;
-    }
+  span {
+    font-size: 12px;
+    color: #7A7A7A;
+  }
 }

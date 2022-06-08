@@ -26,10 +26,9 @@ export class CreateProgramPage {
     image: string
     team_amount: number
     max_peoples: number
-  } = { title: '', image: '', team_amount: 1, max_peoples: 1 }
+  } = { title: '', image: '', team_amount: 3, max_peoples: 10 }
 
   date: { from: string; to: string } = { from: '', to: '' }
-  date_from: string = ''
 
   type: 'string'
   options: any = {
@@ -50,7 +49,7 @@ export class CreateProgramPage {
     weekdays: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
     monthFormat: 'MMM YYYY',
     weekStart: 1,
-    showToggleButtons: false,
+    showToggleButtons: true,
     pickMode: 'range'
   }
 
@@ -193,7 +192,6 @@ export class CreateProgramPage {
               max_peoples: 1
             }
             this.date = { from: '', to: '' }
-            this.date_from = ''
           },
           (error) => {
             console.log(error)

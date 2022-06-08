@@ -1,14 +1,38 @@
-.header {
-    margin-bottom: 35px;
+.btn-block {
+  padding: 0 15px;
+}
+.stat {
+  font-size: 15px;
+  --background: var(--backgroundContent);
+  --border-radius: 50px;
+  --border: 1px solid #a3a3a3;
+  white-space: nowrap;
+  width: auto;
+  padding: 7px;
+  &:hover {
+    background: none;
+  }
 
-    .img-block {
-        width: 50px;
-        margin-right: 25px;
-    }
+  &.active {
+    --background: var(--yellowGradientBackground);
+    color: #1b1b1b;
+  }
+}
+.title-block {
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: -55px;
 
-    .label {
-        font-size: 19px;
-        font-family: 'OpenSans-Light', sans-serif;
-        margin-bottom: 15px;
-    }
+  .title {
+    color: #fff;
+    font-size: 16px;
+
+    margin: 0;
+  }
+
+  .arrow-back {
+    width: 20px;
+    margin: 3px 15px 0 25px;
+  }
 }

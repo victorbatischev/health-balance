@@ -12,20 +12,21 @@
         <div class="menu-header">
           <div class="menu-header-content">
             <div class="arrow-back" (click)="closeMenu()">
-              <img src="assets/images/menu/arrow-back.png" />
+              <img src="assets/images/menu-logo.svg" />
             </div>
-
-            <h6 class="menu-header-title">Меню</h6>
-
-            <ion-menu-button class="menu-button"></ion-menu-button>
+            <div class="menu-block" slot="end">
+              <ion-menu-button class="menu-button">
+                <div class="menu-block__text">Закрыть</div>
+                <ion-icon name="close-outline"></ion-icon>
+              </ion-menu-button>
+            </div>
           </div>
         </div>
-
         <ul class="menu-list">
           <li
-            class="menu-item"
             *ngFor="let item of menuItems; let i = index; let last = last"
             (click)="clickMenu(item.id, i)"
+            [className]="item.id === 12 ? 'menu-item themeCheck' : 'menu-item'"
           >
             {{ item.title }}
 
@@ -60,11 +61,23 @@
               *ngIf="item.subMenu"
             >
               <img
-                src="assets/images/menu/arrow-down.png"
+                src="assets/images/menu/arrow-menu.svg"
                 alt="toggle-subMenu"
               />
             </button>
+
+              <label class="switch" *ngIf="item.id === 12">
+                <input type="checkbox" [checked]="lightTheme" (change)="changeTheme()"/>
+                <span class="slider round"></span>
+              </label>
+
           </li>
+<!--          <li class="themeCheck"><div class="menu-item">Темная тема</div>-->
+<!--            <label class="switch">-->
+<!--              <input type="checkbox" (change)="changeTheme()"/>-->
+<!--              <span class="slider round"></span>-->
+<!--            </label>-->
+<!--          </li>-->
         </ul>
       </ion-content>
     </ion-menu>

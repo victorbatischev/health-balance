@@ -1,13 +1,24 @@
-<div class="flat-tabs">
-  <div class="text">
-    <a [routerLink]="['/']" routerLinkActive="active" class="link"
-      >Статистика</a
-    >
-    <a [routerLink]="['/']" routerLinkActive="active" class="link">Шаги</a>
-    <a [routerLink]="['/']" routerLinkActive="active" class="link">Программы</a>
-    <a [routerLink]="['/']" routerLinkActive="active" class="link">Задания</a>
-  </div>
-  <div class="select-bar">
-    <span class="selector"></span>
+<div class="first-tabs">
+  <div class="flat-tabs">
+    <div class="text">
+      <a routerLinkActive="activeLink" routerLink="/statistic" class="link">Статистика</a>
+      <a routerDirection="back" routerLink="/portfolio" class="link" routerLinkActive="activeLink"
+      >Шаги</a
+      >
+      <a
+              routerDirection="forward"
+              routerLinkActive="activeLink"
+              routerLink="/program-name/{{ platform_id }}"
+              class="link"
+      >Программы</a
+      >
+      <a
+              routerDirection="forward"
+              routerLinkActive="activeLink"
+              routerLink="/group-task/0"
+              class="link"
+      >Задания</a
+      >
+    </div>
   </div>
 </div>

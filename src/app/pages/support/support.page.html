@@ -1,6 +1,6 @@
 <app-header [title]="'Чат'"></app-header>
 
-<ion-content fullscreen class="dark-container">
+<ion-content fullscreen class="container">
   <div *ngIf="isLoading" class="bot-loading-container">
     <ion-spinner name="dots"></ion-spinner>
   </div>
@@ -28,7 +28,7 @@
   </div>
 </ion-content>
 
-<ion-footer style="padding-bottom: 25px; background-color: white">
+<ion-footer style="padding-bottom: 25px; background-color: var(--backgroundGray)">
   <form
     [formGroup]="messageForm"
     (submit)="sendMessage(chatBox, true)"
@@ -40,8 +40,8 @@
         [(ngModel)]="chatBox"
         placeholder="Сообщение"
       ></ion-input>
-      <button ion-button clear (click)="sendMessage(chatBox, true)" item-end>
-        <ion-icon class="footer-btn" name="send"></ion-icon>
+      <button ion-button clear (click)="sendMessage(chatBox, true)" item-end style="background: transparent">
+        <img src="assets/images/send.svg" alt="send">
       </button>
     </ion-item>
   </form>

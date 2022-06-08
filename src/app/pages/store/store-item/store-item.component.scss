@@ -1,21 +1,31 @@
 .store-item {
-    padding-top: 30px;
+  font-family: var(--fontDisplay);
+  background: var(--backgroundContent);
 }
-
+.store-body {
+  padding: 0 12px 26px 12px;
+}
 .title {
-    font-family: 'OpenSans-Light', sans-serif;
-    font-size: 20px;
-    margin: 0;
-    text-align: center;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 106%;
+    letter-spacing: -0.02em;
+    color: var(--colorMain);
+    margin: 0 0 6px 0;
 }
 
 .steps {
     font-size: 13px;
-    color: #0361aa;
-    text-align: center;
-    margin: 20px 0;
+    line-height: 138%;
+    letter-spacing: -0.02em;
+    color: var(--colorBlue);
+    font-weight: 400;
+    margin: 0 0 22px 0;
 }
-
-.button {
-  margin: 0 auto;
+.img-block {
+  margin-bottom: 20px;
+  img {
+    border-radius: 10px 10px 0px 0px;
+    width: 100%;
+  }
 }

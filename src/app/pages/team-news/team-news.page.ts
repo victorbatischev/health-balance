@@ -70,25 +70,29 @@ export class TeamNewsPage {
       this.customerData = val
       if (this.connectivityServ.isOnline()) {
         this.httpClient
-          .get(this.connectivityServ.apiUrl + 'platforms/list')
+          .get(
+            this.connectivityServ.apiUrl +
+              'platforms/for_curator?token=' +
+              this.customerData.token
+          )
           .subscribe(
             (data: any) => {
               this.platforms = data.result.platforms
-              this.httpClient
-                .get(
-                  this.connectivityServ.apiUrl +
-                    'news/list?token=' +
-                    this.customerData.token +
-                    '&type=group'
-                )
-                .subscribe(
-                  (data: any) => {
-                    this.news = data.result.news
-                  },
-                  (error) => {
-                    console.log(error)
-                  }
-                )
+            },
+            (error) => {
+              console.log(error)
+            }
+          )
+        this.httpClient
+          .get(
+            this.connectivityServ.apiUrl +
+              'news/list?token=' +
+              this.customerData.token +
+              '&type=group'
+          )
+          .subscribe(
+            (data: any) => {
+              this.news = data.result.news
             },
             (error) => {
               console.log(error)
@@ -265,8 +269,6 @@ export class TeamNewsPage {
   }
 
   sendNews() {
-    console.log(this.platform_id)
-
     if (+this.platform_id == 0) {
       this.alertServ.showToast('Выберите программу / место публикации')
       return false
@@ -319,6 +321,8 @@ export class TeamNewsPage {
             this.alertServ.showToast('Новость была успешно добавлена')
             this.news_title = ''
             this.news_annotation = ''
+            this.video_file = ''
+            this.push = ''
             this.loadNews()
           },
           (error) => {

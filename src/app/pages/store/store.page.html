@@ -1,6 +1,6 @@
-<app-header [title]="'Наш магазин'"></app-header>
+<app-header [title]="'Магазин'"></app-header>
 
-<ion-content fullscreen class="dark-container">
+<ion-content fullscreen class="container">
   <ion-grid class="container-grid">
     <ion-row justify-content-center align-items-center>
       <ion-col size="12" ion-text-center>
@@ -11,12 +11,11 @@
 
           <ion-list class="list">
             <ion-item
-              button="true"
-              detail="false"
+
               *ngFor="let item of listData; let i = index; let last = last"
               class="list-item"
-              (click)="setLocalItem(item)"
-              [lines]="last ? 'none' : 'line'"
+
+              [lines]="'none'"
             >
               <div class="list-img">
                 <img [src]="item.img" />
@@ -31,6 +30,7 @@
                   *ngIf="item.button"
                   size="small"
                   class="list-edit-button"
+                  (click)="setLocalItem(item)"
                   >{{ item.button }}</ion-button
                 >
               </ion-label>
