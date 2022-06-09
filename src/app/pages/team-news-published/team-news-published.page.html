@@ -63,9 +63,11 @@
                 />
               </div>
             </ion-thumbnail>
-            <div class="news-content__content" *ngIf="news.content != ''">
-              {{news.content}}
-            </div>
+            <div
+              class="news-content__content"
+              *ngIf="news.content != ''"
+              [innerHTML]="news.content"
+            ></div>
             <div class="comment" *ngFor="let item of news.comments">
               <h5>{{ item.customer }}</h5>
               {{ item.comment }}

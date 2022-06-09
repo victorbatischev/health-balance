@@ -42,7 +42,7 @@ h4,
 h5,
 h6,
 p {
-  color: #3c3c3b;
+  color: var(--colorCaption);
 }
 
 .button-wrapper {
@@ -72,7 +72,7 @@ p {
   font-size: 15px;
   font-weight: 400;
 }
-.link-button{
+.link-button {
   --background: var(--backgroundContent);
   background: var(--backgroundContent);
   color: var(--colorBtnLink);
@@ -302,7 +302,6 @@ h1 {
       background: var(--backgroundTransitionBtn);
       border-radius: 5px;
     }
-
   }
 
   .active {

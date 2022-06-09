@@ -23,32 +23,52 @@
                 >{{ liderboard.team_title }}</ion-label
               >
             </div>
-            <div class="table-header">
-              <div class="table-row">
-                <div class="table-header-label">Участник</div>
-                <div class="table-header-label">ДЗ</div>
-                <div class="table-header-label">Шаги</div>
-                <div class="table-header-label">Общее</div>
-              </div>
-            </div>
-            <div class="table-body">
-              <div
+            <ion-grid class="table-header">
+              <ion-row class="ion-align-self-center">
+                <ion-col size="5" class="ion-text-center table-title"
+                  >Участник</ion-col
+                >
+                <ion-col size="2" class="ion-text-center table-title"
+                  >ДЗ</ion-col
+                >
+                <ion-col size="3" class="ion-text-center table-title"
+                  >Шаги</ion-col
+                >
+                <ion-col size="2" class="ion-text-center table-title"
+                  >Общее</ion-col
+                >
+              </ion-row>
+            </ion-grid>
+            <ion-grid class="ion-align-self-center">
+              <ion-row
                 class="table-body-row"
                 *ngFor="let customer of liderboard.customers"
                 (click)="showInfo(customer)"
               >
-                <div class="table-label">{{ customer.name }}</div>
-                <div class="table-label table-label-primary">
-                  {{ customer.completed_tasks }} из {{ customer.total_tasks }}
-                </div>
-                <div class="table-label table-label-primary">
-                  {{ customer.total }}
-                </div>
-                <div class="table-label table-label-primary">
-                  {{ customer.bonus }}
-                </div>
-              </div>
-            </div>
+                <ion-col size="5" class="ion-text-left table-label"
+                  >{{ customer.name }}</ion-col
+                >
+                <ion-col size="2" class="ion-text-center table-label">
+                  {{ customer.completed_tasks }} из {{ customer.total_tasks
+                  }}</ion-col
+                >
+                <ion-col
+                  size="3"
+                  class="ion-text-center table-label"
+                  *ngIf="customer.total != 0"
+                  >{{ (customer.total / 1000).toFixed(1) }}K</ion-col
+                >
+                <ion-col
+                  size="3"
+                  class="ion-text-center table-label"
+                  *ngIf="customer.total == 0"
+                  >0</ion-col
+                >
+                <ion-col size="2" class="ion-text-center table-label"
+                  >{{ customer.bonus }}</ion-col
+                >
+              </ion-row>
+            </ion-grid>
           </div>
         </div>
       </ion-col>
