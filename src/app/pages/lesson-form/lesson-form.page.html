@@ -28,6 +28,8 @@
             name="customer_id"
             [(ngModel)]="task.customer_id"
             *ngIf="task.program_id == '-1'"
+            okText="Выбрать"
+            cancelText="Отмена"
           >
             <ion-select-option value="0"
               >Выберите пользователя</ion-select-option

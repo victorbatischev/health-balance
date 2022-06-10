@@ -1,6 +1,6 @@
 <div fullscreen class="content">
   <ion-grid class="ion-no-padding">
-    <ion-row justify-content-center align-items-center >
+    <ion-row justify-content-center align-items-center>
       <ion-col size="12" ion-text-center>
         <div class="container">
           <h1 class="title">Регистрация</h1>
@@ -27,7 +27,7 @@
               okText="Выбрать"
               cancelText="Отмена"
             >
-              <ion-select-option value="0">Ваша платформа</ion-select-option>
+              <ion-select-option [value]="0">Ваша платформа</ion-select-option>
               <ion-select-option
                 *ngFor="let platform of platforms"
                 value="{{ platform.id }}"
