@@ -74,6 +74,8 @@ export class StorePage {
 
   setLocalItem(item) {
     this.localItem = item
-    this.content.scrollToBottom(500)
+    setTimeout(() => {
+      this.content.scrollToBottom(500)
+    }, 500)
   }
 }

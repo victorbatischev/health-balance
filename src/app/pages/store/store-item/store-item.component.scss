@@ -1,26 +1,28 @@
 .store-item {
   font-family: var(--fontDisplay);
   background: var(--backgroundContent);
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 .store-body {
   padding: 0 12px 26px 12px;
 }
 .title {
-    font-weight: 700;
-    font-size: 17px;
-    line-height: 106%;
-    letter-spacing: -0.02em;
-    color: var(--colorMain);
-    margin: 0 0 6px 0;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 106%;
+  letter-spacing: -0.02em;
+  color: var(--colorMain);
+  margin: 0 0 6px 0;
 }
 
 .steps {
-    font-size: 13px;
-    line-height: 138%;
-    letter-spacing: -0.02em;
-    color: var(--colorBlue);
-    font-weight: 400;
-    margin: 0 0 22px 0;
+  font-size: 13px;
+  line-height: 138%;
+  letter-spacing: -0.02em;
+  color: var(--colorBlue);
+  font-weight: 400;
+  margin: 0 0 22px 0;
 }
 .img-block {
   margin-bottom: 20px;

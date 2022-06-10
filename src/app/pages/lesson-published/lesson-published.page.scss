@@ -9,7 +9,7 @@
 .sub-title {
   color: var(--colorMain);
 }
-.lesson-button{
+.lesson-button {
   background: var(--colorMain);
   backdrop-filter: blur(10px);
   height: 41px;
@@ -34,10 +34,9 @@
       border-radius: 10px;
     }
   }
-
 }
 
-.lesson-body{
+.lesson-body {
   background: var(--backgroundContent);
   padding: 36px 15px 24px 15px;
   border-radius: 10px;
@@ -46,13 +45,10 @@
     text-overflow: inherit;
     white-space: normal;
   }
-
 }
-.button-wrapper{
+.button-wrapper {
   margin: 15px 0;
 }
-
-
 
 .lesson-sub-title {
   font-size: 14px;
@@ -76,7 +72,7 @@
   --padding-end: 9px;
   --padding-start: 9px;
   --padding-top: 9px;
-  color:var(--colorMain);
+  color: var(--colorMain);
   background: var(--backgroundGray);
 }
 
