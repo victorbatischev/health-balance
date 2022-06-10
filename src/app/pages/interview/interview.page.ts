@@ -10,8 +10,6 @@ import { AlertService } from '../../../providers/alert-service'
 
 import { Customer } from '../../../models/customer-model'
 
-import { DomSanitizer } from '@angular/platform-browser'
-
 @Component({
   selector: 'app-interview',
   templateUrl: './interview.page.html',
@@ -45,8 +43,7 @@ export class InterviewPage {
     public httpClient: HttpClient,
     public storage: Storage,
     private connectivityServ: ConnectivityService,
-    private alertServ: AlertService,
-    protected sanitizer: DomSanitizer
+    private alertServ: AlertService
   ) {
     this.storage.get('customerData').then((val) => {
       this.customerData = val

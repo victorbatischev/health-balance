@@ -10,8 +10,6 @@ import { AlertService } from '../../../providers/alert-service'
 
 import { Customer } from '../../../models/customer-model'
 
-import { DomSanitizer } from '@angular/platform-browser'
-
 import { Chart } from 'chart.js'
 
 @Component({
@@ -287,8 +285,7 @@ export class HealthIndexResultsPage {
     public httpClient: HttpClient,
     public storage: Storage,
     private connectivityServ: ConnectivityService,
-    private alertServ: AlertService,
-    protected sanitizer: DomSanitizer
+    private alertServ: AlertService
   ) {
     this.loadResults()
   }

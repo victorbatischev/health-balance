@@ -66,7 +66,7 @@ export class HealthIndexReportPage {
           )
           .subscribe(
             (data: any) => {
-              this.result = data
+              this.result = this.sanitizer.bypassSecurityTrustHtml(data)
             },
             (error) => {
               console.log(error)
