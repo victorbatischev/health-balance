@@ -39,21 +39,21 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>To Take Photos and Videos</string>
+	<string>Для съемки фото и видео</string>
 	<key>NSHealthShareUsageDescription</key>
-	<string>To count the number of steps</string>
+	<string>Чтобы подсчитать количество шагов</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>To count the number of steps</string>
+	<string>Чтобы обновлять количество шагов</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>To improve step counting accuracy</string>
+	<string>Для повышения точности подсчета шагов</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>To improve step counting accuracy</string>
+	<string>Для повышения точности подсчета шагов</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>To Record Audio With Video</string>
+	<string>Для записи видео со звуком</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Store camera photos to camera</string>
+	<string>Для сохранения фотографий с камеры в библиотеку</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>To Pick Photos from Library</string>
+	<string>Чтобы выбрать фотографии из библиотеки</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
