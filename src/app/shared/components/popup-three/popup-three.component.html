@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div [class]="activePopup ? 'popup-three active' : 'popup-three'" (click)="setActivePopup(false)" >
+    <div [class]="activePopup ? 'popup-three__content active' : 'popup-three__content'" (click)="stopPropagation($event)">
+    <div class="popup-three__head">
+        <span (click)="setActivePopup(false)">&#10006;</span>
+    </div>
+        <div class="popup-three__body">
+            <ng-content>
+
+            </ng-content>
+        </div>
+
+    </div>
+</div>

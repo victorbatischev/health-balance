@@ -26,7 +26,7 @@
             <ion-grid class="table-header">
               <ion-row class="ion-align-self-center">
                 <ion-col size="5" class="ion-text-center table-title"
-                  >Участник</ion-col
+                  ><span (click)="setActive(true)">?</span>Участник</ion-col
                 >
                 <ion-col size="2" class="ion-text-center table-title"
                   >ДЗ</ion-col
@@ -38,6 +38,14 @@
                   >Общее</ion-col
                 >
               </ion-row>
+              <app-popup-three [activePopup]="activePopup" [setActivePopup]="setActive">
+                <div class="modal-block">
+                  <p class="modal-text"><strong>ДЗ</strong>  - число выполненных домашних заданий из тех, которые уже опубликованы в программе. </p>
+                  <p class="modal-text"><strong>Шаги</strong> - количество шагов участника с момента подключения к программе. </p>
+                  <p class="modal-text"><strong>Общее</strong> - общая сумма баллов за шаги и выполненные домашние задания, набранная участником с момента подключения к программе.</p>
+                </div>
+
+              </app-popup-three>
             </ion-grid>
             <ion-grid class="ion-align-self-center">
               <ion-row

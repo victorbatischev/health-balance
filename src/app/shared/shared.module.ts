@@ -18,6 +18,7 @@ import {HeaderMainComponent} from "./components/header-main/header-main.componen
 import {LeaderboardListComponent} from "./components/leaderboard-list/leaderboard-list.component";
 import {ListTasksComponent} from "./components/list-tasks/list-tasks.component";
 import {PollListComponent} from "./components/poll-list/poll-list.component";
+import {PopupThreeComponent} from "./components/popup-three/popup-three.component";
 
 @NgModule({
     declarations: [
@@ -29,6 +30,7 @@ import {PollListComponent} from "./components/poll-list/poll-list.component";
         TabsComponent,
         PopupOneComponent,
         PopupTwoComponent,
+        PopupThreeComponent,
         FlatTabsComponent,
         HeaderMainComponent,
         LeaderboardListComponent,
@@ -49,6 +51,7 @@ import {PollListComponent} from "./components/poll-list/poll-list.component";
         TabsComponent,
         PopupOneComponent,
         PopupTwoComponent,
+        PopupThreeComponent,
         FlatTabsComponent,
         HeaderMainComponent,
         LeaderboardListComponent,

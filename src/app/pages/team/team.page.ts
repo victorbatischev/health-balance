@@ -32,6 +32,7 @@ export class TeamPage {
   }
 
   liderboard: any = []
+  activePopup = false
 
   constructor(
     public route: ActivatedRoute,
@@ -110,4 +111,7 @@ export class TeamPage {
     })
     return await prompt.present()
   }
-}
+    setActive = (activePopup) => {
+      this.activePopup = activePopup
+    }
+  }

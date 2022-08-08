@@ -7,8 +7,7 @@
         <div class="container">
           <div class="platform">
             <label class="label">
-              <span>Ваша платформа</span>{{ liderboard.platform || 'Ваша
-              платформа не указана'}}
+              <span>Ваша платформа</span>{{ liderboard.platform || 'Ваша платформа не указана'}}
             </label>
             <div class="img-block">
               <img
@@ -32,8 +31,9 @@
 
             <ion-grid class="table-header">
               <ion-row class="ion-align-self-center">
+
                 <ion-col size="4" class="ion-text-center table-title"
-                  >Команды</ion-col
+                  ><span (click)="setActive(true)">?</span>Команды</ion-col
                 >
                 <ion-col size="2" class="ion-text-center table-title"
                   >ДЗ</ion-col
@@ -45,6 +45,14 @@
                   >Общее</ion-col
                 >
               </ion-row>
+              <app-popup-three [activePopup]="activePopup" [setActivePopup]="setActive">
+                  <div class="modal-block">
+                      <p class="modal-text"><strong>Команды</strong>, участвующие в программе.</p>
+                      <p class="modal-text"><strong>ДЗ</strong>  - общее число выполненных командных домашних заданий.</p>
+                      <p class="modal-text"><strong>Шаги</strong> - общее число командных шагов.</p>
+                      <p class="modal-text"><strong>Общее</strong> - общая сумма командных шагов и баллов за выполненные домашние задания.</p>
+                  </div>
+              </app-popup-three>
             </ion-grid>
             <ion-grid class="ion-align-self-center">
               <ion-row

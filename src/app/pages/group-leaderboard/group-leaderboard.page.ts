@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component  } from '@angular/core'
 
 import { HttpClient } from '@angular/common/http'
 import { Storage } from '@ionic/storage'
@@ -13,6 +13,7 @@ import { Customer } from '../../../models/customer-model'
   styleUrls: ['./group-leaderboard.page.scss']
 })
 export class GroupeLeaderboardPage {
+
   customerData: Customer = {
     token: '',
     name: '',
@@ -27,6 +28,9 @@ export class GroupeLeaderboardPage {
   }
 
   liderboard: any = []
+  activePopup = false
+
+
 
   constructor(
     public httpClient: HttpClient,
@@ -55,5 +59,13 @@ export class GroupeLeaderboardPage {
         this.alertServ.showToast('Нет соединения с сетью')
       }
     })
+
   }
+
+
+  setActive = (activePopup) => {
+    this.activePopup = activePopup
+  }
+
+
 }
