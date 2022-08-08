@@ -38,13 +38,25 @@
                   >Общее</ion-col
                 >
               </ion-row>
-              <app-popup-three [activePopup]="activePopup" [setActivePopup]="setActive">
+              <app-popup-three
+                [activePopup]="activePopup"
+                [setActivePopup]="setActive"
+              >
                 <div class="modal-block">
-                  <p class="modal-text"><strong>ДЗ</strong>  - число выполненных домашних заданий из тех, которые уже опубликованы в программе. </p>
-                  <p class="modal-text"><strong>Шаги</strong> - количество шагов участника с момента подключения к программе. </p>
-                  <p class="modal-text"><strong>Общее</strong> - общая сумма баллов за шаги и выполненные домашние задания, набранная участником с момента подключения к программе.</p>
+                  <p class="modal-text">
+                    <strong>ДЗ</strong> - число выполненных домашних заданий из
+                    тех, которые уже опубликованы в программе.
+                  </p>
+                  <p class="modal-text">
+                    <strong>Шаги</strong> - количество шагов участника с момента
+                    подключения к программе.
+                  </p>
+                  <p class="modal-text">
+                    <strong>Общее</strong> - общая сумма баллов за шаги и
+                    выполненные домашние задания, набранная участником с момента
+                    подключения к программе.
+                  </p>
                 </div>
-
               </app-popup-three>
             </ion-grid>
             <ion-grid class="ion-align-self-center">
@@ -60,20 +72,11 @@
                   {{ customer.completed_tasks }} из {{ customer.total_tasks
                   }}</ion-col
                 >
-                <ion-col
-                  size="3"
-                  class="ion-text-center table-label"
-                  *ngIf="customer.total != 0"
-                  >{{ (customer.total / 1000).toFixed(1) }}K</ion-col
-                >
-                <ion-col
-                  size="3"
-                  class="ion-text-center table-label"
-                  *ngIf="customer.total == 0"
-                  >0</ion-col
+                <ion-col size="3" class="ion-text-center table-label"
+                  >{{ +(customer.total / 1000).toFixed(1) }}K</ion-col
                 >
                 <ion-col size="2" class="ion-text-center table-label"
-                  >{{ customer.bonus }}</ion-col
+                  >{{ +(customer.bonus / 1000).toFixed(1) }}K</ion-col
                 >
               </ion-row>
             </ion-grid>
