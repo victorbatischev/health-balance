@@ -155,12 +155,8 @@ export class PortfolioPage {
               this.customerData.token
           )
           .subscribe(
-            (data: any) => {
-              this.calc_steps = data[idx]
-            },
-            (error) => {
-              console.log(error)
-            }
+            (data: any) => (this.calc_steps = data[idx]),
+            (error) => console.log(error)
           )
       } else {
         this.alertServ.showToast('Нет соединения с сетью')
