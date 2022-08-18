@@ -18,8 +18,7 @@ import { CustomerService } from '../../../providers/customer-service'
 export class PortfolioPage {
   steps: any = 0
   calc_steps: number = 0
-  tracking: boolean = false
-  timeoutId: any
+  intervalId: any
 
   selected_tab: string = 'today'
 
@@ -57,14 +56,10 @@ export class PortfolioPage {
           this.alertServ.showToast(available)
           // запрос на авторизацию в Google Fit для считывания шагов
           this.health
-            .requestAuthorization([
-              {
-                read: ['steps']
-              }
-            ])
+            .requestAuthorization([{ read: ['steps'] }])
             .then((res) => {
-              this.tracking = true
-              this.startTracking(100)
+              this.getStepsHistory()
+              this.startTracking()
             })
             .catch((error) => {
               this.alertServ.showToast('Error authorization: ' + error)
@@ -79,57 +74,77 @@ export class PortfolioPage {
   }
 
   ionViewDidLeave() {
-    this.tracking = false
-    clearTimeout(this.timeoutId)
+    clearInterval(this.intervalId)
   }
 
-  startTracking(delay) {
-    if (this.tracking) {
-      this.timeoutId = setTimeout(() => {
-        var start_date = new Date()
-        start_date.setHours(0, 0, 0, 0)
+  subtractMonths(numOfMonths, date = new Date()) {
+    date.setMonth(date.getMonth() - numOfMonths)
+    return date
+  }
 
-        // Получение данных по шагам
-        this.health
-          .queryAggregated({
-            startDate: start_date,
-            endDate: new Date(), // now
-            dataType: 'steps'
-          })
-          .then((res: any) => {
-            this.zone.run(() => {
-              this.steps = res.value
-            })
-            this.refdect.detectChanges()
-            if (this.connectivityServ.isOnline()) {
-              this.httpClient
-                .get(
-                  this.connectivityServ.apiUrl +
-                    'steps/update?token=' +
-                    this.customerData.token +
-                    '&steps=' +
-                    this.steps
-                )
-                .subscribe(
-                  (data: any) => {
-                    this.place = data.result.place
-                  },
-                  (error) => {
-                    console.log(error)
-                  }
-                )
-            }
-            this.startTracking(5000)
-          })
-          .catch((e) => console.log(e))
-      }, delay)
-    }
+  getStepsHistory() {
+    // получение данных по шагам за последний месяц
+    this.health
+      .query({
+        startDate: this.subtractMonths(1),
+        endDate: new Date(),
+        dataType: 'steps',
+        limit: 1000
+      })
+      .then((res: any) => {
+        this.refdect.detectChanges()
+        if (this.connectivityServ.isOnline()) {
+          this.httpClient
+            .get(
+              this.connectivityServ.apiUrl +
+                'steps/update?token=' +
+                this.customerData.token +
+                '&steps_arr=' +
+                res
+            )
+            .subscribe(
+              (data: any) => console.log(data),
+              (error) => console.log(error)
+            )
+        }
+      })
+      .catch((e) => console.log(e))
+  }
+
+  startTracking() {
+    this.intervalId = setInterval(() => {
+      // Получение данных по шагам с полуночи
+      this.health
+        .queryAggregated({
+          startDate: new Date(new Date().setHours(0, 0, 0, 0)),
+          endDate: new Date(),
+          dataType: 'steps'
+        })
+        .then((res: any) => {
+          this.zone.run(() => (this.steps = res.value))
+          this.refdect.detectChanges()
+          if (this.connectivityServ.isOnline()) {
+            this.httpClient
+              .get(
+                this.connectivityServ.apiUrl +
+                  'steps/update?token=' +
+                  this.customerData.token +
+                  '&steps=' +
+                  this.steps
+              )
+              .subscribe(
+                (data: any) => (this.place = data.result.place),
+                (error) => console.log(error)
+              )
+          }
+        })
+        .catch((e) => console.log(e))
+    }, 5000)
   }
 
   setActiveTab(idx) {
-    if (this.selected_tab === idx) {
-      return false
-    }
+    if (this.selected_tab === idx) return false
+
     this.selected_tab = idx
     if (idx !== 'today') {
       if (this.connectivityServ.isOnline()) {

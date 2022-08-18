@@ -94,7 +94,7 @@
                   ></ion-col
                 >
                 <ion-col size="2" class="ion-text-center table-label">
-                  {{ item.total_tasks * item.peoples }}</ion-col
+                  {{ item.completed_tasks }}</ion-col
                 >
                 <ion-col size="3" class="ion-text-center table-label"
                   >{{ +(item.total / 1000).toFixed(1) }}K</ion-col
@@ -104,22 +104,6 @@
                   }}K</ion-col
                 >
               </ion-row>
-              <!-- <ion-row style="border-top: 1px solid #ccc">
-                <ion-col class="ion-text-left table-label">Итого: </ion-col>
-                <ion-col size="3" class="ion-text-center table-label"
-                  ><span
-                    >{{ program.completed_tasks }} из {{ program.total_tasks *
-                    program.total_peoples }}</span
-                  ></ion-col
-                >
-                <ion-col size="2" class="ion-text-center table-label"
-                  >{{ (program.total / 1000).toFixed(1) }}K</ion-col
-                >
-                <ion-col size="2" class="ion-text-center table-label"
-                  >{{ ((+program.total + +program.bonus) / 1000).toFixed(1)
-                  }}K</ion-col
-                >
-              </ion-row> -->
             </ion-grid>
           </div>
         </div>
