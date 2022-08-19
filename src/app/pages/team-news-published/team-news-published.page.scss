@@ -132,9 +132,9 @@ app-team-news-published {
   &__comments-amount {
     display: flex;
     align-items: center;
-    gap: 5px;
     margin: 0 0 16px 0;
     span {
+      margin-left: 5px;
       color: #999999;
       font-size: 13px;
     }

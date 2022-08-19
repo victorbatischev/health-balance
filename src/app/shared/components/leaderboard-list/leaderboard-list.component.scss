@@ -2,7 +2,6 @@
   &__container{
     display: flex;
     flex-direction: column;
-    row-gap: 40px;
   }
 }
 
@@ -10,15 +9,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  &:not(:last-child){
+    margin-bottom: 40px;
+  }
   &__col_one{
     display: flex;
     align-items: center;
-    gap: 8px;
     flex: 1 1 auto;
   }
   &__icon{
     flex: 0 0 39px;
     height: 100%;
+    margin-right: 8px;
     img{
       width: 39px;
       height: 39px;
@@ -27,7 +29,6 @@
   &__info{
     display: flex;
     flex-direction: column;
-    row-gap: 4px;
     flex: 0 1 50%;
   }
   &__command{
@@ -36,6 +37,7 @@
     letter-spacing: -0.02em;
     font-weight: 400;
     white-space: nowrap;
+    margin-bottom: 4px;
   }
   &__score{
     font-family: var(--fontDisplay);

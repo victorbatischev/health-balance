@@ -143,6 +143,7 @@ ion-menu {
   width: 39px;
   height: 17px;
   z-index: 4;
+  margin-left: 25px;
 }
 .switch input {
   display: none;
@@ -188,5 +189,4 @@ input:checked + .slider:before {
 }
 .themeCheck {
   display: flex;
-  gap: 25px;
 }

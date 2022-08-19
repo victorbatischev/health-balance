@@ -25,8 +25,10 @@ h2 {
   font-weight: 700;
   display: flex;
   margin: 0;
-  gap: 5px;
   align-items: center;
+  img{
+    margin-right: 5px;
+  }
 }
 .img-block {
   flex: 0 0 58px;

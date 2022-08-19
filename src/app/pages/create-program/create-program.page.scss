@@ -76,11 +76,13 @@
 .team {
   display: flex;
   align-items: center;
-  column-gap: 10px;
 }
 
 .team-block {
   flex: 0 1 50%;
+  &:not(:last-child){
+  margin: 0 10px 0 0;
+}
 }
 .btn-block {
   margin-bottom: 10px;

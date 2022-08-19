@@ -6,13 +6,12 @@
 .photo-block{
   display: flex;
   align-items: center;
-  gap: 18px;
-  
+
   .photo{
     width: 76px;
     height: 76px;
     position: relative;
-
+    margin-right: 18px;
     img{
       width: 100%;
       height: 100%;
