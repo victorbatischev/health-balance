@@ -2,6 +2,7 @@ import { Component, NgZone, ChangeDetectorRef } from '@angular/core'
 
 import { HttpClient } from '@angular/common/http'
 import { Storage } from '@ionic/storage'
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx'
 
 import { Health } from '@awesome-cordova-plugins/health/ngx'
 
@@ -42,30 +43,39 @@ export class PortfolioPage {
     public httpClient: HttpClient,
     public storage: Storage,
     private health: Health,
+    private androidPermissions: AndroidPermissions,
     private connectivityServ: ConnectivityService,
     private alertServ: AlertService,
     public customerServ: CustomerService
   ) {
     this.storage.get('customerData').then((val) => {
       this.customerData = val
-
-      // проверка на доступность Google Fit
-      this.health
-        .isAvailable()
-        .then((available: boolean) => {
-          this.alertServ.showToast(available)
-          // запрос на авторизацию в Google Fit для считывания шагов
-          this.health
-            .requestAuthorization([{ read: ['steps'] }])
-            .then((res) => {
-              this.getStepsHistory()
-              this.startTracking()
-            })
-            .catch((error) => {
-              this.alertServ.showToast('Error authorization: ' + error)
-            })
-        })
-        .catch((e) => console.log(e))
+      // запрос разрешений на Android 10
+      this.androidPermissions
+        .requestPermission(
+          this.androidPermissions.PERMISSION.ACTIVITY_RECOGNITION
+        )
+        .then(
+          (result) => {
+            // проверка на доступность Google Fit
+            this.health
+              .isAvailable()
+              .then((available: boolean) => {
+                // запрос на авторизацию в Google Fit для считывания шагов
+                this.health
+                  .requestAuthorization([{ read: ['steps'] }])
+                  .then((res) => {
+                    this.getStepsHistory()
+                    this.startTracking()
+                  })
+                  .catch((error) => {
+                    this.alertServ.showToast('Error authorization: ' + error)
+                  })
+              })
+              .catch((e) => console.log(e))
+          },
+          (error) => this.alertServ.showToast('Error permission: ' + error)
+        )
     })
 
     this.customerServ.getCustomerData().subscribe((val) => {
@@ -88,27 +98,29 @@ export class PortfolioPage {
       .query({
         startDate: this.subtractMonths(1),
         endDate: new Date(),
-        dataType: 'steps',
-        limit: 1000
+        dataType: 'steps'
       })
       .then((res: any) => {
         this.refdect.detectChanges()
+
         if (this.connectivityServ.isOnline()) {
           this.httpClient
-            .get(
+            .post(
               this.connectivityServ.apiUrl +
                 'steps/update?token=' +
-                this.customerData.token +
-                '&steps_arr=' +
-                res
+                this.customerData.token,
+              JSON.stringify({ steps_arr: res })
             )
             .subscribe(
               (data: any) => console.log(data),
-              (error) => console.log(error)
+              (error) =>
+                this.alertServ.showToast(
+                  'Error received: ' + JSON.stringify(error)
+                )
             )
         }
       })
-      .catch((e) => console.log(e))
+      .catch((e) => this.alertServ.showToast('Error: ' + e))
   }
 
   startTracking() {
