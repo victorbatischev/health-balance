@@ -188,8 +188,8 @@ export class CreateProgramPage {
             this.programInfo = {
               title: '',
               image: '',
-              team_amount: 1,
-              max_peoples: 1
+              team_amount: 3,
+              max_peoples: 10
             }
             this.date = { from: '', to: '' }
           },
