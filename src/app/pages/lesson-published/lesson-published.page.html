@@ -49,12 +49,12 @@
             <p class="sub-title" *ngIf="lesson.description != ''">
               {{ lesson.description }}
             </p>
-            <h3
+            <ion-textarea
               class="lesson-title"
               *ngIf="+lesson.type_id == 1 || +lesson.type_id == 3"
+              style="white-space: pre-wrap"
+              >{{ lesson.question }}</ion-textarea
             >
-              {{ lesson.question }}
-            </h3>
             <p *ngIf="+lesson.type_id == 3  && !lesson.exist">
               <ion-input
                 type="text"

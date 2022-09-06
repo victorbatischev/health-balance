@@ -221,7 +221,7 @@ export class LessonFormPage {
             '&video=' +
             this.task.video +
             '&question=' +
-            this.task.question +
+            encodeURIComponent(this.task.question) +
             '&answers=' +
             answers +
             '&correct_answer=' +

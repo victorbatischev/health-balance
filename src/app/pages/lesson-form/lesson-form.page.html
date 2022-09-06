@@ -102,6 +102,7 @@
                 name="question"
                 [(ngModel)]="task.question"
                 placeholder="Вопрос"
+                style="white-space: pre-wrap"
               ></ion-textarea>
             </p>
             <p *ngFor="let answer of task.answers; let i = index;">
