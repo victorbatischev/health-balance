@@ -120,7 +120,6 @@ export class HealthIndexPage {
                   ]
                 })
                 this.questions = [...tempQuestions]
-
               } else if (saveAnswers) {
                 this.questions = [...tempQuestions]
               } else {

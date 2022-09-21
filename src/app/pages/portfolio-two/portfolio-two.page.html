@@ -1,58 +1,111 @@
 <app-header [title]="'Профиль'" style="z-index: 1000"></app-header>
 
-
 <ion-content fullscreen class="container" force-overscroll="false">
-    <ion-grid style="height: 100%" class="ion-no-padding">
-        <ion-row class="container">
-            <ion-header class="header ion-no-border" color="primary">
-                <ion-toolbar class="toolbar">
-                    <div class="photo-block">
-                        <div class="photo">
-                            <img src="assets/images/portfolio/light-photo.png" alt="photo" (click)="getPhoto()"
-                                 *ngIf="customerData.avatar == ''">
-                            <img src="{{ customerData.avatar }}" alt="photo" (click)="getPhoto()"
-                                 *ngIf="customerData.avatar != ''">
-                            <div class="photo-icon_edit"><img src="assets/images/portfolio/icon-edit.svg" alt=""></div>
-                        </div>
-                        <p class="photo-title">
-                            {{ customerData.name }}
-                        </p>
+  <ion-grid style="height: 100%" class="ion-no-padding">
+    <ion-row class="container">
+      <ion-header class="header ion-no-border" color="primary">
+        <ion-toolbar class="toolbar">
+          <div class="photo-block">
+            <div class="photo">
+              <img
+                src="assets/images/portfolio/light-photo.png"
+                alt="photo"
+                (click)="getPhoto()"
+                *ngIf="customerData.avatar == ''"
+              />
+              <img
+                src="{{ customerData.avatar }}"
+                alt="photo"
+                (click)="getPhoto()"
+                *ngIf="customerData.avatar != ''"
+              />
+              <div class="photo-icon_edit">
+                <img src="assets/images/portfolio/icon-edit.svg" alt="" />
+              </div>
+            </div>
+            <p class="photo-title">{{ customerData.name }}</p>
+          </div>
+        </ion-toolbar>
+      </ion-header>
+    </ion-row>
+    <ion-row justify-content-center align-items-center>
+      <ion-col size="12" ion-text-center>
+        <div class="container">
+          <form class="form" (ngSubmit)="doProfile()">
+            <ion-input
+              type="text"
+              name="name"
+              [(ngModel)]="customerData.name"
+              class="input"
+              placeholder="Ваше имя"
+            ></ion-input>
+            <ion-input
+              type="email"
+              name="email"
+              [(ngModel)]="customerData.email"
+              class="input"
+              placeholder="E-mail"
+              disabled
+            ></ion-input>
+            <ion-input
+              type="text"
+              name="city"
+              [(ngModel)]="customerData.city"
+              class="input"
+              placeholder="Город"
+            ></ion-input>
+            <ion-input
+              type="tel"
+              name="phone"
+              [(ngModel)]="customerData.phone"
+              class="input"
+              placeholder="Телефон (не обязательно)"
+            ></ion-input>
+            <ion-input
+              type="password"
+              name="old_password"
+              [(ngModel)]="password"
+              class="input"
+              placeholder="Новый пароль"
+            ></ion-input>
+            <ion-input
+              type="password"
+              name="new_password"
+              [(ngModel)]="retry_password"
+              class="input"
+              placeholder="Повтор пароля"
+            ></ion-input>
 
-                    </div>
-
-                </ion-toolbar>
-            </ion-header>
-        </ion-row>
-        <ion-row justify-content-center align-items-center >
-            <ion-col size="12" ion-text-center>
-
-                <div class="container">
-                    <form class="form" (ngSubmit)="doProfile()">
-                        <ion-input type="text" name="name" [(ngModel)]="customerData.name" class="input"
-                                   placeholder="Ваше имя"></ion-input>
-                        <ion-input type="email" name="email" [(ngModel)]="customerData.email" class="input"
-                                   placeholder="E-mail" disabled></ion-input>
-                        <ion-input type="text" name="city" [(ngModel)]="customerData.city" class="input"
-                                   placeholder="Город"></ion-input>
-                        <ion-input type="tel" name="phone" [(ngModel)]="customerData.phone" class="input"
-                                   placeholder="Телефон (не обязательно)"></ion-input>
-                        <ion-input type="password" name="old_password" [(ngModel)]="password" class="input"
-                                   placeholder="Новый пароль"></ion-input>
-                        <ion-input type="password" name="new_password" [(ngModel)]="retry_password" class="input"
-                                   placeholder="Повтор пароля"></ion-input>
-
-                        <div class="btn-block">
-                            <ion-button type="submit" class="button transition-button"
-                                         expand="block">
-                                Сохранить
-                            </ion-button>
-                        </div>
-
-                    </form>
-                </div>
-
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-    <div class="line"></div>
+            <div class="btn-block">
+              <ion-button
+                type="submit"
+                class="button transition-button"
+                expand="block"
+              >
+                Сохранить
+              </ion-button>
+            </div>
+          </form>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center align-items-center>
+      <ion-col size="12" ion-text-center>
+        <div class="container">
+          <div class="btn-block">
+            <ion-button
+              class="button transition-button"
+              expand="block"
+              color="danger"
+              style="margin-top: 30px"
+              (click)="deleteAccount()"
+            >
+              Удалить аккаунт
+            </ion-button>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="line"></div>
 </ion-content>

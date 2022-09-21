@@ -107,7 +107,10 @@ export class CreateProgramPage {
           fileName: fname,
           chunkedMode: false,
           mimeType: 'image/jpg',
-          params: { token: this.customerData.token, fileName: fname }
+          params: {
+            token: this.customerData.token,
+            fileName: fname
+          }
         }
 
         const fileFileTransfer: FileTransferObject = this.transfer.create()

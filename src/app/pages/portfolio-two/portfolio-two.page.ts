@@ -157,7 +157,10 @@ export class PortfolioTwoPage {
               fileName: fname,
               chunkedMode: false,
               mimeType: 'image/jpg',
-              params: { token: this.customerData.token, fileName: fname }
+              params: {
+                token: this.customerData.token,
+                fileName: fname
+              }
             }
             const fileFileTransfer: FileTransferObject = this.transfer.create()
             if (this.connectivityServ.isOnline()) {
@@ -225,7 +228,10 @@ export class PortfolioTwoPage {
               fileName: fname,
               chunkedMode: false,
               mimeType: 'image/jpg',
-              params: { token: this.customerData.token, fileName: fname }
+              params: {
+                token: this.customerData.token,
+                fileName: fname
+              }
             }
             const fileFileTransfer: FileTransferObject = this.transfer.create()
             if (this.connectivityServ.isOnline()) {
@@ -267,5 +273,48 @@ export class PortfolioTwoPage {
         console.log(err)
       }
     )
+  }
+
+  async deleteAccount() {
+    let prompt = await this.alertCtrl.create({
+      header: 'Внимание!',
+      subHeader: 'Вы уверены, что хотите удалить свою учётную запись?',
+      message:
+        'Все данные вашей учётной записи будут удалены без возможности восстановления!',
+      buttons: [
+        {
+          text: 'Отмена',
+          role: 'cancel'
+        },
+        {
+          text: 'Удалить',
+          handler: () => {
+            if (this.connectivityServ.isOnline()) {
+              this.httpClient
+                .get(
+                  this.connectivityServ.apiUrl +
+                    'account/delete?token=' +
+                    this.customerData.token
+                )
+                .subscribe(
+                  (data: any) => {
+                    this.alertServ.showToast(
+                      'Ваша учётная запись была удалена!'
+                    )
+                    this.customerServ.clearData()
+                    this.navCtrl.navigateRoot('sign-in')
+                  },
+                  (error) => {
+                    console.log(error)
+                  }
+                )
+            } else {
+              this.alertServ.showToast('Нет соединения с сетью')
+            }
+          }
+        }
+      ]
+    })
+    return await prompt.present()
   }
 }
