@@ -23,6 +23,7 @@ import { AlertService } from '../providers/alert-service'
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx'
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx'
 import { OneSignal } from '@ionic-native/onesignal/ngx'
+import { BackgroundMode } from '@awesome-cordova-plugins/background-mode/ngx'
 
 import { ConnectivityService } from '../providers/connectivity-service'
 
@@ -113,7 +114,8 @@ export class AppComponent {
     private statusBar: StatusBar,
     public customerServ: CustomerService,
     private connectivityServ: ConnectivityService,
-    private oneSignal: OneSignal
+    private oneSignal: OneSignal,
+    private backgroundMode: BackgroundMode
   ) {
     this.customerServ.getCustomerData().subscribe((val) => {
       this.customerData = val
@@ -157,11 +159,28 @@ export class AppComponent {
       this.oneSignal.promptLocation()
       this.oneSignal.endInit()
 
+      this.backgroundMode.enable()
+      this.backgroundMode.setDefaults({
+        title: 'HealthBalance',
+        text: 'Пройдено шагов: 0',
+        color: '#111111',
+        hidden: false,
+        bigText: true
+      })
+      this.backgroundMode.on('activate', function () {
+        backgroundMode.disableWebViewOptimizations(); 
+      })
+      this.backgroundMode.on('deactivate', function () {
+        cordova.plugins.notification.badge.clear()
+      })
+
       if (this.platform.is('android')) {
         this.backButtonEvent()
       }
     })
   }
+
+
 
   async showPushMessage(message) {
     let alert = await this.alertCtrl.create({
@@ -260,6 +279,7 @@ export class AppComponent {
     this.lightTheme = JSON.parse(localStorage.getItem(this.localStorageKey))
     this.initializeTheme()
   }
+
   initializeTheme() {
     if (this.lightTheme) {
       this.root.style.setProperty('--backgroundMain', '#f4f3f3')

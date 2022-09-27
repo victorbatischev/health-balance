@@ -11,6 +11,7 @@ import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx'
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx'
 import { Health } from '@awesome-cordova-plugins/health/ngx'
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx'
+import { BackgroundMode } from '@awesome-cordova-plugins/background-mode/ngx'
 import { Media } from '@ionic-native/media/ngx'
 import { Camera } from '@ionic-native/camera/ngx'
 import { Crop } from '@ionic-native/crop/ngx'
@@ -49,6 +50,7 @@ import { AppRoutingModule } from './app-routing.module'
     StatusBar,
     SplashScreen,
     Health,
+    BackgroundMode,
     AndroidPermissions,
     Media,
     Camera,
