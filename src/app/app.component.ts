@@ -180,7 +180,7 @@ export class AppComponent {
             this.backgroundMode.configure({
               title: 'Пройдено шагов: ' + this.counter
             })
-
+            console.log(this.counter)
             if (navigator.vibrate) {
               navigator.vibrate(1000)
             }

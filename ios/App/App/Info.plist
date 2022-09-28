@@ -48,6 +48,8 @@
 	<string>Для повышения точности подсчета шагов</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Для повышения точности подсчета шагов</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Для повышения точности подсчета шагов</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Для записи видео со звуком</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
@@ -56,6 +58,9 @@
 	<string>Чтобы выбрать фотографии из библиотеки</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>fetch</string>
+		<string>location</string>
+		<string>processing</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
