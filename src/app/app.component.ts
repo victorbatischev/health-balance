@@ -49,6 +49,8 @@ export class AppComponent {
   timePeriodToExit = 2000
   localStorageKey = 'theme'
   lightTheme = JSON.parse(localStorage.getItem(this.localStorageKey))
+  interval: any
+  counter = 0
 
   root = document.documentElement
   showSubMenu = false
@@ -167,11 +169,26 @@ export class AppComponent {
         hidden: false,
         bigText: true
       })
-      this.backgroundMode.on('activate', function () {
-        backgroundMode.disableWebViewOptimizations(); 
+      this.backgroundMode.on('activate').subscribe(() => {
+        this.backgroundMode.disableWebViewOptimizations()
+        this.backgroundMode.disableBatteryOptimizations()
+
+        this.interval = setInterval(() => {
+          this.counter++
+
+          if (this.counter % 15 === 0) {
+            this.backgroundMode.configure({
+              text: 'Пройдено шагов: ' + this.counter
+            })
+
+            if (navigator.vibrate) {
+              navigator.vibrate(1000)
+            }
+          }
+        }, 1000)
       })
-      this.backgroundMode.on('deactivate', function () {
-        cordova.plugins.notification.badge.clear()
+      this.backgroundMode.on('deactivate').subscribe(() => {
+        clearInterval(this.interval)
       })
 
       if (this.platform.is('android')) {
@@ -179,8 +196,6 @@ export class AppComponent {
       }
     })
   }
-
-
 
   async showPushMessage(message) {
     let alert = await this.alertCtrl.create({

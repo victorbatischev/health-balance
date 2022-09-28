@@ -10,7 +10,6 @@ import { IonicStorageModule } from '@ionic/storage'
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx'
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx'
 import { Health } from '@awesome-cordova-plugins/health/ngx'
-import { AndroidPermissions } from '@ionic-native/android-permissions/ngx'
 import { BackgroundMode } from '@awesome-cordova-plugins/background-mode/ngx'
 import { Media } from '@ionic-native/media/ngx'
 import { Camera } from '@ionic-native/camera/ngx'
@@ -18,7 +17,6 @@ import { Crop } from '@ionic-native/crop/ngx'
 import { FileTransfer } from '@ionic-native/file-transfer/ngx'
 import { IOSFilePicker } from '@ionic-native/file-picker/ngx'
 import { FileChooser } from '@ionic-native/file-chooser/ngx'
-//import { FilePath } from '@ionic-native/file-path/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx'
 import { OneSignal } from '@ionic-native/onesignal/ngx'
 import { Clipboard } from '@ionic-native/clipboard/ngx'
@@ -51,14 +49,12 @@ import { AppRoutingModule } from './app-routing.module'
     SplashScreen,
     Health,
     BackgroundMode,
-    AndroidPermissions,
     Media,
     Camera,
     Crop,
     FileTransfer,
     IOSFilePicker,
     FileChooser,
-    // FilePath,
     BarcodeScanner,
     OneSignal,
     Clipboard,
