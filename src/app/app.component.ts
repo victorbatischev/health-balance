@@ -163,14 +163,14 @@ export class AppComponent {
 
       this.backgroundMode.enable()
       this.backgroundMode.setDefaults({
-        title: 'HealthBalance',
-        text: 'Пройдено шагов: 0',
-        color: '#111111',
+        title: 'Пройдено шагов: 0',
+        text: '',
+        icon: 'ic_launcher',
+        color: '000000',
         hidden: false,
         bigText: true
       })
       this.backgroundMode.on('activate').subscribe(() => {
-        this.backgroundMode.disableWebViewOptimizations()
         this.backgroundMode.disableBatteryOptimizations()
 
         this.interval = setInterval(() => {
@@ -178,7 +178,7 @@ export class AppComponent {
 
           if (this.counter % 15 === 0) {
             this.backgroundMode.configure({
-              text: 'Пройдено шагов: ' + this.counter
+              title: 'Пройдено шагов: ' + this.counter
             })
 
             if (navigator.vibrate) {
