@@ -27,6 +27,7 @@ import { FileOpener } from '@ionic-native/file-opener/ngx'
 import { ConnectivityService } from '../providers/connectivity-service'
 import { AlertService } from '../providers/alert-service'
 import { CustomerService } from '../providers/customer-service'
+import { PedometerService } from '../providers/pedometer-service'
 
 import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app-routing.module'
@@ -61,6 +62,7 @@ import { AppRoutingModule } from './app-routing.module'
     ConnectivityService,
     AlertService,
     CustomerService,
+    PedometerService,
     PDFGenerator,
     File,
     FileOpener,

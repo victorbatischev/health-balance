@@ -10,8 +10,8 @@
     <param name="android-package" value="com.pdf.generator.PDFGenerator"/>
   </feature>
 
-  <feature name="Permissions">
-    <param name="android-package" value="com.android.plugins.Permissions"/>
+  <feature name="Pedometer">
+    <param name="android-package" value="org.apache.cordova.pedometer.PedoListener"/>
   </feature>
 
   <feature name="BackgroundMode">
