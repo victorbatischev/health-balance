@@ -11,6 +11,7 @@ import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx'
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx'
 import { Health } from '@awesome-cordova-plugins/health/ngx'
 import { BackgroundMode } from '@awesome-cordova-plugins/background-mode/ngx'
+import { Pedometer } from 'cordova-pedometer'
 import { Media } from '@ionic-native/media/ngx'
 import { Camera } from '@ionic-native/camera/ngx'
 import { Crop } from '@ionic-native/crop/ngx'
@@ -27,7 +28,6 @@ import { FileOpener } from '@ionic-native/file-opener/ngx'
 import { ConnectivityService } from '../providers/connectivity-service'
 import { AlertService } from '../providers/alert-service'
 import { CustomerService } from '../providers/customer-service'
-import { PedometerService } from '../providers/pedometer-service'
 
 import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app-routing.module'
@@ -50,6 +50,7 @@ import { AppRoutingModule } from './app-routing.module'
     SplashScreen,
     Health,
     BackgroundMode,
+    Pedometer,
     Media,
     Camera,
     Crop,
@@ -62,7 +63,6 @@ import { AppRoutingModule } from './app-routing.module'
     ConnectivityService,
     AlertService,
     CustomerService,
-    PedometerService,
     PDFGenerator,
     File,
     FileOpener,

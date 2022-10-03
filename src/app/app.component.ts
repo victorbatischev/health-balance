@@ -19,12 +19,12 @@ import { HttpClient } from '@angular/common/http'
 import { Storage } from '@ionic/storage'
 
 import { AlertService } from '../providers/alert-service'
-import { PedometerService } from '../providers/pedometer-service'
 
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx'
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx'
 import { OneSignal } from '@ionic-native/onesignal/ngx'
 import { BackgroundMode } from '@awesome-cordova-plugins/background-mode/ngx'
+import { Pedometer } from 'cordova-pedometer'
 
 import { ConnectivityService } from '../providers/connectivity-service'
 
@@ -52,6 +52,7 @@ export class AppComponent {
   lightTheme = JSON.parse(localStorage.getItem(this.localStorageKey))
   interval: any
   counter = 0
+  steps = 0
 
   root = document.documentElement
   showSubMenu = false
@@ -119,7 +120,7 @@ export class AppComponent {
     private connectivityServ: ConnectivityService,
     private oneSignal: OneSignal,
     private backgroundMode: BackgroundMode,
-    private pedometer: PedometerService
+    private pedometer: Pedometer
   ) {
     this.customerServ.getCustomerData().subscribe((val) => {
       this.customerData = val
@@ -163,14 +164,15 @@ export class AppComponent {
       this.oneSignal.promptLocation()
       this.oneSignal.endInit()
 
-      // this.pedometer
-      //   .isStepCountingAvailable()
-      //   .then((result) => console.log(result))
-      //   .catch((error) => console.log(error))
+      this.pedometer
+        .isStepCountingAvailable()
+        .then((result) => console.log(result))
+        .catch((error) => console.log(error))
 
-      // this.pedometer.startPedometerUpdates().then((data: any) => {
-      //   console.log(data)
-      // })
+      this.pedometer.startPedometerUpdates().subscribe((data: any) => {
+        console.log(data)
+        this.steps += data.numberOfSteps
+      })
 
       this.backgroundMode.enable()
       this.backgroundMode.setDefaults({
@@ -189,7 +191,7 @@ export class AppComponent {
 
           if (this.counter % 15 === 0) {
             this.backgroundMode.configure({
-              title: 'Пройдено шагов: ' + this.counter
+              title: 'Пройдено шагов: ' + this.steps
             })
             console.log(this.counter)
             if (navigator.vibrate) {
