@@ -10,10 +10,6 @@
     <param name="android-package" value="com.pdf.generator.PDFGenerator"/>
   </feature>
 
-  <feature name="Pedometer">
-    <param name="android-package" value="org.apache.cordova.pedometer.PedoListener"/>
-  </feature>
-
   <feature name="BackgroundMode">
     <param name="android-package" value="de.appplant.cordova.plugin.background.BackgroundMode"/>
   </feature>
@@ -59,6 +55,10 @@
     <param name="android-package" value="org.apache.cordova.media.AudioHandler"/>
   </feature>
 
+  <feature name="Pedometer">
+    <param name="android-package" value="org.apache.cordova.pedometer.PedoListener"/>
+  </feature>
+
   <feature name="OneSignalPush">
     <param name="android-package" value="com.plugin.gcm.OneSignalPush"/>
   </feature>
@@ -86,4 +86,12 @@
   </feature>
 
   
+  <preference name="ScrollEnabled" value="false" />
+  <preference name="android-minSdkVersion" value="19" />
+  <preference name="BackupWebStorage" value="none" />
+  <preference name="SplashMaintainAspectRatio" value="true" />
+  <preference name="FadeSplashScreenDuration" value="300" />
+  <preference name="SplashShowOnlyFirstTime" value="false" />
+  <preference name="SplashScreen" value="screen" />
+  <preference name="SplashScreenDelay" value="3000" />
 </widget>
