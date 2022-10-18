@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service android:name="com.yakubov.app.ForegroundService"/>
+        <service android:name="com.academia.health.ForegroundService"/>
         <receiver
             android:name=".utils.AlarmReceiver"
             android:enabled="true"

@@ -107,9 +107,9 @@ public class ForegroundService extends Service {
         Notification notification = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             notification = new Notification.Builder(this, CHANNEL_ID)
-                    .setContentTitle("Counting steps")
+                    .setContentTitle("Пройдено шагов сегодня:")
                     .setContentText(input)
-                    .setSmallIcon(R.drawable.launcher_icon)
+                    .setSmallIcon(R.drawable.common_full_open_on_phone)
                     .setContentIntent(pendingIntent)
                     .build();
         }
@@ -125,7 +125,7 @@ public class ForegroundService extends Service {
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
-                    "Пройдено шагов: ", NotificationManager.IMPORTANCE_HIGH);
+                    "Пройдено шагов сегодня: ", NotificationManager.IMPORTANCE_HIGH);
             channel.enableVibration(false);
             channel.setSound(null, null);
             channel.setShowBadge(false);
@@ -141,9 +141,9 @@ public class ForegroundService extends Service {
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             Notification notification = new Notification.Builder(this, CHANNEL_ID)
-                    .setContentTitle("Пройдено шагов: ")
+                    .setContentTitle("Пройдено шагов сегодня: ")
                     .setContentText(message)
-                    .setSmallIcon(R.drawable.launcher_icon)
+                    .setSmallIcon(R.drawable.common_full_open_on_phone)
                     .setContentIntent(pendingIntent)
                     .build();
 

@@ -56,7 +56,6 @@ export class AppComponent {
   root = document.documentElement
   showSubMenu = false
   currentId: number
-  steps = 0 
 
   menuItems = [
     { id: 1, title: 'Личный кабинет' },
@@ -119,7 +118,7 @@ export class AppComponent {
     public customerServ: CustomerService,
     private connectivityServ: ConnectivityService,
     private oneSignal: OneSignal,
-    private backgroundMode: BackgroundMode,
+    // private backgroundMode: BackgroundMode,
     private ref: ChangeDetectorRef
   ) {
     this.customerServ.getCustomerData().subscribe((val) => {
@@ -164,15 +163,35 @@ export class AppComponent {
       this.oneSignal.promptLocation()
       this.oneSignal.endInit()
 
-      this.backgroundMode.enable()
+      // this.backgroundMode.enable()
 
       PedometerPlugin.start()
 
       window.addEventListener('stepEvent', (event: any) => {
-        console.log(event.numberOfSteps);
-        this.steps = event.numberOfSteps;
-        this.ref.detectChanges();
-      });
+        this.ref.detectChanges()
+        if (this.connectivityServ.isOnline() && this.customerData.token) {
+          let startDate = new Date(
+            new Date().setHours(0, 0, 0, 0)
+          ).toISOString()
+          let endDate = new Date().toISOString()
+          this.httpClient
+            .post(
+              this.connectivityServ.apiUrl +
+                'steps/update?token=' +
+                this.customerData.token,
+              JSON.stringify({
+                steps_arr: [{ startDate, endDate, value: event.numberOfSteps }]
+              })
+            )
+            .subscribe(
+              (data: any) => console.log(data),
+              (error) =>
+                this.alertServ.showToast(
+                  'Error received: ' + JSON.stringify(error)
+                )
+            )
+        }
+      })
 
       if (this.platform.is('android')) {
         this.backButtonEvent()
