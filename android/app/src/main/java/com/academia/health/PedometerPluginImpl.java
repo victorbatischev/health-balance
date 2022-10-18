@@ -11,7 +11,7 @@ import android.hardware.SensorManager;
 
 import com.getcapacitor.JSObject;
 import com.getcapacitor.PluginMethod;
-import com.getcapacitor.CapacitorPlugin;
+import com.getcapacitor.annotation.CapacitorPlugin;
 import com.getcapacitor.annotation.Permission;
 
 import org.json.JSONException;
