@@ -49,9 +49,6 @@ export class AppComponent {
   timePeriodToExit = 2000
   localStorageKey = 'theme'
   lightTheme = JSON.parse(localStorage.getItem(this.localStorageKey))
-  interval: any
-  counter = 0
-
   root = document.documentElement
   showSubMenu = false
   currentId: number
@@ -162,34 +159,6 @@ export class AppComponent {
       this.oneSignal.endInit()
 
       this.backgroundMode.enable()
-      this.backgroundMode.setDefaults({
-        title: 'Пройдено шагов: 0',
-        text: '',
-        icon: 'ic_launcher',
-        color: '000000',
-        hidden: false,
-        bigText: true
-      })
-      this.backgroundMode.on('activate').subscribe(() => {
-        this.backgroundMode.disableBatteryOptimizations()
-
-        this.interval = setInterval(() => {
-          this.counter++
-
-          if (this.counter % 15 === 0) {
-            this.backgroundMode.configure({
-              title: 'Пройдено шагов: ' + this.counter
-            })
-            console.log(this.counter)
-            if (navigator.vibrate) {
-              navigator.vibrate(1000)
-            }
-          }
-        }, 1000)
-      })
-      this.backgroundMode.on('deactivate').subscribe(() => {
-        clearInterval(this.interval)
-      })
 
       if (this.platform.is('android')) {
         this.backButtonEvent()
