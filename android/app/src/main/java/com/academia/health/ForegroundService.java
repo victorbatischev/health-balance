@@ -74,7 +74,8 @@ public class ForegroundService extends Service {
 
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Counting steps", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
+                    "Counting steps", NotificationManager.IMPORTANCE_DEFAULT);
             channel.enableVibration(false);
             channel.setSound(null, null);
             channel.setShowBadge(false);
@@ -85,7 +86,8 @@ public class ForegroundService extends Service {
 
     public void updateContent(String message) {
         PendingIntent pendingIntent = PendingIntent.getActivity(this,
-                0, new Intent(this, MainActivity.class), PendingIntent.FLAG_IMMUTABLE);
+                0, new Intent(this, MainActivity.class),
+                PendingIntent.FLAG_IMMUTABLE);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             Notification notification = new Notification.Builder(this, CHANNEL_ID)

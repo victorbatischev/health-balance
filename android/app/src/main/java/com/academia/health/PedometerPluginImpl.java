@@ -11,8 +11,7 @@ import android.hardware.SensorManager;
 
 import com.getcapacitor.JSObject;
 import com.getcapacitor.PluginMethod;
-import com.getcapacitor.annotation.CapacitorPlugin;
-import com.getcapacitor.annotation.Permission;
+import com.getcapacitor.NativePlugin;
 
 import org.json.JSONException;
 
@@ -20,9 +19,9 @@ import org.json.JSONException;
  * This class listens to the pedometer sensor
  */
 
-@CapacitorPlugin(
+@NativePlugin(
         name = "PedometerPlugin",
-        permissions = { @Permission(alias = "activity", strings = {Manifest.permission.ACTIVITY_RECOGNITION}) }
+        permissions = { Manifest.permission.ACTIVITY_RECOGNITION }
 )
 public class PedometerPluginImpl implements SensorEventListener {
 
@@ -33,11 +32,11 @@ public class PedometerPluginImpl implements SensorEventListener {
     public static int ERROR_NO_SENSOR_FOUND = 4;
 
     private int status;     // status of listener
-    private float startsteps; //first value, to be substracted
+    private float startsteps; // first value, to be substracted
     private long starttimestamp; //time stamp of when the measurement starts
 
     private SensorManager sensorManager; // Sensor manager
-    private Sensor mSensor;             // Pedometer sensor returned by sensor manager
+    private Sensor mSensor;              // Pedometer sensor returned by sensor manager
 
     public PedometerPluginListener listener;
 
@@ -60,7 +59,8 @@ public class PedometerPluginImpl implements SensorEventListener {
      */
     public void start() {
         // If already starting or running, then return
-        if ((this.status == PedometerPluginImpl.RUNNING) || (this.status == PedometerPluginImpl.STARTING)) {
+        if ((this.status == PedometerPluginImpl.RUNNING) ||
+                (this.status == PedometerPluginImpl.STARTING)) {
             return;
         }
 
@@ -74,16 +74,19 @@ public class PedometerPluginImpl implements SensorEventListener {
         // If found, then register as listener
         if ((list != null) && (list.size() > 0)) {
             this.mSensor = list.get(0);
-            if (this.sensorManager.registerListener(this, this.mSensor, SensorManager.SENSOR_DELAY_UI)) {
+            if (this.sensorManager.registerListener(this, this.mSensor,
+                    SensorManager.SENSOR_DELAY_UI)) {
                 this.setStatus(PedometerPluginImpl.STARTING);
             } else {
                 this.setStatus(PedometerPluginImpl.ERROR_FAILED_TO_START);
-                this.fail(PedometerPluginImpl.ERROR_FAILED_TO_START, "Device sensor returned an error.");
+                this.fail(PedometerPluginImpl.ERROR_FAILED_TO_START,
+                        "Device sensor returned an error.");
                 return;
             };
         } else {
             this.setStatus(PedometerPluginImpl.ERROR_FAILED_TO_START);
-            this.fail(PedometerPluginImpl.ERROR_FAILED_TO_START, "No sensors found to register step counter listening to.");
+            this.fail(PedometerPluginImpl.ERROR_FAILED_TO_START,
+                    "No sensors found to register step counter listening to.");
         }
     }
 
@@ -143,7 +146,7 @@ public class PedometerPluginImpl implements SensorEventListener {
     // Sends an error back to JS
     private void fail(int code, String message) {
         // Error object
-//        callbackContext.reject(message, "" + code);
+        // callbackContext.reject(message, "" + code);
     }
 
     private void win(JSObject message) {
