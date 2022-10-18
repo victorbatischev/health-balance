@@ -2,7 +2,8 @@ import {
   enableProdMode,
   Component,
   ViewChildren,
-  QueryList
+  QueryList,
+  ChangeDetectorRef
 } from '@angular/core'
 import { Router } from '@angular/router'
 import {
@@ -55,6 +56,7 @@ export class AppComponent {
   root = document.documentElement
   showSubMenu = false
   currentId: number
+  steps = 0 
 
   menuItems = [
     { id: 1, title: 'Личный кабинет' },
@@ -117,7 +119,8 @@ export class AppComponent {
     public customerServ: CustomerService,
     private connectivityServ: ConnectivityService,
     private oneSignal: OneSignal,
-    private backgroundMode: BackgroundMode
+    private backgroundMode: BackgroundMode,
+    private ref: ChangeDetectorRef
   ) {
     this.customerServ.getCustomerData().subscribe((val) => {
       this.customerData = val
@@ -164,6 +167,12 @@ export class AppComponent {
       this.backgroundMode.enable()
 
       PedometerPlugin.start()
+
+      window.addEventListener('stepEvent', (event: any) => {
+        console.log(event.numberOfSteps);
+        this.steps = event.numberOfSteps;
+        this.ref.detectChanges();
+      });
 
       if (this.platform.is('android')) {
         this.backButtonEvent()

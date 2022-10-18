@@ -46,7 +46,6 @@ public class ForegroundService extends Service {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         };
 
         createAlarm();
@@ -93,7 +92,6 @@ public class ForegroundService extends Service {
         // Also set the interval using the AlarmManager constants
         mAlarmManager.setInexactRepeating(AlarmManager.RTC,calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY, pendingIntent);
-
     }
 
     @Override

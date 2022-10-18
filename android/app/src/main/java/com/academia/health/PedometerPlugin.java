@@ -2,6 +2,8 @@ package com.academia.health;
 
 import android.Manifest;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.content.ContextCompat;
 
 import com.academia.health.utils.SharedPrefManager;
@@ -26,15 +28,10 @@ public class PedometerPlugin extends Plugin {
         super.load();
 
         requestPermissionLauncher =
-                getActivity().registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                getActivity().registerForActivityResult(new ActivityResultContracts
+                        .RequestPermission(), isGranted -> {
                     if (isGranted) {
                         plugin.start();
-                    } else {
-                        // Explain to the user that the feature is unavailable because the
-                        // features requires a permission that the user has denied. At the
-                        // same time, respect the user's decision. Don't link to system
-                        // settings in an effort to convince the user to change their
-                        // decision.
                     }
                 });
 
@@ -42,7 +39,7 @@ public class PedometerPlugin extends Plugin {
         String savedData = manager.getData();
 
         if (savedData != null) {
-            bridge.triggerJSEvent("stepEvent", "window", String.valueOf(savedData));
+            bridge.triggerJSEvent("stepEvent", "window", savedData);
         }
 
         plugin = PedometerPluginImpl.getInstance();

@@ -25,7 +25,7 @@
     "@awesome-cordova-plugins/splash-screen": "^5.41.0",
     "@awesome-cordova-plugins/status-bar": "^5.41.0",
     "@capacitor/android": "^2.2.1",
-    "@capacitor/core": "2.2.1",
+    "@capacitor/core": "^2.2.1",
     "@capacitor/ios": "^2.2.1",
     "@ionic-native/barcode-scanner": "^5.28.0",
     "@ionic-native/camera": "^5.27.0",
