@@ -1,6 +1,5 @@
 package com.academia.health;
 
-import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -13,12 +12,16 @@ import android.os.IBinder;
 
 import androidx.annotation.Nullable;
 
-import com.academia.health.utils.AlarmReceiver;
 import com.academia.health.utils.SharedPrefManager;
 
 import org.json.JSONException;
 
-import java.util.Calendar;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 public class ForegroundService extends Service {
     private static final String CHANNEL_ID = "com.pedometer.weedoweb";
@@ -48,7 +51,15 @@ public class ForegroundService extends Service {
             }
         };
 
-        createAlarm();
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        long midnight = LocalDateTime.now().until(LocalDate.now().plusDays(1).atStartOfDay(),
+                ChronoUnit.MINUTES);
+        Runnable runnable = () -> {
+            plugin.reset();
+            plugin.start();
+        };
+
+        scheduler.scheduleAtFixedRate(runnable, midnight, TimeUnit.DAYS.toMinutes(1), TimeUnit.MINUTES);
     }
 
     public static void startService(Context context, String message) {
@@ -64,34 +75,6 @@ public class ForegroundService extends Service {
     public static void stopService(Context context) {
         Intent intent = new Intent(context, ForegroundService.class);
         context.stopService(intent);
-    }
-
-    public void createAlarm() {
-        // System request code
-        int DATA_FETCHER_RC = 123;
-        // Create an alarm manager
-        AlarmManager mAlarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-
-        // Create the time of day you would like it to go off. Use a calendar
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-
-        // Create an intent that points to the receiver.
-        // The system will notify the app about the current time, and send a broadcast to the app
-        Intent intent = new Intent(this, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this,
-                DATA_FETCHER_RC,intent, PendingIntent.FLAG_UPDATE_CURRENT |
-                        PendingIntent.FLAG_IMMUTABLE);
-
-        // Initialize the alarm by using in exact repeating. This allows the system to scheduler
-        // your alarm at the most efficient time around your set time, it is usually a few seconds
-        // off your requested time. You can also use setExact however this is not recommended.
-        // Use this only if it must be done then.
-
-        // Also set the interval using the AlarmManager constants
-        mAlarmManager.setInexactRepeating(AlarmManager.RTC,calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
     @Override
@@ -132,7 +115,6 @@ public class ForegroundService extends Service {
             notificationManager.createNotificationChannel(channel);
         }
     }
-
 
     public void updateContent(String message) {
         PendingIntent pendingIntent = PendingIntent.getActivity(this,
