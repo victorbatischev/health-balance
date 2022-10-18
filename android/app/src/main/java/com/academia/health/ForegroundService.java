@@ -1,5 +1,6 @@
 package com.academia.health;
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -12,8 +13,14 @@ import android.os.IBinder;
 
 import androidx.annotation.Nullable;
 
-public class ForegroundService extends Service {
+import com.academia.health.utils.AlarmReceiver;
+import com.academia.health.utils.SharedPrefManager;
 
+import org.json.JSONException;
+
+import java.util.Calendar;
+
+public class ForegroundService extends Service {
     private static final String CHANNEL_ID = "com.pedometer.weedoweb";
     private static final int FOREGROUND_ID = 945;
 
@@ -24,10 +31,25 @@ public class ForegroundService extends Service {
         super.onCreate();
 
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
 
-        PedometerPluginImpl plugin = new PedometerPluginImpl(this);
+        PedometerPluginImpl plugin = PedometerPluginImpl.getInstance();
+        plugin.initialize(this);
         plugin.start();
-        plugin.listener = this::updateContent;
+
+        plugin.listenerForService = data -> {
+            try {
+                int steps = ((Double) data.get("numberOfSteps")).intValue();
+                sharedPrefManager.saveSteps(steps);
+                sharedPrefManager.save(String.valueOf(data));
+                updateContent(String.valueOf(steps));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        };
+
+        createAlarm();
     }
 
     public static void startService(Context context, String message) {
@@ -45,8 +67,38 @@ public class ForegroundService extends Service {
         context.stopService(intent);
     }
 
+    public void createAlarm() {
+        // System request code
+        int DATA_FETCHER_RC = 123;
+        // Create an alarm manager
+        AlarmManager mAlarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+
+        // Create the time of day you would like it to go off. Use a calendar
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+
+        // Create an intent that points to the receiver.
+        // The system will notify the app about the current time, and send a broadcast to the app
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this,
+                DATA_FETCHER_RC,intent, PendingIntent.FLAG_UPDATE_CURRENT |
+                        PendingIntent.FLAG_IMMUTABLE);
+
+        // Initialize the alarm by using in exact repeating. This allows the system to scheduler
+        // your alarm at the most efficient time around your set time, it is usually a few seconds
+        // off your requested time. You can also use setExact however this is not recommended.
+        // Use this only if it must be done then.
+
+        // Also set the interval using the AlarmManager constants
+        mAlarmManager.setInexactRepeating(AlarmManager.RTC,calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY, pendingIntent);
+
+    }
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+
         String input = intent.getStringExtra("numberOfSteps");
         createNotificationChannel();
 
@@ -66,8 +118,8 @@ public class ForegroundService extends Service {
 
         startForeground(FOREGROUND_ID, notification);
 
-        //do heavy work on a background thread
-        //stopSelf();
+        // do heavy work on a background thread
+        // stopSelf();
         return START_STICKY;
     }
 
@@ -75,7 +127,7 @@ public class ForegroundService extends Service {
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
-                    "Counting steps", NotificationManager.IMPORTANCE_DEFAULT);
+                    "Пройдено шагов: ", NotificationManager.IMPORTANCE_HIGH);
             channel.enableVibration(false);
             channel.setSound(null, null);
             channel.setShowBadge(false);
@@ -91,7 +143,7 @@ public class ForegroundService extends Service {
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             Notification notification = new Notification.Builder(this, CHANNEL_ID)
-                    .setContentTitle("Counting steps")
+                    .setContentTitle("Пройдено шагов: ")
                     .setContentText(message)
                     .setSmallIcon(R.drawable.launcher_icon)
                     .setContentIntent(pendingIntent)

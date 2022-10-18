@@ -1,5 +1,7 @@
 package com.academia.health;
 
+import com.getcapacitor.JSObject;
+
 public interface PedometerPluginListener {
-    void onReceivedStep(String count);
+    void onReceived(JSObject data);
 }

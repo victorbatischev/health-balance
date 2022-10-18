@@ -33,6 +33,9 @@ import { CustomerService } from '../providers/customer-service'
 import * as moment from 'moment'
 import 'moment/locale/ru'
 
+import { Plugins } from '@capacitor/core'
+const { PedometerPlugin } = Plugins
+
 enableProdMode()
 
 @Component({
@@ -159,6 +162,8 @@ export class AppComponent {
       this.oneSignal.endInit()
 
       this.backgroundMode.enable()
+
+      PedometerPlugin.start()
 
       if (this.platform.is('android')) {
         this.backButtonEvent()
