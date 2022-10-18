@@ -2,25 +2,18 @@ package com.academia.health;
 
 import android.Manifest;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
-import com.getcapacitor.annotation.CapacitorPlugin;
-import com.getcapacitor.annotation.Permission;
-
-import java.util.Timer;
-import java.util.TimerTask;
+import com.getcapacitor.NativePlugin;
 
 
-@CapacitorPlugin(
+@NativePlugin(
         name = "PedometerPlugin",
-        permissions = { @Permission(alias = "activity", strings = {Manifest.permission.ACTIVITY_RECOGNITION}) }
+        permissions = { Manifest.permission.ACTIVITY_RECOGNITION }
 )
 public class PedometerPlugin extends Plugin {
 
@@ -49,26 +42,6 @@ public class PedometerPlugin extends Plugin {
     @PluginMethod
     public void stop() {
         ForegroundService.stopService(getContext());
-    }
-
-    @PluginMethod
-    public void testTimer(PluginCall call) {
-        Timer timer = new Timer();
-        call.setKeepAlive(true);
-        TimerTask t = new TimerTask() {
-            int counts = 0;
-            @Override
-            public void run() {
-
-                counts++;
-                JSObject object = new JSObject();
-                object.put("seconds", counts);
-                call.resolve(object);
-                System.out.println("1");
-            }
-        };
-        timer.scheduleAtFixedRate(t,1000,1000);
-        call.setKeepAlive(true);
     }
 
 }

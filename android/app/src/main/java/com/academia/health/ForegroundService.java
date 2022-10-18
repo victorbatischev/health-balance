@@ -1,74 +1,112 @@
 package com.academia.health;
 
-import android.Manifest;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.Service;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+import android.os.IBinder;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+import androidx.annotation.Nullable;
 
-import com.getcapacitor.JSObject;
-import com.getcapacitor.Plugin;
-import com.getcapacitor.PluginCall;
-import com.getcapacitor.PluginMethod;
-import com.getcapacitor.annotation.CapacitorPlugin;
-import com.getcapacitor.annotation.Permission;
+public class ForegroundService extends Service {
 
-import java.util.Timer;
-import java.util.TimerTask;
+    private static final String CHANNEL_ID = "com.pedometer.weedoweb";
+    private static final int FOREGROUND_ID = 945;
 
-
-@CapacitorPlugin(
-        name = "PedometerPlugin",
-        permissions = { @Permission(alias = "activity", strings = {Manifest.permission.ACTIVITY_RECOGNITION}) }
-)
-public class PedometerPlugin extends Plugin {
+    private NotificationManager notificationManager;
 
     @Override
-    public void load() {
-        super.load();
+    public void onCreate() {
+        super.onCreate();
+
+        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        PedometerPluginImpl plugin = new PedometerPluginImpl(this);
+        plugin.start();
+        plugin.listener = this::updateContent;
+    }
+
+    public static void startService(Context context, String message) {
+        Intent intent = new Intent(context, ForegroundService.class);
+        intent.putExtra("numberOfSteps", message);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.startForegroundService(intent);
+        } else {
+            context.startService(intent);
+        }
+    }
+
+    public static void stopService(Context context) {
+        Intent intent = new Intent(context, ForegroundService.class);
+        context.stopService(intent);
     }
 
     @Override
-    protected void handleOnDestroy() {
-        super.handleOnDestroy();
-    }
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        String input = intent.getStringExtra("numberOfSteps");
+        createNotificationChannel();
 
-    @PluginMethod
-    public void start(PluginCall call) {
-        call.resolve();
-        if(ContextCompat.checkSelfPermission(getActivity(),
-                android.Manifest.permission.ACTIVITY_RECOGNITION) == android.content.pm.PackageManager.PERMISSION_DENIED){
-            //ask for permission
-            ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACTIVITY_RECOGNITION}, 1);
+        Intent notificationIntent = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this,
+                0, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
+
+        Notification notification = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            notification = new Notification.Builder(this, CHANNEL_ID)
+                    .setContentTitle("Counting steps")
+                    .setContentText(input)
+                    .setSmallIcon(R.drawable.launcher_icon)
+                    .setContentIntent(pendingIntent)
+                    .build();
         }
 
-        ForegroundService.startService(getContext(), "0");
+        startForeground(FOREGROUND_ID, notification);
+
+        //do heavy work on a background thread
+        //stopSelf();
+        return START_STICKY;
     }
 
-    @PluginMethod
-    public void stop() {
-        ForegroundService.stopService(getContext());
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Counting steps", NotificationManager.IMPORTANCE_DEFAULT);
+            channel.enableVibration(false);
+            channel.setSound(null, null);
+            channel.setShowBadge(false);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
-    @PluginMethod
-    public void testTimer(PluginCall call) {
-        Timer timer = new Timer();
-        call.setKeepAlive(true);
-        TimerTask t = new TimerTask() {
-            int counts = 0;
-            @Override
-            public void run() {
 
-                counts++;
-                JSObject object = new JSObject();
-                object.put("seconds", counts);
-                call.resolve(object);
-                System.out.println("1");
-            }
-        };
-        timer.scheduleAtFixedRate(t,1000,1000);
-        call.setKeepAlive(true);
+    public void updateContent(String message) {
+        PendingIntent pendingIntent = PendingIntent.getActivity(this,
+                0, new Intent(this, MainActivity.class), PendingIntent.FLAG_IMMUTABLE);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            Notification notification = new Notification.Builder(this, CHANNEL_ID)
+                    .setContentTitle("Counting steps")
+                    .setContentText(message)
+                    .setSmallIcon(R.drawable.launcher_icon)
+                    .setContentIntent(pendingIntent)
+                    .build();
+
+            notificationManager.notify(FOREGROUND_ID, notification);
+        }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
 }
