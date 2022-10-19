@@ -168,29 +168,31 @@ export class AppComponent {
       PedometerPlugin.start()
 
       window.addEventListener('stepEvent', (event: any) => {
-        this.ref.detectChanges()
-        if (this.connectivityServ.isOnline() && this.customerData.token) {
-          let startDate = new Date(
-            new Date().setHours(0, 0, 0, 0)
-          ).toISOString()
-          let endDate = new Date().toISOString()
-          this.httpClient
-            .post(
-              this.connectivityServ.apiUrl +
-                'steps/update?token=' +
-                this.customerData.token,
-              JSON.stringify({
-                steps_arr: [{ startDate, endDate, value: event.numberOfSteps }]
-              })
-            )
-            .subscribe(
-              (data: any) => console.log(data),
-              (error) =>
-                this.alertServ.showToast(
-                  'Error received: ' + JSON.stringify(error)
+        setTimeout(()=>{
+          this.ref.detectChanges()
+          if (this.connectivityServ.isOnline() && this.customerData.token) {
+            let startDate = new Date(
+                new Date().setHours(0, 0, 0, 0)
+            ).toISOString()
+            let endDate = new Date().toISOString()
+            this.httpClient
+                .post(
+                    this.connectivityServ.apiUrl +
+                    'steps/update?token=' +
+                    this.customerData.token,
+                    JSON.stringify({
+                      steps_arr: [{ startDate, endDate, value: event.numberOfSteps }]
+                    })
                 )
-            )
-        }
+                .subscribe(
+                    (data: any) => console.log(data),
+                    (error) =>
+                        this.alertServ.showToast(
+                            'Error received: ' + JSON.stringify(error)
+                        )
+                )
+          }
+        }, 5000)
       })
 
       if (this.platform.is('android')) {
