@@ -56,6 +56,7 @@ export class AppComponent {
   root = document.documentElement
   showSubMenu = false
   currentId: number
+  endDate: any = null
 
   menuItems = [
     { id: 1, title: 'Личный кабинет' },
@@ -169,28 +170,31 @@ export class AppComponent {
 
       window.addEventListener('stepEvent', (event: any) => {
         setTimeout(()=>{
-          this.ref.detectChanges()
-          if (this.connectivityServ.isOnline() && this.customerData.token) {
-            let startDate = new Date(
-                new Date().setHours(0, 0, 0, 0)
-            ).toISOString()
-            let endDate = new Date().toISOString()
-            this.httpClient
-                .post(
-                    this.connectivityServ.apiUrl +
-                    'steps/update?token=' +
-                    this.customerData.token,
-                    JSON.stringify({
-                      steps_arr: [{ startDate, endDate, value: event.numberOfSteps }]
-                    })
-                )
-                .subscribe(
-                    (data: any) => console.log(data),
-                    (error) =>
-                        this.alertServ.showToast(
-                            'Error received: ' + JSON.stringify(error)
-                        )
-                )
+          if(!this.endDate || (+new Date() - +this.endDate >= 5000)) {
+            this.ref.detectChanges()
+            if (this.connectivityServ.isOnline() && this.customerData.token) {
+              let startDate = new Date(
+                  new Date().setHours(0, 0, 0, 0)
+              ).toISOString()
+              this.endDate = new Date()
+              let endDate = new Date().toISOString()
+              this.httpClient
+                  .post(
+                      this.connectivityServ.apiUrl +
+                      'steps/update?token=' +
+                      this.customerData.token,
+                      JSON.stringify({
+                        steps_arr: [{ startDate, endDate, value: event.numberOfSteps }]
+                      })
+                  )
+                  .subscribe(
+                      (data: any) => console.log(data),
+                      (error) =>
+                          this.alertServ.showToast(
+                              'Error received: ' + JSON.stringify(error)
+                          )
+                  )
+            }
           }
         }, 5000)
       })
