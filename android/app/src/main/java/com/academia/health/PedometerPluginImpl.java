@@ -151,7 +151,13 @@ public class PedometerPluginImpl implements SensorEventListener {
         this.startSteps = 0;
         this.lastNumberOfSteps = 0;
         this.sharedPrefManager.clearAll();
-        this.stop();
+        if (this.listener != null) {
+            this.listener.onReceived(getStepsJSON(0));
+        }
+
+        if (this.listenerForService != null) {
+            this.listenerForService.onReceived(getStepsJSON(0));
+        }
     }
 
     // Sends an error back to JS
