@@ -12,22 +12,25 @@ import android.os.IBinder;
 
 import androidx.annotation.Nullable;
 
+import com.academia.health.utils.DayChangedBroadcastReceiver;
 import com.academia.health.utils.SharedPrefManager;
 
 import org.json.JSONException;
-
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 public class ForegroundService extends Service {
     private static final String CHANNEL_ID = "com.pedometer.weedoweb";
     private static final int FOREGROUND_ID = 945;
 
     private NotificationManager notificationManager;
+
+    PedometerPluginImpl plugin;
+    private final DayChangedBroadcastReceiver m_timeChangedReceiver =
+            new DayChangedBroadcastReceiver() {
+        @Override
+        public void onDayChanged() {
+            plugin.reset();
+        }
+    };
 
     @Override
     public void onCreate() {
@@ -36,7 +39,7 @@ public class ForegroundService extends Service {
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
 
-        PedometerPluginImpl plugin = PedometerPluginImpl.getInstance();
+        plugin = PedometerPluginImpl.getInstance();
         plugin.initialize(this);
         plugin.start();
 
@@ -51,19 +54,7 @@ public class ForegroundService extends Service {
             }
         };
 
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        final long initialDelay = LocalDateTime.now().until(LocalDate.now().plusDays(1)
-                .atTime(0, 0), ChronoUnit.MINUTES);
-        long delayTime;
-        if (initialDelay > TimeUnit.DAYS.toMinutes(1)) {
-            delayTime = LocalDateTime.now().until(LocalDate.now()
-                    .atTime(0, 0), ChronoUnit.MINUTES);
-        } else {
-            delayTime = initialDelay;
-        }
-        Runnable runnable = plugin::reset;
-
-        scheduler.scheduleAtFixedRate(runnable, delayTime, TimeUnit.DAYS.toMinutes(1), TimeUnit.MINUTES);
+        registerReceiver(m_timeChangedReceiver, DayChangedBroadcastReceiver.getIntentFilter());
     }
 
     public static void startService(Context context, String message) {
@@ -140,6 +131,7 @@ public class ForegroundService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        unregisterReceiver(m_timeChangedReceiver);
     }
 
     @Nullable

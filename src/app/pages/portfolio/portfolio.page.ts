@@ -1,4 +1,4 @@
-import {Component, ChangeDetectorRef} from '@angular/core'
+import { Component, ChangeDetectorRef } from '@angular/core'
 import { Platform } from '@ionic/angular'
 import { HttpClient } from '@angular/common/http'
 import { Storage } from '@ionic/storage'
@@ -73,7 +73,7 @@ export class PortfolioPage {
   }
 
   ionViewWillEnter() {
-    this.intervalId = setInterval(()=>{
+    this.intervalId = setInterval(() => {
       this.setActiveTab(this.selected_tab)
     }, 5000)
   }
@@ -119,19 +119,19 @@ export class PortfolioPage {
 
   setActiveTab(idx) {
     this.selected_tab = idx
-      if (this.connectivityServ.isOnline()) {
-        this.httpClient
-            .get(
-                this.connectivityServ.apiUrl +
-                'customers/steps?token=' +
-                this.customerData.token
-            )
-            .subscribe(
-                (data: any) => (this.calc_steps = data[idx]),
-                (error) => console.log(error)
-            )
-      } else {
-        this.alertServ.showToast('Нет соединения с сетью')
-      }
+    if (this.connectivityServ.isOnline()) {
+      this.httpClient
+        .get(
+          this.connectivityServ.apiUrl +
+            'customers/steps?token=' +
+            this.customerData.token
+        )
+        .subscribe(
+          (data: any) => (this.calc_steps = data[idx]),
+          (error) => console.log(error)
+        )
+    } else {
+      this.alertServ.showToast('Нет соединения с сетью')
+    }
   }
 }
