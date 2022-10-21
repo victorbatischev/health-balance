@@ -22,7 +22,7 @@ export class PortfolioPage {
   calc_steps: number = 0
   intervalId: any
   selected_tab: string = 'today'
-  endDate: any = null
+  endDate: any = null // последняя дата обновления шагов
   pedometerSteps = 0 // шаги из шагомера
 
   customerData: Customer = {
@@ -50,7 +50,6 @@ export class PortfolioPage {
     this.storage.get('customerData').then(
       (val) => {
         this.customerData = val
-        this.setActiveTab('today')
         // проверка на доступность Apple Health
         this.health
           .isAvailable()
@@ -59,7 +58,7 @@ export class PortfolioPage {
               // запрос на авторизацию в Apple Health для отправки шагов
               this.health
                 .requestAuthorization([{ read: ['steps'] }])
-                .then((res) => {
+                .then(() => {
                   this.getStepsHistory()
                 })
                 .catch((error) => {
@@ -78,58 +77,62 @@ export class PortfolioPage {
   }
 
   ionViewWillEnter() {
+    // запускаем сервис шагомера
+    PedometerPlugin.start()
+
+    // получаем последние данные из шагомера
+    this.getSavedData()
+
+    // прослушиваем изменения шагов
+    window.addEventListener('stepEvent', this.updateSteps)
+
+    // каждые 5 секунд запрашиваем изменения шагов
     this.intervalId = setInterval(() => {
       this.setActiveTab(this.selected_tab)
     }, 5000)
-
-    PedometerPlugin.start()
-
-    PedometerPlugin.setData( { numberOfSteps: 544 } )
-
-    this.getSavedData()
-
-    window.addEventListener('stepEvent', (event: any) => {
-      setTimeout(() => {
-        if (!this.endDate || +new Date() - +this.endDate >= 5000) {
-          this.ref.detectChanges()
-          if (this.connectivityServ.isOnline() && this.customerData.token) {
-            let startDate = new Date(
-              new Date().setHours(0, 0, 0, 0)
-            ).toISOString()
-            this.endDate = new Date()
-            let endDate = new Date().toISOString()
-            this.httpClient
-              .post(
-                this.connectivityServ.apiUrl +
-                  'steps/update?token=' +
-                  this.customerData.token,
-                JSON.stringify({
-                  steps_arr: [
-                    { startDate, endDate, value: event.numberOfSteps }
-                  ]
-                })
-              )
-              .subscribe(
-                (data: any) => console.log(data),
-                (error) =>
-                  this.alertServ.showToast(
-                    'Error received: ' + JSON.stringify(error)
-                  )
-              )
-          }
-        }
-      }, 5000)
-    })
   }
 
   ionViewDidLeave() {
     clearInterval(this.intervalId)
+    window.removeEventListener('stepEvent', this.updateSteps)
   }
 
   async getSavedData() {
     let savedData = await PedometerPlugin.getSavedData()
     this.pedometerSteps = savedData['numberOfSteps']
     this.ref.detectChanges()
+  }
+
+  updateSteps = (event: any) => {
+    setTimeout(() => {
+      if (!this.endDate || +new Date() - +this.endDate >= 5000) {
+        this.ref.detectChanges()
+        if (this.connectivityServ.isOnline() && this.customerData.token) {
+          let startDate = new Date(
+            new Date().setHours(0, 0, 0, 0)
+          ).toISOString()
+          this.endDate = new Date()
+          let endDate = new Date().toISOString()
+          this.pedometerSteps = event.numberOfSteps
+          this.httpClient
+            .post(
+              this.connectivityServ.apiUrl +
+                'steps/update?token=' +
+                this.customerData.token,
+              JSON.stringify({
+                steps_arr: [{ startDate, endDate, value: event.numberOfSteps }]
+              })
+            )
+            .subscribe(
+              (data: any) => console.log(data),
+              (error) =>
+                this.alertServ.showToast(
+                  'Error received: ' + JSON.stringify(error)
+                )
+            )
+        }
+      }
+    }, 5000)
   }
 
   subtractMonths(numOfMonths, date = new Date()) {
@@ -178,7 +181,13 @@ export class PortfolioPage {
             this.customerData.token
         )
         .subscribe(
-          (data: any) => (this.calc_steps = data[idx]),
+          (data: any) => {
+            // передаём в сервис большее количество шагов
+            if (data.today > this.pedometerSteps) {
+              PedometerPlugin.setData({ numberOfSteps: data.today })
+            }
+            this.calc_steps = data[idx]
+          },
           (error) => console.log(error)
         )
     } else {

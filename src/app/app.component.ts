@@ -2,8 +2,7 @@ import {
   enableProdMode,
   Component,
   ViewChildren,
-  QueryList,
-  ChangeDetectorRef
+  QueryList
 } from '@angular/core'
 import { Router } from '@angular/router'
 import {
@@ -114,10 +113,9 @@ export class AppComponent {
     private statusBar: StatusBar,
     public customerServ: CustomerService,
     private connectivityServ: ConnectivityService,
-    private oneSignal: OneSignal,
-    // private backgroundMode: BackgroundMode,
-    private ref: ChangeDetectorRef
-  ) {
+    private oneSignal: OneSignal
+  ) // private backgroundMode: BackgroundMode,
+  {
     this.customerServ.getCustomerData().subscribe((val) => {
       this.customerData = val
     })

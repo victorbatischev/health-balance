@@ -17,6 +17,7 @@ public class SharedPrefManager {
         SharedPreferences settings = context.getSharedPreferences("prefs", 0);
         settings.edit().clear().apply();
     }
+
     public void saveSteps(int count) {
         SharedPreferences settings = context.getSharedPreferences("prefs", 0);
         SharedPreferences.Editor editor = settings.edit();
