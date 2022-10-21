@@ -11,6 +11,9 @@ import { AlertService } from '../../../providers/alert-service'
 import { Customer } from '../../../models/customer-model'
 import { CustomerService } from '../../../providers/customer-service'
 
+import { Plugins } from '@capacitor/core'
+const { PedometerPlugin } = Plugins
+
 @Component({
   templateUrl: './portfolio.page.html',
   styleUrls: ['./portfolio.page.scss']
@@ -19,6 +22,8 @@ export class PortfolioPage {
   calc_steps: number = 0
   intervalId: any
   selected_tab: string = 'today'
+  endDate: any = null
+  pedometerSteps = 0 // шаги из шагомера
 
   customerData: Customer = {
     token: '',
@@ -33,7 +38,7 @@ export class PortfolioPage {
   }
 
   constructor(
-    public refdect: ChangeDetectorRef,
+    public ref: ChangeDetectorRef,
     public httpClient: HttpClient,
     public storage: Storage,
     private health: Health,
@@ -76,9 +81,55 @@ export class PortfolioPage {
     this.intervalId = setInterval(() => {
       this.setActiveTab(this.selected_tab)
     }, 5000)
+
+    PedometerPlugin.start()
+
+    PedometerPlugin.setData( { numberOfSteps: 544 } )
+
+    this.getSavedData()
+
+    window.addEventListener('stepEvent', (event: any) => {
+      setTimeout(() => {
+        if (!this.endDate || +new Date() - +this.endDate >= 5000) {
+          this.ref.detectChanges()
+          if (this.connectivityServ.isOnline() && this.customerData.token) {
+            let startDate = new Date(
+              new Date().setHours(0, 0, 0, 0)
+            ).toISOString()
+            this.endDate = new Date()
+            let endDate = new Date().toISOString()
+            this.httpClient
+              .post(
+                this.connectivityServ.apiUrl +
+                  'steps/update?token=' +
+                  this.customerData.token,
+                JSON.stringify({
+                  steps_arr: [
+                    { startDate, endDate, value: event.numberOfSteps }
+                  ]
+                })
+              )
+              .subscribe(
+                (data: any) => console.log(data),
+                (error) =>
+                  this.alertServ.showToast(
+                    'Error received: ' + JSON.stringify(error)
+                  )
+              )
+          }
+        }
+      }, 5000)
+    })
   }
+
   ionViewDidLeave() {
     clearInterval(this.intervalId)
+  }
+
+  async getSavedData() {
+    let savedData = await PedometerPlugin.getSavedData()
+    this.pedometerSteps = savedData['numberOfSteps']
+    this.ref.detectChanges()
   }
 
   subtractMonths(numOfMonths, date = new Date()) {
@@ -95,7 +146,7 @@ export class PortfolioPage {
         dataType: 'steps'
       })
       .then((res: any) => {
-        this.refdect.detectChanges()
+        this.ref.detectChanges()
 
         if (this.connectivityServ.isOnline()) {
           this.httpClient

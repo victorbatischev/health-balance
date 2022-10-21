@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.content.ContextCompat;
 
 import com.academia.health.utils.SharedPrefManager;
+import com.getcapacitor.JSObject;
 import com.getcapacitor.NativePlugin;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
@@ -35,13 +36,6 @@ public class PedometerPlugin extends Plugin {
                     }
                 });
 
-        SharedPrefManager manager = new SharedPrefManager(getContext());
-        String savedData = manager.getData();
-
-        if (savedData != null) {
-            bridge.triggerJSEvent("stepEvent", "window", savedData);
-        }
-
         plugin = PedometerPluginImpl.getInstance();
         plugin.initialize(getContext());
         plugin.listener = data -> {
@@ -59,6 +53,30 @@ public class PedometerPlugin extends Plugin {
     @Override
     protected void handleOnDestroy() {
         super.handleOnDestroy();
+    }
+
+    @PluginMethod
+    public void getSavedData(PluginCall call) {
+        SharedPrefManager manager = new SharedPrefManager(getContext());
+        String savedData = manager.getData();
+        if (savedData == null) {
+            JSObject data = plugin.getStepsJSON(0);
+            call.resolve(data);
+            return;
+        }
+        try {
+            call.resolve(new JSObject(savedData));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @PluginMethod
+    public void setData(PluginCall call) {
+        SharedPrefManager manager = new SharedPrefManager(getContext());
+        int stepsFromIonic = call.getInt("numberOfSteps");
+        manager.saveSteps(stepsFromIonic);
+        plugin.lastNumberOfSteps = stepsFromIonic;
     }
 
     @PluginMethod

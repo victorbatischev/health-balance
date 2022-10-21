@@ -41,7 +41,7 @@ public class PedometerPluginImpl implements SensorEventListener {
 
     SharedPrefManager sharedPrefManager;
 
-    private int lastNumberOfSteps;
+    public int lastNumberOfSteps;
 
     private PedometerPluginImpl() {
         this.startTimestamp = 0;
@@ -186,7 +186,7 @@ public class PedometerPluginImpl implements SensorEventListener {
         this.status = status;
     }
 
-    private JSObject getStepsJSON(float steps) {
+    public JSObject getStepsJSON(float steps) {
         JSObject r = new JSObject();
         r.put("startDate", this.startTimestamp);
         r.put("endDate", System.currentTimeMillis());

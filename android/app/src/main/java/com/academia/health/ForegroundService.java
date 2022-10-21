@@ -12,6 +12,8 @@ import android.os.IBinder;
 
 import androidx.annotation.Nullable;
 
+import androidx.core.content.ContextCompat;
+
 import com.academia.health.utils.DayChangedBroadcastReceiver;
 import com.academia.health.utils.SharedPrefManager;
 
@@ -61,7 +63,7 @@ public class ForegroundService extends Service {
         Intent intent = new Intent(context, ForegroundService.class);
         intent.putExtra("numberOfSteps", message);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            context.startForegroundService(intent);
+            ContextCompat.startForegroundService(context, intent);
         } else {
             context.startService(intent);
         }
@@ -98,7 +100,6 @@ public class ForegroundService extends Service {
         // stopSelf();
         return START_STICKY;
     }
-
 
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
