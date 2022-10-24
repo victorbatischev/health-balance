@@ -115,7 +115,7 @@ export class AppComponent {
     public customerServ: CustomerService,
     private connectivityServ: ConnectivityService,
     private oneSignal: OneSignal,
-    // private backgroundMode: BackgroundMode,
+    private backgroundMode: BackgroundMode,
     private androidPermissions: AndroidPermissions
   ) {
     this.customerServ.getCustomerData().subscribe((val) => {
@@ -157,12 +157,7 @@ export class AppComponent {
         this.showPushMessage(message.payload.body)
       })
       this.oneSignal.promptForPushNotificationsWithUserResponse()
-      this.oneSignal.promptLocation()
       this.oneSignal.endInit()
-
-      this.androidPermissions.requestPermission(
-        this.androidPermissions.PERMISSION.ACTIVITY_RECOGNITION
-      )
 
       // this.backgroundMode.enable()
 

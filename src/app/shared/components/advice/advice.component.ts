@@ -2,6 +2,9 @@ import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core'
 import { Router } from '@angular/router'
 import { NavController } from '@ionic/angular'
 
+import { Plugins } from '@capacitor/core'
+const { PedometerPlugin } = Plugins
+
 @Component({
   selector: 'app-advice',
   templateUrl: './advice.component.html',
@@ -27,7 +30,12 @@ export class AdviceComponent implements OnInit {
     this.toPrevSlide.emit()
   }
 
-  toAgreeDataReadPage() {
-    this.navCtrl.navigateRoot('agree-read-data')
+  toRegisterPage() {
+    // запрашиваем разрешения для шагомера
+    PedometerPlugin.requestPermission().then(() => {
+      PedometerPlugin.start()
+    })
+
+    this.navCtrl.navigateRoot('sign-in')
   }
 }

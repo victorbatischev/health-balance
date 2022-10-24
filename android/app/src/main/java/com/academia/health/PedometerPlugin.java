@@ -1,6 +1,7 @@
 package com.academia.health;
 
 import android.Manifest;
+import android.content.pm.PackageManager;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -30,11 +31,7 @@ public class PedometerPlugin extends Plugin {
 
         requestPermissionLauncher =
                 getActivity().registerForActivityResult(new ActivityResultContracts
-                        .RequestPermission(), isGranted -> {
-                    if (isGranted) {
-                        plugin.start();
-                    }
-                });
+                        .RequestPermission(), isGranted -> {});
 
         plugin = PedometerPluginImpl.getInstance();
         plugin.initialize(getContext());
@@ -77,33 +74,39 @@ public class PedometerPlugin extends Plugin {
         int stepsFromIonic = call.getInt("numberOfSteps");
         manager.saveSteps(stepsFromIonic);
         plugin.lastNumberOfSteps = stepsFromIonic;
+        call.resolve();
     }
 
     @PluginMethod
     public void start(PluginCall call) {
-        call.resolve();
         SharedPrefManager sharedPrefManager = new SharedPrefManager(getContext());
         String lastSavedSteps = String.valueOf(sharedPrefManager.getLastNumberOfSteps());
         ForegroundService.startService(getContext(), lastSavedSteps);
 
         if(ContextCompat.checkSelfPermission(getActivity(),
                 android.Manifest.permission.ACTIVITY_RECOGNITION) ==
-                android.content.pm.PackageManager.PERMISSION_DENIED){
-            // ask for permission
-            requestPermissionLauncher.launch(android.Manifest.permission.ACTIVITY_RECOGNITION);
-        } else {
+                PackageManager.PERMISSION_GRANTED){
             plugin.start();
         }
+        call.resolve();
     }
 
     @PluginMethod
-    public void stop() {
+    public void stop(PluginCall call) {
         plugin.stop();
         ForegroundService.stopService(getContext());
+        call.resolve();
     }
 
     @PluginMethod
-    public void reset() {
+    public void reset(PluginCall call) {
         plugin.reset();
+        call.resolve();
+    }
+
+    @PluginMethod
+    public void requestPermission(PluginCall call) {
+        requestPermissionLauncher.launch(android.Manifest.permission.ACTIVITY_RECOGNITION);
+        call.resolve();
     }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
 import { IonSlides } from '@ionic/angular'
-import { Platform } from '@ionic/angular'
 
 @Component({
   templateUrl: './slider.page.html',
@@ -9,7 +8,7 @@ import { Platform } from '@ionic/angular'
 export class SliderPage implements OnInit {
   @ViewChild('slider') slideElm: IonSlides
 
-  constructor(private platform: Platform) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
@@ -25,21 +24,15 @@ export class SliderPage implements OnInit {
   slides = [
     {
       id: 1,
-      title: `1/3`,
-      advice: 'Дайте разрешение на геопозицию и передвижение'
+      title: '1/2',
+      advice:
+        'Разрешите Health Balance присылать push-уведомления в настройках вашего смартфона.'
     },
     {
       id: 2,
-      title: '2/3',
-      advice: this.platform.is('android')
-        ? 'Разрешите Health Balance доступ к данным из приложения Google Fit. Если на вашем смартфоне не установлено приложение Google Fit, скачать его можно по этой <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.fitness" target="_blank">ссылке</a>.'
-        : 'Разрешите Health Balance доступ к данным из приложения Apple Health'
-    },
-    {
-      id: 3,
-      title: '3/3',
+      title: `2/2`,
       advice:
-        'Разрешите Health Balance присылать push-уведомления в настройках вашего смартфона.'
+        'Предоставьте разрешение на отслеживание вашей физической активности'
     }
   ]
 
