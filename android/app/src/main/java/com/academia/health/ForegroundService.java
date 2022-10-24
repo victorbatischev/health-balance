@@ -63,7 +63,7 @@ public class ForegroundService extends Service {
         Intent intent = new Intent(context, ForegroundService.class);
         intent.putExtra("numberOfSteps", message);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            context.startForegroundService(intent);
+            ContextCompat.startForegroundService(context, intent);
         } else {
             context.startService(intent);
         }
@@ -84,18 +84,19 @@ public class ForegroundService extends Service {
         PendingIntent pendingIntent = PendingIntent.getActivity(this,
                 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
 
-        Notification notification = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            notification = new Notification.Builder(this, CHANNEL_ID)
+            Notification.Builder notificationBuilder = new Notification.Builder(this, CHANNEL_ID)
                     .setContentTitle("Пройдено шагов сегодня:")
                     .setContentText(input)
                     .setSmallIcon(R.drawable.common_full_open_on_phone)
-                    .setContentIntent(pendingIntent)
-                    .build();
+                    .setContentIntent(pendingIntent);
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+                notificationBuilder.setForegroundServiceBehavior(Notification.FOREGROUND_SERVICE_IMMEDIATE);
+            }
+
+            startForeground(FOREGROUND_ID, notificationBuilder.build());
         }
-
-        startForeground(FOREGROUND_ID, notification);
-
         // do heavy work on a background thread
         // stopSelf();
         return START_STICKY;
@@ -103,8 +104,7 @@ public class ForegroundService extends Service {
 
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
-                    "Пройдено шагов сегодня: ", NotificationManager.IMPORTANCE_HIGH);
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Пройдено шагов сегодня: ", NotificationManager.IMPORTANCE_DEFAULT);
             channel.enableVibration(false);
             channel.setSound(null, null);
             channel.setShowBadge(false);
@@ -118,14 +118,17 @@ public class ForegroundService extends Service {
                 PendingIntent.FLAG_IMMUTABLE);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            Notification notification = new Notification.Builder(this, CHANNEL_ID)
+            Notification.Builder notificationBuilder = new Notification.Builder(this, CHANNEL_ID)
                     .setContentTitle("Пройдено шагов сегодня: ")
                     .setContentText(message)
                     .setSmallIcon(R.drawable.common_full_open_on_phone)
-                    .setContentIntent(pendingIntent)
-                    .build();
+                    .setContentIntent(pendingIntent);
 
-            notificationManager.notify(FOREGROUND_ID, notification);
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+                notificationBuilder.setForegroundServiceBehavior(Notification.FOREGROUND_SERVICE_IMMEDIATE);
+            }
+
+            notificationManager.notify(FOREGROUND_ID, notificationBuilder.build());
         }
     }
 
