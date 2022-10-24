@@ -39,6 +39,6 @@ public class SharedPrefManager {
 
     public String getData() {
         SharedPreferences settings = context.getSharedPreferences("prefs", 0);
-        return settings.getString(STE_KEY, "");
+        return settings.getString(STE_KEY, null);
     }
 }

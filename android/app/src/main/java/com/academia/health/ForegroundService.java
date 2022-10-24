@@ -63,7 +63,7 @@ public class ForegroundService extends Service {
         Intent intent = new Intent(context, ForegroundService.class);
         intent.putExtra("numberOfSteps", message);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            ContextCompat.startForegroundService(context, intent);
+            context.startForegroundService(intent);
         } else {
             context.startService(intent);
         }
