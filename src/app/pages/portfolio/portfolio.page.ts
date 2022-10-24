@@ -99,7 +99,7 @@ export class PortfolioPage {
 
   async getSavedData() {
     let savedData = await PedometerPlugin.getSavedData()
-    this.pedometerSteps = savedData['numberOfSteps']
+    this.pedometerSteps = savedData['numberOfSteps'] || 0
     this.ref.detectChanges()
   }
 
@@ -185,6 +185,8 @@ export class PortfolioPage {
             // передаём в сервис большее количество шагов
             if (data.today > this.pedometerSteps) {
               PedometerPlugin.setData({ numberOfSteps: data.today })
+            } else if (data.today < this.pedometerSteps) {
+              this.updateSteps({ numberOfSteps: this.pedometerSteps })
             }
             this.calc_steps = data[idx]
           },
