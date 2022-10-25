@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core'
-import { Router } from '@angular/router'
 import { NavController } from '@ionic/angular'
+
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx'
 
 import { Plugins } from '@capacitor/core'
 const { PedometerPlugin } = Plugins
@@ -18,7 +19,10 @@ export class AdviceComponent implements OnInit {
   @Output() toNextSlide = new EventEmitter<any>()
   @Output() toPrevSlide = new EventEmitter<any>()
 
-  constructor(private router: Router, public navCtrl: NavController) {}
+  constructor(
+    public navCtrl: NavController,
+    private androidPermissions: AndroidPermissions
+  ) {}
 
   ngOnInit(): void {}
 
@@ -31,11 +35,19 @@ export class AdviceComponent implements OnInit {
   }
 
   toRegisterPage() {
-    // запрашиваем разрешения для шагомера
-    PedometerPlugin.requestPermission().then(() => {
-      PedometerPlugin.start()
-    })
-
+    this.androidPermissions
+      .requestPermission(
+        this.androidPermissions.PERMISSION.ACTIVITY_RECOGNITION
+      )
+      .then(
+        async (result) => {
+          await PedometerPlugin.requestPermission()
+          if (result.hasPermission) {
+            console.log('have permission')
+          }
+        },
+        (error) => console.log('Error permission: ' + error)
+      )
     this.navCtrl.navigateRoot('sign-in')
   }
 }

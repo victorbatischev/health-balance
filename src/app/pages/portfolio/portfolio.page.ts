@@ -76,12 +76,12 @@ export class PortfolioPage {
     })
   }
 
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
     // запускаем сервис шагомера
-    PedometerPlugin.start()
+    await PedometerPlugin.start()
 
     // получаем последние данные из шагомера
-    this.getSavedData()
+    await this.getSavedData()
 
     // прослушиваем изменения шагов
     window.addEventListener('stepEvent', this.updateSteps)

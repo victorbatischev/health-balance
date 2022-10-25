@@ -24,7 +24,6 @@ import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx'
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx'
 import { OneSignal } from '@ionic-native/onesignal/ngx'
 import { BackgroundMode } from '@awesome-cordova-plugins/background-mode/ngx'
-import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx'
 
 import { ConnectivityService } from '../providers/connectivity-service'
 
@@ -115,8 +114,7 @@ export class AppComponent {
     public customerServ: CustomerService,
     private connectivityServ: ConnectivityService,
     private oneSignal: OneSignal,
-    private backgroundMode: BackgroundMode,
-    private androidPermissions: AndroidPermissions
+    private backgroundMode: BackgroundMode
   ) {
     this.customerServ.getCustomerData().subscribe((val) => {
       this.customerData = val
