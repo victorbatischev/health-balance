@@ -34,20 +34,8 @@ export class AdviceComponent implements OnInit {
     this.toPrevSlide.emit()
   }
 
-  toRegisterPage() {
-    this.androidPermissions
-      .requestPermission(
-        this.androidPermissions.PERMISSION.ACTIVITY_RECOGNITION
-      )
-      .then(
-        async (result) => {
-          await PedometerPlugin.requestPermission()
-          if (result.hasPermission) {
-            console.log('have permission')
-          }
-        },
-        (error) => console.log('Error permission: ' + error)
-      )
+  async toRegisterPage() {
     this.navCtrl.navigateRoot('sign-in')
+    await PedometerPlugin.requestPermission()
   }
 }

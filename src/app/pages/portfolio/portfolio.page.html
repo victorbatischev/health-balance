@@ -49,8 +49,14 @@
 
             <div class="step-block">
               <app-step-counter
+                [steps]="steps"
+                [period]="selected_tab"
+                *ngIf="selected_tab === 'today'"
+              ></app-step-counter>
+              <app-step-counter
                 [steps]="calc_steps"
                 [period]="selected_tab"
+                *ngIf="selected_tab !== 'today'"
               ></app-step-counter>
             </div>
           </div>
