@@ -85,6 +85,7 @@ public class PedometerPlugin extends Plugin {
         int stepsFromIonic = call.getInt("numberOfSteps");
         manager.saveSteps(stepsFromIonic);
         plugin.lastNumberOfSteps = stepsFromIonic;
+        start(call);
         call.resolve();
     }
 
