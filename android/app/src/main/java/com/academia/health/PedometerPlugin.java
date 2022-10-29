@@ -1,7 +1,11 @@
 package com.academia.health;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.Settings;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -18,7 +22,7 @@ import org.json.JSONException;
 
 @NativePlugin(
         name = "PedometerPlugin",
-        permissions = { Manifest.permission.ACTIVITY_RECOGNITION }
+        permissions = { Manifest.permission.ACTIVITY_RECOGNITION, Manifest.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS }
 )
 public class PedometerPlugin extends Plugin {
 
@@ -45,6 +49,13 @@ public class PedometerPlugin extends Plugin {
                 e.printStackTrace();
             };
         };
+
+        SharedPrefManager manager = new SharedPrefManager(getContext());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !manager.isBatteryOptDisAsked()) {
+            getContext().startActivity(new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
+                    Uri.parse("package:" +getContext().getPackageName())));
+            manager.setBatteryOptimizationDisabled(true);
+        }
     }
 
     @Override
