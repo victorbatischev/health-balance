@@ -170,15 +170,7 @@ export class PortfolioPage {
             this.customerData.token
         )
         .subscribe(
-          (data: any) => {
-            // передаём в сервис большее количество шагов
-            if (data.today > this.steps) {
-              PedometerPlugin.setData({ numberOfSteps: data.today })
-            } else if (data.today < this.steps) {
-              this.updateSteps({ numberOfSteps: this.steps })
-            }
-            this.calc_steps = data[idx]
-          },
+          (data: any) => (this.calc_steps = data[idx]),
           (error) => console.log(error)
         )
     } else {

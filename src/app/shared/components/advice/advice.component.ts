@@ -1,8 +1,6 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core'
 import { NavController } from '@ionic/angular'
 
-import { AndroidPermissions } from '@ionic-native/android-permissions/ngx'
-
 import { Plugins } from '@capacitor/core'
 const { PedometerPlugin } = Plugins
 
@@ -19,10 +17,7 @@ export class AdviceComponent implements OnInit {
   @Output() toNextSlide = new EventEmitter<any>()
   @Output() toPrevSlide = new EventEmitter<any>()
 
-  constructor(
-    public navCtrl: NavController,
-    private androidPermissions: AndroidPermissions
-  ) {}
+  constructor(public navCtrl: NavController) {}
 
   ngOnInit(): void {}
 
