@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSMotionUsageDescription</key>
+	<string>Мы используем использование движения, чтобы отслеживать количество ваших шагов.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -44,11 +46,11 @@
 	<string>Чтобы подсчитать количество шагов</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>Чтобы обновлять количество шагов</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Для повышения точности подсчета шагов</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Для повышения точности подсчета шагов</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Для повышения точности подсчета шагов</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Для повышения точности подсчета шагов</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Для записи видео со звуком</string>

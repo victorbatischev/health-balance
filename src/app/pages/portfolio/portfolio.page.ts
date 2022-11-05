@@ -94,7 +94,7 @@ export class PortfolioPage {
 
   async getSavedData() {
     // запускаем сервис шагомера
-    await PedometerPlugin.start()
+    PedometerPlugin.start()
 
     // получаем последние данные из шагомера
     let savedData = await PedometerPlugin.getSavedData()
@@ -170,7 +170,15 @@ export class PortfolioPage {
             this.customerData.token
         )
         .subscribe(
-          (data: any) => (this.calc_steps = data[idx]),
+          (data: any) => {
+            // передаём в сервис большее количество шагов
+            if (data.today > this.steps) {
+              PedometerPlugin.setData({ numberOfSteps: data.today })
+            } else {
+              this.updateSteps({ numberOfSteps: this.steps })
+            }
+            this.calc_steps = data[idx]
+          },
           (error) => console.log(error)
         )
     } else {

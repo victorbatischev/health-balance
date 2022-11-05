@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "754405581357",
+    "project_id": "healthbalance-dbe51",
+    "storage_bucket": "healthbalance-dbe51.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754405581357:android:068b0e02168dac12accea4",
+        "android_client_info": {
+          "package_name": "com.academia.health"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "754405581357-rpbhp12ojuno87f9lcnuse1mrjn7iuje.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.academia.health",
+            "certificate_hash": "2b7716896af3e8ffb3703f976739d56fe430066d"
+          }
+        },
+        {
+          "client_id": "754405581357-rfih584qprmfvm9joimqvvjr41qb767q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB44A8tI-5X2bIBKFKNeP4IQ0YazdAymn4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "754405581357-rfih584qprmfvm9joimqvvjr41qb767q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

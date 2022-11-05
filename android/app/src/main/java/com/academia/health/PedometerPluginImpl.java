@@ -1,5 +1,6 @@
 package com.academia.health;
 
+import java.util.Date;
 import java.util.List;
 
 import android.Manifest;
@@ -9,6 +10,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
+import com.academia.health.utils.DateHelper;
 import com.academia.health.utils.SharedPrefManager;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.NativePlugin;
@@ -31,7 +33,7 @@ public class PedometerPluginImpl implements SensorEventListener {
 
     private int status;     // status of listener
     private float startSteps; // first value, to be subtracted
-    private long startTimestamp; // time stamp of when the measurement starts
+    private static long startTimestamp; // time stamp of when the measurement starts
 
     private SensorManager sensorManager; // Sensor manager
 
@@ -44,7 +46,7 @@ public class PedometerPluginImpl implements SensorEventListener {
     public int lastNumberOfSteps;
 
     private PedometerPluginImpl() {
-        this.startTimestamp = 0;
+        startTimestamp = 0;
         this.startSteps = 0;
         this.setStatus(PedometerPluginImpl.STOPPED);
     }
@@ -88,7 +90,7 @@ public class PedometerPluginImpl implements SensorEventListener {
             // Pedometer sensor returned by sensor manager
             Sensor mSensor = list.get(0);
             if (this.sensorManager.registerListener(this, mSensor,
-                    SensorManager.SENSOR_DELAY_UI)) {
+                    SensorManager.SENSOR_DELAY_FASTEST)) {
                 this.setStatus(PedometerPluginImpl.STARTING);
             } else {
                 this.setStatus(PedometerPluginImpl.ERROR_FAILED_TO_START);
@@ -144,7 +146,7 @@ public class PedometerPluginImpl implements SensorEventListener {
 
         steps = (steps - this.startSteps) + lastNumberOfSteps;
 
-        this.win(this.getStepsJSON(steps));
+        this.win(getStepsJSON(Math.round(steps)));
     }
 
     public void reset() {
@@ -186,10 +188,12 @@ public class PedometerPluginImpl implements SensorEventListener {
         this.status = status;
     }
 
-    public JSObject getStepsJSON(float steps) {
+    public static JSObject getStepsJSON(int steps) {
+        Date currentDate = new Date();
         JSObject r = new JSObject();
-        r.put("startDate", this.startTimestamp);
+        r.put("startDate", startTimestamp);
         r.put("endDate", System.currentTimeMillis());
+        r.put("currentDate", DateHelper.dateFormat.format(currentDate));
         r.put("numberOfSteps", steps);
         return r;
     }

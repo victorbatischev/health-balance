@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.util.Log;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -26,6 +27,7 @@ public abstract class DayChangedBroadcastReceiver extends BroadcastReceiver {
                 (action.equals(Intent.ACTION_DATE_CHANGED))) {
             date = currentDate;
 
+            Log.e("testtest", "day changed");
             onDayChanged();
         }
     }
@@ -36,11 +38,7 @@ public abstract class DayChangedBroadcastReceiver extends BroadcastReceiver {
 
     public static IntentFilter getIntentFilter() {
         IntentFilter intentFilter = new IntentFilter();
-
         intentFilter.addAction(Intent.ACTION_DATE_CHANGED);
-//    intentFilter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
-//    intentFilter.addAction(Intent.ACTION_TIME_CHANGED);
-
         return intentFilter;
     }
 }
