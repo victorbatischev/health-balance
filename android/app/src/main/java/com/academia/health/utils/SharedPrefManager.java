@@ -55,7 +55,7 @@ public class SharedPrefManager {
 
         try {
             JSObject jsObject = new JSObject(stringData);
-            steps = jsObject.getInteger("numberOfSteps");
+            steps = jsObject.getInt("numberOfSteps");
         } catch (JSONException e) {
             e.printStackTrace();
         }

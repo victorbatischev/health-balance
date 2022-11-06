@@ -63,7 +63,13 @@ public class ForegroundService extends Service {
                 return;
             }
 
-            int steps = data.getInteger("numberOfSteps");
+            int steps = 0;
+            try {
+                steps = data.getInt("numberOfSteps");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
             sharedPrefManager.save(String.valueOf(data));
             updateContent(String.valueOf(steps));
 

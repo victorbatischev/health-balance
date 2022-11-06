@@ -9,6 +9,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.util.Log;
 
 import com.academia.health.utils.DateHelper;
 import com.academia.health.utils.SharedPrefManager;
@@ -32,7 +33,7 @@ public class PedometerPluginImpl implements SensorEventListener {
     public static int ERROR_NO_SENSOR_FOUND = 4;
 
     private int status;     // status of listener
-    private float startSteps; // first value, to be subtracted
+    private int startSteps; // first value, to be subtracted
     private static long startTimestamp; // time stamp of when the measurement starts
 
     private SensorManager sensorManager; // Sensor manager
@@ -43,7 +44,7 @@ public class PedometerPluginImpl implements SensorEventListener {
 
     SharedPrefManager sharedPrefManager;
 
-    public int lastNumberOfSteps;
+    public int lastNumberOfSteps = 0;
 
     private PedometerPluginImpl() {
         startTimestamp = 0;
@@ -139,14 +140,19 @@ public class PedometerPluginImpl implements SensorEventListener {
         }
         this.setStatus(PedometerPluginImpl.RUNNING);
 
-        float steps = event.values[0];
+        int steps = (int) event.values[0];
+        Log.e("testtest", "steps before calc: "+steps);
 
         if(this.startSteps == 0)
             this.startSteps = steps;
 
         steps = (steps - this.startSteps) + lastNumberOfSteps;
 
-        this.win(getStepsJSON(Math.round(steps)));
+        Log.e("testtest", "steps: "+steps);
+        Log.e("testtest", "startSteps: "+startSteps);
+        Log.e("testtest", "lastNumberOfSteps: "+lastNumberOfSteps);
+
+        this.win(getStepsJSON(steps));
     }
 
     public void reset() {
