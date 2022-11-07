@@ -141,16 +141,11 @@ public class PedometerPluginImpl implements SensorEventListener {
         this.setStatus(PedometerPluginImpl.RUNNING);
 
         int steps = (int) event.values[0];
-        Log.e("testtest", "steps before calc: "+steps);
 
         if(this.startSteps == 0)
             this.startSteps = steps;
 
         steps = (steps - this.startSteps) + lastNumberOfSteps;
-
-        Log.e("testtest", "steps: "+steps);
-        Log.e("testtest", "startSteps: "+startSteps);
-        Log.e("testtest", "lastNumberOfSteps: "+lastNumberOfSteps);
 
         this.win(getStepsJSON(steps));
     }

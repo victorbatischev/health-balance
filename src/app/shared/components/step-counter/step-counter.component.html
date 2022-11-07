@@ -4,5 +4,5 @@
   <h3 class="step-text" *ngIf="period == 'month'">За месяц вы прошли</h3>
   <h3 class="step-text" *ngIf="period == 'year'">За год вы прошли</h3>
   <h3 class="step-text" *ngIf="period == 'total'">Всего вы прошли</h3>
-  <h2 class="steps">{{ steps }} шагов</h2>
+  <h2 class="steps">{{ steps }} шаг{{ case(steps, ['', 'а', 'ов']) }}</h2>
 </div>

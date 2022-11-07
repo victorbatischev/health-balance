@@ -27,7 +27,6 @@ public abstract class DayChangedBroadcastReceiver extends BroadcastReceiver {
                 (action.equals(Intent.ACTION_DATE_CHANGED))) {
             date = currentDate;
 
-            Log.e("testtest", "day changed");
             onDayChanged();
         }
     }

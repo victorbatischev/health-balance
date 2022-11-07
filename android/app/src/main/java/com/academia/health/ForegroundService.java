@@ -103,7 +103,7 @@ public class ForegroundService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         startWakeLock();
-        String input = "Разрешите разрешение на физическую активность и снова откройте приложение!";
+        String input = "Предоставьте разрешение на физическую активность и снова откройте приложение!";
         if (intent != null) {
             input = intent.getStringExtra("numberOfSteps");
         }

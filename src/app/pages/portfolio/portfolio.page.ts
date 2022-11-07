@@ -19,10 +19,10 @@ const { PedometerPlugin } = Plugins
   styleUrls: ['./portfolio.page.scss']
 })
 export class PortfolioPage {
-  calc_steps: number = 0
+  calc_steps = '-'
   intervalId: any
   selected_tab: string = 'today'
-  steps = 0 // шаги из шагомера
+  steps = '-' // шаги из шагомера
 
   customerData: Customer = {
     token: '',
@@ -60,14 +60,12 @@ export class PortfolioPage {
                 .then(() => {
                   this.getStepsHistory()
                 })
-                .catch((error) => {
-                  this.alertServ.showToast('Error authorization: ' + error)
-                })
+                .catch((error) => console.log(error))
             }
           })
           .catch((e) => console.log(e))
       },
-      (error) => this.alertServ.showToast('Error permission: ' + error)
+      (error) => console.log(error)
     )
 
     this.customerServ.getCustomerData().subscribe((val) => {
@@ -119,8 +117,7 @@ export class PortfolioPage {
         )
         .subscribe(
           (data: any) => console.log(data),
-          (error) =>
-            this.alertServ.showToast('Error received: ' + JSON.stringify(error))
+          (error) => console.log(JSON.stringify(error))
         )
     }
   }
@@ -150,14 +147,11 @@ export class PortfolioPage {
             )
             .subscribe(
               (data: any) => console.log(data),
-              (error) =>
-                this.alertServ.showToast(
-                  'Error received: ' + JSON.stringify(error)
-                )
+              (error) => console.log(JSON.stringify(error))
             )
         }
       })
-      .catch((e) => this.alertServ.showToast('Error: ' + e))
+      .catch((e) => console.log(e))
   }
 
   setActiveTab(idx) {
