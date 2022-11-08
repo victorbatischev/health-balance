@@ -72,7 +72,8 @@ export class NutritionPage {
                     button: data.result.programs_teams[i].exist
                       ? 'Ваша команда'
                       : 'Вступить',
-                    subDesc: data.result.programs_teams[i].steps + ' баллов'
+                    subDesc:
+                      (data.result.programs_teams[i].steps || 0) + ' баллов'
                   })
                 } else {
                   this.listData.push({
@@ -80,7 +81,8 @@ export class NutritionPage {
                     id2: this.route.snapshot.paramMap.get('program_id'),
                     img: 'assets/images/nutrition/medal.png',
                     title: data.result.programs_teams[i].title,
-                    subDesc: data.result.programs_teams[i].steps + ' баллов'
+                    subDesc:
+                      (data.result.programs_teams[i].steps || 0) + ' баллов'
                   })
                 }
               }

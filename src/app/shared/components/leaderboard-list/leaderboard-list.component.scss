@@ -1,51 +1,47 @@
-.leaderboard-list{
-  &__container{
+.leaderboard-list {
+  &__container {
     display: flex;
     flex-direction: column;
   }
 }
 
-.card-list{
+.card-list {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  &:not(:last-child){
+  &:not(:last-child) {
     margin-bottom: 40px;
   }
-  &__col_one{
+  &__col_one {
     display: flex;
     align-items: center;
     flex: 1 1 auto;
   }
-  &__icon{
+  &__icon {
     flex: 0 0 39px;
     height: 100%;
     margin-right: 8px;
-    img{
+    img {
       width: 39px;
       height: 39px;
     }
   }
-  &__info{
+  &__info {
     display: flex;
     flex-direction: column;
     flex: 0 1 50%;
   }
-  &__command{
-    color: #A3A3A3;
+  &__command {
+    color: #a3a3a3;
     font-size: 15px;
-    letter-spacing: -0.02em;
     font-weight: 400;
-    white-space: nowrap;
     margin-bottom: 4px;
   }
-  &__score{
+  &__score {
     font-family: var(--fontDisplay);
     color: var(--colorBlue);
     font-weight: 400;
     font-size: 13px;
-    letter-spacing: -0.02em;
-    white-space: nowrap;
   }
   &__btn {
     background: var(--backgroundButtonPush);
@@ -61,11 +57,10 @@
     justify-content: center;
     width: 112px;
   }
-  &__btn_yellow{
-    background:var(--yellowGradientBackground);
+  &__btn_yellow {
+    background: var(--yellowGradientBackground);
     color: #000;
   }
 }
-.button-yellow{
-
+.button-yellow {
 }
