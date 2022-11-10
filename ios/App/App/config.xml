@@ -60,10 +60,5 @@
     <param name="ios-package" value="CDVDevice"/>
   </feature>
 
-  <feature name="Pedometer">
-    <param name="ios-package" value="Pedometer"/>
-    <param name="onload" value="true"/>
-  </feature>
-
   
 </widget>

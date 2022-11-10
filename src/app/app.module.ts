@@ -14,7 +14,6 @@ import { BackgroundMode } from '@awesome-cordova-plugins/background-mode/ngx'
 import { Media } from '@ionic-native/media/ngx'
 import { Camera } from '@ionic-native/camera/ngx'
 import { Crop } from '@ionic-native/crop/ngx'
-import { AndroidPermissions } from '@ionic-native/android-permissions/ngx'
 import { FileTransfer } from '@ionic-native/file-transfer/ngx'
 import { IOSFilePicker } from '@ionic-native/file-picker/ngx'
 import { FileChooser } from '@ionic-native/file-chooser/ngx'
@@ -50,7 +49,6 @@ import { AppRoutingModule } from './app-routing.module'
     SplashScreen,
     Health,
     BackgroundMode,
-    AndroidPermissions,
     Media,
     Camera,
     Crop,

@@ -83,7 +83,7 @@ export class PortfolioPage {
     this.intervalId = setInterval(() => {
       this.setActiveTab(this.selected_tab)
 
-      if(this.platform.is('ios')) {
+      if (this.platform.is('ios')) {
         this.getStepsHistory()
       }
     }, 5000)
@@ -126,13 +126,19 @@ export class PortfolioPage {
     }
   }
 
+  subtractMonths(numOfMonths, date = new Date()) {
+    date.setMonth(date.getMonth() - numOfMonths)
+    return date
+  }
+
   getStepsHistory() {
     // получение данных по шагам за последний месяц
     this.health
-      .query({
-        startDate: new Date(new Date().setHours(0, 0, 0, 0)),
+      .queryAggregated({
+        startDate: this.subtractMonths(3),
         endDate: new Date(),
-        dataType: 'steps'
+        dataType: 'steps',
+        bucket: 'day'
       })
       .then((res: any) => {
         this.ref.detectChanges()
