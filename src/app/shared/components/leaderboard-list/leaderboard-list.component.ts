@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core'
 import { NavController } from '@ionic/angular'
-import { IList } from '../../interfaces/List'
 
 import { HttpClient } from '@angular/common/http'
 import { Storage } from '@ionic/storage'
@@ -9,7 +8,6 @@ import { ConnectivityService } from '../../../../providers/connectivity-service'
 import { AlertService } from '../../../../providers/alert-service'
 
 import { Customer } from '../../../../models/customer-model'
-import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-leaderboardList',

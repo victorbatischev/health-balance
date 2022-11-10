@@ -23,7 +23,6 @@ import { AlertService } from '../providers/alert-service'
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx'
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx'
 import { OneSignal } from '@ionic-native/onesignal/ngx'
-import { BackgroundMode } from '@awesome-cordova-plugins/background-mode/ngx'
 
 import { ConnectivityService } from '../providers/connectivity-service'
 
@@ -113,8 +112,7 @@ export class AppComponent {
     private statusBar: StatusBar,
     public customerServ: CustomerService,
     private connectivityServ: ConnectivityService,
-    private oneSignal: OneSignal,
-    private backgroundMode: BackgroundMode
+    private oneSignal: OneSignal
   ) {
     this.customerServ.getCustomerData().subscribe((val) => {
       this.customerData = val

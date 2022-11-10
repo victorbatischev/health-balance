@@ -57,9 +57,7 @@ export class PortfolioPage {
               // запрос на авторизацию в Apple Health для отправки шагов
               this.health
                 .requestAuthorization([{ read: ['steps'] }])
-                .then(() => {
-                  this.getStepsHistory()
-                })
+                .then(() => this.getStepsHistory())
                 .catch((error) => console.log(error))
             }
           })
@@ -74,14 +72,20 @@ export class PortfolioPage {
   }
 
   ngOnInit() {
-    this.getSavedData()
+    if (this.platform.is('android')) {
+      this.getSavedData()
 
-    // прослушиваем изменения шагов
-    window.addEventListener('stepEvent', this.updateSteps)
+      // прослушиваем изменения шагов
+      window.addEventListener('stepEvent', this.updateSteps)
+    }
 
     // каждые 5 секунд запрашиваем изменения шагов
     this.intervalId = setInterval(() => {
       this.setActiveTab(this.selected_tab)
+
+      if(this.platform.is('ios')) {
+        this.getStepsHistory()
+      }
     }, 5000)
   }
 
@@ -122,16 +126,11 @@ export class PortfolioPage {
     }
   }
 
-  subtractMonths(numOfMonths, date = new Date()) {
-    date.setMonth(date.getMonth() - numOfMonths)
-    return date
-  }
-
   getStepsHistory() {
     // получение данных по шагам за последний месяц
     this.health
       .query({
-        startDate: this.subtractMonths(1),
+        startDate: new Date(new Date().setHours(0, 0, 0, 0)),
         endDate: new Date(),
         dataType: 'steps'
       })

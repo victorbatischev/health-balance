@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core'
-import { NavController } from '@ionic/angular'
+import { NavController, Platform } from '@ionic/angular'
 
 import { Plugins } from '@capacitor/core'
 const { PedometerPlugin } = Plugins
@@ -17,7 +17,7 @@ export class AdviceComponent implements OnInit {
   @Output() toNextSlide = new EventEmitter<any>()
   @Output() toPrevSlide = new EventEmitter<any>()
 
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController, private platform: Platform) {}
 
   ngOnInit(): void {}
 
@@ -31,6 +31,8 @@ export class AdviceComponent implements OnInit {
 
   async toRegisterPage() {
     this.navCtrl.navigateRoot('sign-in')
-    await PedometerPlugin.requestPermission()
+    if (this.platform.is('android')) {
+      await PedometerPlugin.requestPermission()
+    }
   }
 }
