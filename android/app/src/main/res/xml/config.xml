@@ -10,10 +10,6 @@
     <param name="android-package" value="com.pdf.generator.PDFGenerator"/>
   </feature>
 
-  <feature name="Permissions">
-    <param name="android-package" value="com.android.plugins.Permissions"/>
-  </feature>
-
   <feature name="BackgroundMode">
     <param name="android-package" value="de.appplant.cordova.plugin.background.BackgroundMode"/>
   </feature>
@@ -69,10 +65,6 @@
 
   <feature name="Device">
     <param name="android-package" value="org.apache.cordova.device.Device"/>
-  </feature>
-
-  <feature name="Pedometer">
-    <param name="android-package" value="org.apache.cordova.pedometer.PedoListener"/>
   </feature>
 
   <feature name="StatusBar">
