@@ -50,18 +50,17 @@ export class PortfolioPage {
       (val) => {
         this.customerData = val
         // проверка на доступность Apple Health
-        this.health
-          .isAvailable()
-          .then((available: boolean) => {
-            if (available && this.platform.is('ios')) {
-              // запрос на авторизацию в Apple Health для отправки шагов
+        if (this.platform.is('ios')) {
+          this.health // запрос на авторизацию в Apple Health для отправки шагов
+            .isAvailable()
+            .then(() => {
               this.health
                 .requestAuthorization([{ read: ['steps'] }])
                 .then(() => this.getStepsHistory())
                 .catch((error) => console.log(error))
-            }
-          })
-          .catch((e) => console.log(e))
+            })
+            .catch((e) => console.log(e))
+        }
       },
       (error) => console.log(error)
     )
@@ -143,6 +142,8 @@ export class PortfolioPage {
       .then((res: any) => {
         this.ref.detectChanges()
         if (this.connectivityServ.isOnline()) {
+          this.steps = res[res.length - 1].value
+          this.ref.detectChanges()
           this.httpClient
             .post(
               this.connectivityServ.apiUrl +
