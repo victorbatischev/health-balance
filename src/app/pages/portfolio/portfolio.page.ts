@@ -100,6 +100,7 @@ export class PortfolioPage {
     // получаем последние данные из шагомера
     let savedData = await PedometerPlugin.getSavedData()
     this.steps = savedData['numberOfSteps'] || 0
+    this.alertServ.showToast('Шагов было: ' + this.steps)
     this.ref.detectChanges()
   }
 
@@ -108,6 +109,7 @@ export class PortfolioPage {
       let startDate = new Date(new Date().setHours(0, 0, 0, 0)).toISOString()
       let endDate = new Date().toISOString()
       this.steps = event.numberOfSteps
+      this.alertServ.showToast('Новые шаги: ' + event.numberOfSteps)
       this.ref.detectChanges()
       this.httpClient
         .post(
