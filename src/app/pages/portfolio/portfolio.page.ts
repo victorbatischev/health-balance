@@ -22,7 +22,6 @@ export class PortfolioPage {
   calc_steps = '-'
   intervalId: any
   selected_tab: string = 'today'
-  steps = '-' // шаги из шагомера
 
   customerData: Customer = {
     token: '',
@@ -99,7 +98,8 @@ export class PortfolioPage {
 
     // получаем последние данные из шагомера
     let savedData = await PedometerPlugin.getSavedData()
-    this.steps = savedData['numberOfSteps'] || 0
+    let steps = savedData['numberOfSteps'] || '0'
+    if (steps) this.updateSteps({ numberOfSteps: steps })
     this.ref.detectChanges()
   }
 
@@ -107,7 +107,6 @@ export class PortfolioPage {
     if (this.connectivityServ.isOnline() && this.customerData.token) {
       let startDate = new Date(new Date().setHours(0, 0, 0, 0)).toISOString()
       let endDate = new Date().toISOString()
-      this.steps = event.numberOfSteps
       this.ref.detectChanges()
       this.httpClient
         .post(
@@ -140,16 +139,17 @@ export class PortfolioPage {
         bucket: 'day'
       })
       .then((res: any) => {
-        this.ref.detectChanges()
         if (this.connectivityServ.isOnline()) {
-          this.steps = res[res.length - 1].value.toFixed()
           this.ref.detectChanges()
+          let steps = res.map((item) => {
+            return { ...item, value: item.value.toFixed() }
+          })
           this.httpClient
             .post(
               this.connectivityServ.apiUrl +
                 'steps/update?token=' +
                 this.customerData.token,
-              JSON.stringify({ steps_arr: res })
+              JSON.stringify({ steps_arr: steps })
             )
             .subscribe(
               (data: any) => console.log(data),
