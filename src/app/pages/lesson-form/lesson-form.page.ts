@@ -83,7 +83,7 @@ export class LessonFormPage {
         this.httpClient
           .get(
             this.connectivityServ.apiUrl +
-              'programs/list?token=' +
+              'programs/list?create=1&token=' +
               this.customerData.token
           )
           .subscribe(
